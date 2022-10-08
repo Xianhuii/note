@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "插件/Obsidian插件.md",
+            "file": "设计模式/命令模式.md",
             "mode": "source",
             "source": false
           }
@@ -61,7 +61,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -77,7 +78,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "插件/Obsidian插件.md",
+                "file": "设计模式/命令模式.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +95,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "插件/Obsidian插件.md",
+                "file": "设计模式/命令模式.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +118,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "插件/Obsidian插件.md"
+                "file": "设计模式/命令模式.md"
               }
             }
           }
@@ -130,6 +131,8 @@
   },
   "active": "44e8c1bc7ce54441",
   "lastOpenFiles": [
+    "阿里业务树排期 - 20220803.pdf",
+    "插件/Obsidian插件.md",
     "Git/凭据助手credential.helper.md",
     "git.md",
     "README.md"
