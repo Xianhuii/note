@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "设计模式/状态模式.md",
+            "file": "设计模式/策略模式.md",
             "mode": "source",
             "source": false
           }
@@ -78,7 +78,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "设计模式/状态模式.md",
+                "file": "设计模式/策略模式.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,7 +95,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "设计模式/状态模式.md",
+                "file": "设计模式/策略模式.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +118,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "设计模式/状态模式.md"
+                "file": "设计模式/策略模式.md"
               }
             }
           }
@@ -131,6 +131,7 @@
   },
   "active": "382d9616e1b621f4",
   "lastOpenFiles": [
+    "设计模式/状态模式.md",
     "设计模式/观察者模式.md",
     "设计模式/备忘录模式.md",
     "设计模式/迭代器模式.md",
@@ -139,7 +140,6 @@
     "设计模式/解释器模式.md",
     "设计模式/命令模式.md",
     "git.md",
-    "2022-10-10.md",
-    "Pasted image 20221008123657.png"
+    "2022-10-10.md"
   ]
 }
