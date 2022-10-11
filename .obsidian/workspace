@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "设计模式/观察者模式.md",
+            "file": "设计模式/状态模式.md",
             "mode": "source",
             "source": false
           }
@@ -61,8 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -78,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "设计模式/观察者模式.md",
+                "file": "设计模式/状态模式.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "设计模式/观察者模式.md",
+                "file": "设计模式/状态模式.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "设计模式/观察者模式.md"
+                "file": "设计模式/状态模式.md"
               }
             }
           }
@@ -131,6 +130,7 @@
   },
   "active": "382d9616e1b621f4",
   "lastOpenFiles": [
+    "设计模式/观察者模式.md",
     "设计模式/备忘录模式.md",
     "设计模式/迭代器模式.md",
     "设计模式/中介者模式.md",
@@ -139,7 +139,6 @@
     "设计模式/命令模式.md",
     "git.md",
     "2022-10-10.md",
-    "Pasted image 20221008123657.png",
-    "Pasted image 20221009123237.png"
+    "Pasted image 20221008123657.png"
   ]
 }
