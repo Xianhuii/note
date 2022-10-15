@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Spring/CORS/CORS基础理论.md",
+            "file": "Spring/CORS/CORS协议规范.md",
             "mode": "source",
             "source": false
           }
@@ -61,7 +61,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -77,7 +78,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring/CORS/CORS基础理论.md",
+                "file": "Spring/CORS/CORS协议规范.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +95,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring/CORS/CORS基础理论.md",
+                "file": "Spring/CORS/CORS协议规范.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +118,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring/CORS/CORS基础理论.md"
+                "file": "Spring/CORS/CORS协议规范.md"
               }
             }
           }
