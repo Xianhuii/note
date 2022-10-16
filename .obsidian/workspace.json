@@ -18,19 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "fc7716d536036710",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.0.0"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -151,7 +140,7 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "fc7716d536036710",
+  "active": "d4f0b219d4af2021",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
     "设计模式/观察者模式.md",
