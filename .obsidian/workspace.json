@@ -1,0 +1,167 @@
+{
+  "main": {
+    "id": "95794dc179e39d3b",
+    "type": "split",
+    "children": [
+      {
+        "id": "acb23d41a1cce9bb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d4f0b219d4af2021",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spring/CORS/CORS协议规范.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fc7716d536036710",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.0.0"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fb47c80e67d7159a",
+    "type": "split",
+    "children": [
+      {
+        "id": "b29680737f810504",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e275dab41eb9f4d9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "6a844f621a12d00b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "126ab70f4df8a5ae",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "498b15a5676494df",
+    "type": "split",
+    "children": [
+      {
+        "id": "82418a79428328b1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f957d9806d29d069",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Spring/CORS/CORS协议规范.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "77bbe459371dd27b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Spring/CORS/CORS协议规范.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0fac4f1ef777533a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "b0a56dff85469e9a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Spring/CORS/CORS协议规范.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
+  "active": "fc7716d536036710",
+  "lastOpenFiles": [
+    "conflict-files-obsidian-git.md",
+    "设计模式/观察者模式.md",
+    "设计模式/备忘录模式.md",
+    "设计模式/迭代器模式.md",
+    "设计模式/中介者模式.md",
+    "Pasted image 20221009125052.png",
+    "设计模式/解释器模式.md",
+    "设计模式/命令模式.md",
+    "git.md",
+    "2022-10-10.md"
+  ]
+}
