@@ -61,7 +61,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -130,15 +131,15 @@
   },
   "active": "91593dfbf717b071",
   "lastOpenFiles": [
+    "Spring/CORS/SpringMVC配置CORS（原理篇）.md",
+    "Spring/CORS/SpringMVC配置CORS（使用篇）.md",
+    "Spring/CORS/CORS协议规范.md",
     "Spring/CORS/CORS基础理论.md",
     "设计模式/访问者模式.md",
     "设计模式/模板方法模式.md",
     "设计模式/策略模式.md",
     "设计模式/状态模式.md",
     "设计模式/观察者模式.md",
-    "设计模式/备忘录模式.md",
-    "设计模式/迭代器模式.md",
-    "设计模式/中介者模式.md",
-    "Pasted image 20221009125052.png"
+    "设计模式/备忘录模式.md"
   ]
 }
