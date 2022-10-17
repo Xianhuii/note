@@ -1,5 +1,6 @@
 package com.example.servletmvc.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,12 @@ public class CorsController {
     @RequestMapping("corsResponse")
     public String corsResponse(HttpServletResponse response) {
         response.addHeader("Access-Control-Allow-Origin", "*");
+        System.out.println("Hello Cors!");
+        return "Hello Cors!";
+    }
+    @CrossOrigin
+    @RequestMapping("CrossOrigin")
+    public String CrossOrigin(HttpServletResponse response) {
         System.out.println("Hello Cors!");
         return "Hello Cors!";
     }
