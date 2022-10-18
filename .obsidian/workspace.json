@@ -129,7 +129,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -139,7 +140,7 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "d4f0b219d4af2021",
+  "active": "b0a56dff85469e9a",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
     "设计模式/观察者模式.md",
