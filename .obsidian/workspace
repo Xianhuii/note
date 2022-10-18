@@ -121,15 +121,24 @@
                 "file": "Spring/CORS/CORS协议规范.md"
               }
             }
+          },
+          {
+            "id": "3e8750962ecac0a2",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
     "width": 300,
     "collapsed": true
   },
-  "active": "91593dfbf717b071",
+  "active": "3e8750962ecac0a2",
   "lastOpenFiles": [
     "Spring/CORS/SpringMVC配置CORS（原理篇）.md",
     "Spring/CORS/SpringMVC配置CORS（使用篇）.md",
