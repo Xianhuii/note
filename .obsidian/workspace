@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Spring/CORS/CORS协议规范.md",
+            "file": "Spring/CORS/SpringMVC配置CORS（原理篇）.md",
             "mode": "source",
             "source": false
           }
@@ -61,8 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -78,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring/CORS/CORS协议规范.md",
+                "file": "Spring/CORS/SpringMVC配置CORS（原理篇）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring/CORS/CORS协议规范.md",
+                "file": "Spring/CORS/SpringMVC配置CORS（原理篇）.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring/CORS/CORS协议规范.md"
+                "file": "Spring/CORS/SpringMVC配置CORS（原理篇）.md"
               }
             }
           },
@@ -140,10 +139,10 @@
   },
   "active": "91593dfbf717b071",
   "lastOpenFiles": [
-    "Spring/CORS/SpringMVC配置CORS（原理篇）.md",
     "Spring/CORS/SpringWeb对CORS的支持.md",
-    "插件/Obsidian插件.md",
     "Spring/CORS/CORS协议规范.md",
+    "Spring/CORS/SpringMVC配置CORS（原理篇）.md",
+    "插件/Obsidian插件.md",
     "Spring/CORS/SpringMVC配置CORS（使用篇）.md",
     "Spring/CORS/CORS基础理论.md",
     "设计模式/访问者模式.md",

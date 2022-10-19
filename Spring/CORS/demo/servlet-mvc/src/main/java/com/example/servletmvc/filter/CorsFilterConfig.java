@@ -15,7 +15,7 @@ import java.util.Collections;
  * @author jxh
  * @date 2022年10月17日 12:36
  */
-@Configuration
+//@Configuration
 public class CorsFilterConfig {
     @Bean
     public CorsFilter corsFilter() {
