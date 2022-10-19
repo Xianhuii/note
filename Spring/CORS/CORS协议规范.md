@@ -31,7 +31,18 @@ Host: localhost:8080
 Origin: https://www.baidu.com
 ```
 当`Host`和`Origin`不一致时，浏览器就判断这个是跨域请求，它就会根据CORS协议采取一定的校验措施。
-# 3 简单请求&复杂请求
+# 3 简单请求&复杂请求&预检请求
+出于性能和安全的考虑，CORS将用户的跨域请求分为简单请求和复杂请求两种类型，分别进行不同的校验流程。
+满足以下条件的为简单请求：
+- 请求方法为：`GET`或`HEAD`或`POST`
+- 请求头为：
+	- 浏览器用户代理自动设置的请求头：`Connection`、`User-Agent`等
+	- [forbidden header name](https://fetch.spec.whatwg.org/#forbidden-header-name)：`Content-Length`、`Cookie`等
+	- [CORS-safelisted request-header](https://fetch.spec.whatwg.org/#cors-safelisted-request-header)：`accept`、`accept-language`等
+	- `Content-Type`值为：`text/plain`或 `multipart/form-data`或`application/x-www-form-urlencoded`
+不满足以上条件的就是复杂请求，比如：
+- 请求头`Content-Type`为`application/json`
+- 自定义请求头
 
 # 4 CORS校验流程
 在不同的前提条件下，CORS有两套校验流程
