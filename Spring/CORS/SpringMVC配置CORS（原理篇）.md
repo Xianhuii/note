@@ -23,4 +23,4 @@ if (hasCorsConfigurationSource(handler) || CorsUtils.isPreFlightRequest(request)
    executionChain = getCorsHandlerExecutionChain(request, executionChain, config);  
 }
 ```
-如果全局配置和局部配置都没有添加，就不会进行CORS处理。也就是说，虽然是跨域请求，服务端也会进入到`Controller`层执行相关代码，只是返回给浏览器不会添加CORS响应头字段。
+如果全局配置和局部配置都没有添加，就不会进行CORS处理。也就是说，虽然是跨域请求，服务端也会进入到`Controller`层执行相关代码，只是返回给浏览器不会添加CORS响应头字段。虽然用户获取不到响应，但是服务端接口已经被执行了。
