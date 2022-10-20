@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author jxh
  * @date 2022年10月13日 12:55
  */
+//@CrossOrigin
 @RestController
 public class CorsController {
     @RequestMapping("cors")
@@ -28,7 +29,7 @@ public class CorsController {
     }
     @CrossOrigin
     @RequestMapping("CrossOrigin")
-    public String CrossOrigin(HttpServletResponse response) {
+    public String CrossOrigin() {
         System.out.println("Hello Cors!");
         return "Hello Cors!";
     }
