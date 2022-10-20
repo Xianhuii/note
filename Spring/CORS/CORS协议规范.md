@@ -2,8 +2,7 @@
 CORS是Cross-Origin Resource Sharing的缩写，意思是**跨域资源共享**。
 本质上，CORS是HTTP协议对**浏览器**中**不同网站**间**AJAX请求**的规范和限制。
 Web世界里有无数个网站，每个网站都有自己的”门牌号“：`协议://域名:端口`。
-网站本质上只是部署在服务器某个端口上的应用进程。
-网站通过监听端口来接收外界的访问。外界通过域名（IP地址）来找到对应服务器，通过协议/端口来找到对应应用进程。
+网站是部署在服务器某个端口上的应用进程，通过监听端口来接收外界的访问。外界通过域名（IP地址）来找到对应服务器，通过协议/端口来找到对应应用进程。
 因此，协议/域名/端口可以定位网站在哪一个服务器，哪一个端口上。这三个只要有一个不同，说明该应用程序是不同的进程，就是不同的网站。
 而跨域指的就是跨越网站。
 当网站A想要通过AJAX请求获取网站B的数据（资源）时，就会发生跨域请求。因为它们是不同进程，不能保证对方的安全性。
@@ -32,7 +31,8 @@ Origin: https://www.baidu.com
 ```
 当`Host`和`Origin`不一致时，浏览器就判断这个是跨域请求，它就会根据CORS协议采取一定的校验措施。
 # 3 简单请求&复杂请求&实际请求&预检请求
-出于性能和安全的考虑，CORS将用户的跨域请求分为简单请求和复杂请求两种类型，分别进行不同的校验流程。
+## 3.1 简单请求
+出于性能和安全的考虑，浏览器将用户的CORS请求分为简单请求和复杂请求两种类型，分别进行不同的校验流程。
 满足以下条件的为简单请求：
 - 请求方法为：`GET`或`HEAD`或`POST`
 - 请求头为：
@@ -40,10 +40,37 @@ Origin: https://www.baidu.com
 	- [forbidden header name](https://fetch.spec.whatwg.org/#forbidden-header-name)：`Content-Length`、`Cookie`等
 	- [CORS-safelisted request-header](https://fetch.spec.whatwg.org/#cors-safelisted-request-header)：`accept`、`accept-language`等
 	- `Content-Type`值为：`text/plain`或 `multipart/form-data`或`application/x-www-form-urlencoded`
-不满足以上条件的就是复杂请求，比如：
+对于简单请求，浏览器会直接将该请求发送给服务器：
+```plantuml
+A -> 浏览器 : AJAX请求
+浏览器 -> 浏览器 : CORS预处理
+浏览器 -> B : HTTP请求
+B -> 浏览器 : HTTP响应
+浏览器 -> 浏览器 : CORS校验
+浏览器 -> A : AJAX响应
+```
+## 3.2 复杂请求
+不满足以上简单请求条件的就是复杂请求，比如：
 - 请求头`Content-Type`为`application/json`
 - 自定义请求头
-简单请求和复杂请求是浏览器角度的区分，因为它需要
+对于复杂请求，浏览器会先发送一个轻量级的预检请求，询问目标网站是否允许访问。如果允许，才会发送实际请求：
+```plantuml
+A -> 浏览器 : AJAX请求
+浏览器 -> 浏览器 : CORS预处理
+浏览器 -> B : HTTP预检请求
+B -> 浏览器 : HTTP预检响应
+浏览器 -> 浏览器 : CORS校验
+浏览器 -> 浏览器 : CORS预处理
+浏览器 -> B : HTTP实际请求
+B -> 浏览器 : HTTP实际响应
+浏览器 -> 浏览器 : CORS校验
+浏览器 -> A : AJAX响应
+```
+因此，理论上CORS复杂请求
+
+简单请求和复杂请求是浏览器角度的区分。
+
+在发送复杂请求前，浏览器会先发送一个轻量级的预检请求，询问网站是否允许访问。
 # 4 CORS校验流程
 在不同的前提条件下，CORS有两套校验流程
 - 简单请求CORS校验。
