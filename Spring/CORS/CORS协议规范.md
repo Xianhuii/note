@@ -90,11 +90,12 @@ B -> 浏览器 : HTTP实际响应
 服务器如果有配置跨域，会按照以下几个方面对跨域请求进行处理：
 1. 校验是否是跨域请求：`Origin`请求头与服务器进程的`协议://域名:端口`是否一致
 2. 如果是跨域实际请求，会添加以下跨域响应头（如果有配置值）：
-	1. 设置`Access-Control-Allow-Origin`响应头
-	2. 设置`Access-Control-Expose-Headers`响应头
-	3. 设置`Access-Control-Allow-Credentials`响应头
-	4. 设置`Access-Control-Max-Age`响应头
+	1. `Access-Control-Allow-Origin`：允许访问的浏览器网站地址
+	2. `Access-Control-Expose-Headers`：允许浏览器代码访问指定响应头
+	3. `Access-Control-Allow-Credentials`：是否允许携带`cookie`
 3. 如果是跨域预检请求，除了上述响应头，会额外添加以下响应头（如果有配置值）：
-	1. 设置`Access-Control-Allow-Methods`响应头
-	2. 设置`Access-Control-Allow-Headers`响应头
+	1. `Access-Control-Allow-Methods`：所允许的后续复杂请求的请求方法
+	2. `Access-Control-Allow-Headers`：所允许的后续复杂请求的请求头
+	3. `Access-Control-Max-Age`：后续复杂请求的有效请求时间
 ## 4.3 浏览器校验
+浏览器接收到跨域响应后，会对响应头进行校验，判断是否允许跨域。
