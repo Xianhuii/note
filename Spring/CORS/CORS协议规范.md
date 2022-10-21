@@ -74,16 +74,11 @@ B -> 浏览器 : HTTP实际响应
 - `Access-Control-Request-Method`：实际请求的请求方法，如`POST`
 - `Access-Control-Request-Headers`：实际请求的请求头，如`Content-Type`等，多个用`,`分隔
 预检请求实际上是在询问服务器：“来自`origin`，携带`Access-Control-Request-Headers`请求头，请求方法是`Access-Control-Request-Method`的请求能不能访问？”。
+## 3.4 实际请求
+从服务器的角度来看，简单请求和复杂请求没有区别，都是会调用服务接口的实际请求。
+而预检请求会在拦截器或预处理阶段就被系统自动处理，并不会调用到实际接口。
+# 4 CORS预处理&校验
 
-
-简单请求和复杂请求是浏览器角度的区分。
-
-
-# 4 CORS校验流程
-在不同的前提条件下，CORS有两套校验流程
-- 简单请求CORS校验。
-- 复杂请求CORS校验。
-简单请求的CORS校验只会发送一次请求
 
 # 5 如何允许跨域请求？
 
