@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring/CORS/CORS协议规范.md",
+                "file": "Java/线程和锁.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring/CORS/CORS协议规范.md",
+                "file": "Java/线程和锁.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring/CORS/CORS协议规范.md",
+                "file": "Java/线程和锁.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring/CORS/CORS协议规范.md"
+                "file": "Java/线程和锁.md"
               }
             }
           }
@@ -142,6 +142,7 @@
   },
   "active": "d4f0b219d4af2021",
   "lastOpenFiles": [
+    "Spring/CORS/CORS协议规范.md",
     "conflict-files-obsidian-git.md",
     "设计模式/观察者模式.md",
     "设计模式/备忘录模式.md",
@@ -150,7 +151,6 @@
     "Pasted image 20221009125052.png",
     "设计模式/解释器模式.md",
     "设计模式/命令模式.md",
-    "git.md",
-    "2022-10-10.md"
+    "git.md"
   ]
 }
