@@ -7,8 +7,6 @@
 <body>
 <button id="$start">Start</button>
 
-<script src="https://cdn.jsdelivr.net/npm/web-streams-polyfill@2.0.2/dist/ponyfill.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/eligrey/Blob.js/Blob.js"></script>
 <script src="StreamSaver.js"></script>
 <script src="zip-stream.js"></script>
 <script>
@@ -48,7 +46,7 @@
                 "url": 'http://localhost:8080/file6'
             },
             {
-                "name": '附件一/20220817111054911000001-2.mp4',
+                "name": '附件一/20220817111054911000001-3.mp4',
                 "url": 'http://localhost:8080/file7'
             },
             {
@@ -72,7 +70,7 @@
      * 下载线程 = 打包线程，下载速度高于打包速度，但不至于太夸张，浏览器内存一般能够支持
      * 多文件同步下载，下载耗时比异步下载高，但是由于打包是单线程，整体速度取决于打包速度
      * @param zipName
-     * @param files
+     * @param files [{"name":"name", "url":"url"},……]
      * @returns {Promise<void>}
      */
     function zipFiles(zipName, files) {
@@ -108,7 +106,7 @@
      * 异步下载打包【适用于多个小文件批量打包】
      * 下载线程 > 打包线程，超大文件时可能会造成浏览器内存溢出
      * @param zipName
-     * @param files
+     * @param files [{"name":"name", "url":"url"},……]
      * @returns {Promise<void>}
      */
     function asyncZipFiles(zipName, files) {
