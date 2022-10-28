@@ -25,10 +25,10 @@ StreamSaver.js + zip-stream.js流式下载&压缩文件的使用方式很简单�
 <script src="https://cdn.jsdelivr.net/npm/web-streams-polyfill@2.0.2/dist/ponyfill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/eligrey/Blob.js/Blob.js"></script>
 ```
-然后引入`StreamSaver.js`和`zip-stream.js`（可以根据以下链接直接下载到本地）：
+然后引入[StreamSaver.js](https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js)和[zip-stream.js](https://jimmywarting.github.io/StreamSaver.js/examples/zip-stream.js)（可以根据以下链接直接下载到本地）：
 ```html
-<script src="https://jimmywarting.github.io/StreamSaver.js/examples/zip-stream.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js"></script>
+<script src="zip-stream.js"></script>
+<script src="StreamSaver.js"></script>
 ```
 ## 2.2 定义打包下载函数
 定义打包下载函数`zipFiles()`：
