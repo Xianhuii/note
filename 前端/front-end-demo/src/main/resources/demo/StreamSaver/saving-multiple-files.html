@@ -10,58 +10,58 @@
 <script src="https://cdn.jsdelivr.net/npm/web-streams-polyfill@2.0.2/dist/ponyfill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/eligrey/Blob.js/Blob.js"></script>
 
-<script src="zip-stream.js"></script>
+<script src="https://jimmywarting.github.io/StreamSaver.js/examples/zip-stream.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js"></script>
 <script>
     $start.onclick = () => {
-        let zipName = '压缩文件名.zip';
+        let zipName = '压缩包.zip';
         let files = [
-            // {
-            //     "name": '附件二/20220817111054911000001-1.mp4',
-            //     "url": 'http://localhost:8080/file3'
-            // },
-            // {
-            //     "name": '附件一/20220817111054911000001-2.mp4',
-            //     "url": 'http://localhost:8080/file2'
-            // },
-            // {
-            //     "name": '附件二/20220817111054911000001-2.mp4',
-            //     "url": 'http://localhost:8080/file4'
-            // },
-            // {
-            //     "name": '附件三/20220817111054911000001-3.mp4',
-            //     "url": 'http://localhost:8080/file5'
-            // },
-            // {
-            //     "name": '附件二/20220817111054911000001-3.mp4',
-            //     "url": 'http://localhost:8080/file4?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
-            // },
             {
-                "name": '附件二/20220817111054911000001-1.mp4',
+                "name": '2022102801.mp4',
+                "url": 'http://localhost:8080/file3'
+            },
+            {
+                "name": '2022102802.mp4',
+                "url": 'http://localhost:8080/file2'
+            },
+            {
+                "name": '文件夹1/2022102803.mp4',
+                "url": 'http://localhost:8080/file4'
+            },
+            {
+                "name": '文件夹1/2022102804.mp4',
+                "url": 'http://localhost:8080/file5'
+            },
+            {
+                "name": '文件夹2/2022102805.mp4',
+                "url": 'http://localhost:8080/file4?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
+            },
+            {
+                "name": '文件夹3/2022102806.mp4',
                 "url": 'http://localhost:8080/file6'
             },
             {
-                "name": '附件一/20220817111054911000001-3.mp4',
+                "name": '文件夹3/文件夹1/2022102807.mp4',
                 "url": 'http://localhost:8080/file7'
             },
             {
-                "name": '附件二/20220817111054911000001-2.mp4',
+                "name": '文件夹3/文件夹2/2022102808.mp4',
                 "url": 'http://localhost:8080/file8'
             },
             {
-                "name": '附件三/20220817111054911000001-3.mp4',
+                "name": '文件夹3/文件夹3/2022102809.mp4',
                 "url": 'http://localhost:8080/file9'
             },
             {
-                "name": '附件三/20220817111054911000001-1.mp4',
+                "name": '文件夹3/文件夹3/文件夹1/2022102810.mp4',
                 "url": 'http://localhost:8080/file10'
             },
             {
-                "name": '附件一/20220817111054911000001-1.mp4',
+                "name": '文件夹3/文件夹3/文件夹2/2022102811.mp4',
                 "url": 'http://localhost:8080/file?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
             },
             {
-                "name": '附件一/20220817111054911000001-2.mp4',
+                "name": '文件夹3/文件夹3/文件夹3/2022102812.mp4',
                 "url": 'http://localhost:8080/file1?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
             }
         ];
@@ -78,30 +78,31 @@
      */
     function zipFiles(zipName, files) {
         console.log("同步下载打包开始时间：" + new Date());
-        // 创建压缩文件
-        const fileStream = streamSaver.createWriteStream(zipName);
-        const fileIter = files.values();
-        // 添加下载任务
+        // 创建压缩文件输出流
+        const zipFileOutputStream = streamSaver.createWriteStream(zipName);
+        // 创建下载文件流
+        const fileIterator = files.values();
         const readableZipStream = new ZIP({
             async pull(ctrl) {
-                const it = fileIter.next()
-                if (it.done) {//迭代终止
-                    ctrl.close()
+                const fileInfo = fileIterator.next();
+                if (fileInfo.done) {//迭代终止
+                    ctrl.close();
                 } else {
-                    const {name, url} = it.value
+                    const {name, url} = fileInfo.value;
                     return fetch(url).then(res => {
                         ctrl.enqueue({
                             name,
                             stream: () => res.body
-                        })
+                        });
                     })
                 }
             }
-        })
-
-        // 开始下载
+        });
         if (window.WritableStream && readableZipStream.pipeTo) {
-            readableZipStream.pipeTo(fileStream).then(() => console.log(console.log("同步下载打包结束时间：" + new Date())))
+            // 开始下载
+            readableZipStream
+                .pipeTo(zipFileOutputStream)
+                .then(() => console.log(console.log("同步下载打包结束时间：" + new Date())));
         }
     }
 
@@ -115,8 +116,8 @@
     function asyncZipFiles(zipName, files) {
         console.log("异步下载打包开始时间：" + new Date());
         // 创建压缩文件
-        const fileStream = streamSaver.createWriteStream(zipName);
-        // 添加下载任务
+        const zipFileOutputStream = streamSaver.createWriteStream(zipName);
+        // 创建下载文件流
         const readableZipStream = new ZIP({
             async pull(ctrl) {
                 // promise任务
@@ -125,50 +126,40 @@
                     return new Promise(resolve => {
                         fetch(el.url).then(resp => {
                             if (resp.status === 200) {
-                                return () => resp.body
+                                return () => resp.body;
                             }
-                            return null
+                            return null;
                         }).then(stream => {
-                            resolve({name: name, stream: stream})
+                            resolve({name: name, stream: stream});
                         })
                     })
                 }
                 // promise任务队列
                 let arr = [];
                 files.forEach(el => {
-                    arr.push(promise(el))
+                    arr.push(promise(el));
                 })
                 // 异步下载
                 await Promise.all(arr).then(res => {
                     let nameMapList = []
                     res.forEach(item => {
-                        let name = item.name
-                        const stream = item.stream
-                        let nameList = nameMapList.map(nameMap => nameMap.name)
-                        //校验文件名称是否存在，如果存在则修改文件名称
-                        if (nameList.indexOf(name) === -1) {
-                            nameMapList.push({name: name, cnt: 0})
-                        } else {
-                            let nameItem = nameMapList.find(item => item.name == name)
-                            nameItem.cnt += 1
-                            let fileName = name.substring(0, name.lastIndexOf('.'))
-                            let prefix = name.substr(name.lastIndexOf('.'))
-                            name = fileName + ("(" + nameItem.cnt + ")") + prefix
-                        }
+                        const name = item.name;
+                        const stream = item.stream;
                         // 加入打包队列
-                        if (item.stream) {
-                            let file = {name, stream}
-                            ctrl.enqueue(file)
+                        if (stream) {
+                            let file = {name, stream};
+                            ctrl.enqueue(file);
                         }
                     })
                 })
-                ctrl.close()
+                ctrl.close();
             }
-        })
-
-        // 开始下载
+        });
         if (window.WritableStream && readableZipStream.pipeTo) {
-            return readableZipStream.pipeTo(fileStream).then(() => console.log("异步下载打包结束时间：" + new Date()))
+            // 开始下载
+            readableZipStream
+                .pipeTo(zipFileOutputStream)
+                .then(() => console.log("异步下载打包结束时间：" + new Date()))
         }
     }
 </script>
