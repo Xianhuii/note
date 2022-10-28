@@ -23,6 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1641318-e005-4cab-b7ba-afd6c2b0b94f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../前端/front-end-demo/src/main/resources/demo/StreamSaver/saving-multiple-files.html" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/front-end-demo/src/main/resources/demo/StreamSaver/saving-multiple-files.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +115,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666923457118</updated>
-      <workItem from="1666923460025" duration="5275000" />
+      <workItem from="1666923460025" duration="6260000" />
     </task>
     <servers />
   </component>

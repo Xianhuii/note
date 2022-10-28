@@ -8,7 +8,7 @@
 <button id="$start">Start</button>
 
 <script src="zip-stream.js"></script>
-<script src="StreamSaver.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js"></script>
 <script>
     $start.onclick = () => {
         let zipName = '压缩文件名.zip';
@@ -98,7 +98,7 @@
 
         // 开始下载
         if (window.WritableStream && readableZipStream.pipeTo) {
-            return readableZipStream.pipeTo(fileStream).then(() => console.log(console.log("同步下载打包结束时间：" + new Date())))
+            readableZipStream.pipeTo(fileStream).then(() => console.log(console.log("同步下载打包结束时间：" + new Date())))
         }
     }
 
