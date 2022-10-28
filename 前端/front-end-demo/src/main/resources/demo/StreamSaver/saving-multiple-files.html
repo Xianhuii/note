@@ -108,9 +108,8 @@
     /**
      * 异步下载打包【适用于多个小文件批量打包】
      * 下载线程 > 打包线程，超大文件时可能会造成浏览器内存溢出
-     * @param zipName
+     * @param zipName 压缩包文件名
      * @param files [{"name":"name", "url":"url"},……]
-     * @returns {Promise<void>}
      */
     function asyncZipFiles(zipName, files) {
         console.log("异步下载打包开始时间：" + new Date());

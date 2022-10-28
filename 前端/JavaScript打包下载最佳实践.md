@@ -1,4 +1,5 @@
 > StreamSaver.js + zip-stream.js流式下载&压缩文件。
+> 部分浏览器（火狐）可能不兼容。
 # 1 应用场景
 在实际项目中，通常存在用户手动选择下载多个文件的情况。
 常规的做法（服务器打包下载）是，后端从文件服务器（比如华为云OBS）读取文件，将这些文件进行打包，然后将压缩包字节流返回给前端，由前端下载到用户本地文件系统。
@@ -22,16 +23,16 @@ StreamSaver.js + zip-stream.js流式下载&压缩文件的使用方式很简单�
 ## 2.1 引入js文件
 由于某些浏览器不支持流式处理，可以按需要引入：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/web-streams-polyfill@2.0.2/dist/ponyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web-streams-polyfill@3.2.1/dist/ponyfill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/eligrey/Blob.js/Blob.js"></script>
 ```
 然后引入[StreamSaver.js](https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js)和[zip-stream.js](https://jimmywarting.github.io/StreamSaver.js/examples/zip-stream.js)（可以根据以下链接直接下载到本地）：
 ```html
-<script src="zip-stream.js"></script>
-<script src="StreamSaver.js"></script>
+<script src="https://jimmywarting.github.io/StreamSaver.js/examples/zip-stream.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js"></script>
 ```
 ## 2.2 定义打包下载函数
-定义打包下载函数`zipFiles()`：
+定义同步打包下载函数`zipFiles()`：
 ```javascript
 /**  
  * 同步下载打包【推荐】 
@@ -66,5 +67,80 @@ StreamSaver.js + zip-stream.js流式下载&压缩文件的使用方式很简单�
     }  
 }
 ```
-  需要注意的是，下载线程 = 打包线程，下载速度高于打包速度，但不至于太夸张，浏览器内存一般能够支持  
- * 多文件同步下载，下载耗时比异步下载高，但是由于打包是单线程，整体速度取决于打包速度 
+需要注意的是，浏览器只会使用一个Service Worker线程进行压缩，整体打包下载速度取决于压缩速度。因此对于多个文件，异步下载的加速效果没有那么明显，反而可能会使浏览器内存占用过多，造成浏览器内存溢出。
+以下是异步下载打包的方法，但不推荐使用：
+```javascript
+/**  
+ * 异步下载打包【不推荐，超大文件时可能会造成浏览器内存溢出】   
+ * @param zipName  压缩包文件名
+ * @param files 文件列表，格式：[{"name":"name", "url":"url"},……] 
+ */  
+function asyncZipFiles(zipName, files) {  
+    console.log("异步下载打包开始时间：" + new Date());  
+    // 创建压缩文件  
+    const zipFileOutputStream = streamSaver.createWriteStream(zipName);  
+    // 创建下载文件流  
+    const readableZipStream = new ZIP({  
+        async pull(ctrl) {  
+            // promise任务  
+            const promise = el => {  
+                let name = el.name  
+                return new Promise(resolve => {  
+                    fetch(el.url).then(resp => {  
+                        if (resp.status === 200) {  
+                            return () => resp.body;  
+                        }  
+                        return null;  
+                    }).then(stream => {  
+                        resolve({name: name, stream: stream});  
+                    })  
+                })            }            // promise任务队列  
+            let arr = [];  
+            files.forEach(el => {  
+                arr.push(promise(el));  
+            })  
+            // 异步下载  
+            await Promise.all(arr).then(res => {  
+                let nameMapList = []  
+                res.forEach(item => {  
+                    const name = item.name;  
+                    const stream = item.stream;  
+                    // 加入打包队列  
+                    if (stream) {  
+                        let file = {name, stream};  
+                        ctrl.enqueue(file);  
+                    }  
+                })            })            ctrl.close();  
+        }  
+    });  
+    if (window.WritableStream && readableZipStream.pipeTo) {  
+        // 开始下载  
+        readableZipStream  
+            .pipeTo(zipFileOutputStream)  
+            .then(() => console.log("异步下载打包结束时间：" + new Date()))  
+    }}
+```
+## 2.3 调用函数进行下载
+当用户选择好要下载的文件，点击下载按钮时，可以构造打包下载的参数进行下载：
+```javascript
+let zipName = '压缩包.zip';  
+let files = [  
+    {   "name": '2022102801.mp4',  
+        "url": 'http://localhost:8080/file3'  
+    }, 
+    {  
+        "name": '文件夹1/2022102802.mp4',  
+        "url": 'http://localhost:8080/file4'  
+    },  
+    {  
+        "name": '文件夹1/2022102803.mp4',  
+        "url": 'http://localhost:8080/file5'  
+    },  
+    {  
+        "name": '文件夹3/文件夹3/文件夹3/2022102804.mp4',  
+        "url": 'http://localhost:8080/file1?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'  
+    }  
+];  
+zipFiles(zipName, files);
+```
+压缩包内文件夹以`/`分隔，可以自定义需要的压缩包层级关系。

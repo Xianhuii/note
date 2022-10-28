@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "9634c33cd9583322",
+        "id": "40dc711e0208eb1d",
         "type": "tabs",
         "children": [
           {
-            "id": "ba288c86d4dfc689",
+            "id": "1808c0117822d5a7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "前端/JavaScript打包下载最佳实践.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -69,8 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "前端/JavaScript打包下载最佳实践.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "前端/JavaScript打包下载最佳实践.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "前端/JavaScript打包下载最佳实践.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -141,11 +132,11 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "ba288c86d4dfc689",
+  "active": "1808c0117822d5a7",
   "lastOpenFiles": [
+    "前端/JavaScript打包下载最佳实践.md",
     "前端/attachments/上传下载文件.png",
     "前端/attachments/上传文件.png",
-    "前端/JavaScript打包下载最佳实践.md",
     "Java/线程和锁.md",
     "Spring/CORS/CORS协议规范.md",
     "conflict-files-obsidian-git.md",
