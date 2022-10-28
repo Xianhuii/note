@@ -7,20 +7,12 @@
 <body>
 <button id="$start">Start</button>
 
-<script src="StreamSaver.js"></script>
 <script src="zip-stream.js"></script>
+<script src="StreamSaver.js"></script>
 <script>
     $start.onclick = () => {
         let zipName = '压缩文件名.zip';
         let files = [
-            {
-                "name": '附件一/20220817111054911000001-1.mp4',
-                "url": 'http://localhost:8080/file?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
-            },
-            {
-                "name": '附件一/20220817111054911000001-2.mp4',
-                "url": 'http://localhost:8080/file1?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
-            },
             // {
             //     "name": '附件二/20220817111054911000001-1.mp4',
             //     "url": 'http://localhost:8080/file3'
@@ -60,6 +52,14 @@
             {
                 "name": '附件三/20220817111054911000001-1.mp4',
                 "url": 'http://localhost:8080/file10'
+            },
+            {
+                "name": '附件一/20220817111054911000001-1.mp4',
+                "url": 'http://localhost:8080/file?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
+            },
+            {
+                "name": '附件一/20220817111054911000001-2.mp4',
+                "url": 'http://localhost:8080/file1?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
             }
         ];
         zipFiles(zipName, files);
