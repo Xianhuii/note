@@ -1,8 +1,9 @@
-package com.example.servletmvc.controller;
+package com.example.frontenddemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
@@ -20,6 +21,7 @@ import java.io.OutputStream;
  * @author jxh
  * @date 2022年10月27日 15:31
  */
+@CrossOrigin
 @Controller
 public class FileController {
     @Autowired
@@ -94,6 +96,66 @@ public class FileController {
     @RequestMapping("file5")
     public void file5(HttpServletResponse response) throws IOException {
         InputStream inputStream = new FileInputStream("d:\\Downloads\\61aeda8c8ca54c96bc2acaeb1dcb0752.mp4");
+        OutputStream out = response.getOutputStream();
+        int len = 0;
+        byte[] b = new byte[1024];
+        while ((len = inputStream.read(b)) != -1) {
+            out.write(b, 0, len);
+            System.out.println(b);
+        }
+        out.flush();
+    }
+    @RequestMapping("file6")
+    public void file6(HttpServletResponse response) throws IOException {
+        InputStream inputStream = new FileInputStream("d:\\Downloads\\911Mothers_2010W-480p.mp4");
+        OutputStream out = response.getOutputStream();
+        int len = 0;
+        byte[] b = new byte[1024];
+        while ((len = inputStream.read(b)) != -1) {
+            out.write(b, 0, len);
+            System.out.println(b);
+        }
+        out.flush();
+    }
+    @RequestMapping("file7")
+    public void file7(HttpServletResponse response) throws IOException {
+        InputStream inputStream = new FileInputStream("d:\\Downloads\\911Mothers_2010W-480p.mp4");
+        OutputStream out = response.getOutputStream();
+        int len = 0;
+        byte[] b = new byte[1024];
+        while ((len = inputStream.read(b)) != -1) {
+            out.write(b, 0, len);
+            System.out.println(b);
+        }
+        out.flush();
+    }
+    @RequestMapping("file8")
+    public void file8(HttpServletResponse response) throws IOException {
+        InputStream inputStream = new FileInputStream("d:\\Downloads\\911Mothers_2010W-480p.mp4");
+        OutputStream out = response.getOutputStream();
+        int len = 0;
+        byte[] b = new byte[1024];
+        while ((len = inputStream.read(b)) != -1) {
+            out.write(b, 0, len);
+            System.out.println(b);
+        }
+        out.flush();
+    }
+    @RequestMapping("file9")
+    public void file9(HttpServletResponse response) throws IOException {
+        InputStream inputStream = new FileInputStream("d:\\Downloads\\911Mothers_2010W-480p.mp4");
+        OutputStream out = response.getOutputStream();
+        int len = 0;
+        byte[] b = new byte[1024];
+        while ((len = inputStream.read(b)) != -1) {
+            out.write(b, 0, len);
+            System.out.println(b);
+        }
+        out.flush();
+    }
+    @RequestMapping("file10")
+    public void file10(HttpServletResponse response) throws IOException {
+        InputStream inputStream = new FileInputStream("d:\\Downloads\\911Mothers_2010W-480p.mp4");
         OutputStream out = response.getOutputStream();
         int len = 0;
         byte[] b = new byte[1024];

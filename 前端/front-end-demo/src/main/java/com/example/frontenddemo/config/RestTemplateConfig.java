@@ -1,4 +1,4 @@
-package com.example.servletmvc.config;
+package com.example.frontenddemo.config;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.conn.HttpClientConnectionManager;

@@ -15,10 +15,14 @@
     $start.onclick = () => {
         let zipName = '压缩文件名.zip';
         let files = [
-            // {
-            //     "name": '附件一/20220817111054911000001-1.mp4',
-            //     "url": 'http://localhost:8080/file1?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
-            // },
+            {
+                "name": '附件一/20220817111054911000001-1.mp4',
+                "url": 'http://localhost:8080/file?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
+            },
+            {
+                "name": '附件一/20220817111054911000001-2.mp4',
+                "url": 'http://localhost:8080/file1?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
+            },
             // {
             //     "name": '附件二/20220817111054911000001-1.mp4',
             //     "url": 'http://localhost:8080/file3'
@@ -31,19 +35,48 @@
             //     "name": '附件二/20220817111054911000001-2.mp4',
             //     "url": 'http://localhost:8080/file4'
             // },
+            // {
+            //     "name": '附件三/20220817111054911000001-3.mp4',
+            //     "url": 'http://localhost:8080/file5'
+            // },
+            // {
+            //     "name": '附件二/20220817111054911000001-3.mp4',
+            //     "url": 'http://localhost:8080/file4?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
+            // },
             {
-                "name": '附件三/20220817111054911000001-3.mp4',
-                "url": 'http://localhost:8080/file5'
+                "name": '附件二/20220817111054911000001-1.mp4',
+                "url": 'http://localhost:8080/file6'
             },
             {
-                "name": '附件二/20220817111054911000001-3.mp4',
-                "url": 'http://localhost:8080/file4?fileUrl=http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4'
+                "name": '附件一/20220817111054911000001-2.mp4',
+                "url": 'http://localhost:8080/file7'
+            },
+            {
+                "name": '附件二/20220817111054911000001-2.mp4',
+                "url": 'http://localhost:8080/file8'
+            },
+            {
+                "name": '附件三/20220817111054911000001-3.mp4',
+                "url": 'http://localhost:8080/file9'
+            },
+            {
+                "name": '附件三/20220817111054911000001-1.mp4',
+                "url": 'http://localhost:8080/file10'
             }
         ];
-        zipFiles(zipName, files);
+        asyncZipFiles(zipName, files);
     }
 
+    /**
+     * 同步下载打包【适用于大文件打包】
+     * 同步下载线程 = 打包线程，下载速度高于打包速度，但不至于太夸张，浏览器内存一般能够支持
+     * 多文件同步下载，耗时比异步下载高
+     * @param zipName
+     * @param files
+     * @returns {Promise<void>}
+     */
     function zipFiles(zipName, files) {
+        console.log("同步下载打包开始时间：" + new Date());
         // 创建压缩文件
         const fileStream = streamSaver.createWriteStream(zipName);
         const fileIter = files.values();
@@ -67,11 +100,19 @@
 
         // 开始下载
         if (window.WritableStream && readableZipStream.pipeTo) {
-            return readableZipStream.pipeTo(fileStream).then(() => console.log("下载成功"))
+            return readableZipStream.pipeTo(fileStream).then(() => console.log(console.log("同步下载打包结束时间：" + new Date())))
         }
     }
 
+    /**
+     * 异步下载打包【适用于多个小文件批量打包】
+     * 异步下载线程 > 打包线程，超大文件时可能会造成浏览器内存溢出
+     * @param zipName
+     * @param files
+     * @returns {Promise<void>}
+     */
     function asyncZipFiles(zipName, files) {
+        console.log("异步下载打包开始时间：" + new Date());
         // 创建压缩文件
         const fileStream = streamSaver.createWriteStream(zipName);
         // 添加下载任务
@@ -126,7 +167,7 @@
 
         // 开始下载
         if (window.WritableStream && readableZipStream.pipeTo) {
-            return readableZipStream.pipeTo(fileStream).then(() => console.log("下载成功"))
+            return readableZipStream.pipeTo(fileStream).then(() => console.log("异步下载打包结束时间：" + new Date()))
         }
     }
 </script>
