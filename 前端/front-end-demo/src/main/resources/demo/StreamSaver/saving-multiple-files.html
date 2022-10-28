@@ -72,9 +72,8 @@
      * 同步下载打包【推荐】
      * 下载线程 = 打包线程，下载速度高于打包速度，但不至于太夸张，浏览器内存一般能够支持
      * 多文件同步下载，下载耗时比异步下载高，但是由于打包是单线程，整体速度取决于打包速度
-     * @param zipName
+     * @param zipName 压缩包文件名
      * @param files [{"name":"name", "url":"url"},……]
-     * @returns {Promise<void>}
      */
     function zipFiles(zipName, files) {
         console.log("同步下载打包开始时间：" + new Date());
@@ -102,7 +101,7 @@
             // 开始下载
             readableZipStream
                 .pipeTo(zipFileOutputStream)
-                .then(() => console.log(console.log("同步下载打包结束时间：" + new Date())));
+                .then(() => console.log("同步下载打包结束时间：" + new Date()));
         }
     }
 
