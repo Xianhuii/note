@@ -103,15 +103,6 @@
                 .pipeTo(zipFileOutputStream)
                 .then(() => console.log("同步下载打包结束时间：" + new Date()));
         }
-        writer = fileStream.getWriter()
-
-        const reader = res.getReader()
-        const pump = () => reader.read()
-            .then(res => res.done ?
-                writer.close() :
-                writer.write(res.value).then(pump))
-
-        pump()
     }
 
     /**
