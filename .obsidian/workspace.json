@@ -14,19 +14,8 @@
               "type": "empty",
               "state": {}
             }
-          },
-          {
-            "id": "58c7076122e527c1",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.0.3"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -141,7 +130,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "58c7076122e527c1",
+  "active": "1808c0117822d5a7",
   "lastOpenFiles": [
     "前端/JavaScript打包下载最佳实践.md",
     "前端/attachments/上传下载文件.png",
