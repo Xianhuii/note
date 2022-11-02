@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "40dc711e0208eb1d",
+        "id": "2f1e308fdc0d5552",
         "type": "tabs",
         "children": [
           {
-            "id": "1808c0117822d5a7",
+            "id": "3b413002d466dd3e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Java8语言规范研读/17线程和锁/1同步.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -82,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Java8语言规范研读/17线程和锁/1同步.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -98,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Java8语言规范研读/17线程和锁/1同步.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -119,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Java8语言规范研读/17线程和锁/1同步.md"
+              }
             }
           }
         ],
@@ -130,12 +138,13 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "1808c0117822d5a7",
+  "active": "3b413002d466dd3e",
   "lastOpenFiles": [
+    "Java/线程和锁.md",
+    "Java8语言规范研读/17线程和锁/0前言.md",
     "前端/JavaScript打包下载最佳实践.md",
     "前端/attachments/上传下载文件.png",
     "前端/attachments/上传文件.png",
-    "Java/线程和锁.md",
     "Spring/CORS/CORS协议规范.md",
     "conflict-files-obsidian-git.md",
     "设计模式/观察者模式.md",
