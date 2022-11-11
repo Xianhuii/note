@@ -10,4 +10,10 @@ SpringMVC框架是基于`Servlet`规范搭建起来的，它本质上只是实�
 
 ## 1 文件请求处理：`DispatcherServlet#checkMultipart`
 文件请求处理不一定是在`DispatcherServlet#checkMultipart`中处理，可能在过滤器中就处理好了。
-文件请求处理方法：`MultipartResolver#resolveMultipart`，
+文件请求处理方法：`MultipartResolver#resolveMultipart`
+实际文件处理其实已经在web服务器如tomcat中处理好了，这里只是将`HttpServletRequest`包装成`MulpartHttpServletRequest`，方便后续业务处理。
+tomcat会将文件临时保存到本地，业务中读取的文件其实是服务器临时地址中的文件。
+在`DispatcherServlet#doDispatch`方法的最后，SpringMVC会删除这些临时文件。
+
+## 2 获取`HandlerExecutionChain`：`DispatcherServlet#getHandler`
+`HandlerExecutionChain`是请求处理执行链，它包含实际处理器（Controller中的方法），以及一系列拦截器。
