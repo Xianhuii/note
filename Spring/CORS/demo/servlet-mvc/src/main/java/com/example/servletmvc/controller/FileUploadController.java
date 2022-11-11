@@ -3,6 +3,7 @@ package com.example.servletmvc.controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
@@ -18,6 +19,7 @@ public class FileUploadController {
     @PostMapping("/upload")
     public String upload(MultipartHttpServletRequest request) {
         System.out.println(request);
+        MultipartFile p1 = request.getFile("p1");
         return "Hello Cors!";
     }
 }
