@@ -25,3 +25,7 @@ SpringMVC框架是基于`Servlet`规范搭建起来的，它本质上只是实�
 而`RouterFunctionMapping`是另一种风格的方式，它会缓存`RouterFunction`→`bean`（`org.springframework.web.servlet.function.HandlerFunction`实现类）的映射。
 
 ## 3 获取`HandlerAdapter`：`DispatcherServlet#getHandlerAdapter`
+`HandlerAdapter`的作用是对上述`handler`进行增强处理，包括参数类型转换、返回值处理等。
+`HandlerMapping`和`HandlerAdapter`之间是一一对应的关系，不同`HandlerMapping`会返回不同类型的handler，不同类型的handler也只能由对应的`HandlerAdapter`进行处理。例如`RequestMappingHandlerMapping`返回`HandlerMethod`类型的handler，只能由`RequestMappingHandlerAdapter`进行处理。
+
+## 4 `HandlerExecutionChain`预处理：`HandlerExecutionChain#applyPreHandle`
