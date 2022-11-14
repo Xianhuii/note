@@ -35,4 +35,7 @@ SpringMVC框架是基于`Servlet`规范搭建起来的，它本质上只是实�
 ## 5 `HandlerAdapter`处理：`HandlerAdapter#handle`
 `HandlerAdapter#handle`中会完成实际接口的执行，主要会完成形参类型的转换，默认形参的注入，返回值的处理等。
 实际处理流程要根据实际`HandlerAdapter`实现类进行讨论。
-	对于最常使用的`RequestMappingHandlerAdapter`，其核心在于`org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod#invokeAndHandle`方法，
+对于最常使用的`RequestMappingHandlerAdapter`，其核心在于`org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod#invokeAndHandle`方法：
+	1. 解析请求参数：`org.springframework.web.method.support.InvocableHandlerMethod#getMethodArgumentValues`
+	2. 执行业务方法：`org.springframework.web.method.support.InvocableHandlerMethod#doInvoke`
+	3. 处理响应结果：`org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite#handleReturnValue`
