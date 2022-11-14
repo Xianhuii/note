@@ -18,4 +18,4 @@ SpringMVC框架是基于`Servlet`规范搭建起来的，它本质上只是实�
 在`DispatcherServlet#doDispatch`方法的最后，SpringMVC会删除这些临时文件。
 
 ## 2 获取`HandlerExecutionChain`：`DispatcherServlet#getHandler`
-`HandlerExecutionChain`是请求处理执行链，它包含实际处理器（Controller中的方法），以及一系列拦截器。
+`HandlerExecutionChain`是请求处理执行链，它包含实际处理器`handler`（Controller中的方法），以及一系列拦截器`interceptor`。
