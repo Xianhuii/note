@@ -39,3 +39,9 @@ SpringMVC框架是基于`Servlet`规范搭建起来的，它本质上只是实�
 	1. 解析请求参数：`org.springframework.web.method.support.InvocableHandlerMethod#getMethodArgumentValues`
 	2. 执行业务方法：`org.springframework.web.method.support.InvocableHandlerMethod#doInvoke`
 	3. 处理响应结果：`org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite#handleReturnValue`
+
+## 6 `HandlerExecutionChain`后处理：`HandlerExecutionChain#applyPostHandle`
+依次执行注册拦截器的`postHandle()`方法，类似于Servlet规范中的Filter。
+
+## 7 结果处理：`DispatcherServlet#processDispatchResult`
+对于执行前后端分离的项目来说，这个步骤主要是处理异常，比如`AdviceController`处理异常。
