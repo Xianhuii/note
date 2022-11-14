@@ -29,3 +29,7 @@ SpringMVC框架是基于`Servlet`规范搭建起来的，它本质上只是实�
 `HandlerMapping`和`HandlerAdapter`之间是一一对应的关系，不同`HandlerMapping`会返回不同类型的handler，不同类型的handler也只能由对应的`HandlerAdapter`进行处理。例如`RequestMappingHandlerMapping`返回`HandlerMethod`类型的handler，只能由`RequestMappingHandlerAdapter`进行处理。
 
 ## 4 `HandlerExecutionChain`预处理：`HandlerExecutionChain#applyPreHandle`
+依次执行注册拦截器的`preHandle()`方法，如果某个拦截器执行返回`false`，则不再执行后续流程。
+类似于Servlet规范中的Filter。
+
+## 5 `HandlerAdapter`处理：`HandlerAdapter#handle`
