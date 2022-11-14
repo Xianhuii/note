@@ -19,4 +19,9 @@ SpringMVC框架是基于`Servlet`规范搭建起来的，它本质上只是实�
 
 ## 2 获取`HandlerExecutionChain`：`DispatcherServlet#getHandler`
 `HandlerExecutionChain`是请求处理执行链，它包含实际处理器`handler`（Controller中的方法），以及一系列拦截器`interceptor`。
-`hander`实际存储在`HandlerMapping`实例中，
+`hander`实际存储在`HandlerMapping`实例中。`DispatcherServlet`默认使用`RequestMappingHandlerMapping`、`BeanNameUrlHandlerMapping`和`RouterFunctionMapping`，它们内部存储的handler都不一样，并且有对应不同的`HandlerAdapter`进行实际处理。
+我们最常使用的是`RequestMappingHandlerMapping`，它会缓存接口地址→`HandlerMethod`的映射。
+`BeanNameUrlHandlerMapping`需要控制层实现`org.springframework.web.servlet.mvc.Controller`接口，内部缓存`beanName`→`bean`（`org.springframework.web.servlet.mvc.Controller`实现类）的映射。
+而`RouterFunctionMapping`是另一种风格的方式，它会缓存`RouterFunction`→`bean`（`org.springframework.web.servlet.function.HandlerFunction`实现类）的映射。
+
+## 3 获取`HandlerAdapter`：`DispatcherServlet#getHandlerAdapter`
