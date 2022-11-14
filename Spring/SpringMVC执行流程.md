@@ -19,3 +19,4 @@ SpringMVC框架是基于`Servlet`规范搭建起来的，它本质上只是实�
 
 ## 2 获取`HandlerExecutionChain`：`DispatcherServlet#getHandler`
 `HandlerExecutionChain`是请求处理执行链，它包含实际处理器`handler`（Controller中的方法），以及一系列拦截器`interceptor`。
+`hander`实际存储在`HandlerMapping`实例中，
