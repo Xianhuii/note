@@ -8,6 +8,8 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.3.22/spring-webmvc-5.3.22-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23.jar!/" />
     </SOURCES>
   </library>
 </component>
