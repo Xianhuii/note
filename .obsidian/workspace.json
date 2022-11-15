@@ -8,24 +8,24 @@
         "type": "tabs",
         "children": [
           {
-            "id": "3b413002d466dd3e",
+            "id": "2c2aee4879dbce11",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Java8语言规范研读/17线程和锁/1同步.md",
+                "file": "Spring/SpringMVC/SpringMVC执行流程.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "2c2aee4879dbce11",
+            "id": "c3a6e036180b92f5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring/SpringMVC执行流程.md",
+                "file": "Spring/SpringMVC/SpringMVC处理文件请求.md",
                 "mode": "source",
                 "source": false
               }
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring/SpringMVC执行流程.md",
+                "file": "Spring/SpringMVC/SpringMVC处理文件请求.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring/SpringMVC执行流程.md",
+                "file": "Spring/SpringMVC/SpringMVC处理文件请求.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring/SpringMVC执行流程.md"
+                "file": "Spring/SpringMVC/SpringMVC处理文件请求.md"
               }
             }
           }
@@ -151,8 +151,9 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "2c2aee4879dbce11",
+  "active": "c3a6e036180b92f5",
   "lastOpenFiles": [
+    "Spring/SpringMVC/SpringMVC执行流程.md",
     "Java8语言规范研读/17线程和锁/1同步.md",
     "Java/线程和锁.md",
     "Java8语言规范研读/17线程和锁/0前言.md",
@@ -161,7 +162,6 @@
     "前端/attachments/上传文件.png",
     "Spring/CORS/CORS协议规范.md",
     "conflict-files-obsidian-git.md",
-    "设计模式/观察者模式.md",
-    "设计模式/备忘录模式.md"
+    "设计模式/观察者模式.md"
   ]
 }
