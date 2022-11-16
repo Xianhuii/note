@@ -18,8 +18,16 @@ public class FileUploadController {
 
     @PostMapping("/upload")
     public String upload(MultipartHttpServletRequest request) {
-        System.out.println(request);
-        MultipartFile p1 = request.getFile("p1");
-        return "Hello Cors!";
+        // 获取非文件参数
+        String value1 = request.getParameter("key1");
+        System.out.println(value1); // value1
+        String value2 = request.getParameter("key2");
+        System.out.println(value2); // value2
+        // 获取文件
+        MultipartFile file1 = request.getFile("file1");
+        System.out.println(file1 != null ? file1.getOriginalFilename() : "null"); // rfc1867.pdf
+        MultipartFile file2 = request.getFile("file2");
+        System.out.println(file2 != null ? file2.getOriginalFilename() : "null"); // rfc1314.pdf
+        return "Hello MultipartResolver!";
     }
 }
