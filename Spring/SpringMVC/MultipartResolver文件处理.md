@@ -52,8 +52,7 @@ Content-Type: application/pdf
 ```Java
 @RestController  
 @RequestMapping("file")  
-public class FileUploadController {  
-  
+public class FileUploadController {   
     @PostMapping("/upload")  
     public String upload(MultipartHttpServletRequest request) {  
         // 获取非文件参数  
