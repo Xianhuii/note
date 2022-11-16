@@ -53,7 +53,7 @@ Content-Type: application/pdf
 @RestController  
 @RequestMapping("file")  
 public class FileUploadController {   
-    @PostMapping("/upload")  
+    @RequestMapping("/upload")  
     public String upload(MultipartHttpServletRequest request) {  
         // 获取非文件参数  
         String value1 = request.getParameter("key1");  

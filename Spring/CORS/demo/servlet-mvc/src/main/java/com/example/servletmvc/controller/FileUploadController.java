@@ -1,6 +1,5 @@
 package com.example.servletmvc.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @RequestMapping("file")
 public class FileUploadController {
 
-    @PostMapping("/upload")
+    @RequestMapping("/upload")
     public String upload(MultipartHttpServletRequest request) {
         // 获取非文件参数
         String value1 = request.getParameter("key1");
