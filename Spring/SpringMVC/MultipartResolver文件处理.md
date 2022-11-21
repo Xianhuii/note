@@ -69,4 +69,4 @@ public class FileUploadController {
     }  
 }
 ```
-# 2 
+# 2 MultipartResolver接口
