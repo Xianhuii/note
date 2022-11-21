@@ -71,7 +71,7 @@ public class FileUploadController {
 ```
 # 2 MultipartResolver接口
 `org.springframework.web.multipart.MultipartResolver`是Spring-Web根据[RFC1867](https://www.ietf.org/rfc/rfc1867.txt)规范实现的多文件上传的策略接口。
-同时，`MultipartResolver`是Spring对文件上传处理流程的接口层次抽象。
+同时，`MultipartResolver`是Spring对文件上传处理流程在接口层次的抽象。
 也就是说，当涉及到文件上传时，Spring都会使用MultipartResolver`接口进行处理，而不涉及具体实现类。
 `MultipartResolver`接口源码如下：
 ```java
