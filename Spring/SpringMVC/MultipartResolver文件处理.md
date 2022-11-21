@@ -90,16 +90,19 @@ public interface MultipartResolver {
     void cleanupMultipart(MultipartHttpServletRequest request);  
 }
 ```
-`DispatcherServlet`中
+`DispatcherServlet`中会按照顺序分别调用这些方法进行文件上传处理，部分源码如下：
 ```java
 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {  
    HttpServletRequest processedRequest = request;
+   boolean multipartRequestParsed = false;
    try {
+		// 判断&封装文件请求
          processedRequest = checkMultipart(request);  
          multipartRequestParsed = (processedRequest != request); 
+         // 请求处理……
    }  
    finally {   
-         // Clean up any resources used by a multipart request.  
+         // 清除文件上传产生的临时资源
          if (multipartRequestParsed) {  
             cleanupMultipart(processedRequest);  
          }  
