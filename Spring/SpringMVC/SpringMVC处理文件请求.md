@@ -47,3 +47,35 @@ public MultipartHttpServletRequest resolveMultipart(final HttpServletRequest req
 `MultipartHttpServletRequest`提供了了获取文件的方法。
 需要注意的是，解析文件请求的核心实际上在于`org.springframework.web.multipart.support.StandardMultipartHttpServletRequest#parseRequest`和`org.springframework.web.multipart.commons.CommonsMultipartResolver#parseRequest`方法。它们会处理请求体中的实际内容（比如保存到服务器本地）。而`resolveLazily`参数可以设置是否延迟处理。比如`resolveLazily`为`true`时，只有在业务中实际获取文件信息才会进行解析。
 
+# SpringBoot自动配置`MultipartResolver`
+`org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration`：
+```java
+@AutoConfiguration  
+@ConditionalOnClass({ Servlet.class, StandardServletMultipartResolver.class, MultipartConfigElement.class })  
+@ConditionalOnProperty(prefix = "spring.servlet.multipart", name = "enabled", matchIfMissing = true)  
+@ConditionalOnWebApplication(type = Type.SERVLET)  
+@EnableConfigurationProperties(MultipartProperties.class)  
+public class MultipartAutoConfiguration {  
+  
+   private final MultipartProperties multipartProperties;  
+  
+   public MultipartAutoConfiguration(MultipartProperties multipartProperties) {  
+      this.multipartProperties = multipartProperties;  
+   }  
+  
+   @Bean  
+   @ConditionalOnMissingBean({ MultipartConfigElement.class, CommonsMultipartResolver.class })  
+   public MultipartConfigElement multipartConfigElement() {  
+      return this.multipartProperties.createMultipartConfig();  
+   }  
+  
+   @Bean(name = DispatcherServlet.MULTIPART_RESOLVER_BEAN_NAME)  
+   @ConditionalOnMissingBean(MultipartResolver.class)  
+   public StandardServletMultipartResolver multipartResolver() {  
+      StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();  
+      multipartResolver.setResolveLazily(this.multipartProperties.isResolveLazily());  
+      return multipartResolver;  
+   }  
+  
+}
+```
