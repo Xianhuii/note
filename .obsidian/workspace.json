@@ -165,15 +165,15 @@
   },
   "active": "e168b5e6e8e4b5c6",
   "lastOpenFiles": [
-    "Spring/SpringMVC/SpringMVC处理文件请求.md",
     "Spring/SpringMVC/SpringMVC执行流程.md",
+    "Spring/SpringMVC/SpringMVC处理文件请求.md",
+    "Spring/SpringMVC/MultipartResolver文件处理.md",
     "Java8语言规范研读/17线程和锁/1同步.md",
     "Java/线程和锁.md",
     "Java8语言规范研读/17线程和锁/0前言.md",
     "前端/JavaScript打包下载最佳实践.md",
     "前端/attachments/上传下载文件.png",
     "前端/attachments/上传文件.png",
-    "Spring/CORS/CORS协议规范.md",
-    "conflict-files-obsidian-git.md"
+    "Spring/CORS/CORS协议规范.md"
   ]
 }

@@ -71,4 +71,39 @@ public class FileUploadController {
 ```
 # 2 MultipartResolver接口
 `org.springframework.web.multipart.MultipartResolver`是Spring-Web根据[RFC1867](https://www.ietf.org/rfc/rfc1867.txt)规范实现的多文件上传的策略接口。
-`MultipartResolver`是Spring对文件上传处理的抽象。也就是说，当涉及到文件上传时，Spring都会使用MultipartResolver`进行处理，而不涉及具体实现类。这体现了对多态的使用。
+同时，`MultipartResolver`是Spring对文件上传处理流程的接口层次抽象。
+也就是说，当涉及到文件上传时，Spring都会使用MultipartResolver`接口进行处理，而不涉及具体实现类。
+`MultipartResolver`接口源码如下：
+```java
+public interface MultipartResolver {  
+	/**
+	* 判断当前HttpServletRequest请求是否是文件请求
+	*/
+    boolean isMultipart(HttpServletRequest request);  
+	/**
+	*  将当前HttpServletRequest请求的数据（文件和普通参数）封装成MultipartHttpServletRequest对象
+	*/
+    MultipartHttpServletRequest resolveMultipart(HttpServletRequest request) throws MultipartException;  
+	/**
+	*  清除文件上传产生的临时资源（如服务器本地临时文件）
+	*/
+    void cleanupMultipart(MultipartHttpServletRequest request);  
+}
+```
+`DispatcherServlet`中
+```java
+protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {  
+   HttpServletRequest processedRequest = request;
+   try {
+         processedRequest = checkMultipart(request);  
+         multipartRequestParsed = (processedRequest != request); 
+   }  
+   finally {   
+         // Clean up any resources used by a multipart request.  
+         if (multipartRequestParsed) {  
+            cleanupMultipart(processedRequest);  
+         }  
+   }  
+}
+```
+上传文件的，这体现了对多态的使用。
