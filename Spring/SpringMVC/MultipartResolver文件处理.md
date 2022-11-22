@@ -126,6 +126,32 @@ public class DispatcherServlet extends FrameworkServlet {
 ```
 需要注意的是，如果Spring容器中不存在名为`multipartResolver`的对象，`DispatcherServlet`并不会额外指定默认的文件解析器。此时，`DispatcherServlet`不会对文件上传请求进行处理。也就是说，尽管当前请求是文件请求，也不会被处理成`MultipartHttpServletRequest`。
 
+`DispatcherServlet`在处理业务时，会按照顺序分别调用这些方法进行文件上传处理，部分源码如下：
+```java
+protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {  
+   HttpServletRequest processedRequest = request;
+   boolean multipartRequestParsed = false;
+   try {
+		// 判断&封装文件请求
+         processedRequest = checkMultipart(request);  
+         multipartRequestParsed = (processedRequest != request); 
+         // 请求处理……
+   }  
+   finally {   
+         // 清除文件上传产生的临时资源
+         if (multipartRequestParsed) {  
+            cleanupMultipart(processedRequest);  
+         }  
+   }  
+}
+```
+用语言描述，则会经过以下步骤：
+1. 判断当前HttpServletRequest请求是否是文件请求
+	1. 是：将当前`HttpServletRequest`请求的数据（文件和普通参数）封装成`MultipartHttpServletRequest`对象
+	2. 不是：不处理
+2. `DispatcherServlet`对原始`HttpServletRequest`或`MultipartHttpServletRequest`对象进行业务处理
+3. 业务处理完成，清除文件上传产生的临时资源
+
 Spring提供了两个`MultipartResolver`实现类：
 - `org.springframework.web.multipart.support.StandardServletMultipartResolver`：根据Servlet 3.0+ Part Api实现
 - `org.springframework.web.multipart.commons.CommonsMultipartResolver`：根据Apache Commons FileUpload实现
@@ -160,29 +186,11 @@ public class MultipartAutoConfiguration {
 }
 ```
 
-`DispatcherServlet`在处理业务时，会按照顺序分别调用这些方法进行文件上传处理，部分源码如下：
+当需要指定其他文件解析器时，只需要引入相关依赖，然后配置一个名为`multipartResolver`的`bean`对象：
 ```java
-protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {  
-   HttpServletRequest processedRequest = request;
-   boolean multipartRequestParsed = false;
-   try {
-		// 判断&封装文件请求
-         processedRequest = checkMultipart(request);  
-         multipartRequestParsed = (processedRequest != request); 
-         // 请求处理……
-   }  
-   finally {   
-         // 清除文件上传产生的临时资源
-         if (multipartRequestParsed) {  
-            cleanupMultipart(processedRequest);  
-         }  
-   }  
+@Bean  
+public MultipartResolver multipartResolver() {  
+    MultipartResolver multipartResolver = ...;  
+    return multipartResolver;  
 }
 ```
-用语言描述，则会经过以下步骤：
-1. 判断当前HttpServletRequest请求是否是文件请求
-	1. 是：将当前`HttpServletRequest`请求的数据（文件和普通参数）封装成`MultipartHttpServletRequest`对象
-	2. 不是：不处理
-2. `DispatcherServlet`对原始`HttpServletRequest`或`MultipartHttpServletRequest`对象进行业务处理
-3. 业务处理完成，清除文件上传产生的临时资源
-
