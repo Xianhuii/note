@@ -76,7 +76,6 @@ public class MultipartAutoConfiguration {
       multipartResolver.setResolveLazily(this.multipartProperties.isResolveLazily());  
       return multipartResolver;  
    }  
-  
 }
 ```
 

@@ -90,7 +90,77 @@ public interface MultipartResolver {
     void cleanupMultipart(MultipartHttpServletRequest request);  
 }
 ```
-`DispatcherServlet`中会按照顺序分别调用这些方法进行文件上传处理，部分源码如下：
+
+`DispatcherServlet`中持有`MultipartResolver`成员变量：
+```java
+public class DispatcherServlet extends FrameworkServlet {  
+   /** Well-known name for the MultipartResolver object in the bean factory for this namespace. */  
+   public static final String MULTIPART_RESOLVER_BEAN_NAME = "multipartResolver";
+   /** MultipartResolver used by this servlet. */  
+	@Nullable  
+	private MultipartResolver multipartResolver;
+}
+```
+`DispatcherServlet`在初始化时，会从Spring容器中获取名为`multipartResolver`的对象（该对象是`MultipartResolver`实现类），作为文件上传解析器：
+```java
+/**  
+ * Initialize the MultipartResolver used by this class. * <p>If no bean is defined with the given name in the BeanFactory for this namespace,  
+ * no multipart handling is provided. */private void initMultipartResolver(ApplicationContext context) {  
+   try {  
+      this.multipartResolver = context.getBean(MULTIPART_RESOLVER_BEAN_NAME, MultipartResolver.class);  
+      if (logger.isTraceEnabled()) {  
+         logger.trace("Detected " + this.multipartResolver);  
+      }  
+      else if (logger.isDebugEnabled()) {  
+         logger.debug("Detected " + this.multipartResolver.getClass().getSimpleName());  
+      }  
+   }  
+   catch (NoSuchBeanDefinitionException ex) {  
+      // Default is no multipart resolver.  
+      this.multipartResolver = null;  
+      if (logger.isTraceEnabled()) {  
+         logger.trace("No MultipartResolver '" + MULTIPART_RESOLVER_BEAN_NAME + "' declared");  
+      }  
+   }  
+}
+```
+需要注意的是，如果Spring容器中不存在名为`multipartResolver`的对象，`DispatcherServlet`并不会额外指定默认的文件解析器。此时，`DispatcherServlet`不会对文件上传请求进行处理。也就是说，尽管当前请求是文件请求，也不会被处理成`MultipartHttpServletRequest`。
+
+Spring提供了两个`MultipartResolver`实现类：
+- `org.springframework.web.multipart.support.StandardServletMultipartResolver`：根据Servlet 3.0+ Part Api实现
+- `org.springframework.web.multipart.commons.CommonsMultipartResolver`：根据Apache Commons FileUpload实现
+在Spring Boot 2.0+中，默认会在`org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration`中创建`StandardServletMultipartResolver`作为默认文件解析器：
+```java
+@AutoConfiguration  
+@ConditionalOnClass({ Servlet.class, StandardServletMultipartResolver.class, MultipartConfigElement.class })  
+@ConditionalOnProperty(prefix = "spring.servlet.multipart", name = "enabled", matchIfMissing = true)  
+@ConditionalOnWebApplication(type = Type.SERVLET)  
+@EnableConfigurationProperties(MultipartProperties.class)  
+public class MultipartAutoConfiguration {  
+  
+   private final MultipartProperties multipartProperties;  
+  
+   public MultipartAutoConfiguration(MultipartProperties multipartProperties) {  
+      this.multipartProperties = multipartProperties;  
+   }  
+  
+   @Bean  
+   @ConditionalOnMissingBean({ MultipartConfigElement.class, CommonsMultipartResolver.class })  
+   public MultipartConfigElement multipartConfigElement() {  
+      return this.multipartProperties.createMultipartConfig();  
+   }  
+  
+   @Bean(name = DispatcherServlet.MULTIPART_RESOLVER_BEAN_NAME)  
+   @ConditionalOnMissingBean(MultipartResolver.class)  
+   public StandardServletMultipartResolver multipartResolver() {  
+      StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();  
+      multipartResolver.setResolveLazily(this.multipartProperties.isResolveLazily());  
+      return multipartResolver;  
+   }  
+}
+```
+
+`DispatcherServlet`在处理业务时，会按照顺序分别调用这些方法进行文件上传处理，部分源码如下：
 ```java
 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {  
    HttpServletRequest processedRequest = request;
@@ -115,4 +185,4 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 	2. 不是：不处理
 2. `DispatcherServlet`对原始`HttpServletRequest`或`MultipartHttpServletRequest`对象进行业务处理
 3. 业务处理完成，清除文件上传产生的临时资源
-上传文件的，这体现了对多态的使用。
+
