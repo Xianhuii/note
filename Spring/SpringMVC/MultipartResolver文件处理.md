@@ -109,4 +109,10 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
    }  
 }
 ```
+用语言描述，则会经过以下步骤：
+1. 判断当前HttpServletRequest请求是否是文件请求
+	1. 是：将当前`HttpServletRequest`请求的数据（文件和普通参数）封装成`MultipartHttpServletRequest`对象
+	2. 不是：不处理
+2. `DispatcherServlet`对原始`HttpServletRequest`或`MultipartHttpServletRequest`对象进行业务处理
+3. 业务处理完成，清除文件上传产生的临时资源
 上传文件的，这体现了对多态的使用。
