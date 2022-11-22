@@ -11,7 +11,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
  * @author jxh
  * @date 2022年11月22日 11:20
  */
-@Configuration
+//@Configuration
 public class MultipartConfig {
     @Bean
     public MultipartResolver multipartResolver() {
