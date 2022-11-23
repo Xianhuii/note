@@ -252,7 +252,7 @@ public interface Part {
 	public Collection<String> getHeaderNames();  
 }
 ```
-在`javax.servlet.http.HttpServletRequest`，提供了获取`multipart/form-data`请求体各个部分的方法：
+在`javax.servlet.http.HttpServletRequest`，提供了获取`multipart/form-data`请求体各个`part`的方法：
 ```java
 public interface HttpServletRequest extends ServletRequest {    
     /**  
