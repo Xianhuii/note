@@ -252,3 +252,28 @@ public interface Part {
 	public Collection<String> getHeaderNames();  
 }
 ```
+在`javax.servlet.http.HttpServletRequest`，提供了获取`multipart/form-data`请求体各个部分的方法：
+```java
+public interface HttpServletRequest extends ServletRequest {    
+    /**  
+     * Return a collection of all uploaded Parts.     *     * @return A collection of all uploaded Parts.     * @throws IOException  
+     *             if an I/O error occurs  
+     * @throws IllegalStateException  
+     *             if size limits are exceeded or no multipart configuration is  
+     *             provided     * @throws ServletException  
+     *             if the request is not multipart/form-data  
+     * @since Servlet 3.0     */   
+	public Collection<Part> getParts() throws IOException, ServletException;  
+  
+    /**  
+     * Gets the named Part or null if the Part does not exist. Triggers upload     * of all Parts.     *     * @param name The name of the Part to obtain  
+     *     * @return The named Part or null if the Part does not exist     * @throws IOException  
+     *             if an I/O error occurs  
+     * @throws IllegalStateException  
+     *             if size limits are exceeded  
+     * @throws ServletException  
+     *             if the request is not multipart/form-data  
+     * @since Servlet 3.0     */    
+	public Part getPart(String name) throws IOException, ServletException;  
+}
+```
