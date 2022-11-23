@@ -105,7 +105,8 @@ public class DispatcherServlet extends FrameworkServlet {
 ```java
 /**  
  * Initialize the MultipartResolver used by this class. * <p>If no bean is defined with the given name in the BeanFactory for this namespace,  
- * no multipart handling is provided. */private void initMultipartResolver(ApplicationContext context) {  
+ * no multipart handling is provided. */
+private void initMultipartResolver(ApplicationContext context) {  
    try {  
       this.multipartResolver = context.getBean(MULTIPART_RESOLVER_BEAN_NAME, MultipartResolver.class);  
       if (logger.isTraceEnabled()) {  
@@ -124,9 +125,9 @@ public class DispatcherServlet extends FrameworkServlet {
    }  
 }
 ```
-需要注意的是，如果Spring容器中不存在名为`multipartResolver`的对象，`DispatcherServlet`并不会额外指定默认的文件解析器。此时，`DispatcherServlet`不会对文件上传请求进行处理。也就是说，尽管当前请求是文件请求，也不会被处理成`MultipartHttpServletRequest`。
+需要注意的是，如果Spring容器中不存在名为`multipartResolver`的对象，`DispatcherServlet`并不会额外指定默认的文件解析器。此时，`DispatcherServlet`不会对文件上传请求进行处理。也就是说，尽管当前请求是文件请求，也不会被处理成`MultipartHttpServletRequest`，如果我们在控制层进行强制类型转换，会抛异常。
 
-`DispatcherServlet`在处理业务时，会按照顺序分别调用这些方法进行文件上传处理，部分源码如下：
+`DispatcherServlet`在处理业务时，会按照顺序分别调用这些方法进行文件上传处理，相关核心源码如下：
 ```java
 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {  
    HttpServletRequest processedRequest = request;
@@ -145,7 +146,44 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
    }  
 }
 ```
-用语言描述，则会经过以下步骤：
+在`checkMultipart()`方法中，会进行判断、封装文件请求：
+```java
+/**  
+ * Convert the request into a multipart request, and make multipart resolver available. * <p>If no multipart resolver is set, simply use the existing request.  
+ * @param request current HTTP request  
+ * @return the processed request (multipart wrapper if necessary) * @see MultipartResolver#resolveMultipart  
+ */
+ protected HttpServletRequest checkMultipart(HttpServletRequest request) throws MultipartException {  
+   if (this.multipartResolver != null && this.multipartResolver.isMultipart(request)) {  
+      if (WebUtils.getNativeRequest(request, MultipartHttpServletRequest.class) != null) {  
+         if (DispatcherType.REQUEST.equals(request.getDispatcherType())) {  
+            logger.trace("Request already resolved to MultipartHttpServletRequest, e.g. by MultipartFilter");  
+         }  
+      }  
+      else if (hasMultipartException(request)) {  
+         logger.debug("Multipart resolution previously failed for current request - " +  
+               "skipping re-resolution for undisturbed error rendering");  
+      }  
+      else {  
+         try {  
+            return this.multipartResolver.resolveMultipart(request);  
+         }  
+         catch (MultipartException ex) {  
+            if (request.getAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE) != null) {  
+               logger.debug("Multipart resolution failed for error dispatch", ex);  
+               // Keep processing error dispatch with regular request handle below  
+            }  
+            else {  
+               throw ex;  
+            }  
+         }  
+      }  
+   }  
+   // If not returned before: return original request.  
+   return request;  
+}
+```
+总的来说，`DispatcherServlet`处理文件请求会经过以下步骤：
 1. 判断当前HttpServletRequest请求是否是文件请求
 	1. 是：将当前`HttpServletRequest`请求的数据（文件和普通参数）封装成`MultipartHttpServletRequest`对象
 	2. 不是：不处理
@@ -155,6 +193,7 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 Spring提供了两个`MultipartResolver`实现类：
 - `org.springframework.web.multipart.support.StandardServletMultipartResolver`：根据Servlet 3.0+ Part Api实现
 - `org.springframework.web.multipart.commons.CommonsMultipartResolver`：根据Apache Commons FileUpload实现
+
 在Spring Boot 2.0+中，默认会在`org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration`中创建`StandardServletMultipartResolver`作为默认文件解析器：
 ```java
 @AutoConfiguration  
@@ -192,5 +231,58 @@ public class MultipartAutoConfiguration {
 public MultipartResolver multipartResolver() {  
     MultipartResolver multipartResolver = ...;  
     return multipartResolver;  
+}
+```
+
+接下来，我们分别详细介绍两种实现类的使用和原理。
+# 3 StandardServletMultipartResolver解析器
+顾名思义，`StandardServletMultipartResolver`是根据标准Servlet 3.0实现的解析器。
+在Servlet 3.0中定义了`javax.servlet.http.Part`，用来表示`multipart/form-data`请求体中的表单数据或文件：
+```java
+public interface Part {  
+	public InputStream getInputStream() throws IOException;  
+	public String getContentType();  
+	public String getName();  
+	public String getSubmittedFileName();  
+	public long getSize();  
+	public void write(String fileName) throws IOException;  
+	public void delete() throws IOException;  
+	public String getHeader(String name);  
+	public Collection<String> getHeaders(String name);  
+	public Collection<String> getHeaderNames();  
+}
+```
+在`javax.servlet.http.HttpServletRequest`，提供了获取`multipart/form-data`请求体各个部分的方法：
+```java
+public interface HttpServletRequest extends ServletRequest {    
+    /**  
+     * Return a collection of all uploaded Parts.     
+     *     
+     * @return A collection of all uploaded Parts.    
+     * @throws IOException  
+     *             if an I/O error occurs  
+     * @throws IllegalStateException  
+     *             if size limits are exceeded or no multipart configuration is  
+     *             provided     * @throws ServletException  
+     *             if the request is not multipart/form-data  
+     * @since Servlet 3.0     
+     */   
+	public Collection<Part> getParts() throws IOException, ServletException;  
+  
+    /**  
+     * Gets the named Part or null if the Part does not exist. Triggers upload     
+     * of all Parts.    
+     *     
+     * @param name The name of the Part to obtain  
+     *     
+     * @return The named Part or null if the Part does not exist     * @throws IOException  
+     *             if an I/O error occurs  
+     * @throws IllegalStateException  
+     *             if size limits are exceeded  
+     * @throws ServletException  
+     *             if the request is not multipart/form-data  
+     * @since Servlet 3.0     
+     */    
+	public Part getPart(String name) throws IOException, ServletException;  
 }
 ```

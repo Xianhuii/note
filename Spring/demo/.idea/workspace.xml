@@ -23,7 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09e2326d-437f-4ca0-be58-e8c90e87892c" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+=======
+>>>>>>> 6a0254218bd5914b65be63764cf4c0208f971cf3
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +84,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.30114943" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RebelAgentSelection">
@@ -133,9 +136,13 @@
       <workItem from="1668564347246" duration="9482000" />
       <workItem from="1668764023459" duration="590000" />
       <workItem from="1668999049678" duration="20517000" />
+<<<<<<< HEAD
       <workItem from="1669126027475" duration="610000" />
       <workItem from="1669128310125" duration="31000" />
       <workItem from="1669128350569" duration="7000" />
+=======
+      <workItem from="1669172934155" duration="1533000" />
+>>>>>>> 6a0254218bd5914b65be63764cf4c0208f971cf3
     </task>
     <servers />
   </component>
@@ -227,10 +234,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="310" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1669088401287" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1668565291552">
+    <state x="461" y="164" key="SettingsEditor" timestamp="1669172976345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1668565291552" />
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1669172976345" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1666087482007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
