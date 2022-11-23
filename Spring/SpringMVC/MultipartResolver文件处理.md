@@ -236,3 +236,19 @@ public MultipartResolver multipartResolver() {
 
 接下来，我们分别详细介绍两种实现类的使用和原理。
 # 3 StandardServletMultipartResolver解析器
+顾名思义，`StandardServletMultipartResolver`是根据标准Servlet 3.0实现的解析器。
+在Servlet 3.0中定义了`javax.servlet.http.Part`，用来表示`multipart/form-data`请求体中的表单数据或文件：
+```java
+public interface Part {  
+	public InputStream getInputStream() throws IOException;  
+	public String getContentType();  
+	public String getName();  
+	public String getSubmittedFileName();  
+	public long getSize();  
+	public void write(String fileName) throws IOException;  
+	public void delete() throws IOException;  
+	public String getHeader(String name);  
+	public Collection<String> getHeaders(String name);  
+	public Collection<String> getHeaderNames();  
+}
+```
