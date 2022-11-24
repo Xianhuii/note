@@ -236,6 +236,34 @@ public MultipartResolver multipartResolver() {
 
 接下来，我们分别详细介绍两种实现类的使用和原理。
 # 3 StandardServletMultipartResolver解析器
+`StandardServletMultipartResolver`解析器的通过判断请求的`Content-Type`来判断是否是文件请i求：
+```java
+public boolean isMultipart(HttpServletRequest request) {  
+   return StringUtils.startsWithIgnoreCase(request.getContentType(),  
+         (this.strictServletCompliance ? "multipart/form-data" : "multipart/"));  
+}
+```
+其中，`strictServletCompliance`是`StandardServletMultipartResolver`的成员变量，默认`false`，表示是否严格遵守Servlet 3.0规范。简单来说就是对`Content-Type`校验的严格程度。
+
+`StandardServletMultipartResolver`在解析文件请求时，会将原始请求封装成`StandardMultipartHttpServletRequest`对象：
+```java
+public MultipartHttpServletRequest resolveMultipart(HttpServletRequest request) throws MultipartException {  
+   return new StandardMultipartHttpServletRequest(request, this.resolveLazily);  
+}
+```
+需要注意的是，这里传入`this.resolveLazily`成员变量，表示是否延迟解析。我们可以来看对应构造函数源码：
+```java
+public StandardMultipartHttpServletRequest(HttpServletRequest request, boolean lazyParsing)  
+      throws MultipartException {  
+  
+   super(request);  
+   if (!lazyParsing) {  
+      parseRequest(request);  
+   }  
+}
+```
+`parseRequest()`方法会对请求进行实际解析，主要作用就是将请求输入流转存到服务器本地临时文件。
+
 顾名思义，`StandardServletMultipartResolver`是根据标准Servlet 3.0实现的解析器。
 在Servlet 3.0中定义了`javax.servlet.http.Part`，用来表示`multipart/form-data`请求体中的表单数据或文件：
 ```java
@@ -263,7 +291,8 @@ public interface HttpServletRequest extends ServletRequest {
      *             if an I/O error occurs  
      * @throws IllegalStateException  
      *             if size limits are exceeded or no multipart configuration is  
-     *             provided     * @throws ServletException  
+     *             provided     
+     * @throws ServletException  
      *             if the request is not multipart/form-data  
      * @since Servlet 3.0     
      */   
@@ -275,7 +304,8 @@ public interface HttpServletRequest extends ServletRequest {
      *     
      * @param name The name of the Part to obtain  
      *     
-     * @return The named Part or null if the Part does not exist     * @throws IOException  
+     * @return The named Part or null if the Part does not exist    
+     * @throws IOException  
      *             if an I/O error occurs  
      * @throws IllegalStateException  
      *             if size limits are exceeded  
@@ -286,3 +316,4 @@ public interface HttpServletRequest extends ServletRequest {
 	public Part getPart(String name) throws IOException, ServletException;  
 }
 ```
+所有实现标准Servlet 3.0规范的Web服务器，都必须实现`getPart()`/`getParts()`方法。也就是说，这些Web服务器在解析请求时，会将`multipart/form-data`请求体中的表单数据或文件解析成`Part`对象集合。我们通过`HttpServletRequest`的`getPart()`/`getParts()`方法，可以获取这些`Part`对象，进而获取`multipart/form-data`请求体中的表单数据或文件。
