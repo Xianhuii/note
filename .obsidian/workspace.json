@@ -151,6 +151,9 @@
     "width": 300,
     "collapsed": true
   },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
   "active": "863813227878f137",
   "lastOpenFiles": [
     "华为云/OBS-Java.md",
