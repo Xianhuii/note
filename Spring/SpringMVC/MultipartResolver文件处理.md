@@ -236,14 +236,14 @@ public MultipartResolver multipartResolver() {
 
 接下来，我们分别详细介绍两种实现类的使用和原理。
 # 3 StandardServletMultipartResolver解析器
-`StandardServletMultipartResolver`解析器的通过判断请求的`Content-Type`来判断是否是文件请i求：
+`StandardServletMultipartResolver`解析器的通过判断请求的`Content-Type`来判断是否是文件请求：
 ```java
 public boolean isMultipart(HttpServletRequest request) {  
    return StringUtils.startsWithIgnoreCase(request.getContentType(),  
          (this.strictServletCompliance ? "multipart/form-data" : "multipart/"));  
 }
 ```
-其中，`strictServletCompliance`是`StandardServletMultipartResolver`的成员变量，默认`false`，表示是否严格遵守Servlet 3.0规范。简单来说就是对`Content-Type`校验的严格程度。
+其中，`strictServletCompliance`是`StandardServletMultipartResolver`的成员变量，默认`false`，表示是否严格遵守Servlet 3.0规范。简单来说就是对`Content-Type`校验的严格程度。如果`strictServletCompliance`为`false`，请求头以`multipart/`开头就满足文件请求条件；如果`strictServletCompliance`为`true`，则需要请求头以`multipart/form-data`开头。
 
 `StandardServletMultipartResolver`在解析文件请求时，会将原始请求封装成`StandardMultipartHttpServletRequest`对象：
 ```java
@@ -262,7 +262,36 @@ public StandardMultipartHttpServletRequest(HttpServletRequest request, boolean l
    }  
 }
 ```
-`parseRequest()`方法会对请求进行实际解析，主要作用就是将请求输入流转存到服务器本地临时文件。
+当`this.resolveLazily`为`true`时，会马上调用`parseRequest()`方法会对请求进行实际解析，该方法会完成两件事情：
+1. 使用Servlet 3.0的`Part` API，获取
+2. 
+```java
+private void parseRequest(HttpServletRequest request) {  
+   try {  
+      Collection<Part> parts = request.getParts();  
+      this.multipartParameterNames = new LinkedHashSet<>(parts.size());  
+      MultiValueMap<String, MultipartFile> files = new LinkedMultiValueMap<>(parts.size());  
+      for (Part part : parts) {  
+         String headerValue = part.getHeader(HttpHeaders.CONTENT_DISPOSITION);  
+         ContentDisposition disposition = ContentDisposition.parse(headerValue);  
+         String filename = disposition.getFilename();  
+         if (filename != null) {  
+            if (filename.startsWith("=?") && filename.endsWith("?=")) {  
+               filename = MimeDelegate.decode(filename);  
+            }  
+            files.add(part.getName(), new StandardMultipartFile(part, filename));  
+         }  
+         else {  
+            this.multipartParameterNames.add(part.getName());  
+         }  
+      }  
+      setMultipartFiles(files);  
+   }  
+   catch (Throwable ex) {  
+      handleParseFailure(ex);  
+   }  
+}
+```
 
 顾名思义，`StandardServletMultipartResolver`是根据标准Servlet 3.0实现的解析器。
 在Servlet 3.0中定义了`javax.servlet.http.Part`，用来表示`multipart/form-data`请求体中的表单数据或文件：
