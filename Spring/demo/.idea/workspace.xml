@@ -25,7 +25,7 @@
     <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../SpringMVC/MultipartResolver文件处理.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringMVC/MultipartResolver文件处理.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/MultipartConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/MultipartConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servlet-mvc/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servlet-mvc/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +140,7 @@
       <workItem from="1669172934155" duration="1533000" />
       <workItem from="1669172934155" duration="3329000" />
       <workItem from="1669436845385" duration="664000" />
-      <workItem from="1669523968558" duration="4069000" />
+      <workItem from="1669523968558" duration="5605000" />
     </task>
     <servers />
   </component>

@@ -414,7 +414,7 @@ upload.setFileSizeMax(mce.getMaxFileSize());
 upload.setSizeMax(mce.getMaxRequestSize());
 this.parts = new ArrayList<>();  
 try {  
-	// 2、上传临时文件
+	// 2、解析文件请求
     List<FileItem> items =  
             upload.parseRequest(new ServletRequestContext(this));
     // 3、封装Part对象
@@ -425,4 +425,61 @@ try {
     }  
     success = true;  
 }
+```
+核心步骤如下：
+1. 创建ServletFileUpload文件上传对象
+2. 解析文件请求
+3. 封装`Part`对象
+`org.apache.tomcat.util.http.fileupload.FileUploadBase#parseRequest`会进行实际解析文件请求：
+```java
+public List<FileItem> parseRequest(final RequestContext ctx) throws FileUploadException {  
+    final List<FileItem> items = new ArrayList<>();  
+    boolean successful = false;  
+    try {  
+        final FileItemIterator iter = getItemIterator(ctx);  
+        final FileItemFactory fileItemFactory = Objects.requireNonNull(getFileItemFactory(),  
+                "No FileItemFactory has been set.");  
+        final byte[] buffer = new byte[Streams.DEFAULT_BUFFER_SIZE];  
+        while (iter.hasNext()) {  
+            final FileItemStream item = iter.next();  
+            // Don't use getName() here to prevent an InvalidFileNameException.  
+            final String fileName = item.getName();  
+            final FileItem fileItem = fileItemFactory.createItem(item.getFieldName(), item.getContentType(),  
+                                               item.isFormField(), fileName);  
+            items.add(fileItem);  
+            try {  
+                Streams.copy(item.openStream(), fileItem.getOutputStream(), true, buffer);  
+            } catch (final FileUploadIOException e) {  
+                throw (FileUploadException) e.getCause();  
+            } catch (final IOException e) {  
+                throw new IOFileUploadException(String.format("Processing of %s request failed. %s",  
+                                                       MULTIPART_FORM_DATA, e.getMessage()), e);  
+            }  
+            final FileItemHeaders fih = item.getHeaders();  
+            fileItem.setHeaders(fih);  
+        }  
+        successful = true;  
+        return items;  
+    }
+}
+```
+简单来说，Tomcat会使用`java.io.InputStream`和`java.io.OutputStream`（传统IO流）将`multipart`请求中的表单参数和文件保存到服务器本地临时文件，然后将本地临时文件信息封装成`Part`对象返回。
+也就是说，我们在业务中获取到的文件实际上都来自服务器本地临时文件。
+### 3.4.2 Undertow实现
+为了使用Undertow服务器，需要引入如下依赖：
+```xml
+<dependency>  
+   <groupId>org.springframework.boot</groupId>  
+   <artifactId>spring-boot-starter-web</artifactId>  
+   <exclusions>  
+      <exclusion>  
+         <groupId>org.springframework.boot</groupId>  
+         <artifactId>spring-boot-starter-tomcat</artifactId>  
+      </exclusion>  
+   </exclusions>  
+</dependency>  
+<dependency>  
+   <groupId>org.springframework.boot</groupId>  
+   <artifactId>spring-boot-starter-undertow</artifactId>  
+</dependency>
 ```
