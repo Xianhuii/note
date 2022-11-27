@@ -580,28 +580,40 @@ private MultiParts newMultiParts(MultipartConfigElement config) throws IOExcepti
     }  
 }
 ```
-`io.undertow.server.handlers.form.MultiPartParserDefinition.MultiPartUploadHandler#parseBlocking`核心代码如下：
+`org.eclipse.jetty.server.MultiParts.MultiPartsHttpParser#getParts`或`org.eclipse.jetty.server.MultiParts.MultiPartsUtilParser#getParts`则会进行文件请求解析：
 ```java
-InputStream inputStream = exchange.getInputStream();
-try (PooledByteBuffer pooled = exchange.getConnection().getByteBufferPool().getArrayBackedPool().allocate()){  
-    ByteBuffer buf = pooled.getBuffer();  
-    while (true) {  
-        buf.clear();  
-        int c = inputStream.read(buf.array(), buf.arrayOffset(), buf.remaining());  
-        if (c == -1) {  
-            if (parser.isComplete()) {  
-                break;  
-            } else {  
-                throw UndertowMessages.MESSAGES.connectionTerminatedReadingMultiPartData();  
-            }  
-        } else if (c != 0) {  
-            buf.limit(c);  
-            parser.parse(buf);  
-        }  
-    }  
-    exchange.putAttachment(FORM_DATA, data);  
-} 
-return exchange.getAttachment(FORM_DATA);
+public Collection<Part> getParts() throws IOException {  
+    Collection<Part> parts = this._httpParser.getParts();  
+    this.setNonComplianceViolationsOnRequest();  
+    return parts;  
+}
+
+public Collection<Part> getParts() throws IOException {  
+    Collection<Part> parts = this._utilParser.getParts();  
+    this.setNonComplianceViolationsOnRequest();  
+    return parts;  
+}
 ```
-在这个过程中，Undertow会使用`java.io.InputStream`和`java.io.OutputStream`（传统IO流），结合`java.nio.ByteBuffer`将`multipart`请求中的表单参数和文件保存到服务器本地临时文件，然后将本地临时文件信息封装成`Part`对象返回。
+在这个过程中，Jetty会使用`java.io.InputStream`和`java.io.OutputStream`（传统IO流），结合`java.nio.ByteBuffer`将`multipart`请求中的表单参数和文件保存到服务器本地临时文件，然后将本地临时文件信息封装成`Part`对象返回。
 也就是说，我们在业务中获取到的文件实际上都来自服务器本地临时文件。
+## 3.5 StandardServletMultipartResolver#cleanupMultipart
+`StandardServletMultipartResolver#cleanupMultipart`方法会将临时文件删除：
+```java
+public void cleanupMultipart(MultipartHttpServletRequest request) {  
+   if (!(request instanceof AbstractMultipartHttpServletRequest) ||  
+         ((AbstractMultipartHttpServletRequest) request).isResolved()) {  
+      // To be on the safe side: explicitly delete the parts,  
+      // but only actual file parts (for Resin compatibility)      try {  
+         for (Part part : request.getParts()) {  
+            if (request.getFile(part.getName()) != null) {  
+               part.delete();  
+            }  
+         }  
+      }  
+      catch (Throwable ex) {  
+         LogFactory.getLog(getClass()).warn("Failed to perform cleanup of multipart items", ex);  
+      }  
+   }  
+}
+```
+# 3 StandardServletMultipartResolver解析器
