@@ -539,5 +539,5 @@ try (PooledByteBuffer pooled = exchange.getConnection().getByteBufferPool().getA
 } 
 return exchange.getAttachment(FORM_DATA);
 ```
-简单来说，Tomcat会使用`java.io.InputStream`和`java.io.OutputStream`（传统IO流）将`multipart`请求中的表单参数和文件保存到服务器本地临时文件，然后将本地临时文件信息封装成`Part`对象返回。
+在这个过程中，Undertow会使用`java.io.InputStream`和`java.io.OutputStream`（传统IO流），结合`java.nio.ByteBuffer`将`multipart`请求中的表单参数和文件保存到服务器本地临时文件，然后将本地临时文件信息封装成`Part`对象返回。
 也就是说，我们在业务中获取到的文件实际上都来自服务器本地临时文件。
