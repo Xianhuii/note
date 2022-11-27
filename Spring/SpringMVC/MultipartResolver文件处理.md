@@ -539,5 +539,81 @@ try (PooledByteBuffer pooled = exchange.getConnection().getByteBufferPool().getA
 } 
 return exchange.getAttachment(FORM_DATA);
 ```
+在这个过程中，Undertow会使用`java.io.InputStream`和`java.io.OutputStream`（传统IO流），结合`java.nio.ByteBuffer`将`multipart`请求中的表单参数和文件保存到服务器本地临时文件，然后将本地临时文件信息封装成`Part`对象返回（具体细节可以继续深入阅读相关源码）。
+也就是说，我们在业务中获取到的文件实际上都来自服务器本地临时文件。
+### 3.4.2 Jetty实现
+为了使用Jetty服务器，需要引入如下依赖：
+```xml
+<dependency>  
+   <groupId>org.springframework.boot</groupId>  
+   <artifactId>spring-boot-starter-web</artifactId>  
+   <exclusions>  
+      <exclusion>  
+         <groupId>org.springframework.boot</groupId>  
+         <artifactId>spring-boot-starter-tomcat</artifactId>  
+      </exclusion>  
+   </exclusions>  
+</dependency>  
+<dependency>  
+   <groupId>org.springframework.boot</groupId>  
+   <artifactId>spring-boot-starter-jetty</artifactId>  
+</dependency>
+```
+Jetty解析文件请求的核心在于`io.undertow.servlet.spec.HttpServletRequestImpl#loadParts`方法，核心代码如下
+```java
+final List<Part> parts = new ArrayList<>();  
+String mimeType = exchange.getRequestHeaders().getFirst(Headers.CONTENT_TYPE);  
+if (mimeType != null && mimeType.startsWith(MultiPartParserDefinition.MULTIPART_FORM_DATA)) {  
+	// 1、解析文件请求，封装FormData对象
+    FormData formData = parseFormData();  
+    // 2、封装Part对象
+    if(formData != null) {  
+        for (final String namedPart : formData) {  
+            for (FormData.FormValue part : formData.get(namedPart)) {  
+                parts.add(new PartImpl(namedPart,  
+                        part,  
+                        requestContext.getOriginalServletPathMatch().getServletChain().getManagedServlet().getMultipartConfig(),  
+                        servletContext, this));  
+            }  
+        }  
+    }  
+} else {  
+    throw UndertowServletMessages.MESSAGES.notAMultiPartRequest();  
+}  
+this.parts = parts;
+```
+核心步骤如下：
+1. 解析文件请求，封装FormData对象
+2. 封装`Part`对象
+`io.undertow.servlet.spec.HttpServletRequestImpl#parseFormData`方法会进行实际解析文件请求，核心代码如下：
+```java
+final FormDataParser parser = originalServlet.getFormParserFactory().createParser(exchange) 
+try {  
+    return parsedFormData = parser.parseBlocking();
+}
+```
+`io.undertow.server.handlers.form.MultiPartParserDefinition.MultiPartUploadHandler#parseBlocking`核心代码如下：
+```java
+InputStream inputStream = exchange.getInputStream();
+try (PooledByteBuffer pooled = exchange.getConnection().getByteBufferPool().getArrayBackedPool().allocate()){  
+    ByteBuffer buf = pooled.getBuffer();  
+    while (true) {  
+        buf.clear();  
+        int c = inputStream.read(buf.array(), buf.arrayOffset(), buf.remaining());  
+        if (c == -1) {  
+            if (parser.isComplete()) {  
+                break;  
+            } else {  
+                throw UndertowMessages.MESSAGES.connectionTerminatedReadingMultiPartData();  
+            }  
+        } else if (c != 0) {  
+            buf.limit(c);  
+            parser.parse(buf);  
+        }  
+    }  
+    exchange.putAttachment(FORM_DATA, data);  
+} 
+return exchange.getAttachment(FORM_DATA);
+```
 在这个过程中，Undertow会使用`java.io.InputStream`和`java.io.OutputStream`（传统IO流），结合`java.nio.ByteBuffer`将`multipart`请求中的表单参数和文件保存到服务器本地临时文件，然后将本地临时文件信息封装成`Part`对象返回。
 也就是说，我们在业务中获取到的文件实际上都来自服务器本地临时文件。
