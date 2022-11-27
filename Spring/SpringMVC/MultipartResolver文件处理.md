@@ -264,7 +264,8 @@ public StandardMultipartHttpServletRequest(HttpServletRequest request, boolean l
 ```
 当`this.resolveLazily`为`true`时，会马上调用`parseRequest()`方法会对请求进行实际解析，该方法会完成两件事情：
 1. 使用Servlet 3.0的`Part` API，获取
-2. 
+
+3. 
 ```java
 private void parseRequest(HttpServletRequest request) {  
    try {  
