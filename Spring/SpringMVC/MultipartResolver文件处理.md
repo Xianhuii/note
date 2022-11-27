@@ -559,37 +559,25 @@ return exchange.getAttachment(FORM_DATA);
    <artifactId>spring-boot-starter-jetty</artifactId>  
 </dependency>
 ```
-Jetty解析文件请求的核心在于`io.undertow.servlet.spec.HttpServletRequestImpl#loadParts`方法，核心代码如下
+Jetty解析文件请求的核心在于`org.eclipse.jetty.server.Request#getParts`方法，核心代码如下
 ```java
-final List<Part> parts = new ArrayList<>();  
-String mimeType = exchange.getRequestHeaders().getFirst(Headers.CONTENT_TYPE);  
-if (mimeType != null && mimeType.startsWith(MultiPartParserDefinition.MULTIPART_FORM_DATA)) {  
-	// 1、解析文件请求，封装FormData对象
-    FormData formData = parseFormData();  
-    // 2、封装Part对象
-    if(formData != null) {  
-        for (final String namedPart : formData) {  
-            for (FormData.FormValue part : formData.get(namedPart)) {  
-                parts.add(new PartImpl(namedPart,  
-                        part,  
-                        requestContext.getOriginalServletPathMatch().getServletChain().getManagedServlet().getMultipartConfig(),  
-                        servletContext, this));  
-            }  
-        }  
-    }  
-} else {  
-    throw UndertowServletMessages.MESSAGES.notAMultiPartRequest();  
-}  
-this.parts = parts;
+MultipartConfigElement config = (MultipartConfigElement)this.getAttribute("org.eclipse.jetty.multipartConfig");  
+this._multiParts = this.newMultiParts(config);
+// 省略……
+return this._multiParts.getParts();
 ```
-核心步骤如下：
-1. 解析文件请求，封装FormData对象
-2. 封装`Part`对象
-`io.undertow.servlet.spec.HttpServletRequestImpl#parseFormData`方法会进行实际解析文件请求，核心代码如下：
+`org.eclipse.jetty.server.Request#newMultiParts`会创建文件解析器：
 ```java
-final FormDataParser parser = originalServlet.getFormParserFactory().createParser(exchange) 
-try {  
-    return parsedFormData = parser.parseBlocking();
+private MultiParts newMultiParts(MultipartConfigElement config) throws IOException {  
+    MultiPartFormDataCompliance compliance = this.getHttpChannel().getHttpConfiguration().getMultipartFormDataCompliance(); 
+  
+    switch(compliance) {  
+    case RFC7578:  
+        return new MultiPartsHttpParser(this.getInputStream(), this.getContentType(), config, this._context != null ? (File)this._context.getAttribute("javax.servlet.context.tempdir") : null, this);  
+    case LEGACY:  
+    default:  
+        return new MultiPartsUtilParser(this.getInputStream(), this.getContentType(), config, this._context != null ? (File)this._context.getAttribute("javax.servlet.context.tempdir") : null, this);  
+    }  
 }
 ```
 `io.undertow.server.handlers.form.MultiPartParserDefinition.MultiPartUploadHandler#parseBlocking`核心代码如下：
