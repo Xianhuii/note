@@ -636,7 +636,7 @@ public MultipartResolver multipartResolver() {
 }
 ```
 ## 4.1 CommonsMultipartResolver#isMultipart
-`CommonsMultipartResolver`解析器会根据请求方法和请求头（以`multipart/`开头）来判断文件请求：
+`CommonsMultipartResolver`解析器会根据请求方法和请求头来判断文件请求，源码如下：
 ```java
 public boolean isMultipart(HttpServletRequest request) {  
    return (this.supportedMethods != null ?  
@@ -645,4 +645,108 @@ public boolean isMultipart(HttpServletRequest request) {
          ServletFileUpload.isMultipartContent(request));  
 }
 ```
-`supportedMethods`成员变量表示
+`supportedMethods`成员变量表示支持的请求方法，默认为`null`，可以在初始化时指定。
+当`supportedMethods`为`null`时，即在默认情况下，会调用`ServletFileUpload.isMultipartContent()`方法进行判断。此时文件请求的满足条件为：
+1. 请求方法为`POST`
+2. 请求头`Content-Type`为以`multipart/`开头
+当`supportedMethods`不为`null`时，文件请求满足条件为：
+1. 请求方法在`supportedMethods`列表中
+2. 请求头`Content-Type`为以`multipart/`开头
+## 4.2 CommonsMultipartResolver#resolveMultipart
+`CommonsMultipartResolver`在解析文件请求时，会将原始请求封装成`DefaultMultipartHttpServletRequest`对象：
+```java
+public MultipartHttpServletRequest resolveMultipart(final HttpServletRequest request) throws MultipartException {  
+   Assert.notNull(request, "Request must not be null");  
+   if (this.resolveLazily) {  
+      return new DefaultMultipartHttpServletRequest(request) {  
+         @Override  
+         protected void initializeMultipart() {  
+            MultipartParsingResult parsingResult = parseRequest(request);  
+            setMultipartFiles(parsingResult.getMultipartFiles());  
+            setMultipartParameters(parsingResult.getMultipartParameters());  
+            setMultipartParameterContentTypes(parsingResult.getMultipartParameterContentTypes());  
+         }  
+      };  
+   }  
+   else {  
+      MultipartParsingResult parsingResult = parseRequest(request);  
+      return new DefaultMultipartHttpServletRequest(request, parsingResult.getMultipartFiles(),  
+            parsingResult.getMultipartParameters(), parsingResult.getMultipartParameterContentTypes());  
+   }  
+}
+```
+与`StandardServletMultipartResolver`相同，`CommonsMultipartResolver`的`resolveLazily`成员变量也表示是否会马上解析文件。
+当`resolveLazily`为`false`时，即默认情况下，不会立即解析文件，只是会将原始请求进行简单封装。只有在调用`DefaultMultipartHttpServletRequest#getXxx`方法时，会判断文件是否已经解析。如果没有解析，会调用`DefaultMultipartHttpServletRequest#initializeMultipart`进行解析。
+当`resolveLazily`为`true`时，会立即调用`CommonsMultipartResolver#parseRequest`方法进行文件解析。
+## 4.3 CommonsMultipartResolver#parseRequest
+`CommonsMultipartResolver#parseRequest`方法会进行文件请求解析，总的来说包括两个步骤：
+1. 解析文件请求
+2. 封装响应
+```java
+List<FileItem> fileItems = ((ServletFileUpload) fileUpload).parseRequest(request);  
+return parseFileItems(fileItems, encoding);
+```
+深入阅读源码可以发现，在解析文件请求时，会采用与`StandardServletMultipartResolver`+`Tomcat`相同的方式保存临时文件：
+```java
+public List<FileItem> parseRequest(RequestContext ctx)  
+        throws FileUploadException {  
+    List<FileItem> items = new ArrayList<FileItem>();  
+    boolean successful = false;  
+    try {  
+        FileItemIterator iter = getItemIterator(ctx);  
+        FileItemFactory fac = getFileItemFactory();  
+        if (fac == null) {  
+            throw new NullPointerException("No FileItemFactory has been set.");  
+        }  
+        while (iter.hasNext()) {  
+            final FileItemStream item = iter.next();  
+            // Don't use getName() here to prevent an InvalidFileNameException.  
+            final String fileName = ((FileItemIteratorImpl.FileItemStreamImpl) item).name;  
+            FileItem fileItem = fac.createItem(item.getFieldName(), item.getContentType(),  
+                                               item.isFormField(), fileName);  
+            items.add(fileItem);  
+            try {  
+                Streams.copy(item.openStream(), fileItem.getOutputStream(), true);  
+            } catch (FileUploadIOException e) {  
+                throw (FileUploadException) e.getCause();  
+            } catch (IOException e) {  
+                throw new IOFileUploadException(format("Processing of %s request failed. %s",  
+                                                       MULTIPART_FORM_DATA, e.getMessage()), e);  
+            }  
+            final FileItemHeaders fih = item.getHeaders();  
+            fileItem.setHeaders(fih);  
+        }  
+        successful = true;  
+        return items;  
+    } catch (FileUploadIOException e) {  
+        throw (FileUploadException) e.getCause();  
+    } catch (IOException e) {  
+        throw new FileUploadException(e.getMessage(), e);  
+    } finally {  
+        if (!successful) {  
+            for (FileItem fileItem : items) {  
+                try {  
+                    fileItem.delete();  
+                } catch (Exception ignored) {  
+                    // ignored TODO perhaps add to tracker delete failure list somehow?  
+                }  
+            }  
+        }  
+    }  
+}
+```
+## 4.4 CommonsMultipartResolver#cleanupMultipart
+`CommonsMultipartResolver#cleanupMultipart`方法会将临时文件删除：
+```java
+public void cleanupMultipart(MultipartHttpServletRequest request) {  
+   if (!(request instanceof AbstractMultipartHttpServletRequest) ||  
+         ((AbstractMultipartHttpServletRequest) request).isResolved()) {  
+      try {  
+         cleanupFileItems(request.getMultiFileMap());  
+      }  
+      catch (Throwable ex) {  
+         logger.warn("Failed to perform multipart cleanup for servlet request", ex);  
+      }  
+   }  
+}
+```

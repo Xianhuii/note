@@ -22,7 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="" />
+    <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/MultipartResolver文件处理.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringMVC/MultipartResolver文件处理.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +47,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="D:\soft\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="D:\itsoft\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -96,17 +99,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServletMvcApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="servlet-mvc" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servletmvc.ServletMvcApplication" />
@@ -149,6 +141,7 @@
       <workItem from="1669436845385" duration="664000" />
       <workItem from="1669523968558" duration="12598000" />
       <workItem from="1669625121534" duration="4082000" />
+      <workItem from="1669640928458" duration="1762000" />
     </task>
     <servers />
   </component>
