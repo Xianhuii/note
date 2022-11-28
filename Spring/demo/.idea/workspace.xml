@@ -22,10 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../SpringMVC/MultipartResolver文件处理.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringMVC/MultipartResolver文件处理.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +138,7 @@
       <workItem from="1669436845385" duration="664000" />
       <workItem from="1669523968558" duration="12598000" />
       <workItem from="1669625121534" duration="4082000" />
-      <workItem from="1669640928458" duration="1762000" />
+      <workItem from="1669640928458" duration="2149000" />
     </task>
     <servers />
   </component>
