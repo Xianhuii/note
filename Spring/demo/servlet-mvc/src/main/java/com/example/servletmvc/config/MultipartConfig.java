@@ -16,7 +16,8 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 public class MultipartConfig {
     @Bean
     public MultipartResolver multipartResolver() {
-        StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        // 文件删除配置：multipartResolver.setXxx()
         multipartResolver.setResolveLazily(true);
         return multipartResolver;
     }

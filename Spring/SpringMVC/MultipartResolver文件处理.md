@@ -617,3 +617,32 @@ public void cleanupMultipart(MultipartHttpServletRequest request) {
 }
 ```
 # 4 CommonsMultipartResolver解析器
+为了使用`CommonsMultipartResolver`解析器，除了基础的`spring-boot-starter-web`，还需要额外引入如下依赖：
+```xml
+<dependency>  
+   <groupId>commons-fileupload</groupId>  
+   <artifactId>commons-fileupload</artifactId>  
+   <version>1.4</version>  
+</dependency>
+```
+然后，配置名为`multipartResolver`的bean（此时Spring Boot不会添加默认文件解析器）：
+```java
+@Bean  
+public MultipartResolver multipartResolver() {  
+    CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();  
+    // 文件删除配置：multipartResolver.setXxx()  
+    multipartResolver.setResolveLazily(true);  
+    return multipartResolver;  
+}
+```
+## 4.1 CommonsMultipartResolver#isMultipart
+`CommonsMultipartResolver`解析器会根据请求方法和请求头（以`multipart/`开头）来判断文件请求：
+```java
+public boolean isMultipart(HttpServletRequest request) {  
+   return (this.supportedMethods != null ?  
+         this.supportedMethods.contains(request.getMethod()) &&  
+               FileUploadBase.isMultipartContent(new ServletRequestContext(request)) :  
+         ServletFileUpload.isMultipartContent(request));  
+}
+```
+`supportedMethods`成员变量表示
