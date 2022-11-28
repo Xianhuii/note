@@ -17,7 +17,8 @@ public class MultipartConfig {
     @Bean
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setResolveLazily(false);
+        // 文件删除配置：multipartResolver.setXxx()
+        multipartResolver.setResolveLazily(true);
         return multipartResolver;
     }
 }
