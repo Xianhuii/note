@@ -22,11 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/MultipartConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/MultipartConfig.java" afterDir="false" />
-    </list>
+    <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +75,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.30114943" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -152,7 +148,7 @@
       <workItem from="1669172934155" duration="3329000" />
       <workItem from="1669436845385" duration="664000" />
       <workItem from="1669523968558" duration="12598000" />
-      <workItem from="1669625121534" duration="337000" />
+      <workItem from="1669625121534" duration="657000" />
     </task>
     <servers />
   </component>
