@@ -636,7 +636,7 @@ public MultipartResolver multipartResolver() {
 }
 ```
 ## 4.1 CommonsMultipartResolver#isMultipart
-`CommonsMultipartResolver`解析器会根据请求方法和请求头来判断文件请求：
+`CommonsMultipartResolver`解析器会根据请求方法和请求头（以`multipart/`开头）来判断文件请求：
 ```java
 public boolean isMultipart(HttpServletRequest request) {  
    return (this.supportedMethods != null ?  
@@ -645,3 +645,4 @@ public boolean isMultipart(HttpServletRequest request) {
          ServletFileUpload.isMultipartContent(request));  
 }
 ```
+`supportedMethods`成员变量表示
