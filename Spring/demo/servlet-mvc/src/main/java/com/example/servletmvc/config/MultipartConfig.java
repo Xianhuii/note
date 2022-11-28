@@ -16,8 +16,8 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 public class MultipartConfig {
     @Bean
     public MultipartResolver multipartResolver() {
-        StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
-        multipartResolver.setResolveLazily(true);
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setResolveLazily(false);
         return multipartResolver;
     }
 }
