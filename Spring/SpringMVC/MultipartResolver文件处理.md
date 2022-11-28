@@ -625,7 +625,7 @@ public void cleanupMultipart(MultipartHttpServletRequest request) {
    <version>1.4</version>  
 </dependency>
 ```
-然后，配置名为`multipartResolver`的bean：
+然后，配置名为`multipartResolver`的bean（此时Spring Boot不会添加默认文件解析器）：
 ```java
 @Bean  
 public MultipartResolver multipartResolver() {  
@@ -635,7 +635,4 @@ public MultipartResolver multipartResolver() {
     return multipartResolver;  
 }
 ```
-veLazily(true);  
-    return multipartResolver;  
-}
-```
+## 4.1 CommonsMultipartResolver#isMultipart
