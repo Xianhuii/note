@@ -46,7 +46,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="D:\soft\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="D:\itsoft\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -98,17 +98,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServletMvcApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="servlet-mvc" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servletmvc.ServletMvcApplication" />
@@ -150,6 +139,8 @@
       <workItem from="1669172934155" duration="3329000" />
       <workItem from="1669436845385" duration="664000" />
       <workItem from="1669523968558" duration="12598000" />
+      <workItem from="1669625121534" duration="4082000" />
+      <workItem from="1669640928458" duration="2149000" />
       <workItem from="1669625121534" duration="6017000" />
     </task>
     <servers />
