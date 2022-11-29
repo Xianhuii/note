@@ -17,8 +17,4 @@ public class ControllerAdvicerConfig {
     public String exception(Exception e) {
         return e.getMessage();
     }
-
-    private String test() {
-        return null;
-    }
 }

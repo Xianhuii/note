@@ -16,4 +16,8 @@ public class ControllerAdvicerController {
     public int byZero() {
         return 1/0;
     }
+
+    private String test() {
+        return null;
+    }
 }
