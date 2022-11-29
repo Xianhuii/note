@@ -1,5 +1,6 @@
 package com.example.servletmvc.controller;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @date 2022年11月14日 13:48
  */
 //@RestController
+@Component
 @RequestMapping("/RequestMappingHandlerMapping")
 public class RequestMappingHandlerMappingController {
     @RequestMapping("/requestParam")

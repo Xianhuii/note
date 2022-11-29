@@ -114,3 +114,76 @@ protected <T> List<T> getDefaultStrategies(ApplicationContext context, Class<T> 
    }  
 }
 ```
+
+# RequestMappingHandlerMapping
+## 1 注册bean
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#requestMappingHandlerMapping`：
+```java
+@Bean  
+@SuppressWarnings("deprecation")  
+public RequestMappingHandlerMapping requestMappingHandlerMapping(  
+      @Qualifier("mvcContentNegotiationManager") ContentNegotiationManager contentNegotiationManager,  
+      @Qualifier("mvcConversionService") FormattingConversionService conversionService,  
+      @Qualifier("mvcResourceUrlProvider") ResourceUrlProvider resourceUrlProvider) {  
+  
+   RequestMappingHandlerMapping mapping = createRequestMappingHandlerMapping();  
+   mapping.setOrder(0);  
+   mapping.setInterceptors(getInterceptors(conversionService, resourceUrlProvider));  
+   mapping.setContentNegotiationManager(contentNegotiationManager);  
+   mapping.setCorsConfigurations(getCorsConfigurations());  
+  
+   PathMatchConfigurer pathConfig = getPathMatchConfigurer();  
+   if (pathConfig.getPatternParser() != null) {  
+      mapping.setPatternParser(pathConfig.getPatternParser());  
+   }  
+   else {  
+      mapping.setUrlPathHelper(pathConfig.getUrlPathHelperOrDefault());  
+      mapping.setPathMatcher(pathConfig.getPathMatcherOrDefault());  
+  
+      Boolean useSuffixPatternMatch = pathConfig.isUseSuffixPatternMatch();  
+      if (useSuffixPatternMatch != null) {  
+         mapping.setUseSuffixPatternMatch(useSuffixPatternMatch);  
+      }  
+      Boolean useRegisteredSuffixPatternMatch = pathConfig.isUseRegisteredSuffixPatternMatch();  
+      if (useRegisteredSuffixPatternMatch != null) {  
+         mapping.setUseRegisteredSuffixPatternMatch(useRegisteredSuffixPatternMatch);  
+      }  
+   }  
+   Boolean useTrailingSlashMatch = pathConfig.isUseTrailingSlashMatch();  
+   if (useTrailingSlashMatch != null) {  
+      mapping.setUseTrailingSlashMatch(useTrailingSlashMatch);  
+   }  
+   if (pathConfig.getPathPrefixes() != null) {  
+      mapping.setPathPrefixes(pathConfig.getPathPrefixes());  
+   }  
+  
+   return mapping;  
+}
+```
+## 2 初始化：请求地址映射
+`org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#afterPropertiesSet`，实现`InitializingBean`接口：
+```java
+/**  
+ * Detects handler methods at initialization. * @see #initHandlerMethods */@Override  
+public void afterPropertiesSet() {  
+   initHandlerMethods();  
+}
+```
+`org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#initHandlerMethods`：
+```java
+/**  
+ * Scan beans in the ApplicationContext, detect and register handler methods. 
+ * @see #getCandidateBeanNames() 
+ * @see #processCandidateBean 
+ * @see #handlerMethodsInitialized 
+ */
+ protected void initHandlerMethods() { 
+	// 1、遍历所有bean 
+   for (String beanName : getCandidateBeanNames()) {  
+      if (!beanName.startsWith(SCOPED_TARGET_NAME_PREFIX)) {  
+		// 2、请求地址映射处理
+         processCandidateBean(beanName);  
+      }  
+   }   handlerMethodsInitialized(getHandlerMethods());  
+}
+```
