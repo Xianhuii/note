@@ -13,26 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring/SpringMVC/MultipartResolver文件处理.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4a57edb803d02078",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -99,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md"
+                "file": "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md"
               }
             }
           }
@@ -151,12 +138,12 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "4a57edb803d02078",
+  "active": "e168b5e6e8e4b5c6",
   "lastOpenFiles": [
-    "Spring/SpringMVC/MultipartResolver文件处理.md",
+    "conflict-files-obsidian-git.md",
+    "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
     "开发规范/开发注意点.md",
     "华为云/OBS-Java.md",
-    "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/SpringMVC执行流程.md",
     "Spring/SpringMVC/SpringMVC处理文件请求.md",
     "Java8语言规范研读/17线程和锁/1同步.md",
