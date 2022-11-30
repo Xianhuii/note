@@ -160,6 +160,9 @@ public RequestMappingHandlerMapping requestMappingHandlerMapping(
    return mapping;  
 }
 ```
+SpringMVC拦截器`Intercetor`：
+
+
 ## 2 初始化：请求地址映射
 `org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#afterPropertiesSet`，实现`InitializingBean`接口：
 ```java
