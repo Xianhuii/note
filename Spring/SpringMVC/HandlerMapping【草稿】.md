@@ -681,7 +681,10 @@ protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Ex
 `org.springframework.web.servlet.HandlerExecutionChain#triggerAfterCompletion`：
 ```java
 /**  
- * Trigger afterCompletion callbacks on the mapped HandlerInterceptors. * Will just invoke afterCompletion for all interceptors whose preHandle invocation * has successfully completed and returned true. */void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, @Nullable Exception ex) {  
+ * Trigger afterCompletion callbacks on the mapped HandlerInterceptors. 
+ * Will just invoke afterCompletion for all interceptors whose preHandle invocation * has successfully completed and returned true. 
+ */
+ void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, @Nullable Exception ex) {  
    for (int i = this.interceptorIndex; i >= 0; i--) {  
       HandlerInterceptor interceptor = this.interceptorList.get(i);  
       try {  
