@@ -196,6 +196,35 @@ public class WebMvcConfig implements WebMvcConfigurer {
 }
 ```
 
+SpringMVC跨域配置`CorsConfiguration`初始化：
+```java
+mapping.setCorsConfigurations(getCorsConfigurations());
+```
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#getCorsConfigurations`：
+```java
+/**  
+ * Return the registered {@link CorsConfiguration} objects,  
+ * keyed by path pattern. * @since 4.2 */protected final Map<String, CorsConfiguration> getCorsConfigurations() {  
+   if (this.corsConfigurations == null) {  
+      CorsRegistry registry = new CorsRegistry();  
+      addCorsMappings(registry);  
+      this.corsConfigurations = registry.getCorsConfigurations();  
+   }  
+   return this.corsConfigurations;  
+}
+```
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#addCorsMappings`作为扩展点，支持添加自定义跨域配置：
+```java
+@Configuration  
+@EnableWebMvc  
+public class WebMvcConfig implements WebMvcConfigurer {  
+  
+    @Override  
+    public void addCorsMappings(CorsRegistry registry) {  
+        // 添加自定义跨域配置
+    }
+}
+```
 
 ## 2 初始化：请求地址映射
 `org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#afterPropertiesSet`，实现`InitializingBean`接口：
