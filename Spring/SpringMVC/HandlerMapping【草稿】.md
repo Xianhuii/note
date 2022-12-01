@@ -598,3 +598,54 @@ public final HandlerExecutionChain getHandler(HttpServletRequest request) throws
    return executionChain;  
 }
 ```
+`org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#getHandlerInternal`：
+```java
+/**  
+ * Look up a handler method for the given request. */@Override  
+@Nullable  
+protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Exception {  
+	// 1、解析请求地址
+   String lookupPath = initLookupPath(request);  
+   this.mappingRegistry.acquireReadLock();  
+   try {  
+	   // 2、根据请求地址找映射方法
+      HandlerMethod handlerMethod = lookupHandlerMethod(lookupPath, request);  
+      return (handlerMethod != null ? handlerMethod.createWithResolvedBean() : null);  
+   }  
+   finally {  
+      this.mappingRegistry.releaseReadLock();  
+   }  
+}
+```
+`org.springframework.web.servlet.handler.AbstractHandlerMapping#getHandlerExecutionChain`：
+```java
+/**  
+ * Build a {@link HandlerExecutionChain} for the given handler, including  
+ * applicable interceptors. * <p>The default implementation builds a standard {@link HandlerExecutionChain}  
+ * with the given handler, the common interceptors of the handler mapping, and any  
+ * {@link MappedInterceptor MappedInterceptors} matching to the current request URL. Interceptors  
+ * are added in the order they were registered. Subclasses may override this * in order to extend/rearrange the list of interceptors. * <p><b>NOTE:</b> The passed-in handler object may be a raw handler or a * pre-built {@link HandlerExecutionChain}. This method should handle those  
+ * two cases explicitly, either building a new {@link HandlerExecutionChain}  
+ * or extending the existing chain.  
+ * <p>For simply adding an interceptor in a custom subclass, consider calling  
+ * {@code super.getHandlerExecutionChain(handler, request)} and invoking  
+ * {@link HandlerExecutionChain#addInterceptor} on the returned chain object.  
+ * @param handler the resolved handler instance (never {@code null})  
+ * @param request current HTTP request  
+ * @return the HandlerExecutionChain (never {@code null})  
+ * @see #getAdaptedInterceptors() */protected HandlerExecutionChain getHandlerExecutionChain(Object handler, HttpServletRequest request) {  
+   HandlerExecutionChain chain = (handler instanceof HandlerExecutionChain ?  
+         (HandlerExecutionChain) handler : new HandlerExecutionChain(handler));  
+  
+   for (HandlerInterceptor interceptor : this.adaptedInterceptors) {  
+      if (interceptor instanceof MappedInterceptor) {  
+         MappedInterceptor mappedInterceptor = (MappedInterceptor) interceptor;  
+         if (mappedInterceptor.matches(request)) {  
+            chain.addInterceptor(mappedInterceptor.getInterceptor());  
+         }  
+      }      else {  
+         chain.addInterceptor(interceptor);  
+      }  
+   }   return chain;  
+}
+```
