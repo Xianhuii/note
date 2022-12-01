@@ -409,7 +409,7 @@ protected boolean isHandler(Class<?> beanType) {
          mappingsLogger.debug(formatMappings(userType, methods));  
       }  
       methods.forEach((method, mapping) -> {  
-	      // 3、获取Spring容器管理的对应代理方法
+	      // 3、获取实际能够执行的方法
          Method invocableMethod = AopUtils.selectInvocableMethod(method, userType); 
          // 4、保存请求地址映射信息 
          registerHandlerMethod(handler, invocableMethod, mapping);  
@@ -417,5 +417,99 @@ protected boolean isHandler(Class<?> beanType) {
    }  
 }
 ```
-
+`org.springframework.core.MethodIntrospector#selectMethods(java.lang.Class<?>, org.springframework.core.MethodIntrospector.MetadataLookup<T>)`：
+```java
+/**  
+ * Select methods on the given target type based on the lookup of associated metadata. * <p>Callers define methods of interest through the {@link MetadataLookup} parameter,  
+ * allowing to collect the associated metadata into the result map. * @param targetType the target type to search methods on  
+ * @param metadataLookup a {@link MetadataLookup} callback to inspect methods of interest,  
+ * returning non-null metadata to be associated with a given method if there is a match, * or {@code null} for no match  
+ * @return the selected methods associated with their metadata (in the order of retrieval), * or an empty map in case of no match */public static <T> Map<Method, T> selectMethods(Class<?> targetType, final MetadataLookup<T> metadataLookup) {  
+   final Map<Method, T> methodMap = new LinkedHashMap<>();  
+   Set<Class<?>> handlerTypes = new LinkedHashSet<>();  
+   Class<?> specificHandlerType = null;  
+  
+   if (!Proxy.isProxyClass(targetType)) {  
+      specificHandlerType = ClassUtils.getUserClass(targetType);  
+      handlerTypes.add(specificHandlerType);  
+   }  
+   handlerTypes.addAll(ClassUtils.getAllInterfacesForClassAsSet(targetType));  
+  
+   for (Class<?> currentHandlerType : handlerTypes) {  
+      final Class<?> targetClass = (specificHandlerType != null ? specificHandlerType : currentHandlerType);  
+  
+      ReflectionUtils.doWithMethods(currentHandlerType, method -> {  
+         Method specificMethod = ClassUtils.getMostSpecificMethod(method, targetClass);  
+         T result = metadataLookup.inspect(specificMethod);  
+         if (result != null) {  
+            Method bridgedMethod = BridgeMethodResolver.findBridgedMethod(specificMethod);  
+            if (bridgedMethod == specificMethod || metadataLookup.inspect(bridgedMethod) == null) {  
+               methodMap.put(specificMethod, result);  
+            }  
+         }      }, ReflectionUtils.USER_DECLARED_METHODS);  
+   }  
+  
+   return methodMap;  
+}
+```
+`getMappingForMethod()`由子类实现，用来指定不同的解析规则。例如，`org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#getMappingForMethod`：
+```java
+/**  
+ * Uses method and type-level @{@link RequestMapping} annotations to create  
+ * the RequestMappingInfo. * @return the created RequestMappingInfo, or {@code null} if the method  
+ * does not have a {@code @RequestMapping} annotation.  
+ * @see #getCustomMethodCondition(Method)  
+ * @see #getCustomTypeCondition(Class)  
+ */@Override  
+@Nullable  
+protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {  
+	// 1、获取方法级别的地址信息
+   RequestMappingInfo info = createRequestMappingInfo(method);  
+   if (info != null) {  
+	   // 2、获取类级别的地址信息
+      RequestMappingInfo typeInfo = createRequestMappingInfo(handlerType);  
+      if (typeInfo != null) {  
+	      // 3、合并完整地址信息
+         info = typeInfo.combine(info);  
+      }  
+      String prefix = getPathPrefix(handlerType);  
+      if (prefix != null) {  
+         info = RequestMappingInfo.paths(prefix).options(this.config).build().combine(info);  
+      }  
+   }   return info;  
+}
+```
+`org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#createRequestMappingInfo(org.springframework.web.bind.annotation.RequestMapping, org.springframework.web.servlet.mvc.condition.RequestCondition<?>)`：
+```java
+/**  
+ * Create a {@link RequestMappingInfo} from the supplied  
+ * {@link RequestMapping @RequestMapping} annotation, which is either  
+ * a directly declared annotation, a meta-annotation, or the synthesized * result of merging annotation attributes within an annotation hierarchy. */protected RequestMappingInfo createRequestMappingInfo(  
+      RequestMapping requestMapping, @Nullable RequestCondition<?> customCondition) {  
+  // 从注解中获取信息，封装成对象
+   RequestMappingInfo.Builder builder = RequestMappingInfo  
+         .paths(resolveEmbeddedValuesInPatterns(requestMapping.path()))  
+         .methods(requestMapping.method())  
+         .params(requestMapping.params())  
+         .headers(requestMapping.headers())  
+         .consumes(requestMapping.consumes())  
+         .produces(requestMapping.produces())  
+         .mappingName(requestMapping.name());  
+   if (customCondition != null) {  
+      builder.customCondition(customCondition);  
+   }  
+   return builder.options(this.config).build();  
+}
+```
+`org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#registerHandlerMethod`：
+```java
+/**  
+ * Register a handler method and its unique mapping. Invoked at startup for * each detected handler method. * @param handler the bean name of the handler or the handler instance  
+ * @param method the method to register  
+ * @param mapping the mapping conditions associated with the handler method  
+ * @throws IllegalStateException if another method was already registered  
+ * under the same mapping */protected void registerHandlerMethod(Object handler, Method method, T mapping) {  
+   this.mappingRegistry.register(mapping, handler, method);  
+}
+```
 ## 3 搜索：请求地址映射
