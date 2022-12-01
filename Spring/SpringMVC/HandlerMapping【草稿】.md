@@ -116,7 +116,7 @@ protected <T> List<T> getDefaultStrategies(ApplicationContext context, Class<T> 
 ```
 
 # RequestMappingHandlerMapping
-## 1 注册bean
+## 1 初始化：注册bean
 `org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#requestMappingHandlerMapping`：
 ```java
 @Bean  
@@ -258,7 +258,57 @@ public class WebMvcConfig implements WebMvcConfigurer {
 }
 ```
 
-## 2 初始化：请求地址映射
+SpringMVC地址解析器相关初始化：
+```java
+PathMatchConfigurer pathConfig = getPathMatchConfigurer();  
+if (pathConfig.getPatternParser() != null) {  
+   mapping.setPatternParser(pathConfig.getPatternParser());  
+}  
+else {  
+   mapping.setUrlPathHelper(pathConfig.getUrlPathHelperOrDefault());  
+   mapping.setPathMatcher(pathConfig.getPathMatcherOrDefault());  
+  
+   Boolean useSuffixPatternMatch = pathConfig.isUseSuffixPatternMatch();  
+   if (useSuffixPatternMatch != null) {  
+      mapping.setUseSuffixPatternMatch(useSuffixPatternMatch);  
+   }  
+   Boolean useRegisteredSuffixPatternMatch = pathConfig.isUseRegisteredSuffixPatternMatch();  
+   if (useRegisteredSuffixPatternMatch != null) {  
+      mapping.setUseRegisteredSuffixPatternMatch(useRegisteredSuffixPatternMatch);  
+   }  
+}  
+Boolean useTrailingSlashMatch = pathConfig.isUseTrailingSlashMatch();  
+if (useTrailingSlashMatch != null) {  
+   mapping.setUseTrailingSlashMatch(useTrailingSlashMatch);  
+}  
+if (pathConfig.getPathPrefixes() != null) {  
+   mapping.setPathPrefixes(pathConfig.getPathPrefixes());  
+}
+```
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#getPathMatchConfigurer`：
+```java
+/**  
+ * Callback for building the {@link PathMatchConfigurer}.  
+ * Delegates to {@link #configurePathMatch}. * @since 4.1 */protected PathMatchConfigurer getPathMatchConfigurer() {  
+   if (this.pathMatchConfigurer == null) {  
+      this.pathMatchConfigurer = new PathMatchConfigurer();  
+      configurePathMatch(this.pathMatchConfigurer);  
+   }  
+   return this.pathMatchConfigurer;  
+}
+```
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#configurePathMatch`作为扩展点，支持添加自定义地址解析器：
+```java
+@Configuration  
+@EnableWebMvc  
+public class WebMvcConfig implements WebMvcConfigurer {  
+    @Override  
+    public void configurePathMatch(PathMatchConfigurer configurer) {  
+        // 添加自定义地址解析器  
+    }  
+}
+```
+## 2 初始化：请求地址映射扫描
 `org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#afterPropertiesSet`，实现`InitializingBean`接口：
 ```java
 /**  
@@ -282,7 +332,42 @@ public void afterPropertiesSet() {
 		// 2、请求地址映射处理
          processCandidateBean(beanName);  
       }  
-   }   handlerMethodsInitialized(getHandlerMethods());  
+   }   
+   handlerMethodsInitialized(getHandlerMethods());  
 }
 ```
+`org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#processCandidateBean`：
+```java
+/**  
+ * Determine the type of the specified candidate bean and call 
+ * {@link #detectHandlerMethods} if identified as a handler type.  
+ * <p>This implementation avoids bean creation through checking  
+ * {@link org.springframework.beans.factory.BeanFactory#getType}  
+ * and calling {@link #detectHandlerMethods} with the bean name.  
+ * @param beanName the name of the candidate bean  
+ * @since 5.1 
+ * @see #isHandler 
+ * @see #detectHandlerMethods 
+ */
+ protected void processCandidateBean(String beanName) {  
+   Class<?> beanType = null;  
+   try {  
+		// 1、获取bean的类对象
+      beanType = obtainApplicationContext().getType(beanName);  
+   }  
+   catch (Throwable ex) {  
+      // An unresolvable bean type, probably from a lazy bean - let's ignore it.  
+      if (logger.isTraceEnabled()) {  
+         logger.trace("Could not resolve type for bean '" + beanName + "'", ex);  
+      }  
+   }   
+   // 2、判断当前HandlerMapping实现类能否处理当前bean
+   if (beanType != null && isHandler(beanType)) { 
+	   // 3、解析&映射请求地址 
+      detectHandlerMethods(beanName);  
+   }  
+}
+```
+`isHandler()`作为
+
 ## 3 搜索：请求地址映射

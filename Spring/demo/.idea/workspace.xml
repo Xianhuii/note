@@ -23,8 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.obsidian/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SpringMVC/HandlerMapping【草稿】.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringMVC/HandlerMapping【草稿】.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/WebMvcConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,11 +279,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="623" y="225" width="988" height="678" key="search.everywhere.popup" timestamp="1669860199663">
+    <state x="623" y="225" width="988" height="678" key="search.everywhere.popup" timestamp="1669865335642">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1669535147682" />
-    <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1669860199663" />
+    <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1669865335642" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -398,7 +400,7 @@
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/WebMvcConfig.java</url>
           <option name="group" value="cors" />
-          <line>20</line>
+          <line>22</line>
           <option name="timeStamp" value="37" />
           <group>cors</group>
         </line-breakpoint>
