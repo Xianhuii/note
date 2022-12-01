@@ -512,4 +512,89 @@ protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handler
    this.mappingRegistry.register(mapping, handler, method);  
 }
 ```
+`org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.MappingRegistry#register`：
+```java
+public void register(T mapping, Object handler, Method method) {  
+   this.readWriteLock.writeLock().lock();  
+   try {  
+      HandlerMethod handlerMethod = createHandlerMethod(handler, method);  
+      validateMethodMapping(handlerMethod, mapping);  
+  
+      Set<String> directPaths = AbstractHandlerMethodMapping.this.getDirectPaths(mapping);  
+      for (String path : directPaths) {  
+         this.pathLookup.add(path, mapping);  
+      }  
+  
+      String name = null;  
+      if (getNamingStrategy() != null) {  
+         name = getNamingStrategy().getName(handlerMethod, mapping);  
+         addMappingName(name, handlerMethod);  
+      }  
+		// @CrossOrigin配置信息初始化
+      CorsConfiguration corsConfig = initCorsConfiguration(handler, method, mapping);  
+      if (corsConfig != null) {  
+         corsConfig.validateAllowCredentials();  
+         this.corsLookup.put(handlerMethod, corsConfig);  
+      }  
+  
+      this.registry.put(mapping,  
+            new MappingRegistration<>(mapping, handlerMethod, directPaths, name, corsConfig != null));  
+   }  
+   finally {  
+      this.readWriteLock.writeLock().unlock();  
+   }  
+}
+```
 ## 3 搜索：请求地址映射
+
+`org.springframework.web.servlet.handler.AbstractHandlerMapping#getHandler`：
+```java
+/**  
+ * Look up a handler for the given request, falling back to the default * handler if no specific one is found. * @param request current HTTP request  
+ * @return the corresponding handler instance, or the default handler * @see #getHandlerInternal */@Override  
+@Nullable  
+public final HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception { 
+	// 1、获取handler
+   Object handler = getHandlerInternal(request);  
+   if (handler == null) {  
+      handler = getDefaultHandler();  
+   }  
+   if (handler == null) {  
+      return null;  
+   }  
+   // Bean name or resolved handler?  
+   if (handler instanceof String) {  
+      String handlerName = (String) handler;  
+      handler = obtainApplicationContext().getBean(handlerName);  
+   }  
+  
+   // Ensure presence of cached lookupPath for interceptors and others  
+   if (!ServletRequestPathUtils.hasCachedPath(request)) {  
+      initLookupPath(request);  
+   }  
+	// 2、封装HandlerExecutionChain，添加拦截器
+   HandlerExecutionChain executionChain = getHandlerExecutionChain(handler, request);  
+  
+   if (logger.isTraceEnabled()) {  
+      logger.trace("Mapped to " + handler);  
+   }  
+   else if (logger.isDebugEnabled() && !DispatcherType.ASYNC.equals(request.getDispatcherType())) {  
+      logger.debug("Mapped to " + executionChain.getHandler());  
+   }  
+
+	// 3、添加跨域拦截器
+   if (hasCorsConfigurationSource(handler) || CorsUtils.isPreFlightRequest(request)) {  
+      CorsConfiguration config = getCorsConfiguration(handler, request);  
+      if (getCorsConfigurationSource() != null) {  
+         CorsConfiguration globalConfig = getCorsConfigurationSource().getCorsConfiguration(request);  
+         config = (globalConfig != null ? globalConfig.combine(config) : config);  
+      }  
+      if (config != null) {  
+         config.validateAllowCredentials();  
+      }  
+      executionChain = getCorsHandlerExecutionChain(request, executionChain, config);  
+   }  
+  
+   return executionChain;  
+}
+```
