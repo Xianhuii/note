@@ -196,6 +196,38 @@ public class WebMvcConfig implements WebMvcConfigurer {
 }
 ```
 
+SpringMVC内容协商管理器`ContentNegotiationManager`初始化：
+```java
+mapping.setContentNegotiationManager(contentNegotiationManager);
+```
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#mvcContentNegotiationManager`：
+```java
+/**  
+ * Return a {@link ContentNegotiationManager} instance to use to determine  
+ * requested {@linkplain MediaType media types} in a given request.  
+ */@Bean  
+public ContentNegotiationManager mvcContentNegotiationManager() {  
+   if (this.contentNegotiationManager == null) {  
+      ContentNegotiationConfigurer configurer = new ContentNegotiationConfigurer(this.servletContext);  
+      configurer.mediaTypes(getDefaultMediaTypes());  
+      configureContentNegotiation(configurer);  
+      this.contentNegotiationManager = configurer.buildContentNegotiationManager();  
+   }  
+   return this.contentNegotiationManager;  
+}
+```
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#configureContentNegotiation`作为扩展点，支持添加自定义内容协商管理器：
+```java
+@Configuration  
+@EnableWebMvc  
+public class WebMvcConfig implements WebMvcConfigurer {  
+    @Override  
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {  
+        // 添加自定义内容协商管理器  
+    }  
+}
+```
+
 SpringMVC跨域配置`CorsConfiguration`初始化：
 ```java
 mapping.setCorsConfigurations(getCorsConfigurations());
