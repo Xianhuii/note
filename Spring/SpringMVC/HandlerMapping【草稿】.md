@@ -160,7 +160,41 @@ public RequestMappingHandlerMapping requestMappingHandlerMapping(
    return mapping;  
 }
 ```
-SpringMVC拦截器`Intercetor`：
+
+SpringMVC拦截器`HandlerInterceptor`初始化：
+```java
+mapping.setInterceptors(getInterceptors(conversionService, resourceUrlProvider));
+```
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#getInterceptors`：
+```java
+/**  
+ * Provide access to the shared handler interceptors used to configure * {@link HandlerMapping} instances with.  
+ * <p>This method cannot be overridden; use {@link #addInterceptors} instead.  
+ */protected final Object[] getInterceptors(  
+      FormattingConversionService mvcConversionService,  
+      ResourceUrlProvider mvcResourceUrlProvider) {  
+  
+   if (this.interceptors == null) {  
+      InterceptorRegistry registry = new InterceptorRegistry();  
+      addInterceptors(registry);  
+      registry.addInterceptor(new ConversionServiceExposingInterceptor(mvcConversionService));  
+      registry.addInterceptor(new ResourceUrlProviderExposingInterceptor(mvcResourceUrlProvider));  
+      this.interceptors = registry.getInterceptors();  
+   }  
+   return this.interceptors.toArray();  
+}
+```
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#addInterceptors`作为扩展点，支持添加自定义拦截器：
+```java
+@Configuration  
+@EnableWebMvc  
+public class WebMvcConfig implements WebMvcConfigurer {  
+    @Override  
+    public void addInterceptors(InterceptorRegistry registry) {  
+	    // 添加自定义拦截器
+     }  
+}
+```
 
 
 ## 2 初始化：请求地址映射
