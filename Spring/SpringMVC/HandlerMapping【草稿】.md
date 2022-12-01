@@ -368,6 +368,54 @@ public void afterPropertiesSet() {
    }  
 }
 ```
-`isHandler()`作为
+`isHandler()`由子类实现，用来判断该类对象是否需要进行请求地址解析。例如，`org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#isHandler`：
+```java
+/**  
+ * {@inheritDoc}  
+ * <p>Expects a handler to have either a type-level @{@link Controller}  
+ * annotation or a type-level @{@link RequestMapping} annotation.  
+ */@Override  
+protected boolean isHandler(Class<?> beanType) {  
+   return (AnnotatedElementUtils.hasAnnotation(beanType, Controller.class) ||  
+         AnnotatedElementUtils.hasAnnotation(beanType, RequestMapping.class));  
+}
+```
+`org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#detectHandlerMethods`：
+```java
+/**  
+ * Look for handler methods in the specified handler bean. * @param handler either a bean name or an actual handler instance  
+ * @see #getMappingForMethod */protected void detectHandlerMethods(Object handler) {  
+   Class<?> handlerType = (handler instanceof String ?  
+         obtainApplicationContext().getType((String) handler) : handler.getClass());  
+  
+   if (handlerType != null) {  
+      Class<?> userType = ClassUtils.getUserClass(handlerType); 
+      // 1、遍历Handler类的方法
+      Map<Method, T> methods = MethodIntrospector.selectMethods(userType,  
+            (MethodIntrospector.MetadataLookup<T>) method -> {  
+               try {  
+	               // 2、构造请求地址映射
+                  return getMappingForMethod(method, userType);  
+               }  
+               catch (Throwable ex) {  
+                  throw new IllegalStateException("Invalid mapping on handler class [" +  
+                        userType.getName() + "]: " + method, ex);  
+               }  
+            });  
+      if (logger.isTraceEnabled()) {  
+         logger.trace(formatMappings(userType, methods));  
+      }  
+      else if (mappingsLogger.isDebugEnabled()) {  
+         mappingsLogger.debug(formatMappings(userType, methods));  
+      }  
+      methods.forEach((method, mapping) -> {  
+	      // 3、获取Spring容器管理的对应代理方法
+         Method invocableMethod = AopUtils.selectInvocableMethod(method, userType); 
+         // 4、保存请求地址映射信息 
+         registerHandlerMethod(handler, invocableMethod, mapping);  
+      });  
+   }  
+}
+```
 
 ## 3 搜索：请求地址映射
