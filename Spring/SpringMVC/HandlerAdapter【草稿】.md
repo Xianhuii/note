@@ -223,3 +223,79 @@ protected ModelAndView invokeHandlerMethod(HttpServletRequest request,
 }
 ```
 
+`org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod#invokeAndHandle`：
+```java
+/**  
+ * Invoke the method and handle the return value through one of the * configured {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.  
+ * @param webRequest the current request  
+ * @param mavContainer the ModelAndViewContainer for this request  
+ * @param providedArgs "given" arguments matched by type (not resolved)  
+ */public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,  
+      Object... providedArgs) throws Exception {  
+  
+   Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);  
+   setResponseStatus(webRequest);  
+  
+   if (returnValue == null) {  
+      if (isRequestNotModified(webRequest) || getResponseStatus() != null || mavContainer.isRequestHandled()) {  
+         disableContentCachingIfNecessary(webRequest);  
+         mavContainer.setRequestHandled(true);  
+         return;  
+      }  
+   }   else if (StringUtils.hasText(getResponseStatusReason())) {  
+      mavContainer.setRequestHandled(true);  
+      return;  
+   }  
+  
+   mavContainer.setRequestHandled(false);  
+   Assert.state(this.returnValueHandlers != null, "No return value handlers");  
+   try {  
+      this.returnValueHandlers.handleReturnValue(  
+            returnValue, getReturnValueType(returnValue), mavContainer, webRequest);  
+   }  
+   catch (Exception ex) {  
+      if (logger.isTraceEnabled()) {  
+         logger.trace(formatErrorForReturnValue(returnValue), ex);  
+      }  
+      throw ex;  
+   }  
+}
+```
+
+解析形参`org.springframework.web.method.support.InvocableHandlerMethod#getMethodArgumentValues`：
+```java
+protected Object[] getMethodArgumentValues(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer, Object... providedArgs) throws Exception {  
+    MethodParameter[] parameters = this.getMethodParameters();  
+    if (ObjectUtils.isEmpty(parameters)) {  
+        return EMPTY_ARGS;  
+    } else {  
+        Object[] args = new Object[parameters.length];  
+  
+        for(int i = 0; i < parameters.length; ++i) {  
+            MethodParameter parameter = parameters[i];  
+            parameter.initParameterNameDiscovery(this.parameterNameDiscoverer);  
+            args[i] = findProvidedArgument(parameter, providedArgs);  
+            if (args[i] == null) {  
+                if (!this.resolvers.supportsParameter(parameter)) {  
+                    throw new IllegalStateException(formatArgumentError(parameter, "No suitable resolver"));  
+                }  
+  
+                try {  
+                    args[i] = this.resolvers.resolveArgument(parameter, mavContainer, request, this.dataBinderFactory);  
+                } catch (Exception var10) {  
+                    if (logger.isDebugEnabled()) {  
+                        String exMsg = var10.getMessage();  
+                        if (exMsg != null && !exMsg.contains(parameter.getExecutable().toGenericString())) {  
+                            logger.debug(formatArgumentError(parameter, exMsg));  
+                        }  
+                    }  
+  
+                    throw var10;  
+                }  
+            }  
+        }  
+  
+        return args;  
+    }  
+}
+```
