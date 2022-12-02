@@ -299,3 +299,53 @@ protected Object[] getMethodArgumentValues(NativeWebRequest request, @Nullable M
     }  
 }
 ```
+实际执行Controller方法，`org.springframework.web.method.support.InvocableHandlerMethod#doInvoke`：
+```java
+/**  
+ * Invoke the handler method with the given argument values. */@Nullable  
+protected Object doInvoke(Object... args) throws Exception {  
+   Method method = getBridgedMethod();  
+   try {  
+      if (KotlinDetector.isSuspendingFunction(method)) {  
+         return CoroutinesUtils.invokeSuspendingFunction(method, getBean(), args);  
+      }  
+      return method.invoke(getBean(), args);  
+   }  
+   catch (IllegalArgumentException ex) {  
+      assertTargetBean(method, getBean(), args);  
+      String text = (ex.getMessage() != null ? ex.getMessage() : "Illegal argument");  
+      throw new IllegalStateException(formatInvokeError(text, args), ex);  
+   }  
+   catch (InvocationTargetException ex) {  
+      // Unwrap for HandlerExceptionResolvers ...  
+      Throwable targetException = ex.getTargetException();  
+      if (targetException instanceof RuntimeException) {  
+         throw (RuntimeException) targetException;  
+      }  
+      else if (targetException instanceof Error) {  
+         throw (Error) targetException;  
+      }  
+      else if (targetException instanceof Exception) {  
+         throw (Exception) targetException;  
+      }  
+      else {  
+         throw new IllegalStateException(formatInvokeError("Invocation failure", args), targetException);  
+      }  
+   }}
+```
+返回值处理，`org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite#handleReturnValue`：
+```java
+/**  
+ * Iterate over registered {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers} and invoke the one that supports it.  
+ * @throws IllegalStateException if no suitable {@link HandlerMethodReturnValueHandler} is found.  
+ */@Override  
+public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,  
+      ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {  
+  
+   HandlerMethodReturnValueHandler handler = selectHandler(returnValue, returnType);  
+   if (handler == null) {  
+      throw new IllegalArgumentException("Unknown return value type: " + returnType.getParameterType().getName());  
+   }  
+   handler.handleReturnValue(returnValue, returnType, mavContainer, webRequest);  
+}
+```
