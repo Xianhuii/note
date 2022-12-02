@@ -37,3 +37,23 @@
    }  
 }
 ```
+
+`org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport#handlerExceptionResolver`：
+```java
+/**  
+ * Returns a {@link HandlerExceptionResolverComposite} containing a list of exception  
+ * resolvers obtained either through {@link #configureHandlerExceptionResolvers} or * through {@link #addDefaultHandlerExceptionResolvers}. * <p><strong>Note:</strong> This method cannot be made final due to CGLIB constraints. * Rather than overriding it, consider overriding {@link #configureHandlerExceptionResolvers} * which allows for providing a list of resolvers. */@Bean  
+public HandlerExceptionResolver handlerExceptionResolver(  
+      @Qualifier("mvcContentNegotiationManager") ContentNegotiationManager contentNegotiationManager) {  
+   List<HandlerExceptionResolver> exceptionResolvers = new ArrayList<>();  
+   configureHandlerExceptionResolvers(exceptionResolvers);  
+   if (exceptionResolvers.isEmpty()) {  
+      addDefaultHandlerExceptionResolvers(exceptionResolvers, contentNegotiationManager);  
+   }  
+   extendHandlerExceptionResolvers(exceptionResolvers);  
+   HandlerExceptionResolverComposite composite = new HandlerExceptionResolverComposite();  
+   composite.setOrder(0);  
+   composite.setExceptionResolvers(exceptionResolvers);  
+   return composite;  
+}
+```
