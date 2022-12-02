@@ -4,22 +4,43 @@
     "type": "split",
     "children": [
       {
-        "id": "f464e02b0c747222",
+        "id": "2f1e308fdc0d5552",
         "type": "tabs",
         "children": [
           {
-            "id": "169594a7957e1b6e",
+            "id": "8384651ee867df81",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
+                "file": "Spring/SpringMVC/HandlerMapping【草稿】.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "959679d88df09e9a",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "072c96da23695c0d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -69,7 +90,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -85,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
+                "file": "conflict-files-obsidian-git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
+                "file": "conflict-files-obsidian-git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md"
+                "file": "conflict-files-obsidian-git.md"
               }
             }
           }
@@ -137,17 +159,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "169594a7957e1b6e",
+  "active": "072c96da23695c0d",
   "lastOpenFiles": [
-    "Spring/SpringMVC/MultipartResolver文件处理.md",
+    "conflict-files-obsidian-git.md",
+    "Spring/SpringMVC/HandlerMapping【草稿】.md",
+    "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
+    "Spring/SpringMVC/MultipartResolver【草稿】.md",
+    "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
     "开发规范/开发注意点.md",
     "华为云/OBS-Java.md",
-    "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/SpringMVC执行流程.md",
-    "Spring/SpringMVC/SpringMVC处理文件请求.md",
     "Java8语言规范研读/17线程和锁/1同步.md",
-    "Java/线程和锁.md",
-    "Java8语言规范研读/17线程和锁/0前言.md",
-    "前端/JavaScript打包下载最佳实践.md"
+    "Java/线程和锁.md"
   ]
 }
