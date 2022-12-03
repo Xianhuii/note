@@ -36,8 +36,17 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "ad68c94fec2e6494",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -104,7 +113,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +129,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,9 +150,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -156,15 +161,15 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "63d5fd85a529b93f",
+  "active": "ad68c94fec2e6494",
   "lastOpenFiles": [
-    "Spring/SpringMVC/HandlerMapping【草稿】.md",
+    "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
+    "Spring/SpringMVC/HandlerMapping【草稿】.md",
     "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
     "Spring/SpringMVC/MultipartResolver文件处理.md",
     "开发规范/开发注意点.md",
     "华为云/OBS-Java.md",
-    "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/SpringMVC执行流程.md",
     "Spring/SpringMVC/SpringMVC处理文件请求.md",
     "Java8语言规范研读/17线程和锁/1同步.md"
