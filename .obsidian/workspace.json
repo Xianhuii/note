@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring/SpringMVC/HandlerMapping【草稿】.md",
+                "file": "Spring/SpringMVC/HandlerAdapter【草稿】.md",
                 "mode": "source",
                 "source": false
               }
@@ -36,8 +36,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "b13261b90cb636fe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -104,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
+                "file": "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +134,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
+                "file": "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -144,7 +157,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md"
+                "file": "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md"
               }
             }
           }
@@ -156,17 +169,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "63d5fd85a529b93f",
+  "active": "b13261b90cb636fe",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
-    "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
+    "Spring/SpringMVC/HandlerAdapter【草稿】.md",
     "Spring/SpringMVC/HandlerMapping【草稿】.md",
+    "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
+    "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
+    "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
     "Spring/SpringMVC/MultipartResolver文件处理.md",
     "开发规范/开发注意点.md",
     "华为云/OBS-Java.md",
-    "Spring/SpringMVC/SpringMVC执行流程.md",
-    "Spring/SpringMVC/SpringMVC处理文件请求.md",
-    "Java8语言规范研读/17线程和锁/1同步.md"
+    "Spring/SpringMVC/SpringMVC执行流程.md"
   ]
 }
