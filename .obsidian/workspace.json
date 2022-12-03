@@ -36,17 +36,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "ad68c94fec2e6494",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -113,6 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,6 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +143,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md"
+              }
             }
           }
         ],
@@ -161,7 +156,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "ad68c94fec2e6494",
+  "active": "63d5fd85a529b93f",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
