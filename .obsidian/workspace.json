@@ -4,35 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "3a16dbdec8fdf3e3",
+        "id": "a876ff7cac0ac26f",
         "type": "tabs",
         "children": [
           {
-            "id": "c0c679ac0af5fdd2",
+            "id": "d7f3dad368fc768e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring/SpringMVC/SpringMVC执行流程.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "382c09717757423e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Spring/SpringMVC/Spring MVC执行流程详解：DispatcherServlet.md",
+                "file": "每日学习/Java领域的Web服务器是怎么实现的？.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC执行流程详解：DispatcherServlet.md",
+                "file": "每日学习/Java领域的Web服务器是怎么实现的？.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC执行流程详解：DispatcherServlet.md",
+                "file": "每日学习/Java领域的Web服务器是怎么实现的？.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring/SpringMVC/Spring MVC执行流程详解：DispatcherServlet.md"
+                "file": "每日学习/Java领域的Web服务器是怎么实现的？.md"
               }
             }
           }
@@ -150,17 +137,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "382c09717757423e",
+  "active": "d7f3dad368fc768e",
   "lastOpenFiles": [
+    "每日学习/attachments/Servlet.png",
+    "每日学习/Java领域的Web服务器是怎么实现的？.md",
+    "Spring/SpringMVC/Spring MVC执行流程详解：DispatcherServlet.md",
     "Spring/SpringMVC/SpringMVC执行流程.md",
     "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
     "Spring/SpringMVC/HandlerMapping【草稿】.md",
     "Spring/SpringMVC/MultipartResolver【草稿】.md",
     "Spring/SpringMVC/MultipartResolver文件处理.md",
     "Spring/SpringMVC/SpringMVC处理文件请求.md",
-    "Java8语言规范研读/17线程和锁/1同步.md",
-    "Java/线程和锁.md",
-    "Java8语言规范研读/17线程和锁/0前言.md",
-    "前端/JavaScript打包下载最佳实践.md"
+    "Java8语言规范研读/17线程和锁/1同步.md"
   ]
 }
