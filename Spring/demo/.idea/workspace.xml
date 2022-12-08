@@ -24,6 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +150,7 @@
       <workItem from="1670122746397" duration="2381000" />
       <workItem from="1670244680033" duration="375000" />
       <workItem from="1670419423162" duration="110000" />
+      <workItem from="1670419543147" duration="829000" />
     </task>
     <servers />
   </component>
@@ -189,9 +191,10 @@
     </state>
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670080794552" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1669951987919" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1668565355348">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1670419779674">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
+    <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670419779674" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1668565355348" />
     <state width="1397" height="291" key="GridCell.Tab.0.bottom" timestamp="1670080978527">
       <screen x="2560" y="0" width="1440" height="900" />

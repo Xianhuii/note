@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/Java领域的Web服务器是怎么实现的？.md",
+                "file": "每日学习/Java Web服务器是怎么处理请求的？.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/Java领域的Web服务器是怎么实现的？.md",
+                "file": "每日学习/Java Web服务器是怎么处理请求的？.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/Java领域的Web服务器是怎么实现的？.md",
+                "file": "每日学习/Java Web服务器是怎么处理请求的？.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/Java领域的Web服务器是怎么实现的？.md"
+                "file": "每日学习/Java Web服务器是怎么处理请求的？.md"
               }
             }
           }
@@ -140,7 +140,7 @@
   "active": "d7f3dad368fc768e",
   "lastOpenFiles": [
     "每日学习/attachments/Servlet.png",
-    "每日学习/Java领域的Web服务器是怎么实现的？.md",
+    "每日学习/Java Web服务器是怎么处理请求的？.md",
     "Spring/SpringMVC/Spring MVC执行流程详解：DispatcherServlet.md",
     "Spring/SpringMVC/SpringMVC执行流程.md",
     "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
