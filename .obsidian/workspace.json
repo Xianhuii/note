@@ -138,17 +138,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "5a2b0140e6194198",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
-    "每日学习/Java Web服务器是怎么处理请求的？.md",
+    "attachments/DispatcherServlet.png",
     "每日学习/Spring MVC是一个Servlet.md",
+    "DispatcherServlet.png.md",
+    "每日学习/attachments/DispatcherServlet.png",
+    "每日学习/Java Web服务器是怎么处理请求的？.md",
     "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/HandlerAdapter【草稿】.md",
     "Spring/SpringMVC/HandlerExceptionResolver【草稿】.md",
     "Spring/SpringMVC/HandlerMapping【草稿】.md",
-    "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
-    "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
-    "Spring/SpringMVC/MultipartResolver【草稿】.md",
-    "开发规范/开发注意点.md"
+    "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md"
   ]
 }
