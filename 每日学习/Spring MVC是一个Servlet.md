@@ -19,6 +19,18 @@ Hello Spring MVC
 ```
 
 自从使用Spring MVC之后，我们再也不用创建`Servlet`了。
-似乎Spring MVC超脱了Java Servlet规范。实际上，Spring MVC本身就是一个`Servlet`。
-
+似乎Spring MVC超脱了Java Servlet规范。其实不然，Spring MVC本身就是一个`Servlet`，叫做`DispatcherServlet`。
 ![[每日学习/attachments/DispatcherServlet.png]]
+`DispatcherServlet`实现了`Servlet`接口，它也可以接收从Java Web服务器传递过来的`request`和`response`。
+为了便于日常开发使用，`DispatcherServlet`会通过反射的方式，直接将`request`中的请求参数解析成对应的Java对象，也可以直接将业务处理返回的Java对象解析成对应格式的数据进行响应。
+当然，`DispatcherServlet`的能力不仅仅是转换数据格式，它的成员变量（通常称为核心组件）可以满足各种常见的业务场景：
+1. 文件上传
+2. 请求地址映射
+3. 参数解析
+4. 参数校验
+5. 异常统一处理
+6. ……
+
+相对于原始的`Servlet`开发，一个请求对应着一个`Servlet`实现类。
+使用Spring MVC后，一个Web项目通常只需要一个`Dispatcher`映射所有请求即可，它会管理整个项目的所有接口。
+![[Untitled Diagram (1).png]]

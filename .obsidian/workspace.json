@@ -4,22 +4,33 @@
     "type": "split",
     "children": [
       {
-        "id": "2f1e308fdc0d5552",
+        "id": "a876ff7cac0ac26f",
         "type": "tabs",
         "children": [
           {
-            "id": "5a2b0140e6194198",
+            "id": "d7f3dad368fc768e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/Spring MVC是一个Servlet.md",
+                "file": "每日学习/Java Web服务器是怎么处理请求的？.md",
                 "mode": "source",
                 "source": false
               }
             }
+          },
+          {
+            "id": "cd16c86c2234e9c4",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "每日学习/attachments/DispatcherServlet.png"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -69,8 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -86,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/Spring MVC是一个Servlet.md",
+                "file": "每日学习/attachments/DispatcherServlet.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/Spring MVC是一个Servlet.md",
+                "file": "每日学习/attachments/DispatcherServlet.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/Spring MVC是一个Servlet.md"
+                "file": "每日学习/attachments/DispatcherServlet.png"
               }
             }
           }
@@ -140,15 +150,15 @@
   },
   "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
-    "attachments/DispatcherServlet.png",
-    "每日学习/Spring MVC是一个Servlet.md",
-    "DispatcherServlet.png.md",
+    "每日学习/attachments/Servlet.png",
     "每日学习/attachments/DispatcherServlet.png",
-    "每日学习/Java Web服务器是怎么处理请求的？.md",
+    "每日学习/attachments/Untitled Diagram.png",
+    "每日学习/attachments/Untitled Diagram (1).png",
+    "每日学习/Spring MVC是一个Servlet.md",
     "conflict-files-obsidian-git.md",
-    "Spring/SpringMVC/HandlerAdapter【草稿】.md",
-    "Spring/SpringMVC/HandlerExceptionResolver【草稿】.md",
-    "Spring/SpringMVC/HandlerMapping【草稿】.md",
-    "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md"
+    "每日学习/Java Web服务器是怎么处理请求的？.md",
+    "Spring/SpringMVC/Spring MVC执行流程详解：DispatcherServlet.md",
+    "Spring/SpringMVC/SpringMVC执行流程.md",
+    "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md"
   ]
 }
