@@ -8,13 +8,13 @@
 public class TestController {
 	@RequestMapping("/test")
 	public String test() {
-		return "test()接口响应";
+		return "Hello Spring MVC";
 	}
 }
 ```
 启动项目后，请求`/test`地址，可以得到响应：
 ```
-test()接口响应
+Hello Spring MVC
 ```
 为什么Spring MVC不需要`Servlet`了？
 实际上，Spring MVC本身就是一个`Servlet`。
