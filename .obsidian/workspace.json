@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "5d8cd14f085e9962",
+        "id": "d4849dfeb19a3afc",
         "type": "tabs",
         "children": [
           {
-            "id": "166de0b6e0dcceb2",
+            "id": "50038c03e37357e9",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "每日学习/DispatcherServlet核心组件.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "每日学习/DispatcherServlet核心组件.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "每日学习/DispatcherServlet核心组件.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "每日学习/DispatcherServlet核心组件.md"
+              }
             }
           }
         ],
@@ -129,17 +137,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "166de0b6e0dcceb2",
+  "active": "50038c03e37357e9",
   "lastOpenFiles": [
+    "每日学习/attachments/DispatcherServlet.png",
+    "每日学习/attachments/Untitled Diagram (1).png",
+    "每日学习/attachments/Untitled Diagram.png",
+    "每日学习/DispatcherServlet核心组件.md",
     "每日学习/Spring MVC是一个Servlet.md",
     "attachments/DispatcherServlet.png",
     "DispatcherServlet.png.md",
-    "每日学习/attachments/DispatcherServlet.png",
     "每日学习/Java Web服务器是怎么处理请求的？.md",
     "conflict-files-obsidian-git.md",
-    "Spring/SpringMVC/HandlerAdapter【草稿】.md",
-    "Spring/SpringMVC/HandlerExceptionResolver【草稿】.md",
-    "Spring/SpringMVC/HandlerMapping【草稿】.md",
-    "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md"
+    "Spring/SpringMVC/HandlerAdapter【草稿】.md"
   ]
 }
