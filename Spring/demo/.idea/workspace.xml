@@ -23,9 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../每日学习/DispatcherServlet核心组件.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/DispatcherServlet组成结构.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/DispatcherServlet组成结构.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +82,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.30114943" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RebelAgentSelection">
@@ -151,7 +150,7 @@
       <workItem from="1670122746397" duration="2381000" />
       <workItem from="1670244680033" duration="375000" />
       <workItem from="1670419423162" duration="110000" />
-      <workItem from="1670593595907" duration="1539000" />
+      <workItem from="1670593595907" duration="5723000" />
     </task>
     <servers />
   </component>
@@ -192,10 +191,10 @@
     </state>
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670080794552" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1669951987919" />
-    <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1670595563246">
+    <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1670599556834">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670595563246" />
+    <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670599556834" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1670474069637" />
     <state width="1397" height="291" key="GridCell.Tab.0.bottom" timestamp="1670080978527">
       <screen x="2560" y="0" width="1440" height="900" />
@@ -257,9 +256,10 @@
     </state>
     <state width="1397" height="291" key="GridCell.Tab.2.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670080978528" />
     <state width="1877" height="201" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752459" />
-    <state x="2906" y="47" key="SettingsEditor" timestamp="1670078609237">
-      <screen x="2560" y="0" width="1440" height="900" />
+    <state x="286" y="42" key="SettingsEditor" timestamp="1670600752944">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
+    <state x="286" y="42" key="SettingsEditor/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670600752944" />
     <state x="2906" y="47" key="SettingsEditor/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670078609237" />
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1669625501586" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1666087482007">
@@ -290,10 +290,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="418" y="176" width="672" height="522" key="search.everywhere.popup" timestamp="1670593873833">
+    <state x="420" y="178" width="672" height="522" key="search.everywhere.popup" timestamp="1670600357828">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="418" y="176" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670593873833" />
+    <state x="420" y="178" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670600357828" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670081692163" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1670462508888" />
