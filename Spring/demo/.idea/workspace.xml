@@ -23,8 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../每日学习/DispatcherServlet组成结构.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/DispatcherServlet组成结构.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +150,7 @@
       <workItem from="1670244680033" duration="375000" />
       <workItem from="1670419423162" duration="110000" />
       <workItem from="1670593595907" duration="6377000" />
+      <workItem from="1670676103519" duration="635000" />
     </task>
     <servers />
   </component>
