@@ -24,6 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/DispatcherServlet是怎么处理请求的？.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/DispatcherServlet是怎么处理请求的？.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,17 +100,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServletMvcApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="servlet-mvc" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servletmvc.ServletMvcApplication" />
@@ -163,6 +153,7 @@
       <workItem from="1670593595907" duration="6377000" />
       <workItem from="1670676103519" duration="635000" />
       <workItem from="1670727536522" duration="2333000" />
+      <workItem from="1670813695259" duration="3263000" />
     </task>
     <servers />
   </component>
