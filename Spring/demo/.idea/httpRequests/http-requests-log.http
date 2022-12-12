@@ -1,0 +1,14 @@
+GET http://localhost:10001/cors
+
+<> 2022-12-12T025440.200.txt
+
+###
+
+GET http://localhost:8080/cors
+
+###
+
+GET http://cors
+
+###
+
