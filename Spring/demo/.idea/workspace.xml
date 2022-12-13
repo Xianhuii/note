@@ -23,7 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/Spring Boot中Spring MVC的自动配置流程！.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +114,17 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.ServletMvcApplication">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="generated-requests#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -175,6 +188,7 @@
       <workItem from="1670727536522" duration="2333000" />
       <workItem from="1670813695259" duration="11107000" />
       <workItem from="1670852035786" duration="2652000" />
+      <workItem from="1670934386737" duration="7395000" />
     </task>
     <servers />
   </component>
@@ -215,10 +229,11 @@
     </state>
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855463073" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1669951987919" />
-    <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1670599556834">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="3115" y="237" key="FileChooserDialogImpl" timestamp="1670935323060">
+      <screen x="2560" y="0" width="1440" height="900" />
     </state>
     <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670599556834" />
+    <state x="3115" y="237" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670935323060" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1670474069637" />
     <state width="1397" height="230" key="GridCell.Tab.0.bottom" timestamp="1670855517836">
       <screen x="2560" y="0" width="1440" height="900" />
@@ -327,11 +342,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup" timestamp="1670852612408">
-      <screen x="2560" y="0" width="1440" height="900" />
+    <state x="426" y="184" width="672" height="522" key="search.everywhere.popup" timestamp="1670940265485">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="424" y="182" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670827676382" />
-    <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670852612408" />
+    <state x="426" y="184" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670940265485" />
+    <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1670462508888" />
   </component>
