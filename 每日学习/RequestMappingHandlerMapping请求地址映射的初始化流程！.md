@@ -100,10 +100,10 @@ protected void detectHandlerMethods(Object handler) {
 
 `MethodIntrospector`的`selectMethods()`方法会将所有`request`地址信息不为`null`的`Method`-`RequestMappingInfo`映射返回。
 
-在`RequestMappingHandlerMapping`的`getMappingForMethod()`方法中，会构造完整的`request`地址信息。主要包括一下步骤：
-1. 构造方法级别的`request-handler`信息
-2. 构造类级别的`request-handler`信息
-3. 整合两个级别的`request-handler`信息，构造出完整的`request-handler`信息
+在`RequestMappingHandlerMapping`的`getMappingForMethod()`方法中，会构造完整的`request`地址信息。主要包括以下步骤：
+1. 构造方法级别的`request`地址信息
+2. 构造类级别的`request`地址信息
+3. 整合两个级别的`request`地址信息，构造出完整的`request`地址信息
 
 `RequestMappingHandlerMapping`的`getMappingForMethod()`方法源码如下：
 ```java
@@ -212,6 +212,45 @@ public void register(T mapping, Object handler, Method method) {
 }
 ```
 
-需要注意的是，在这个过程中还会缓存跨域配置信息，主要包括`@CorsOrigin`注解方式的跨域配置信息。
+需要注意的是，在这个过程中还会缓存跨域配置信息，主要是`@CrossOrigin`注解方式的跨域配置信息。
+在`RequestMappingHandlerMapping`的`initCorsConfiguration()`方法中，会获取类级别和方法级别的`@CrossOrigin`信息，构造出完整的跨域配置信息：
+```java
+protected CorsConfiguration initCorsConfiguration(Object handler, Method method, RequestMappingInfo mappingInfo) {  
+   HandlerMethod handlerMethod = createHandlerMethod(handler, method);  
+   Class<?> beanType = handlerMethod.getBeanType();  
+   // 1、获取类级别的@CrossOrigin信息
+   CrossOrigin typeAnnotation = AnnotatedElementUtils.findMergedAnnotation(beanType, CrossOrigin.class);  
+   // 2、获取方法级别的@CrossOrigin信息
+   CrossOrigin methodAnnotation = AnnotatedElementUtils.findMergedAnnotation(method, CrossOrigin.class);  
+  
+   if (typeAnnotation == null && methodAnnotation == null) {  
+      return null;  
+   }  
+	// 3、整合两个级别的@CrossOrigin信息
+   CorsConfiguration config = new CorsConfiguration();  
+   updateCorsConfig(config, typeAnnotation);  
+   updateCorsConfig(config, methodAnnotation);  
+  
+   if (CollectionUtils.isEmpty(config.getAllowedMethods())) {  
+      for (RequestMethod allowedMethod : mappingInfo.getMethodsCondition().getMethods()) {  
+         config.addAllowedMethod(allowedMethod.name());  
+      }  
+   }  
+   return config.applyPermitDefaultValues();  
+}
+```
+在整合`@CrossOrigin`信息过程中，有三种情况：
+1. 对于`origins`、`originPatterns`、`allowedHeaders`、`exposedHeaders`和`methods`等列表属性，会获取全部。
+2. 对于`allowCredentials`，会优先获取方法级别的配置。
+3. 对于`maxAge`，会获取最大值。
 
-在
+至此，我们走完了`RequestMappingHandlerMapping`中请求地址映射的初始化流程。最后总结一下流程如下：
+1. 遍历容器中所有`bean`对象
+2. 如果`bean`的类对象含有`@Controller`或`@RequestMapping`注解，进行下一步
+3. 遍历`bean`的类对象的所有方法，根据方法的`@RequestMapping`注解，构造`RequestMappingInfo`对象
+4. 遍历`Method-RequestMappingInfo`映射，过滤出可执行方法
+5. 缓存各种`request-handler`映射信息，同时会缓存`@CrossOrigin`的跨域配置信息
+
+此时，我们可以充分理解到，`request-handler`请求地址映射信息中`request`和`handler`的含义：
+- `request`：主要是`@RequestMapping`中含有的各个属性的信息
+- `handler`：标注`@RequestMapping`的方法

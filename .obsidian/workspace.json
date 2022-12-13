@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "`request`-`handler`",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,8 +65,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -129,16 +128,23 @@
                 "file": "每日学习/RequestMappingHandlerMapping请求地址映射的初始化流程！.md"
               }
             }
+          },
+          {
+            "id": "dd2b0f85dc8392e4",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
-  "active": "6a844f621a12d00b",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
     "每日学习/DispatcherServlet是怎么初始化各核心功能的？.md",
     "每日学习/DispatcherServlet是怎么处理请求的？.md",
