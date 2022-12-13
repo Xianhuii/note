@@ -142,9 +142,10 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200,
+    "collapsed": true
   },
-  "active": "e275dab41eb9f4d9",
+  "active": "dd2b0f85dc8392e4",
   "lastOpenFiles": [
     "每日学习/DispatcherServlet是怎么初始化各核心功能的？.md",
     "每日学习/DispatcherServlet是怎么处理请求的？.md",
