@@ -8,18 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "41b2d7257960993d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "每日学习/RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "3798a95fed629b5f",
             "type": "leaf",
             "state": {
@@ -31,8 +19,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
