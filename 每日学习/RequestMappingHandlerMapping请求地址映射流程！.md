@@ -103,3 +103,9 @@ protected HandlerExecutionChain getHandlerExecutionChain(Object handler, HttpSer
 2. 如果不是`MappedInterceptor`实现类，会直接添加。
 
 ## 2.3 添加跨域拦截器
+添加跨域拦截器分为以下几个步骤：
+1. 判断是否存在跨域配置，或是否预检请求
+2. 获取`handler`级别的跨域配置
+3. 获取`HandlerMapping`级别的跨域配置
+4. 整合跨域配置
+5. 创建并添加跨域拦截器

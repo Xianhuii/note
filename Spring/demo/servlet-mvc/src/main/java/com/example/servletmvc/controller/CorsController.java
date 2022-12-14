@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -16,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 //@CrossOrigin
 @RestController
-public class CorsController {
+public class CorsController implements CorsConfigurationSource {
     @Autowired
     private DispatcherServlet dispatcherServlet;
 
@@ -36,5 +39,10 @@ public class CorsController {
     public String CrossOrigin() {
         System.out.println("Hello Cors!");
         return "Hello Cors!";
+    }
+
+    @Override
+    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+        return null;
     }
 }
