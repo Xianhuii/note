@@ -1,3 +1,51 @@
+GET http://localhost:10001/cors
+
+<> 2022-12-15T104708.404.html
+
+###
+
+GET http://localhost:10001/cors
+
+<> 2022-12-15T104658.404.html
+
+###
+
+GET http://localhost:10001/cors
+
+<> 2022-12-15T104639.404.html
+
+###
+
+GET http://localhost:10001/cors
+
+<> 2022-12-15T104548.404.html
+
+###
+
+GET http://localhost:10001/cors
+
+<> 2022-12-15T104439.200.txt
+
+###
+
+GET http://localhost:10001/cors
+
+<> 2022-12-15T104318.200.txt
+
+###
+
+GET http://localhost:10001/cors
+
+<> 2022-12-15T104252.200.txt
+
+###
+
+GET http://localhost:10001/CrossOrigin
+
+<> 2022-12-15T104103.200.txt
+
+###
+
 GET http://localhost:10001/CrossOrigin
 
 <> 2022-12-15T091856.200.txt
