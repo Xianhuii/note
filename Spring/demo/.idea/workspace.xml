@@ -22,12 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/controller/CorsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/controller/CorsController.java" afterDir="false" />
-    </list>
+    <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,7 +185,7 @@
       <workItem from="1670813695259" duration="11107000" />
       <workItem from="1670852035786" duration="2652000" />
       <workItem from="1670934386737" duration="8730000" />
-      <workItem from="1671022258020" duration="5496000" />
+      <workItem from="1671022258020" duration="6389000" />
     </task>
     <servers />
   </component>
