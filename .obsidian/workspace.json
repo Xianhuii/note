@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -149,6 +148,7 @@
   "active": "3798a95fed629b5f",
   "lastOpenFiles": [
     "每日学习/RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
+    "每日学习/RequestMappingHandlerMapping请求地址映射流程！.md",
     "每日学习/DispatcherServlet是怎么初始化各核心功能的？.md",
     "每日学习/DispatcherServlet是怎么处理请求的？.md",
     "每日学习/梳理DispatcherServlet核心功能！.md",
@@ -156,7 +156,6 @@
     "每日学习/Spring MVC是一个Servlet！.md",
     "每日学习/DispatcherServlet核心组件介绍.md",
     "conflict-files-obsidian-git.md",
-    "每日学习/Java Web服务器是怎么处理请求的？.md",
-    "每日学习/attachments/DispatcherServlet.png"
+    "每日学习/Java Web服务器是怎么处理请求的？.md"
   ]
 }

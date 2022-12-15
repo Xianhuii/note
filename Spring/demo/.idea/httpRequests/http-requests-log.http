@@ -1,3 +1,15 @@
+GET http://localhost:10001/CrossOrigin
+
+<> 2022-12-15T091856.200.txt
+
+###
+
+GET http://localhost:10001/CrossOrigin
+
+<> 2022-12-15T091819.200.txt
+
+###
+
 GET http://localhost:10001/cors
 
 <> 2022-12-14T102716.200.txt

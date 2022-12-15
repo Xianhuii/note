@@ -252,5 +252,5 @@ protected CorsConfiguration initCorsConfiguration(Object handler, Method method,
 5. 缓存各种`request-handler`映射信息，同时会缓存`@CrossOrigin`的跨域配置信息
 
 此时，我们可以充分理解到，`request-handler`请求地址映射信息中`request`和`handler`的含义：
-- `request`：主要是`@RequestMapping`中含有的各个属性的信息
-- `handler`：标注`@RequestMapping`的方法
+- `request`：主要是`@RequestMapping`中含有的各个属性的信息，会被封装成`RequestMappingInfo`对象
+- `handler`：标注`@RequestMapping`的方法，会被封装成`HandlerMethod`对象

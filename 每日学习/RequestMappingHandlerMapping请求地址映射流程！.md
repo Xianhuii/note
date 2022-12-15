@@ -109,3 +109,155 @@ protected HandlerExecutionChain getHandlerExecutionChain(Object handler, HttpSer
 3. 获取`HandlerMapping`级别的跨域配置
 4. 整合跨域配置
 5. 创建并添加跨域拦截器
+
+### 2.3.1 判断是否存在跨域配置
+在`AbstractHandlerMapping`中，会判断`handler`是否`CorsConfigurationSource`的实现类（对于`RequestMappingHandlerMapping`而言，`handler`是`HandlerMethod`类型，所以第一个条件永远是`false`），以及是否存在`HandlerMapping`级别的跨域配置源：
+```java
+protected boolean hasCorsConfigurationSource(Object handler) {  
+   if (handler instanceof HandlerExecutionChain) {  
+      handler = ((HandlerExecutionChain) handler).getHandler();  
+   }  
+   return (handler instanceof CorsConfigurationSource || this.corsConfigurationSource != null);  
+}
+```
+
+而在`AbstractHandlerMethodMapping`子抽象类中，会进一步判断是否存在`handler`级别（也就是`@CrossOrigin`级别）的跨域配置：
+```java
+protected boolean hasCorsConfigurationSource(Object handler) {  
+   return super.hasCorsConfigurationSource(handler) ||  
+         (handler instanceof HandlerMethod &&  
+               this.mappingRegistry.getCorsConfiguration((HandlerMethod) handler) != null);  
+}
+```
+
+### 2.3.2 判断是否是预检请求
+`org.springframework.web.cors.CorsUtils#isPreFlightRequest`：
+```java
+public static boolean isPreFlightRequest(HttpServletRequest request) {  
+   return (HttpMethod.OPTIONS.matches(request.getMethod()) &&  
+         request.getHeader(HttpHeaders.ORIGIN) != null &&  
+         request.getHeader(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD) != null);  
+}
+```
+
+### 2.3.3 获取handler级别跨域配置
+在`AbstractHandlerMapping`中，会判断`handler`是否`CorsConfigurationSource`的实现类，从中获取`handler`级别的跨域配置。对于`RequestMappingHandlerMapping`而言，`handler`是`HandlerMethod`类型，所以第一个条件永远返回`null`：
+```java
+protected CorsConfiguration getCorsConfiguration(Object handler, HttpServletRequest request) {  
+   Object resolvedHandler = handler;  
+   if (handler instanceof HandlerExecutionChain) {  
+      resolvedHandler = ((HandlerExecutionChain) handler).getHandler();  
+   }  
+   if (resolvedHandler instanceof CorsConfigurationSource) {  
+      return ((CorsConfigurationSource) resolvedHandler).getCorsConfiguration(request);  
+   }  
+   return null;  
+}
+```
+
+在`AbstractHandlerMethodMapping`子抽象类中，会从`mappingRegistry`（`request-handler`缓存）中获取`handler`级别的跨域配置（在上篇文章中，我们有讲述过`RequestMappingHandlerMapping`如何缓存`@CrossOrigin`级别的跨域配置的）：
+```java
+protected CorsConfiguration getCorsConfiguration(Object handler, HttpServletRequest request) {  
+   CorsConfiguration corsConfig = super.getCorsConfiguration(handler, request);  
+   if (handler instanceof HandlerMethod) {  
+      HandlerMethod handlerMethod = (HandlerMethod) handler;  
+      if (handlerMethod.equals(PREFLIGHT_AMBIGUOUS_MATCH)) {  
+         return AbstractHandlerMethodMapping.ALLOW_CORS_CONFIG;  
+      }  
+      else {  
+         CorsConfiguration corsConfigFromMethod = this.mappingRegistry.getCorsConfiguration(handlerMethod);  
+         corsConfig = (corsConfig != null ? corsConfig.combine(corsConfigFromMethod) : corsConfigFromMethod);  
+      }  
+   }  
+   return corsConfig;  
+}
+```
+
+### 2.3.4  获取HandlerMapping级别的跨域配置
+从`AbstractHandlerMapping`的`corsConfigurationSource`成员变量中，可以获取到`HandlerMapping`级别的跨域配置，该配置可以通过以下方式添加：
+```java
+@Configuration  
+@EnableWebMvc  
+public class WebMvcConfig implements WebMvcConfigurer {  
+    @Override  
+    public void addCorsMappings(CorsRegistry registry) {
+	    // 添加HandlerMapping级别的跨域配置
+    }
+}
+```
+
+### 2.3.5 整合跨域配置
+在整合跨域配置过程中，有三种情况：
+1. 对于`origins`、`originPatterns`、`allowedHeaders`、`exposedHeaders`和`methods`等列表属性，会获取全部。
+2. 对于`allowCredentials`，会优先获取方法级别的配置。
+3. 对于`maxAge`，会获取最大值。
+
+具体可以查看相关源码：
+```java
+public CorsConfiguration combine(@Nullable CorsConfiguration other) {  
+   if (other == null) {  
+      return this;  
+   }  
+   // Bypass setAllowedOrigins to avoid re-compiling patterns  
+   CorsConfiguration config = new CorsConfiguration(this);  
+   List<String> origins = combine(getAllowedOrigins(), other.getAllowedOrigins());  
+   List<OriginPattern> patterns = combinePatterns(this.allowedOriginPatterns, other.allowedOriginPatterns);  
+   config.allowedOrigins = (origins == DEFAULT_PERMIT_ALL && !CollectionUtils.isEmpty(patterns) ? null : origins);  
+   config.allowedOriginPatterns = patterns;  
+   config.setAllowedMethods(combine(getAllowedMethods(), other.getAllowedMethods()));  
+   config.setAllowedHeaders(combine(getAllowedHeaders(), other.getAllowedHeaders()));  
+   config.setExposedHeaders(combine(getExposedHeaders(), other.getExposedHeaders()));  
+   Boolean allowCredentials = other.getAllowCredentials();  
+   if (allowCredentials != null) {  
+      config.setAllowCredentials(allowCredentials);  
+   }  
+   Long maxAge = other.getMaxAge();  
+   if (maxAge != null) {  
+      config.setMaxAge(maxAge);  
+   }  
+   return config;  
+}
+```
+
+### 2.3.6 创建并添加跨域拦截器
+在这一步，对于预检请求，会创建`HandlerExecutionChain`；对于普通请求，会创建`CorsInterceptor`拦截器，并添加到首位：
+```java
+protected HandlerExecutionChain getCorsHandlerExecutionChain(HttpServletRequest request,  
+      HandlerExecutionChain chain, @Nullable CorsConfiguration config) {  
+  
+   if (CorsUtils.isPreFlightRequest(request)) {  
+      HandlerInterceptor[] interceptors = chain.getInterceptors();  
+      return new HandlerExecutionChain(new PreFlightHandler(config), interceptors);  
+   }  
+   else {  
+      chain.addInterceptor(0, new CorsInterceptor(config));  
+      return chain;  
+   }  
+}
+```
+
+# 3 AbstractHandlerMethodMapping
+`AbstractHandlerMethodMapping`是`HandlerMethod`请求映射的抽象基类，它的`getHandlerInternal()`方法定义了请求地址映射的核心流程：
+1. 解析请求路径
+2. 根据请求地址查找`HandlerMethod`
+
+`AbstractHandlerMethodMapping#getHandlerInternal`：
+```java
+protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Exception {  
+// 1、解析请求地址
+   String lookupPath = initLookupPath(request);  
+   this.mappingRegistry.acquireReadLock();  
+   try {  
+   // 2、根据请求地址查找HandlerMethod
+      HandlerMethod handlerMethod = lookupHandlerMethod(lookupPath, request);  
+      return (handlerMethod != null ? handlerMethod.createWithResolvedBean() : null);  
+   }  
+   finally {  
+      this.mappingRegistry.releaseReadLock();  
+   }  
+}
+```
+
+## 3.1 解析请求路径
+
+## 3.2 根据请求地址查找HandlerMethod
