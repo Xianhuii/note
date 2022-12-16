@@ -23,9 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet-mvc/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/servlet-mvc/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/RequestMappingHandlerMapping请求地址映射流程！.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/RequestMappingHandlerMapping请求地址映射流程！.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,19 +91,42 @@
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.servletmvc.controller" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
   </component>
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:10001/context-path/cors" />
+          <option name="urlPath" value="" />
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="GET localhost:10001/cors" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:10001/context-path/cors" />
+          <option name="urlPath" value="" />
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="GET localhost:10001/context-path/cors" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:10001/context-path/cors" />
+          <option name="urlPath" value="" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="httpMethod" value="GET" />
           <option name="urlBase" value="http://localhost:10001/cors" />
@@ -120,7 +144,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ServletMvcApplication">
+  <component name="RunManager" selected="HTTP Request.generated-requests#1">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="generated-requests#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -190,7 +225,7 @@
       <workItem from="1670852035786" duration="2652000" />
       <workItem from="1670934386737" duration="8730000" />
       <workItem from="1671022258020" duration="6389000" />
-      <workItem from="1671108657625" duration="4662000" />
+      <workItem from="1671108657625" duration="6667000" />
     </task>
     <servers />
   </component>
@@ -227,10 +262,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="329" y="219" width="876" height="601" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1668394988302" />
-    <state width="857" height="426" key="DebuggerActiveHint" timestamp="1671115478984">
+    <state width="857" height="426" key="DebuggerActiveHint" timestamp="1671116321528">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="857" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115478984" />
+    <state width="857" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671116321528" />
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855463073" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1669951987919" />
     <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1671023709020">
@@ -239,76 +274,76 @@
     <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671023709020" />
     <state x="3115" y="237" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670935323060" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1670474069637" />
-    <state width="1238" height="202" key="GridCell.Tab.0.bottom" timestamp="1671115628877">
+    <state width="1238" height="202" key="GridCell.Tab.0.bottom" timestamp="1671117669590">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="202" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115628877" />
+    <state width="1238" height="202" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669590" />
     <state width="1397" height="230" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752659" />
-    <state width="1238" height="202" key="GridCell.Tab.0.center" timestamp="1671115628877">
+    <state width="1238" height="202" key="GridCell.Tab.0.center" timestamp="1671117669590">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="202" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115628877" />
+    <state width="1238" height="202" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669590" />
     <state width="1397" height="230" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752659" />
-    <state width="1238" height="202" key="GridCell.Tab.0.left" timestamp="1671115628877">
+    <state width="1238" height="202" key="GridCell.Tab.0.left" timestamp="1671117669590">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="202" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115628877" />
+    <state width="1238" height="202" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669590" />
     <state width="1397" height="230" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752659" />
-    <state width="1238" height="202" key="GridCell.Tab.0.right" timestamp="1671115628877">
+    <state width="1238" height="202" key="GridCell.Tab.0.right" timestamp="1671117669590">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="202" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115628877" />
+    <state width="1238" height="202" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669590" />
     <state width="1397" height="230" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752659" />
-    <state width="1238" height="115" key="GridCell.Tab.1.bottom" timestamp="1671115548628">
+    <state width="1238" height="236" key="GridCell.Tab.1.bottom" timestamp="1671117669584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="115" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115548628" />
+    <state width="1238" height="236" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669584" />
     <state width="1397" height="230" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1669964755932" />
-    <state width="1238" height="115" key="GridCell.Tab.1.center" timestamp="1671115548628">
+    <state width="1238" height="236" key="GridCell.Tab.1.center" timestamp="1671117669584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="115" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115548628" />
+    <state width="1238" height="236" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669584" />
     <state width="1397" height="230" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1669964755932" />
-    <state width="1238" height="115" key="GridCell.Tab.1.left" timestamp="1671115548628">
+    <state width="1238" height="236" key="GridCell.Tab.1.left" timestamp="1671117669584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="115" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115548628" />
+    <state width="1238" height="236" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669584" />
     <state width="1397" height="230" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1669964755932" />
-    <state width="1238" height="115" key="GridCell.Tab.1.right" timestamp="1671115548628">
+    <state width="1238" height="236" key="GridCell.Tab.1.right" timestamp="1671117669584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="115" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115548628" />
+    <state width="1238" height="236" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669584" />
     <state width="1397" height="230" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1669964755932" />
-    <state width="1238" height="115" key="GridCell.Tab.2.bottom" timestamp="1671115548629">
+    <state width="1238" height="236" key="GridCell.Tab.2.bottom" timestamp="1671117669584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="115" key="GridCell.Tab.2.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115548629" />
+    <state width="1238" height="236" key="GridCell.Tab.2.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669584" />
     <state width="1397" height="230" key="GridCell.Tab.2.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517838" />
     <state width="1877" height="201" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752459" />
-    <state width="1238" height="115" key="GridCell.Tab.2.center" timestamp="1671115548629">
+    <state width="1238" height="236" key="GridCell.Tab.2.center" timestamp="1671117669584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="115" key="GridCell.Tab.2.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115548629" />
+    <state width="1238" height="236" key="GridCell.Tab.2.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669584" />
     <state width="1397" height="230" key="GridCell.Tab.2.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752459" />
-    <state width="1238" height="115" key="GridCell.Tab.2.left" timestamp="1671115548629">
+    <state width="1238" height="236" key="GridCell.Tab.2.left" timestamp="1671117669584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="115" key="GridCell.Tab.2.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115548629" />
+    <state width="1238" height="236" key="GridCell.Tab.2.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669584" />
     <state width="1397" height="230" key="GridCell.Tab.2.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="201" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752459" />
-    <state width="1238" height="115" key="GridCell.Tab.2.right" timestamp="1671115548629">
+    <state width="1238" height="236" key="GridCell.Tab.2.right" timestamp="1671117669584">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="115" key="GridCell.Tab.2.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671115548629" />
+    <state width="1238" height="236" key="GridCell.Tab.2.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117669584" />
     <state width="1397" height="230" key="GridCell.Tab.2.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517838" />
     <state width="1877" height="201" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1669964752459" />
     <state x="286" y="42" key="SettingsEditor" timestamp="1670600752944">
@@ -348,10 +383,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="427" y="185" width="672" height="522" key="search.everywhere.popup" timestamp="1670943812990">
+    <state x="429" y="187" width="672" height="522" key="search.everywhere.popup" timestamp="1671117592065">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="427" y="185" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670943812990" />
+    <state x="429" y="187" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1671117592065" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1670462508888" />
@@ -678,21 +713,6 @@
           <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23-sources.jar!/org/springframework/web/servlet/handler/AbstractHandlerMapping.java</url>
           <line>571</line>
           <option name="timeStamp" value="213" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23-sources.jar!/org/springframework/web/servlet/handler/AbstractHandlerMapping.java</url>
-          <line>497</line>
-          <option name="timeStamp" value="214" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java</url>
-          <line>1264</line>
-          <option name="timeStamp" value="215" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java</url>
-          <line>1039</line>
-          <option name="timeStamp" value="216" />
         </line-breakpoint>
         <line-breakpoint type="java-field">
           <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23-sources.jar!/org/springframework/web/servlet/handler/AbstractHandlerMethodMapping.java</url>

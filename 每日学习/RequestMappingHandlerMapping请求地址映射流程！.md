@@ -259,5 +259,33 @@ protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Ex
 ```
 
 ## 3.1 解析请求路径
+解析请求路径过程会获取当前请求的接口地址路径。
 
-## 3.2 根据请求地址查找HandlerMethod
+简单来说，会去除请求地址开头的`contextPaht`。例如在`application.properties`配置`contextPath`如下：
+```properties
+server.servlet.context-path=/context-path
+```
+
+此时，请求`/context-path/test`地址，经过`initLookPath()`方法处理，会返回`/test`为实际请求路径。
+
+实际上，这也很容易理解。因为在`RequestMappingHandlerMapping`初始化`pathLookup`映射缓存时，就没有将`contextPath`考虑在内，那么在实际处理请求时，当然也要把`contextPath`去掉。
+
+解析请求路径的作用也是为了方便直接从`pathLookup`映射缓存中获取对应的`RequestMappingInfo`信息。
+
+`AbstractHandlerMapping#initLookupPath`源码如下：
+```java
+protected String initLookupPath(HttpServletRequest request) {  
+   if (usesPathPatterns()) {  
+      request.removeAttribute(UrlPathHelper.PATH_ATTRIBUTE);  
+      RequestPath requestPath = ServletRequestPathUtils.getParsedRequestPath(request);  
+      String lookupPath = requestPath.pathWithinApplication().value();  
+      return UrlPathHelper.defaultInstance.removeSemicolonContent(lookupPath);  
+   }  
+   else {  
+      return getUrlPathHelper().resolveAndCacheLookupPath(request);  
+   }  
+}
+```
+## 3.2 根据请求路径查找HandlerMethod
+在`AbstractHandlerMethodMapping#lookupHandlerMethod`方法中，会按如下步骤获取`HandlerMethod`：
+1. 根据请求路径从`pathLookup`映射缓存查找对应的`RequestMappingInfo`信息。

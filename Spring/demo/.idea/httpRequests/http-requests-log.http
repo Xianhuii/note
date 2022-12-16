@@ -1,3 +1,31 @@
+GET http://localhost:10001/context-path/cors
+
+GET localhost:10001/cors
+
+<> 2022-12-15T110254.200.txt
+
+###
+
+GET http://localhost:10001/context-path/cors
+
+GET localhost:10001/context-path/cors
+
+<> 2022-12-15T110228.200.txt
+
+###
+
+GET http://localhost:10001/context-path/cors
+
+<> 2022-12-15T110020.200.txt
+
+###
+
+GET http://localhost:10001/context-path/cors
+
+<> 2022-12-15T105936.200.txt
+
+###
+
 GET http://localhost:10001/cors
 
 <> 2022-12-15T104708.404.html
