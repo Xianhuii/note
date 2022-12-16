@@ -292,7 +292,42 @@ protected String initLookupPath(HttpServletRequest request) {
 2. 根据`RequestMappingInfo`从`registry`缓存中获取对应的`MappingRegistration`列表。
 3. 根据当前`request`，对`MappingRegistration`列表按匹配度进行排序。
 4. 从中取匹配度最高的`HandlerMethod`进行返回。
-### 3.2.1 查找pathLookup缓存
-在`RequestMappingHandlerMapping`请求地址映射的初始化过程中，会将`@RequestMapping`中的信息缓存到`pathLookup`中，其中请求路径作为`key`，各属性封装成`RequestMappingInfo`作为值。
 
-需要注意的是，
+### 3.2.1 查找pathLookup缓存
+在`RequestMappingHandlerMapping`请求地址映射的初始化过程中，会将`@RequestMapping`中的信息缓存到`pathLookup`中，其中该注解的请求路径作为`key`，该注解的各属性封装成`RequestMappingInfo`作为值。
+
+需要注意的是，`pathLookup`的类型是`MultiValueMap<String, T>`，这里的`T`就是`RequestMappingInfo`。
+
+`pathLookup`的底层数据结构实际上是`path-List<RequestMappingInfo>`，这是因为请求路径不是接口的唯一指标，还包括请求头、请求方法等信息。
+
+所以，一个请求地址实际上可能映射着多个`HandlerMethod`。
+
+这是我们可能忽视的一个Spring MVC特性。例如，我们可以定义如下接口：
+```java
+@RestController
+public class SamePathController {
+	@GetMapping("/samePath")
+	public String get() {
+		return "get";
+	}
+	@PostMapping("/samePath")
+	public String post() {
+		return "post";
+	}
+}
+```
+
+此时，`GET localhost:8080/samePath`和`POST localhost:8080/samePath`可以分别请求到对应的接口。
+
+回到`AbstractHandlerMethodMapping#getHandlerInternal`源码，此时通过请求路径可以获取多个`RequestMappingInfo`：
+```java
+List<RequestMappingInfo> directPathMatches = this.mappingRegistry.getMappingsByDirectPath(lookupPath);
+```
+
+### 3.2.2 查找registry缓存
+在`RequestMappingHandlerMapping`请求地址映射的初始化过程中，会将接口的详细信息缓存到`registry`中，将上述`RequestMappingInfo`作为`key`，将`RequestMappingInfo`和`HanlderMethod`等信息装成`MappingRegistration`作为值。
+
+`registry`的类型是`Map<T, MappingRegistration<T>>`，这里的`T`指的是`RequestMappingInfo`。
+
+需要注意的是，由于`RequestMappingInfo`包含了一个接口的全部信息，因此`registry`中的`key`可以唯一定位到该接口。此时`RequestMappingInfo`和`MappingRegistration`是一一对应的。
+

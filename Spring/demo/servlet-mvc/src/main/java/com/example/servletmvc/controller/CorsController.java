@@ -1,9 +1,7 @@
 package com.example.servletmvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -23,10 +21,15 @@ public class CorsController implements CorsConfigurationSource {
     @Autowired
     private DispatcherServlet dispatcherServlet;
 
-    @RequestMapping("cors")
-    public String cors() {
+    @GetMapping("cors")
+    public String getCors() {
         System.out.println("Hello Cors!");
-        return "Hello Cors!";
+        return "Hello getCors!";
+    }
+    @PostMapping("cors")
+    public String postCors() {
+        System.out.println("Hello Cors!");
+        return "Hello postCors!";
     }
     @RequestMapping("corsResponse")
     public String corsResponse(HttpServletResponse response) {
