@@ -288,4 +288,7 @@ protected String initLookupPath(HttpServletRequest request) {
 ```
 ## 3.2 根据请求路径查找HandlerMethod
 在`AbstractHandlerMethodMapping#lookupHandlerMethod`方法中，会按如下步骤获取`HandlerMethod`：
-1. 根据请求路径从`pathLookup`映射缓存查找对应的`RequestMappingInfo`信息。
+1. 根据请求路径从`pathLookup`映射缓存查找对应的`RequestMappingInfo`列表。
+2. 根据`RequestMappingInfo`从`registry`缓存中获取对应的`MappingRegistration`列表。
+3. 根据当前`request`，对`MappingRegistration`列表按匹配度进行排序。
+4. 从中取匹配度最高的`HandlerMethod`进行返回。
