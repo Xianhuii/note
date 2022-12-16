@@ -292,3 +292,7 @@ protected String initLookupPath(HttpServletRequest request) {
 2. 根据`RequestMappingInfo`从`registry`缓存中获取对应的`MappingRegistration`列表。
 3. 根据当前`request`，对`MappingRegistration`列表按匹配度进行排序。
 4. 从中取匹配度最高的`HandlerMethod`进行返回。
+### 3.2.1 查找pathLookup缓存
+在`RequestMappingHandlerMapping`请求地址映射的初始化过程中，会将`@RequestMapping`中的信息缓存到`pathLookup`中，其中请求路径作为`key`，各属性封装成`RequestMappingInfo`作为值。
+
+需要注意的是，

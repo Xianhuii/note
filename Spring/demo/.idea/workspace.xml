@@ -23,7 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../每日学习/RequestMappingHandlerMapping请求地址映射流程！.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/RequestMappingHandlerMapping请求地址映射流程！.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,7 +212,7 @@
       <workItem from="1670934386737" duration="8730000" />
       <workItem from="1671022258020" duration="6389000" />
       <workItem from="1671108657625" duration="6667000" />
-      <workItem from="1671199813773" duration="642000" />
+      <workItem from="1671199813773" duration="1432000" />
     </task>
     <servers />
   </component>
