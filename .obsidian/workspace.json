@@ -11,8 +11,12 @@
             "id": "628fc221308cd54f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "每日学习/Spring MVC拦截器全解！.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "每日学习/Spring MVC拦截器全解！.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "每日学习/Spring MVC拦截器全解！.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "每日学习/Spring MVC拦截器全解！.md"
+              }
             }
           },
           {
@@ -139,15 +147,15 @@
   },
   "active": "628fc221308cd54f",
   "lastOpenFiles": [
-    "每日学习/RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
     "每日学习/RequestMappingHandlerMapping请求地址映射流程！.md",
+    "每日学习/DispatcherServlet是怎么处理请求的？.md",
+    "每日学习/RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
+    "每日学习/Spring MVC拦截器全解！.md",
     "每日学习/attachments/RequestMappingHandlerMapping 1.png",
     "每日学习/DispatcherServlet是怎么初始化各核心功能的？.md",
-    "每日学习/DispatcherServlet是怎么处理请求的？.md",
     "每日学习/梳理DispatcherServlet核心功能！.md",
     "每日学习/attachments/DispatcherServlet处理请求流程.png",
     "每日学习/Spring MVC是一个Servlet！.md",
-    "每日学习/DispatcherServlet核心组件介绍.md",
-    "conflict-files-obsidian-git.md"
+    "每日学习/DispatcherServlet核心组件介绍.md"
   ]
 }
