@@ -5,6 +5,17 @@
 先放一个类图，在请求地址映射过程中，会依次执行到这些方法：
 ![[RequestMappingHandlerMapping 1.png]]
 
+讲解之前，先总结`RequestMappingHandlerMapping`的请求地址映射流程：
+1. 获取`handler`
+	1. 解析`request`，获取请求路径`path`
+	2. 根据`path`查找`pathLookup`缓存，获取路径匹配的`RequestMappingInfo`列表
+	3. 对上述`RequestMappingInfo`列表进行筛选，获取条件匹配的`RequestMappingInfo`列表
+	4. 对上述`RequestMappingInfo`列表进行排序，获取匹配度最高的`RequestMappingInfo`
+	5. 根据上述`RequestMappingInfo`，获取对应`MappingRegistration`的`HandlerMethod`作为`handler`返回
+2. 创建`HandlerExecutionChain`对象
+3. 添加配置拦截器
+4. 添加跨域拦截器
+
 # 1 HandlerMapping
 首先，`DispatcherServlet`会调用`HandlerMapping`接口的`getHandler()`方法：
 ```java
@@ -286,12 +297,61 @@ protected String initLookupPath(HttpServletRequest request) {
    }  
 }
 ```
+
 ## 3.2 根据请求路径查找HandlerMethod
 在`AbstractHandlerMethodMapping#lookupHandlerMethod`方法中，会按如下步骤获取`HandlerMethod`：
 1. 根据请求路径从`pathLookup`映射缓存查找对应的`RequestMappingInfo`列表。
 2. 根据`RequestMappingInfo`从`registry`缓存中获取对应的`MappingRegistration`列表。
 3. 根据当前`request`，对`MappingRegistration`列表按匹配度进行排序。
 4. 从中取匹配度最高的`HandlerMethod`进行返回。
+
+`AbstractHandlerMethodMapping#lookupHandlerMethod`源码如下：
+```java
+protected HandlerMethod lookupHandlerMethod(String lookupPath, HttpServletRequest request) throws Exception {  
+   List<Match> matches = new ArrayList<>();  
+   List<T> directPathMatches = this.mappingRegistry.getMappingsByDirectPath(lookupPath);  
+   if (directPathMatches != null) {  
+      addMatchingMappings(directPathMatches, matches, request);  
+   }  
+   if (matches.isEmpty()) {  
+      addMatchingMappings(this.mappingRegistry.getRegistrations().keySet(), matches, request);  
+   }  
+   if (!matches.isEmpty()) {  
+      Match bestMatch = matches.get(0);  
+      if (matches.size() > 1) {  
+         Comparator<Match> comparator = new MatchComparator(getMappingComparator(request));  
+         matches.sort(comparator);  
+         bestMatch = matches.get(0);  
+         if (logger.isTraceEnabled()) {  
+            logger.trace(matches.size() + " matching mappings: " + matches);  
+         }  
+         if (CorsUtils.isPreFlightRequest(request)) {  
+            for (Match match : matches) {  
+               if (match.hasCorsConfig()) {  
+                  return PREFLIGHT_AMBIGUOUS_MATCH;  
+               }  
+            }  
+         }  
+         else {  
+            Match secondBestMatch = matches.get(1);  
+            if (comparator.compare(bestMatch, secondBestMatch) == 0) {  
+               Method m1 = bestMatch.getHandlerMethod().getMethod();  
+               Method m2 = secondBestMatch.getHandlerMethod().getMethod();  
+               String uri = request.getRequestURI();  
+               throw new IllegalStateException(  
+                     "Ambiguous handler methods mapped for '" + uri + "': {" + m1 + ", " + m2 + "}");  
+            }  
+         }  
+      }  
+      request.setAttribute(BEST_MATCHING_HANDLER_ATTRIBUTE, bestMatch.getHandlerMethod());  
+      handleMatch(bestMatch.mapping, lookupPath, request);  
+      return bestMatch.getHandlerMethod();  
+   }  
+   else {  
+      return handleNoMatch(this.mappingRegistry.getRegistrations().keySet(), lookupPath, request);  
+   }  
+}
+```
 
 ### 3.2.1 查找pathLookup缓存
 在`RequestMappingHandlerMapping`请求地址映射的初始化过程中，会将`@RequestMapping`中的信息缓存到`pathLookup`中，其中该注解的请求路径作为`key`，该注解的各属性封装成`RequestMappingInfo`作为值。
@@ -302,7 +362,7 @@ protected String initLookupPath(HttpServletRequest request) {
 
 所以，一个请求地址实际上可能映射着多个`HandlerMethod`。
 
-这是我们可能忽视的一个Spring MVC特性。例如，我们可以定义如下接口：
+例如，我们可以定义如下接口：
 ```java
 @RestController
 public class SamePathController {
@@ -329,5 +389,163 @@ List<RequestMappingInfo> directPathMatches = this.mappingRegistry.getMappingsByD
 
 `registry`的类型是`Map<T, MappingRegistration<T>>`，这里的`T`指的是`RequestMappingInfo`。
 
-需要注意的是，由于`RequestMappingInfo`包含了一个接口的全部信息，因此`registry`中的`key`可以唯一定位到该接口。此时`RequestMappingInfo`和`MappingRegistration`是一一对应的。
+需要注意的是，由于`RequestMappingInfo`根据接口的`@RequestMapping`信息进行构造，如果存在`@RequestMapping`信息完全相同的多个接口，项目是无法启动的。
 
+因此，`RequestMappingInfo`可以唯一定位到该接口，即`RequestMappingInfo`和`MappingRegistration`是一一对应的。我们也可以将`RequestMappingInfo`等效于实际接口。
+
+我们可以总结一下`pathLookup`和`registry`缓存的关系：
+![[RequestMappingHandlerMapping映射缓存.png]]
+
+回到`AbstractHandlerMethodMapping#getHandlerInternal`源码：
+```java
+if (directPathMatches != null) {  
+   addMatchingMappings(directPathMatches, matches, request);  
+}  
+if (matches.isEmpty()) {  
+   addMatchingMappings(this.mappingRegistry.getRegistrations().keySet(), matches, request);  
+}
+```
+
+存在两种情况：
+1. 如果在`pathLookup`缓存中找到对应`List<RequestMappingInfo>`，会进一步从该列表中查找更加匹配的`RequestMappingInfo`，并根据该`RequestMapping`从`registry`缓存中找到对应的`MappingRegistration`，封装成`Match`对象返回。
+2. 如果在`pathLookup`缓存中没有找到对应`List<RequestMappingInfo>`，会遍历`registry`缓存中的所有`key`，从中查找更加匹配的`RequestMappingInfo`，并根据该`RequestMapping`从`registry`缓存中找到对应的`MappingRegistration`，封装成`Match`对象返回。
+
+具体流程对应的`AbstractHandlerMethodMapping#addMatchingMappings`源码如下：
+```java
+private void addMatchingMappings(Collection<T> mappings, List<Match> matches, HttpServletRequest request) {  
+   for (T mapping : mappings) {  
+      T match = getMatchingMapping(mapping, request);  
+      if (match != null) {  
+         matches.add(new Match(match, this.mappingRegistry.getRegistrations().get(mapping)));  
+      }  
+   }  
+}
+```
+
+查找更加匹配的`RequestMappingInfo`对应的是`RequestMappingInfoHandlerMapping#getMatchingMapping`方法：
+```java
+protected RequestMappingInfo getMatchingMapping(RequestMappingInfo info, HttpServletRequest request) {  
+   return info.getMatchingCondition(request);  
+}
+```
+
+`RequestMappingInfo#getMatchingCondition`方法会对请求的`methods`、`params`、`consumes`、`produces`以及`path`进行校验，只有所有条件通过才会返回该`RequestMappingInfo`，否则会返回`null`。具体源码如下：
+```java
+public RequestMappingInfo getMatchingCondition(HttpServletRequest request) {  
+   RequestMethodsRequestCondition methods = this.methodsCondition.getMatchingCondition(request);  
+   if (methods == null) {  
+      return null;  
+   }  
+   ParamsRequestCondition params = this.paramsCondition.getMatchingCondition(request);  
+   if (params == null) {  
+      return null;  
+   }  
+   HeadersRequestCondition headers = this.headersCondition.getMatchingCondition(request);  
+   if (headers == null) {  
+      return null;  
+   }  
+   ConsumesRequestCondition consumes = this.consumesCondition.getMatchingCondition(request);  
+   if (consumes == null) {  
+      return null;  
+   }  
+   ProducesRequestCondition produces = this.producesCondition.getMatchingCondition(request);  
+   if (produces == null) {  
+      return null;  
+   }  
+   PathPatternsRequestCondition pathPatterns = null;  
+   if (this.pathPatternsCondition != null) {  
+      pathPatterns = this.pathPatternsCondition.getMatchingCondition(request);  
+      if (pathPatterns == null) {  
+         return null;  
+      }  
+   }  
+   PatternsRequestCondition patterns = null;  
+   if (this.patternsCondition != null) {  
+      patterns = this.patternsCondition.getMatchingCondition(request);  
+      if (patterns == null) {  
+         return null;  
+      }  
+   }  
+   RequestConditionHolder custom = this.customConditionHolder.getMatchingCondition(request);  
+   if (custom == null) {  
+      return null;  
+   }  
+   return new RequestMappingInfo(this.name, pathPatterns, patterns,  
+         methods, params, headers, consumes, produces, custom, this.options);  
+}
+```
+
+通常情况下，通过这种判断可以筛选出唯一一个对应的`RequestMappingInfo`，除非是我们定义的接口比较特殊。
+
+例如，我们定义接口如下：
+```java
+@RestController
+public class SamePathController {
+	@RequestMapping(value = "samePath", method = {RequestMethod.GET, RequestMethod.POST})
+	public String getAndPost() {
+		return "getAndPost";
+	}
+	@PostMapping("/samePath")
+	public String post() {
+		return "post";
+	}
+}
+```
+
+此时，请求`GET localhost:8080/samePath`，可以筛选出来唯一一个定位到`getAndPost()`接口的`RequestMappingInfo`；请求`POST localhost:8080/samePath`，值可以筛选出两个分别定义到`getAndPost()`和`post()`方法的`RequestMappingInfo`，因为它们的规则都满足条件，需要进一步筛选。
+
+### 3.2.3 按匹配度排序
+通常情况下，通过上述步骤可以筛选出唯一一个`RequestMappingInfo`。
+
+但是也有可能定义出条件重叠的接口（不推荐），此时会筛选出多个`RequestMappingInfo`。此时，需要根据某种规则进行匹配度排序。
+
+`RequestMappingInfo`对于匹配度排序的规则是：
+1. 比较`methods`、`params`和`headers`等条件的长度：越短越具体，匹配度越高。
+2. 长度相等时，比较其他特殊规则：例如`methods`包含`HEAD`方法的匹配度高。
+
+具体实现源码在`RequestMappingInfo#compareTo`：
+```java
+public int compareTo(RequestMappingInfo other, HttpServletRequest request) {  
+   int result;  
+   // Automatic vs explicit HTTP HEAD mapping  
+   if (HttpMethod.HEAD.matches(request.getMethod())) {  
+      result = this.methodsCondition.compareTo(other.getMethodsCondition(), request);  
+      if (result != 0) {  
+         return result;  
+      }  
+   }  
+   result = getActivePatternsCondition().compareTo(other.getActivePatternsCondition(), request);  
+   if (result != 0) {  
+      return result;  
+   }  
+   result = this.paramsCondition.compareTo(other.getParamsCondition(), request);  
+   if (result != 0) {  
+      return result;  
+   }  
+   result = this.headersCondition.compareTo(other.getHeadersCondition(), request);  
+   if (result != 0) {  
+      return result;  
+   }  
+   result = this.consumesCondition.compareTo(other.getConsumesCondition(), request);  
+   if (result != 0) {  
+      return result;  
+   }  
+   result = this.producesCondition.compareTo(other.getProducesCondition(), request);  
+   if (result != 0) {  
+      return result;  
+   }  
+   // Implicit (no method) vs explicit HTTP method mappings  
+   result = this.methodsCondition.compareTo(other.getMethodsCondition(), request);  
+   if (result != 0) {  
+      return result;  
+   }  
+   result = this.customConditionHolder.compareTo(other.customConditionHolder, request);  
+   if (result != 0) {  
+      return result;  
+   }  
+   return 0;  
+}
+```
+
+### 3.2.4 获取匹配度最高的HandlerMethod
+通过上述步骤，我们最终获取到匹配度最高的`RequestMappingInfo`，直接取对应`MappingRegistration`的`HandlerMethod`成员变量返回即可。

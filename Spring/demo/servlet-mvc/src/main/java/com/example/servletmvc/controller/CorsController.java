@@ -21,16 +21,21 @@ public class CorsController implements CorsConfigurationSource {
     @Autowired
     private DispatcherServlet dispatcherServlet;
 
-    @GetMapping("cors")
-    public String getCors() {
+    @RequestMapping(value = "cors", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getAndPostCors() {
         System.out.println("Hello Cors!");
-        return "Hello getCors!";
+        return "Hello getAndPostCors!";
     }
     @PostMapping("cors")
     public String postCors() {
         System.out.println("Hello Cors!");
         return "Hello postCors!";
     }
+//    @PostMapping("cors")
+//    public String postCors2() {
+//        System.out.println("Hello Cors!");
+//        return "Hello postCors!";
+//    }
     @RequestMapping("corsResponse")
     public String corsResponse(HttpServletResponse response) {
         response.addHeader("Access-Control-Allow-Origin", "*");
