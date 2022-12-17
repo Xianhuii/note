@@ -27,3 +27,51 @@ public interface HandlerInterceptor {
 
 在后续流程中，会依次在各个节点调用`HandlerInterceptor`的方法。
 
+下图表示完整请求流程中`HandlerInterceptor`调用的节点：
+![[HandlerInterceptor.png]]
+
+如果在`preHandle()`阶段就有某个拦截器校验不通过，会从上一个拦截器开始执行`afterCompletion()`进行返回，流程如下：
+![[HandlerInterceptor-fail.png]]
+
+`HandlerInterceptor`的执行顺序是通过`HandlerExecutionChain`的`interceptorIndex`成员变量决定的，它的默认值是`-1`。
+
+上述流程图的执行原理可以通过相关源码验证，`HandlerExecutionChain#applyPreHandle`源码如下：
+```java
+boolean applyPreHandle(HttpServletRequest request, HttpServletResponse response) throws Exception {  
+   for (int i = 0; i < this.interceptorList.size(); i++) {  
+      HandlerInterceptor interceptor = this.interceptorList.get(i);  
+      if (!interceptor.preHandle(request, response, this.handler)) {  
+         triggerAfterCompletion(request, response, null);  
+         return false;  
+      }  
+      this.interceptorIndex = i;  
+   }  
+   return true;  
+}
+```
+
+`HandlerExecutionChain#applyPostHandle`源码如下：
+```java
+void applyPostHandle(HttpServletRequest request, HttpServletResponse response, @Nullable ModelAndView mv) throws Exception {  
+   for (int i = this.interceptorList.size() - 1; i >= 0; i--) {  
+      HandlerInterceptor interceptor = this.interceptorList.get(i);  
+      interceptor.postHandle(request, response, this.handler, mv);  
+   }  
+}
+```
+
+`HandlerExecutionChain#triggerAfterCompletion`源码如下：
+```java
+void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, @Nullable Exception ex) {  
+   for (int i = this.interceptorIndex; i >= 0; i--) {  
+      HandlerInterceptor interceptor = this.interceptorList.get(i);  
+      try {  
+         interceptor.afterCompletion(request, response, this.handler, ex);  
+      }  
+      catch (Throwable ex2) {  
+         logger.error("HandlerInterceptor.afterCompletion threw exception", ex2);  
+      }  
+   }  
+}
+```
+
