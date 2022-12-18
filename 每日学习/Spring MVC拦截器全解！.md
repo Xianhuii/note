@@ -94,3 +94,74 @@ public class WebConfig implements WebMvcConfigurer {  
 }
 ```
 
+在项目启动时，`DelegatingWebMvcConfiguration`会加载所有`WebMvcConfigurer`类型的`bean`，缓存到`configurers`成员变量中：
+```java
+@Configuration(proxyBeanMethods = false)  
+public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {  
+   private final WebMvcConfigurerComposite configurers = new WebMvcConfigurerComposite();
+   @Autowired(required = false)  
+   public void setConfigurers(List<WebMvcConfigurer> configurers) {  
+      if (!CollectionUtils.isEmpty(configurers)) {  
+         this.configurers.addWebMvcConfigurers(configurers);  
+      }  
+   }
+}
+```
+
+`DelegationWebMvcConfiguration`的父类`WebMvcConfigurationSupport`会初始化`requestMappingHandlerMapping`、`beanNameHandlerMapping`以及`routerFunctionMapping`等基础`HandlerMapping`实现类。
+
+在初始化过程中，会从上述`configurers`中获取配置的拦截器，设置到各个`HandlerMapping`实现类中。
+
+例如，`requestMappingHandlerMapping`初始化设置拦截器流程如下：
+```java
+@Bean
+public RequestMappingHandlerMapping requestMappingHandlerMapping(  
+      @Qualifier("mvcContentNegotiationManager") ContentNegotiationManager contentNegotiationManager,  
+      @Qualifier("mvcConversionService") FormattingConversionService conversionService,  
+      @Qualifier("mvcResourceUrlProvider") ResourceUrlProvider resourceUrlProvider) {  
+   RequestMappingHandlerMapping mapping = createRequestMappingHandlerMapping();  
+   mapping.setOrder(0);  
+   mapping.setInterceptors(getInterceptors(conversionService, resourceUrlProvider));  
+   // 省略……
+   return mapping;  
+}
+```
+
+`WebMvcConfigurationSupport#getInterceptors`方法源码如下：
+```java
+protected final Object[] getInterceptors(  
+      FormattingConversionService mvcConversionService,  
+      ResourceUrlProvider mvcResourceUrlProvider) {  
+   if (this.interceptors == null) {  
+      InterceptorRegistry registry = new InterceptorRegistry();  
+      addInterceptors(registry);  
+      registry.addInterceptor(new ConversionServiceExposingInterceptor(mvcConversionService));  
+      registry.addInterceptor(new ResourceUrlProviderExposingInterceptor(mvcResourceUrlProvider));  
+      this.interceptors = registry.getInterceptors();  
+   }  
+   return this.interceptors.toArray();  
+}
+```
+
+其中，`DelegatingWebMvcConfiguration#addInterceptors`方法会从`configurers`中添加开发人员自定义的拦截器：
+```java
+protected void addInterceptors(InterceptorRegistry registry) {  
+   this.configurers.addInterceptors(registry);  
+}
+```
+
+`WebMvcConfigurerComposite#addInterceptors`会遍历所有`WebMvcConfigurer`实现类，调用其`addInterceptors()`方法（也就是开发人员注册拦截器的方法），加载所有自定义的拦截器：
+```java
+public void addInterceptors(InterceptorRegistry registry) {  
+   for (WebMvcConfigurer delegate : this.delegates) {  
+      delegate.addInterceptors(registry);  
+   }  
+}
+```
+
+自此，完成了自定义拦截器的加载流程，我们可以总结出流程图如下：
+
+
+需要注意的是，在`HandlerMapping`初始化过程中，会添加一些默认的拦截器，例如`ConversionServiceExposingInterceptor`和`ResourceUrlProviderExposingInterceptor`，感兴趣的可以自行去查看相关源码。
+
+跨域拦截器是在请求处理过程中，根据跨域配置动态添加的，无需自定拦截器。
