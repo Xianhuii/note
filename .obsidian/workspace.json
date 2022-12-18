@@ -4,14 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "004a864566bcf94b",
+        "id": "d3b69aebd8f48d0f",
         "type": "tabs",
         "children": [
           {
-            "id": "de04e1579f6dee4f",
+            "id": "d52edc0bf917f346",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {}
             }
           }
@@ -136,7 +136,7 @@
     "direction": "horizontal",
     "width": 344.5
   },
-  "active": "de04e1579f6dee4f",
+  "active": "d52edc0bf917f346",
   "lastOpenFiles": [
     "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
     "每日学习/12、RequestMappingHandlerAdapter是如何处理handler的？.md",
