@@ -160,8 +160,8 @@ public void addInterceptors(InterceptorRegistry registry) {
 ```
 
 自此，完成了自定义拦截器的加载流程，我们可以总结出流程图如下：
+![[HandlerInterceptor加载流程.drawio.png]]
 
-
-需要注意的是，在`HandlerMapping`初始化过程中，会添加一些默认的拦截器，例如`ConversionServiceExposingInterceptor`和`ResourceUrlProviderExposingInterceptor`，感兴趣的可以自行去查看相关源码。
-
-跨域拦截器是在请求处理过程中，根据跨域配置动态添加的，无需自定拦截器。
+其他小细节：
+- 在`HandlerMapping`初始化过程中，会添加一些默认的拦截器，例如`ConversionServiceExposingInterceptor`和`ResourceUrlProviderExposingInterceptor`，感兴趣的可以自行去查看相关源码。
+- 跨域拦截器是在请求处理过程中，根据跨域配置动态添加的，无需自定拦截器。
