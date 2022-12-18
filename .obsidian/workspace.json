@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "be18c11021b97863",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "每日学习/深入剖析RequestMappingHandlerAdapter初始化流程！.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/Spring MVC拦截器全解！.md",
+                "file": "每日学习/深入剖析RequestMappingHandlerAdapter初始化流程！.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/Spring MVC拦截器全解！.md",
+                "file": "每日学习/深入剖析RequestMappingHandlerAdapter初始化流程！.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/Spring MVC拦截器全解！.md"
+                "file": "每日学习/深入剖析RequestMappingHandlerAdapter初始化流程！.md"
               }
             }
           },
@@ -145,10 +158,10 @@
     "width": 200,
     "collapsed": true
   },
-  "active": "becb47f0165951a0",
+  "active": "be18c11021b97863",
   "lastOpenFiles": [
-    "每日学习/attachments/HandlerInterceptor.png",
     "每日学习/Spring MVC拦截器全解！.md",
+    "每日学习/attachments/HandlerInterceptor.png",
     "HandlerInterceptor.drawio.png.md",
     "每日学习/attachments/HandlerInterceptor.drawio.png",
     "每日学习/RequestMappingHandlerMapping请求地址映射流程！.md",
