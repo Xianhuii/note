@@ -11,8 +11,13 @@
             "id": "d52edc0bf917f346",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -65,7 +70,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -81,6 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +126,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md"
+              }
             }
           },
           {
@@ -134,9 +144,9 @@
       }
     ],
     "direction": "horizontal",
-    "width": 344.5
+    "width": 200
   },
-  "active": "d52edc0bf917f346",
+  "active": "b0a56dff85469e9a",
   "lastOpenFiles": [
     "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
     "每日学习/12、RequestMappingHandlerAdapter是如何处理handler的？.md",
