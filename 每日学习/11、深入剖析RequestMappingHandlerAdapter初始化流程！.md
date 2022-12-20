@@ -6,7 +6,7 @@
 
 # 1 初始化核心功能组件
 ## 1.1 HttpMessageConverter
-`RequestMappingHandlerAdapter`会使用`HttpMessageConverter<T>`对消息进行类型转换：
+`RequestMappingHandlerAdapter`会使用`HttpMessageConverter<T>`，根据HTTP请求的`Content-Type`，对HTTP请求数据进行类型转换：
 1. 读取`HttpInputMessage`消息，转换成对应的类型`T`数据。
 2. 将类型`T`的数据，输出到`HttpOutputMessage`中。
 
@@ -28,5 +28,8 @@ public RequestMappingHandlerAdapter() {
 }
 ```
 
+默认添加的`HttpMessageConverter`实现类、支持的`Content-type`以及转换数据类型`T`如下：
+- `ByteArrayHttpMessageConverter`：`application/octet-stream`和`*/*`：`byte[]`
+- `StringHttpMessageConverter`：
 
 # 2 初始化bean
