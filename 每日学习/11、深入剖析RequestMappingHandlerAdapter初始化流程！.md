@@ -117,7 +117,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 initBinderAdviceCache、modelAttributeAdviceCache和requestResponseBodyAdvice会在对应的节点，调用`@ControllerAdvice`标注的`bean`中对应的方法。
 
-### 1.2.1 RequestMappingHandlerAdapter#afterPropertiesSet
-
+### 1.2.1 RequestMappingHandlerAdapter#initControllerAdviceCache
+在RequestMappingHandlerAdapter#afterPropertiesSet方法中，
 
 # 2 初始化bean
