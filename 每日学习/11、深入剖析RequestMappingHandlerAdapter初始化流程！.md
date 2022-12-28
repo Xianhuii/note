@@ -5,7 +5,7 @@
 之前的文章详细总结了`RequestMappingHandlerMapp`的相关知识，本文开始介绍`RequestMappingHandlerAdapter`的初始化流程。
 
 # 1 初始化核心功能组件
-## 1.1 messageConverters
+## 1.1 初始化messageConverters
 `messageConverters`成员变量是`RequestMappingHandlerAdapter`类型的列表。
 
 `RequestMappingHandlerAdapter`会使用`HttpMessageConverter<T>`，根据HTTP请求的`Content-Type`，对HTTP请求数据进行类型转换：
@@ -110,7 +110,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 1. 使用`configureMessageConverters()`添加自定义`HttpMessageConverter`后，将不会调用`addDefaultHttpMessageConverters()`方法添加默认的`HttpMessageConverter`，这意味着很多默认功能都不能实现。
 2. 使用`extendMessageConverters`可以在默认`HttpMessageConverter`的基础上，额外添加自定义的`HttpMessageConverter`，可以继续使用默认的消息转换功能。
 
-## 1.2 initBinderAdviceCache、modelAttributeAdviceCache和requestResponseBodyAdvice
+## 1.2 初始化ControllerAdviceBean
 `initBinderAdviceCache`和`modelAttributeAdviceCache`都是`Map<ControllerAdviceBean, Set<Method>>`类型的成员变量。
 
 `requestResponseBodyAdvice`的数据类型是`List<Object>`，它实际会存储`ControllerAdviceBean`的元素。
@@ -119,5 +119,8 @@ initBinderAdviceCache、modelAttributeAdviceCache和requestResponseBodyAdvice会
 
 ### 1.2.1 RequestMappingHandlerAdapter#initControllerAdviceCache
 
+## 1.3 初始化HandlerMethodArgumentResolver
+
+## 1.4 初始化HandlerMethodReturnValueHandler
 
 # 2 初始化bean

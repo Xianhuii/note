@@ -13,14 +13,25 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
+                "file": "每日学习/12、RequestMappingHandlerAdapter处理handler流程.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
+          },
+          {
+            "id": "cc85ce9e9ea354b5",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.1.8"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -70,8 +81,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -87,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
+                "file": "每日学习/12、RequestMappingHandlerAdapter处理handler流程.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
+                "file": "每日学习/12、RequestMappingHandlerAdapter处理handler流程.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md"
+                "file": "每日学习/12、RequestMappingHandlerAdapter处理handler流程.md"
               }
             }
           },
@@ -146,10 +156,21 @@
     "direction": "horizontal",
     "width": 200
   },
-  "active": "b0a56dff85469e9a",
+  "left-ribbon": {
+    "hiddenItems": {
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "cc85ce9e9ea354b5",
   "lastOpenFiles": [
     "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
-    "每日学习/12、RequestMappingHandlerAdapter是如何处理handler的？.md",
+    "每日学习/12、RequestMappingHandlerAdapter处理handler流程.md",
     "Spring全家桶/SpringMVC/10、Spring MVC请求地址映射详解：HandlerMapping.md",
     "Spring全家桶/SpringMVC/6、RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
     "Spring全家桶/SpringMVC/4、DispatcherServlet是怎么初始化各核心功能的？.md",
