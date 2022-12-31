@@ -188,3 +188,20 @@ public void handleReturnValue(@Nullable Object returnValue, MethodParameter retu
 }
 ```
 
+在`HandlerMethodReturnValueHandlerComposite#selectHandler`方法中，会遍历`returnValueHandlers`，调用其`HandlerMethodReturnValueHandler#supportsReturnType`实现方法找到对应返回值处理器。：
+```java
+private HandlerMethodReturnValueHandler selectHandler(@Nullable Object value, MethodParameter returnType) {  
+   boolean isAsyncValue = isAsyncReturnValue(value, returnType);  
+   for (HandlerMethodReturnValueHandler handler : this.returnValueHandlers) {  
+      if (isAsyncValue && !(handler instanceof AsyncHandlerMethodReturnValueHandler)) {  
+         continue;  
+      }  
+      if (handler.supportsReturnType(returnType)) {  
+         return handler;  
+      }  
+   }  
+   return null;  
+}
+```
+
+找到
