@@ -129,7 +129,7 @@ public Object invokeForRequest(NativeWebRequest request, @Nullable ModelAndViewC
 
 根据形参的类型不同（HttpServletRequest等），形参上标注的注解不同（`@RequestBody`等），会调用不同的解析器实现类进行处理。
 
-根据解析器实现类的不同，在解析过程中，会进行数据绑定、消息转换和参数校验（后续会分别写文章介绍各个常用解析器实现类）：
+根据解析器实现类的不同，在解析过程中，会进行数据绑定、消息转换和参数校验：
 ```java
 protected Object[] getMethodArgumentValues(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer, Object... providedArgs) throws Exception {  
    // 1、获取方法的形参信息
