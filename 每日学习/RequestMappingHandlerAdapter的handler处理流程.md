@@ -26,7 +26,9 @@ public final boolean supports(Object handler) {
 实际上，`RequestMappingHandlerAdapter`处理`handler`过程中还有许多细节，比如前后端不分离项目的视图相关处理（没有必要花费时间深入学习），异步请求的相关处理（会另外写文章）。
 
 # 0 预备知识
-`RequestMappingHandlerAdapter`中有许多重要的成员变量，
+`RequestMappingHandlerAdapter`中有许多成员变量，在请求处理过程中起着重要的作用。
+
+
 
 # 1 初始化流程
 在`RequestMappingHandlerAdapter`内部，有两个方法用于初始化。一个是构造函数，另一个是实现`org.springframework.beans.factory.InitializingBean`的`afterPropertiesSet()`方法。
@@ -53,10 +55,151 @@ public RequestMappingHandlerAdapter() {
 ```
 
 ## 1.2 afterPropertiesSet()
+在`RequestMappingHandlerAdapter#afterPropertiesSet()`方法中，会对`argumentResolvers`、`initBinderArgumentResolvers`和`returnValueHandlers`等进行初始化：
+```java
+public void afterPropertiesSet() {  
+   // Do this first, it may add ResponseBody advice beans  
+   initControllerAdviceCache();  
+  
+   if (this.argumentResolvers == null) {  
+      List<HandlerMethodArgumentResolver> resolvers = getDefaultArgumentResolvers();  
+      this.argumentResolvers = new HandlerMethodArgumentResolverComposite().addResolvers(resolvers);  
+   }  
+   if (this.initBinderArgumentResolvers == null) {  
+      List<HandlerMethodArgumentResolver> resolvers = getDefaultInitBinderArgumentResolvers();  
+      this.initBinderArgumentResolvers = new HandlerMethodArgumentResolverComposite().addResolvers(resolvers);  
+   }  
+   if (this.returnValueHandlers == null) {  
+      List<HandlerMethodReturnValueHandler> handlers = getDefaultReturnValueHandlers();  
+      this.returnValueHandlers = new HandlerMethodReturnValueHandlerComposite().addHandlers(handlers);  
+   }  
+}
+```
+### 1.2.1 initControllerAdviceCache
+在`RequestMappingHandlerAdapter#initControllerAdviceCache()`方法中，会从容器中获取所有`@ControllerAdvice`标注的`bean`。然后缓存这些`bean`中标注`@RequestMapping&@ModelAttribute`（`modelAttributeAdviceCache`）和`@InitBinder`（`initBinderAdviceChache`）等注解的方法，并且直接缓存实现`RequestBodyAdvice`或`ResponseBodyAdvice`的`bean`（`requestResponseBodyAdvice`）。
+```java
+private void initControllerAdviceCache() {  
+   if (getApplicationContext() == null) {  
+      return;  
+   }  
+  
+   List<ControllerAdviceBean> adviceBeans = ControllerAdviceBean.findAnnotatedBeans(getApplicationContext());  
+  
+   List<Object> requestResponseBodyAdviceBeans = new ArrayList<>();  
+  
+   for (ControllerAdviceBean adviceBean : adviceBeans) {  
+      Class<?> beanType = adviceBean.getBeanType();  
+      if (beanType == null) {  
+         throw new IllegalStateException("Unresolvable type for ControllerAdviceBean: " + adviceBean);  
+      }  
+      Set<Method> attrMethods = MethodIntrospector.selectMethods(beanType, MODEL_ATTRIBUTE_METHODS);  
+      if (!attrMethods.isEmpty()) {  
+         this.modelAttributeAdviceCache.put(adviceBean, attrMethods);  
+      }  
+      Set<Method> binderMethods = MethodIntrospector.selectMethods(beanType, INIT_BINDER_METHODS);  
+      if (!binderMethods.isEmpty()) {  
+         this.initBinderAdviceCache.put(adviceBean, binderMethods);  
+      }  
+      if (RequestBodyAdvice.class.isAssignableFrom(beanType) || ResponseBodyAdvice.class.isAssignableFrom(beanType)) {  
+         requestResponseBodyAdviceBeans.add(adviceBean);  
+      }  
+   }  
+  
+   if (!requestResponseBodyAdviceBeans.isEmpty()) {  
+      this.requestResponseBodyAdvice.addAll(0, requestResponseBodyAdviceBeans);  
+   }  
+}
+```
 
+### 1.2.2 getDefaultXxx()方法
+通过`getDefaultArgumentResolvers()`、`getDefaultInitBinderArgumentResolvers()`和`getDefaultResurnValueHandlers()`方法分别对`argumentResolvers`、`initBinderArgumentResolvers`和`returnValueHandlers`进行初始化。
+
+在这些`getDefaultXxx()`方法中，一方面会按一定顺序添加一系列默认的处理器对象，另一方面会通过`getCustomXxx()`方法获取开发人员自定义的处理器对象（可通过`WevMvcConfigurer`添加）。
+
+例如，`RequestMappingHandlerAdapter#getDefaultArgumentResolvers()`方法会添加一系列默认的参数解析器，并且通过`getCustomArgumentResolvers()`方法获取开发人员自定义的参数解析器：
+```java
+private List<HandlerMethodArgumentResolver> getDefaultArgumentResolvers() {  
+   List<HandlerMethodArgumentResolver> resolvers = new ArrayList<>(30);  
+  
+   // Annotation-based argument resolution  
+   resolvers.add(new RequestParamMethodArgumentResolver(getBeanFactory(), false));  
+   resolvers.add(new RequestParamMapMethodArgumentResolver());  
+   resolvers.add(new PathVariableMethodArgumentResolver());  
+   resolvers.add(new PathVariableMapMethodArgumentResolver());  
+   resolvers.add(new MatrixVariableMethodArgumentResolver());  
+   resolvers.add(new MatrixVariableMapMethodArgumentResolver());  
+   resolvers.add(new ServletModelAttributeMethodProcessor(false));  
+   resolvers.add(new RequestResponseBodyMethodProcessor(getMessageConverters(), this.requestResponseBodyAdvice));  
+   resolvers.add(new RequestPartMethodArgumentResolver(getMessageConverters(), this.requestResponseBodyAdvice));  
+   resolvers.add(new RequestHeaderMethodArgumentResolver(getBeanFactory()));  
+   resolvers.add(new RequestHeaderMapMethodArgumentResolver());  
+   resolvers.add(new ServletCookieValueMethodArgumentResolver(getBeanFactory()));  
+   resolvers.add(new ExpressionValueMethodArgumentResolver(getBeanFactory()));  
+   resolvers.add(new SessionAttributeMethodArgumentResolver());  
+   resolvers.add(new RequestAttributeMethodArgumentResolver());  
+  
+   // Type-based argument resolution  
+   resolvers.add(new ServletRequestMethodArgumentResolver());  
+   resolvers.add(new ServletResponseMethodArgumentResolver());  
+   resolvers.add(new HttpEntityMethodProcessor(getMessageConverters(), this.requestResponseBodyAdvice));  
+   resolvers.add(new RedirectAttributesMethodArgumentResolver());  
+   resolvers.add(new ModelMethodProcessor());  
+   resolvers.add(new MapMethodProcessor());  
+   resolvers.add(new ErrorsMethodArgumentResolver());  
+   resolvers.add(new SessionStatusMethodArgumentResolver());  
+   resolvers.add(new UriComponentsBuilderMethodArgumentResolver());  
+   if (KotlinDetector.isKotlinPresent()) {  
+      resolvers.add(new ContinuationHandlerMethodArgumentResolver());  
+   }  
+  
+   // Custom arguments  
+   if (getCustomArgumentResolvers() != null) {  
+      resolvers.addAll(getCustomArgumentResolvers());  
+   }  
+  
+   // Catch-all  
+   resolvers.add(new PrincipalMethodArgumentResolver());  
+   resolvers.add(new RequestParamMethodArgumentResolver(getBeanFactory(), true));  
+   resolvers.add(new ServletModelAttributeMethodProcessor(true));  
+  
+   return resolvers;
+```
 
 ## 1.3 WebMvcConfigurationSupport
+在`WebMvcConfigurationSupport#requestMappingHandlerAdapter()`中，会完成`requestMappingHandlerAdapter`的`bean`的创建，对`contentNegotiationManager`、`messageConverters`、`webBindingInitializer`、`customArgumentResolvers`和`customReturnValueHandlers`等基础成员变量，以及异步请求的`taskExecutor`、`asyncRequestTimeout`、`callableInterceptors`和`deferredResultInterceptors`等成员变量进行初始化：
+```java
+public RequestMappingHandlerAdapter requestMappingHandlerAdapter(  
+      @Qualifier("mvcContentNegotiationManager") ContentNegotiationManager contentNegotiationManager,  
+      @Qualifier("mvcConversionService") FormattingConversionService conversionService,  
+      @Qualifier("mvcValidator") Validator validator) {  
+  
+   RequestMappingHandlerAdapter adapter = createRequestMappingHandlerAdapter();  
+   adapter.setContentNegotiationManager(contentNegotiationManager);  
+   adapter.setMessageConverters(getMessageConverters());  
+   adapter.setWebBindingInitializer(getConfigurableWebBindingInitializer(conversionService, validator));  
+   adapter.setCustomArgumentResolvers(getArgumentResolvers());  
+   adapter.setCustomReturnValueHandlers(getReturnValueHandlers());  
+  
+   if (jackson2Present) {  
+      adapter.setRequestBodyAdvice(Collections.singletonList(new JsonViewRequestBodyAdvice()));  
+      adapter.setResponseBodyAdvice(Collections.singletonList(new JsonViewResponseBodyAdvice()));  
+   }  
+  
+   AsyncSupportConfigurer configurer = getAsyncSupportConfigurer();  
+   if (configurer.getTaskExecutor() != null) {  
+      adapter.setTaskExecutor(configurer.getTaskExecutor());  
+   }  
+   if (configurer.getTimeout() != null) {  
+      adapter.setAsyncRequestTimeout(configurer.getTimeout());  
+   }  
+   adapter.setCallableInterceptors(configurer.getCallableInterceptors());  
+   adapter.setDeferredResultInterceptors(configurer.getDeferredResultInterceptors());  
+  
+   return adapter;  
+}
+```
 
+在初始化过程中，一方面会为这些成员添加一系列默认对象，另一方面会从`WebMvcConfigurer`中获取开发人员自定义的对象。
 
 # 2 同步请求处理流程
 首先，`DispatcherServlet`会调用`HandlerAdapter`接口的`handle()`方法。
@@ -277,3 +420,187 @@ public void handleReturnValue(@Nullable Object returnValue, MethodParameter retu
 # 3 HandlerMethodArgumentResolver实现类
 
 # 4 HandlerMethodReturnValueHandler实现类
+## 4.1 RequestResponseBodyMethodProcessor
+`RequestResponseBodyMethodProcessor`是前后端分离项目中使用最多的`HandlerMethodReturnValueHandler`实现类，它可以处理`@ResponseBody`标注的返回值。
+
+### 4.1.1 supportsReturnType()方法
+`RequestResponseBodyMethodProcessor#supportsReturnType()`方法会判断类或方法上是否标注`@RequestBody`注解：
+```java
+public boolean supportsReturnType(MethodParameter returnType) {  
+   return (AnnotatedElementUtils.hasAnnotation(returnType.getContainingClass(), ResponseBody.class) ||  
+         returnType.hasMethodAnnotation(ResponseBody.class));  
+}
+```
+
+### 4.1.2 handleReturnValue()方法
+`RequestResponseBodyMethodProcessor#handleReturnValue()`方法会根据响应的`Content-Type`，将返回值格式化成对应数据格式，写道输出流进行响应：
+```java
+public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,  
+      ModelAndViewContainer mavContainer, NativeWebRequest webRequest)  
+      throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {  
+  
+   mavContainer.setRequestHandled(true);  
+   ServletServerHttpRequest inputMessage = createInputMessage(webRequest);  
+   ServletServerHttpResponse outputMessage = createOutputMessage(webRequest);  
+  
+   // Try even with null return value. ResponseBodyAdvice could get involved.  
+   writeWithMessageConverters(returnValue, returnType, inputMessage, outputMessage);  
+}
+```
+
+实际业务在`AbstractMessageConverterMethodProcessor#writeWithMessageConverters()`方法，
+```java
+protected <T> void writeWithMessageConverters(@Nullable T value, MethodParameter returnType,  
+      ServletServerHttpRequest inputMessage, ServletServerHttpResponse outputMessage)  
+      throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {  
+  
+   Object body;  
+   Class<?> valueType;  
+   Type targetType;  
+  
+   // 如果返回值是CharSequence类型，valueType和targetType都设置成String类型
+   if (value instanceof CharSequence) {  
+      body = value.toString();  
+      valueType = String.class;  
+      targetType = String.class;  
+   }  
+   // 如果返回值不是CharSequence，valueType设置成对应返回值类型，
+   else {  
+      body = value;  
+      valueType = getReturnValueType(body, returnType);  
+      targetType = GenericTypeResolver.resolveType(getGenericType(returnType), returnType.getContainingClass());  
+   }  
+  
+   if (isResourceType(value, returnType)) {  
+      outputMessage.getHeaders().set(HttpHeaders.ACCEPT_RANGES, "bytes");  
+      if (value != null && inputMessage.getHeaders().getFirst(HttpHeaders.RANGE) != null &&  
+            outputMessage.getServletResponse().getStatus() == 200) {  
+         Resource resource = (Resource) value;  
+         try {  
+            List<HttpRange> httpRanges = inputMessage.getHeaders().getRange();  
+            outputMessage.getServletResponse().setStatus(HttpStatus.PARTIAL_CONTENT.value());  
+            body = HttpRange.toResourceRegions(httpRanges, resource);  
+            valueType = body.getClass();  
+            targetType = RESOURCE_REGION_LIST_TYPE;  
+         }  
+         catch (IllegalArgumentException ex) {  
+            outputMessage.getHeaders().set(HttpHeaders.CONTENT_RANGE, "bytes */" + resource.contentLength());  
+            outputMessage.getServletResponse().setStatus(HttpStatus.REQUESTED_RANGE_NOT_SATISFIABLE.value());  
+         }  
+      }  
+   }  
+  
+   MediaType selectedMediaType = null;  
+   MediaType contentType = outputMessage.getHeaders().getContentType();  
+   boolean isContentTypePreset = contentType != null && contentType.isConcrete();  
+   if (isContentTypePreset) {  
+      if (logger.isDebugEnabled()) {  
+         logger.debug("Found 'Content-Type:" + contentType + "' in response");  
+      }  
+      selectedMediaType = contentType;  
+   }  
+   else {  
+      HttpServletRequest request = inputMessage.getServletRequest();  
+      List<MediaType> acceptableTypes;  
+      try {  
+         acceptableTypes = getAcceptableMediaTypes(request);  
+      }  
+      catch (HttpMediaTypeNotAcceptableException ex) {  
+         int series = outputMessage.getServletResponse().getStatus() / 100;  
+         if (body == null || series == 4 || series == 5) {  
+            if (logger.isDebugEnabled()) {  
+               logger.debug("Ignoring error response content (if any). " + ex);  
+            }  
+            return;  
+         }  
+         throw ex;  
+      }  
+      List<MediaType> producibleTypes = getProducibleMediaTypes(request, valueType, targetType);  
+  
+      if (body != null && producibleTypes.isEmpty()) {  
+         throw new HttpMessageNotWritableException(  
+               "No converter found for return value of type: " + valueType);  
+      }  
+      List<MediaType> mediaTypesToUse = new ArrayList<>();  
+      for (MediaType requestedType : acceptableTypes) {  
+         for (MediaType producibleType : producibleTypes) {  
+            if (requestedType.isCompatibleWith(producibleType)) {  
+               mediaTypesToUse.add(getMostSpecificMediaType(requestedType, producibleType));  
+            }  
+         }  
+      }  
+      if (mediaTypesToUse.isEmpty()) {  
+         if (logger.isDebugEnabled()) {  
+            logger.debug("No match for " + acceptableTypes + ", supported: " + producibleTypes);  
+         }  
+         if (body != null) {  
+            throw new HttpMediaTypeNotAcceptableException(producibleTypes);  
+         }  
+         return;  
+      }  
+  
+      MediaType.sortBySpecificityAndQuality(mediaTypesToUse);  
+  
+      for (MediaType mediaType : mediaTypesToUse) {  
+         if (mediaType.isConcrete()) {  
+            selectedMediaType = mediaType;  
+            break;  
+         }  
+         else if (mediaType.isPresentIn(ALL_APPLICATION_MEDIA_TYPES)) {  
+            selectedMediaType = MediaType.APPLICATION_OCTET_STREAM;  
+            break;  
+         }  
+      }  
+  
+      if (logger.isDebugEnabled()) {  
+         logger.debug("Using '" + selectedMediaType + "', given " +  
+               acceptableTypes + " and supported " + producibleTypes);  
+      }  
+   }  
+  
+   if (selectedMediaType != null) {  
+      selectedMediaType = selectedMediaType.removeQualityValue();  
+      for (HttpMessageConverter<?> converter : this.messageConverters) {  
+         GenericHttpMessageConverter genericConverter = (converter instanceof GenericHttpMessageConverter ?  
+               (GenericHttpMessageConverter<?>) converter : null);  
+         if (genericConverter != null ?  
+               ((GenericHttpMessageConverter) converter).canWrite(targetType, valueType, selectedMediaType) :  
+               converter.canWrite(valueType, selectedMediaType)) {  
+            body = getAdvice().beforeBodyWrite(body, returnType, selectedMediaType,  
+                  (Class<? extends HttpMessageConverter<?>>) converter.getClass(),  
+                  inputMessage, outputMessage);  
+            if (body != null) {  
+               Object theBody = body;  
+               LogFormatUtils.traceDebug(logger, traceOn ->  
+                     "Writing [" + LogFormatUtils.formatValue(theBody, !traceOn) + "]");  
+               addContentDispositionHeader(inputMessage, outputMessage);  
+               if (genericConverter != null) {  
+                  genericConverter.write(body, targetType, selectedMediaType, outputMessage);  
+               }  
+               else {  
+                  ((HttpMessageConverter) converter).write(body, selectedMediaType, outputMessage);  
+               }  
+            }  
+            else {  
+               if (logger.isDebugEnabled()) {  
+                  logger.debug("Nothing to write: null body");  
+               }  
+            }  
+            return;  
+         }  
+      }  
+   }  
+  
+   if (body != null) {  
+      Set<MediaType> producibleMediaTypes =  
+            (Set<MediaType>) inputMessage.getServletRequest()  
+                  .getAttribute(HandlerMapping.PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE);  
+  
+      if (isContentTypePreset || !CollectionUtils.isEmpty(producibleMediaTypes)) {  
+         throw new HttpMessageNotWritableException(  
+               "No converter for [" + valueType + "] with preset Content-Type '" + contentType + "'");  
+      }  
+      throw new HttpMediaTypeNotAcceptableException(getSupportedMediaTypes(body.getClass()));  
+   }  
+}
+```
