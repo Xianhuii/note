@@ -26,9 +26,36 @@ public final boolean supports(Object handler) {
 实际上，`RequestMappingHandlerAdapter`处理`handler`过程中还有许多细节，比如前后端不分离项目的视图相关处理（没有必要花费时间深入学习），异步请求的相关处理（会另外写文章）。
 
 # 0 预备知识
-
+`RequestMappingHandlerAdapter`中有许多重要的成员变量，
 
 # 1 初始化流程
+在`RequestMappingHandlerAdapter`内部，有两个方法用于初始化。一个是构造函数，另一个是实现`org.springframework.beans.factory.InitializingBean`的`afterPropertiesSet()`方法。
+
+在Spring Boot中，会在`WebMvcConfigurationSupport`中进行完整的初始化。
+
+## 1.1 构造函数
+构造函数中主要是对`messageConverters`进行初始化，添加一些必备的消息转换器。实际上，`WebMvcConfigurationSupport`中会进行覆盖，因此不过多描述：
+```java
+public RequestMappingHandlerAdapter() {  
+   this.messageConverters = new ArrayList<>(4);  
+   this.messageConverters.add(new ByteArrayHttpMessageConverter());  
+   this.messageConverters.add(new StringHttpMessageConverter());  
+   if (!shouldIgnoreXml) {  
+      try {  
+         this.messageConverters.add(new SourceHttpMessageConverter<>());  
+      }  
+      catch (Error err) {  
+         // Ignore when no TransformerFactory implementation is available  
+      }  
+   }  
+   this.messageConverters.add(new AllEncompassingFormHttpMessageConverter());  
+}
+```
+
+## 1.2 afterPropertiesSet()
+
+
+## 1.3 WebMvcConfigurationSupport
 
 
 # 2 同步请求处理流程
