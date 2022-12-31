@@ -25,9 +25,13 @@ public final boolean supports(Object handler) {
 
 实际上，`RequestMappingHandlerAdapter`处理`handler`过程中还有许多细节，比如前后端不分离项目的视图相关处理（没有必要花费时间深入学习），异步请求的相关处理（会另外写文章）。
 
-# 1 预备知识
+# 0 预备知识
 
-# 2 处理流程
+
+# 1 初始化流程
+
+
+# 2 同步请求处理流程
 首先，`DispatcherServlet`会调用`HandlerAdapter`接口的`handle()`方法。
 
 `AbstractHandlerMethodAdapter`对`handle()`方法的实现只是做了一个类型转换：
@@ -53,6 +57,7 @@ protected ModelAndView handleInternal(HttpServletRequest request,
 }
 ```
 
+## 2.1 预处理：添加处理器
 在`RequestMappingHandlerAdapter#invokeHandlerMethod()`方法中，会进行如下处理：
 1. 将`request`和`response`封装成`ServletWebRequest`对象，便于后续处理。
 2. 将`handler`封装成`ServletInvocableHandlerMethod`对象`invocableMethod`。
@@ -109,6 +114,7 @@ public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer 
 }
 ```
 
+## 2.2 形参对象解析
 在`InvocableHandlerMethod#invokeForRequest()`方法中，会进行参数解析（将`request`中的数据解析成`handler`方法的形参对象），然后通过反射调用对应方法，获取返回值：
 ```java
 public Object invokeForRequest(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer, Object... providedArgs) throws Exception {  
@@ -163,6 +169,7 @@ protected Object[] getMethodArgumentValues(NativeWebRequest request, @Nullable M
 }
 ```
 
+## 2.3 执行方法
 回到`InvocableHandlerMethod#invokeForRequest()`方法，解析方法形参后，会调用`InvocableHandlerMethod#doInvoke()`方法，通过反射调用方法，并传入`handler`对应的控制层`bean`作为触发对象，以及上述形参对象：
 ```java
 protected Object doInvoke(Object... args) throws Exception {  
@@ -176,6 +183,7 @@ protected Object doInvoke(Object... args) throws Exception {
 }
 ```
 
+## 2.4 返回值处理
 回到`ServletInvocableHandlerMethod#invokeAndHandle()`方法，此时获取了`handler`方法执行完成的返回值，会调用`HandlerMethodReturnValueHandlerComposite#handleReturnValue()`方法对返回值进行处理。首先会根据返回值信息`MethodParameter`对象查找支持的返回值处理器`HandlerMethodReturnValueHandler`，然后使用该处理器对返回值进行处理：
 ```java
 public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,  
@@ -204,4 +212,41 @@ private HandlerMethodReturnValueHandler selectHandler(@Nullable Object value, Me
 }
 ```
 
-找到
+找到返回值处理器后，就可以通过其`handleReturnValue()`方法对返回值进行处理。
+
+举个有实战意义的例子，`@ResponseBody`的`HandlerMethodReturnValueHandler`实现类是`RequestResponseBodyMethodProcessor`。
+
+`RequestResponseBodyMethodProcessor`的`supportsReturnType()`方法会判断返回值是否标有`ResponseBody`注解：
+```java
+public boolean supportsReturnType(MethodParameter returnType) {  
+   return (AnnotatedElementUtils.hasAnnotation(returnType.getContainingClass(), ResponseBody.class) ||  
+         returnType.hasMethodAnnotation(ResponseBody.class));  
+}
+```
+
+`RequestResponseBodyMethodProcessor`的`handleReturnValue()`方法会根据返回的`Content-Type`对返回值进行对应格式化，并写入到输出流中：
+```java
+public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,  
+      ModelAndViewContainer mavContainer, NativeWebRequest webRequest)  
+      throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {  
+  
+   mavContainer.setRequestHandled(true);  
+   ServletServerHttpRequest inputMessage = createInputMessage(webRequest);  
+   ServletServerHttpResponse outputMessage = createOutputMessage(webRequest);  
+  
+   // Try even with null return value. ResponseBodyAdvice could get involved.  
+   writeWithMessageConverters(returnValue, returnType, inputMessage, outputMessage);  
+}
+```
+
+至此，我们走完了`RequestMappingHandlerAdapter`对同步请求的完整处理流程（前后端分离）。简单来说，会经过一下主要步骤：
+1. 初始化请求处理的工具：`argumentResolvers`、`returnValueHandlers`、`binderFactory`和`parameterNameDiscoverer`等。
+2. 解析形参对象
+3. 执行方法
+4. 返回值处理
+
+实际上`RequestMappingHandlerAdapter`中还会对异步请求进行处理，这部分我们会在之后的文章进行详细介绍。
+
+# 3 HandlerMethodArgumentResolver实现类
+
+# 4 HandlerMethodReturnValueHandler实现类
