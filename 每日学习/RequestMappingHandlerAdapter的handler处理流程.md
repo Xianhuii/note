@@ -464,13 +464,13 @@ protected <T> void writeWithMessageConverters(@Nullable T value, MethodParameter
       valueType = String.class;  
       targetType = String.class;  
    }  
-   // 如果返回值不是CharSequence，valueType设置成对应返回值类型，
+   // 如果返回值不是CharSequence，valueType设置成对应返回值类型，targetType会设置成解析泛型后的返回值类型
    else {  
       body = value;  
       valueType = getReturnValueType(body, returnType);  
       targetType = GenericTypeResolver.resolveType(getGenericType(returnType), returnType.getContainingClass());  
    }  
-  
+   // 如果是返回值继承自Resource
    if (isResourceType(value, returnType)) {  
       outputMessage.getHeaders().set(HttpHeaders.ACCEPT_RANGES, "bytes");  
       if (value != null && inputMessage.getHeaders().getFirst(HttpHeaders.RANGE) != null &&  
@@ -490,6 +490,7 @@ protected <T> void writeWithMessageConverters(@Nullable T value, MethodParameter
       }  
    }  
   
+   // 获取响应的Content-Type
    MediaType selectedMediaType = null;  
    MediaType contentType = outputMessage.getHeaders().getContentType();  
    boolean isContentTypePreset = contentType != null && contentType.isConcrete();  
@@ -557,15 +558,17 @@ protected <T> void writeWithMessageConverters(@Nullable T value, MethodParameter
                acceptableTypes + " and supported " + producibleTypes);  
       }  
    }  
-  
+   // 根据响应Content-Type格式化返回值，并写到输出流
    if (selectedMediaType != null) {  
       selectedMediaType = selectedMediaType.removeQualityValue();  
       for (HttpMessageConverter<?> converter : this.messageConverters) {  
          GenericHttpMessageConverter genericConverter = (converter instanceof GenericHttpMessageConverter ?  
                (GenericHttpMessageConverter<?>) converter : null);  
+         // 根据响应Content-Type获取对应的messageConverter
          if (genericConverter != null ?  
                ((GenericHttpMessageConverter) converter).canWrite(targetType, valueType, selectedMediaType) :  
                converter.canWrite(valueType, selectedMediaType)) {  
+            // RequestResponseBodyAdviceChain的beforeBodyWrite()处理
             body = getAdvice().beforeBodyWrite(body, returnType, selectedMediaType,  
                   (Class<? extends HttpMessageConverter<?>>) converter.getClass(),  
                   inputMessage, outputMessage);  
@@ -574,6 +577,7 @@ protected <T> void writeWithMessageConverters(@Nullable T value, MethodParameter
                LogFormatUtils.traceDebug(logger, traceOn ->  
                      "Writing [" + LogFormatUtils.formatValue(theBody, !traceOn) + "]");  
                addContentDispositionHeader(inputMessage, outputMessage);  
+               // 通过messageConverter格式化返回值，并写到输出流
                if (genericConverter != null) {  
                   genericConverter.write(body, targetType, selectedMediaType, outputMessage);  
                }  
@@ -590,17 +594,6 @@ protected <T> void writeWithMessageConverters(@Nullable T value, MethodParameter
          }  
       }  
    }  
-  
-   if (body != null) {  
-      Set<MediaType> producibleMediaTypes =  
-            (Set<MediaType>) inputMessage.getServletRequest()  
-                  .getAttribute(HandlerMapping.PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE);  
-  
-      if (isContentTypePreset || !CollectionUtils.isEmpty(producibleMediaTypes)) {  
-         throw new HttpMessageNotWritableException(  
-               "No converter for [" + valueType + "] with preset Content-Type '" + contentType + "'");  
-      }  
-      throw new HttpMediaTypeNotAcceptableException(getSupportedMediaTypes(body.getClass()));  
-   }  
 }
 ```
+
