@@ -176,4 +176,15 @@ protected Object doInvoke(Object... args) throws Exception {
 }
 ```
 
-回到`ServletInvocableHandlerMethod#invokeAndHandle()`方法，此时获取了`handler`方法执行完成的返回值，会调用`HandlerMethodReturnValueHandlerComposite#handleReturnValue()`方法对返回值进行处理。
+回到`ServletInvocableHandlerMethod#invokeAndHandle()`方法，此时获取了`handler`方法执行完成的返回值，会调用`HandlerMethodReturnValueHandlerComposite#handleReturnValue()`方法对返回值进行处理。首先会根据返回值信息`MethodParameter`对象查找支持的返回值处理器`HandlerMethodReturnValueHandler`，然后使用该处理器对返回值进行处理：
+```java
+public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,  
+      ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {  
+   // 1、查找返回值处理器
+   HandlerMethodReturnValueHandler handler = selectHandler(returnValue, returnType);  
+
+   // 2、返回值处理
+   handler.handleReturnValue(returnValue, returnType, mavContainer, webRequest);  
+}
+```
+
