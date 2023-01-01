@@ -33,9 +33,22 @@ public final boolean supports(Object handler) {
 
 简单来说，就是将HTTP请求中的数据，转换成`handler`方法中的形参对象。
 
-`argumentResolvers`使用了组合模式，它的类型是`HandlerMethodArgumentResolverComposite`，其内部缓存`HandlerMethodArgumentResolver`对象。
+`argumentResolvers`使用了组合模式，它的类型是`HandlerMethodArgumentResolverComposite`，其内部缓存`HandlerMethodArgumentResolver`对象，用来进行参数解析。
+
+`HandlerMethodArgumentResolverComposite`中包含`argumentResolvers`和`argumentResolverCache`两个成员变量。在初始化时，会将所有配置的参数解析器缓存到`argumentResolvers`中。第一次解析参数时，会遍历`argumentResolvers`获取对应参数解析器，并缓存到`argumentResolverCache`中，后续再次解析该参数可直接从键值对中获取，提高效率。
 
 ![[HandlerMethodArgumentResolverComposite.png]]
+
+实际进行参数解析的是`HandlerMethodArgumentResolver`实现类。它们使用了策略模式，通过`supportsParameter()`方法获取支持的参数解析器，通过`resolveArgument()`方法进行参数解析。
+
+![[HandlerMethodArgumentResolver.png]]
+
+## 0.2 customArgumentResolvers
+`customArgumentResolvers`是用于缓存开发人员自定义的参数解析器，即通过`WebMvcConfigurer#addArgumentResolvers()`方法添加的解析器。
+
+在`RequestMappingHandlerAdapter`初始化时，会将`customArgumentResolvers`中的自定义参数解析器添加到`argumentResolvers`中。
+
+## 0.3 returnValueHandlers
 
 # 1 初始化流程
 在`RequestMappingHandlerAdapter`内部，有两个方法用于初始化。一个是构造函数，另一个是实现`org.springframework.beans.factory.InitializingBean`的`afterPropertiesSet()`方法。
