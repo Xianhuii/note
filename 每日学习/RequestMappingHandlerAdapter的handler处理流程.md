@@ -430,7 +430,7 @@ public boolean supportsParameter(MethodParameter parameter) {
 ```
 
 ### 3.1.2 resolveArgument()方法
-
+`RequestResponseBodyMethodProcessor#resolveArgument()`方法会从输入流中读取数据，转换成形参对象，并且对其进行数据校验：
 ```java
 public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,  
       NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {  
@@ -455,6 +455,108 @@ public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewC
    }  
   
    return adaptArgumentIfNecessary(arg, parameter);  
+}
+```
+
+`AbstractMessageConverterMethodArgumentResolver#readWithMessageConverters()`方法会根据`Content-Type`从输入流读取数据，并创建成形参对象：
+```java
+protected <T> Object readWithMessageConverters(HttpInputMessage inputMessage, MethodParameter parameter,  
+      Type targetType) throws IOException, HttpMediaTypeNotSupportedException, HttpMessageNotReadableException {  
+  
+   // 获取请求Content-Type
+   MediaType contentType;  
+   boolean noContentType = false;  
+   try {  
+      contentType = inputMessage.getHeaders().getContentType();  
+   }  
+   catch (InvalidMediaTypeException ex) {  
+      throw new HttpMediaTypeNotSupportedException(ex.getMessage());  
+   }  
+   if (contentType == null) {  
+      noContentType = true;  
+      contentType = MediaType.APPLICATION_OCTET_STREAM;  
+   }  
+  
+   // 获取形参类型
+   Class<?> contextClass = parameter.getContainingClass();  
+   Class<T> targetClass = (targetType instanceof Class ? (Class<T>) targetType : null);  
+   if (targetClass == null) {  
+      ResolvableType resolvableType = ResolvableType.forMethodParameter(parameter);  
+      targetClass = (Class<T>) resolvableType.resolve();  
+   }  
+  
+   HttpMethod httpMethod = (inputMessage instanceof HttpRequest ? ((HttpRequest) inputMessage).getMethod() : null);  
+   Object body = NO_VALUE;  
+  
+   // 根据Content-Type使用对应messageConverter读取并转换数据
+   EmptyBodyCheckingHttpInputMessage message = null;  
+   try {  
+      message = new EmptyBodyCheckingHttpInputMessage(inputMessage);  
+  
+      for (HttpMessageConverter<?> converter : this.messageConverters) {  
+         Class<HttpMessageConverter<?>> converterType = (Class<HttpMessageConverter<?>>) converter.getClass();  
+         GenericHttpMessageConverter<?> genericConverter =  
+               (converter instanceof GenericHttpMessageConverter ? (GenericHttpMessageConverter<?>) converter : null);  
+         // 根据Content-Type获取对应的messageConverter
+         if (genericConverter != null ? genericConverter.canRead(targetType, contextClass, contentType) :  
+               (targetClass != null && converter.canRead(targetClass, contentType))) {  
+            if (message.hasBody()) {  
+               // RequestBodyAdvice#beforeBodyRead()处理
+               HttpInputMessage msgToUse =  
+                     getAdvice().beforeBodyRead(message, parameter, targetType, converterType);  
+               // 读取并转换数据
+               body = (genericConverter != null ? genericConverter.read(targetType, contextClass, msgToUse) :  
+                     ((HttpMessageConverter<T>) converter).read(targetClass, msgToUse));  
+               // RequestBodyAdvice#afterBodyRead()处理
+               body = getAdvice().afterBodyRead(body, msgToUse, parameter, targetType, converterType);  
+            }  
+            else {  
+               body = getAdvice().handleEmptyBody(null, message, parameter, targetType, converterType);  
+            }  
+            break;  
+         }  
+      }  
+   }  
+   catch (IOException ex) {  
+      throw new HttpMessageNotReadableException("I/O error while reading input message", ex, inputMessage);  
+   }  
+   finally {  
+      if (message != null && message.hasBody()) {  
+         closeStreamIfNecessary(message.getBody());  
+      }  
+   }  
+  
+   if (body == NO_VALUE) {  
+      if (httpMethod == null || !SUPPORTED_METHODS.contains(httpMethod) ||  
+            (noContentType && !message.hasBody())) {  
+         return null;  
+      }  
+      throw new HttpMediaTypeNotSupportedException(contentType,  
+            getSupportedMediaTypes(targetClass != null ? targetClass : Object.class));  
+   }  
+  
+   MediaType selectedContentType = contentType;  
+   Object theBody = body;  
+   LogFormatUtils.traceDebug(logger, traceOn -> {  
+      String formatted = LogFormatUtils.formatValue(theBody, !traceOn);  
+      return "Read \"" + selectedContentType + "\" to [" + formatted + "]";  
+   });  
+  
+   return body;  
+}
+```
+
+`AbstractMessageConverterMethodArgumentResolver#validateIfApplicable()`方法会对标注`javax.validation.Valid`、`org.springframework.validation.annotation.Validated`以及以`Valid`开头的自定义注解进行参数校验：
+```java
+protected void validateIfApplicable(WebDataBinder binder, MethodParameter parameter) {  
+   Annotation[] annotations = parameter.getParameterAnnotations();  
+   for (Annotation ann : annotations) {  
+      Object[] validationHints = ValidationAnnotationUtils.determineValidationHints(ann);  
+      if (validationHints != null) {  
+         binder.validate(validationHints);  
+         break;  
+      }  
+   }  
 }
 ```
 
@@ -607,7 +709,7 @@ protected <T> void writeWithMessageConverters(@Nullable T value, MethodParameter
          if (genericConverter != null ?  
                ((GenericHttpMessageConverter) converter).canWrite(targetType, valueType, selectedMediaType) :  
                converter.canWrite(valueType, selectedMediaType)) {  
-            // RequestResponseBodyAdviceChain的beforeBodyWrite()处理
+            // ResponseBodyAdvice的beforeBodyWrite()处理
             body = getAdvice().beforeBodyWrite(body, returnType, selectedMediaType,  
                   (Class<? extends HttpMessageConverter<?>>) converter.getClass(),  
                   inputMessage, outputMessage);  
