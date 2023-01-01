@@ -431,6 +431,32 @@ public boolean supportsParameter(MethodParameter parameter) {
 
 ### 3.1.2 resolveArgument()方法
 
+```java
+public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,  
+      NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {  
+  
+   parameter = parameter.nestedIfOptional();  
+   // 从输入流中读取数据，并构造成形参对象
+   Object arg = readWithMessageConverters(webRequest, parameter, parameter.getNestedGenericParameterType());  
+   String name = Conventions.getVariableNameForParameter(parameter);  
+  
+   if (binderFactory != null) {  
+      WebDataBinder binder = binderFactory.createBinder(webRequest, arg, name);  
+      if (arg != null) {  
+         // 数据校验
+         validateIfApplicable(binder, parameter);  
+         if (binder.getBindingResult().hasErrors() && isBindExceptionRequired(binder, parameter)) {  
+            throw new MethodArgumentNotValidException(parameter, binder.getBindingResult());  
+         }  
+      }  
+      if (mavContainer != null) {  
+         mavContainer.addAttribute(BindingResult.MODEL_KEY_PREFIX + name, binder.getBindingResult());  
+      }  
+   }  
+  
+   return adaptArgumentIfNecessary(arg, parameter);  
+}
+```
 
 # 4 HandlerMethodReturnValueHandler实现类
 ## 4.1 RequestResponseBodyMethodProcessor
