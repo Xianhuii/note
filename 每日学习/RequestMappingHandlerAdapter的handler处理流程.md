@@ -28,7 +28,14 @@ public final boolean supports(Object handler) {
 # 0 预备知识
 `RequestMappingHandlerAdapter`中有许多成员变量，在请求处理过程中起着重要的作用。
 
+## 0.1 argumentResolvers
+`argumentResolvers`是参数解析器，`RequestMappingHandlerAdapter`使用`argumentResolvers`进行参数解析。
 
+简单来说，就是将HTTP请求中的数据，转换成`handler`方法中的形参对象。
+
+`argumentResolvers`使用了组合模式，它的类型是`HandlerMethodArgumentResolverComposite`，其内部缓存`HandlerMethodArgumentResolver`对象，
+
+![[HandlerMethodArgumentResolverComposite.png]]
 
 # 1 初始化流程
 在`RequestMappingHandlerAdapter`内部，有两个方法用于初始化。一个是构造函数，另一个是实现`org.springframework.beans.factory.InitializingBean`的`afterPropertiesSet()`方法。
