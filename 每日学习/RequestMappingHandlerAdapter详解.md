@@ -49,6 +49,18 @@ public final boolean supports(Object handler) {
 在`RequestMappingHandlerAdapter`初始化时，会将`customArgumentResolvers`中的自定义参数解析器添加到`argumentResolvers`中。
 
 ## 0.3 returnValueHandlers
+`returnValueHandlers`是返回值处理器，它可以对控制层业务返回值进行处理。
+
+例如，对`@ResponseBody`标注的返回值进行JSON格式化，并写到输出流。
+
+`returnValueHandlers`使用了组合模式，它的类型是`HandlerMethodReturnValueHandlerComposite`，其内部缓存`HandlerMethodReturnValueHandler`对象，用来进行返回值处理。
+
+![[HandlerMethodReturnValueHandlerComposite 1.png]]
+
+## 0.4 customReturnValueHandlers
+`customReturnValueHandlers`是用于缓存开发人员自定义的参数解析器，即通过`WebMvcConfigurer#addReturnValueHandlers()`方法添加的解析器。
+
+在`RequestMappingHandlerAdapter`初始化时，会将`customReturnValueHandlers`中的自定义参数解析器添加到`returnValueHandlers`中。
 
 # 1 初始化流程
 在`RequestMappingHandlerAdapter`内部，有两个方法用于初始化。一个是构造函数，另一个是实现`org.springframework.beans.factory.InitializingBean`的`afterPropertiesSet()`方法。

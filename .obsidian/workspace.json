@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/RequestMappingHandlerAdapter的handler处理流程.md",
+                "file": "每日学习/RequestMappingHandlerAdapter详解.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/RequestMappingHandlerAdapter的handler处理流程.md",
+                "file": "每日学习/RequestMappingHandlerAdapter详解.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/RequestMappingHandlerAdapter的handler处理流程.md",
+                "file": "每日学习/RequestMappingHandlerAdapter详解.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/RequestMappingHandlerAdapter的handler处理流程.md"
+                "file": "每日学习/RequestMappingHandlerAdapter详解.md"
               }
             }
           },
@@ -158,15 +158,15 @@
   },
   "active": "d52edc0bf917f346",
   "lastOpenFiles": [
+    "attachments/RequestMappingHandlerAdapter.png",
+    "每日学习/RequestMappingHandlerAdapter详解.md",
     "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
-    "每日学习/RequestMappingHandlerAdapter的handler处理流程.md",
     "Spring全家桶/SpringMVC/10、Spring MVC请求地址映射详解：HandlerMapping.md",
     "Spring全家桶/SpringMVC/6、RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
     "Spring全家桶/SpringMVC/4、DispatcherServlet是怎么初始化各核心功能的？.md",
     "Spring全家桶/SpringMVC/3、梳理DispatcherServlet核心功能！.md",
     "Spring/SpringMVC/HandlerAdapter【草稿】.md",
     "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
-    "Spring/SpringMVC/HandlerExceptionResolver【草稿】.md",
-    "Spring/SpringMVC/HandlerMapping【草稿】.md"
+    "Spring/SpringMVC/HandlerExceptionResolver【草稿】.md"
   ]
 }
