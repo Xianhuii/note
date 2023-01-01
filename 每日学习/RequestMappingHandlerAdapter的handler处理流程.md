@@ -33,7 +33,7 @@ public final boolean supports(Object handler) {
 
 简单来说，就是将HTTP请求中的数据，转换成`handler`方法中的形参对象。
 
-`argumentResolvers`使用了组合模式，它的类型是`HandlerMethodArgumentResolverComposite`，其内部缓存`HandlerMethodArgumentResolver`对象，
+`argumentResolvers`使用了组合模式，它的类型是`HandlerMethodArgumentResolverComposite`，其内部缓存`HandlerMethodArgumentResolver`对象。
 
 ![[HandlerMethodArgumentResolverComposite.png]]
 
