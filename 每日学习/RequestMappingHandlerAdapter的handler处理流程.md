@@ -419,6 +419,17 @@ public void handleReturnValue(@Nullable Object returnValue, MethodParameter retu
 
 # 3 HandlerMethodArgumentResolver实现类
 ## 3.1 RequestResponseBodyMethodProcessor
+`RequestResponseBodyMethodProcessor`是前后端分离项目中使用最多的`HandlerMethodArgumentResolver`实现类，它可以处理`@RequestBody`标注的形参。
+
+### 3.1.1 supportsParameter()方法
+`RequestResponseBodyMethodProcessor#supportsParameter()`方法会判断形参上是否标注`@RequestBody`注解：
+```java
+public boolean supportsParameter(MethodParameter parameter) {  
+   return parameter.hasParameterAnnotation(RequestBody.class);  
+}
+```
+
+### 3.1.2 resolveArgument()方法
 
 
 # 4 HandlerMethodReturnValueHandler实现类
