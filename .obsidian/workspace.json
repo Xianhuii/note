@@ -11,8 +11,13 @@
             "id": "dcee5b7ce075a3f0",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "每日学习/12、.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "每日学习/12、.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "每日学习/12、.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "每日学习/12、.md"
+              }
             }
           },
           {
@@ -151,7 +160,7 @@
   "lastOpenFiles": [
     "Spring全家桶/SpringMVC/11、RequestMappingHandlerAdapter详解.md",
     "attachments/RequestMappingHandlerAdapter.png",
-    "每日学习/11、深入剖析RequestMappingHandlerAdapter初始化流程！.md",
+    "每日学习/12、.md",
     "Spring全家桶/SpringMVC/10、Spring MVC请求地址映射详解：HandlerMapping.md",
     "Spring全家桶/SpringMVC/6、RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
     "Spring全家桶/SpringMVC/4、DispatcherServlet是怎么初始化各核心功能的？.md",
