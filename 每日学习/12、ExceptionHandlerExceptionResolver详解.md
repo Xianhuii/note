@@ -60,7 +60,26 @@ java.lang.ArithmeticException
 `exceptionHandlerAdviceCache`是`@ControllerAdvice`全局异常处理器的缓存。
 
 ## 2.2 类层次结构
+`ExceptionHandlerExceptionResolver`的类层次结构以及核心方法如下：
+![[ExceptionHandlerExceptionResolver 1.png]]
+
+实现了`ApplicationContextAware`接口，可以获取Spring容器`applicationContext`。
+
+实现了`InitializingBean`接口，可以在`afterPropertiesSet()`方法中进行初始化。
+
+实现`HandlerExceptionResolver`体系，在处理异常时，会依次调用以下核心方法：
+1. `HandlerExceptionResolver#resolveException()`
+2. `AbstractHandlerExceptionResolver#resolveException()`
+3. `AbstractHandlerExceptionResolver#doResolveException()`
+4. `AbstractHandlerMethodExceptionResolver#doResolveException()`
+5. `AbstractHandlerMethodExceptionResolver#doResolveHandlerMethodException()`
+6. `ExceptionHandlerExceptionResolver#doResolveHandlerMethodException()`
+7. `ExceptionHandlerExceptionResolver#getExceptionHandlerMethod()`
+8. `ServletInvocableHandlerMethod#invokeAndHandle()`
 
 # 3 初始化流程
+`ExceptionHandlerExceptionResolver`的初始化流程与`RequestMappingHandlerMapping`、`RequestMappingHandlerAdapter`类似：
+1. 在构造方法中进行`messageConverters`的初始化，会被`WebMvcConfigurationSupport`覆盖。
+2. 在`afterPropertiesSet()`中
 
 # 4 异常处理流程
