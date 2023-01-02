@@ -22,7 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="" />
+    <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/12、ExceptionHandlerExceptionResolver详解.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/12、ExceptionHandlerExceptionResolver详解.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -246,7 +249,7 @@
       <workItem from="1671717034954" duration="470000" />
       <workItem from="1671717520782" duration="98000" />
       <workItem from="1671717636430" duration="17521000" />
-      <workItem from="1672144377186" duration="35761000" />
+      <workItem from="1672144377186" duration="39991000" />
     </task>
     <servers />
   </component>
@@ -412,10 +415,10 @@
     </state>
     <state x="2749" y="112" key="new project wizard/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1672142531742" />
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="450" y="208" width="672" height="522" key="search.everywhere.popup" timestamp="1672627788509">
+    <state x="451" y="209" width="672" height="522" key="search.everywhere.popup" timestamp="1672628384150">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="450" y="208" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1672627788509" />
+    <state x="451" y="209" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1672628384150" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1671891515546" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1670462508888" />
