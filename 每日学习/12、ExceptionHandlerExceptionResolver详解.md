@@ -80,6 +80,7 @@ java.lang.ArithmeticException
 # 3 初始化流程
 `ExceptionHandlerExceptionResolver`的初始化流程与`RequestMappingHandlerMapping`、`RequestMappingHandlerAdapter`类似：
 1. 在构造方法中进行`messageConverters`的初始化，会被`WebMvcConfigurationSupport`覆盖。
-2. 在`afterPropertiesSet()`中
+2. 在`afterPropertiesSet()`中对`exceptionHandlerAdviceCache`、`responseBodyAdvice`、`argumentResolvers`和`returnValueHandlers`等进行初始化。
+3. 
 
 # 4 异常处理流程
