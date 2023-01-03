@@ -8,17 +8,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="websocket" />
+        <module name="spring-transaction" />
         <module name="servlet-mvc" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="servlet-mvc" target="1.8" />
+      <module name="spring-transaction" target="1.8" />
       <module name="websocket" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="servlet-mvc" options="-parameters" />
+      <module name="spring-transaction" options="-parameters" />
       <module name="websocket" options="-parameters" />
     </option>
   </component>

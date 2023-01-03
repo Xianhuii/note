@@ -1,3 +1,15 @@
+GET http://localhost:8080/test
+
+<> 2023-01-03T094622.200.txt
+
+###
+
+GET http://localhost:8080/test
+
+<> 2023-01-03T092653.500.json
+
+###
+
 GET http://localhost:10001/ControllerAdvicerConfig/byZero
 
 <> 2023-01-01T110406.200.txt

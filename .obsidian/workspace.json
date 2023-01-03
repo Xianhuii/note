@@ -19,8 +19,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "6e82808c08677ad2",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.1.9"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -156,7 +167,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "dcee5b7ce075a3f0",
+  "active": "6e82808c08677ad2",
   "lastOpenFiles": [
     "Spring全家桶/SpringMVC/11、RequestMappingHandlerAdapter详解.md",
     "Spring全家桶/SpringMVC/6、RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
