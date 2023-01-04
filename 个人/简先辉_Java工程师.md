@@ -13,9 +13,20 @@
 
 ## 法信公证云（2021年11月~2022年1月）
 
+## 厦门立林科技有限公司（2021年7月~2021年11月）
+### IoT云平台接入第三方
+
+
 # 技术文章
+深入学习官方文档和源码，总结
 
 # 技能清单
+- 编程语言：Java，JavaScript
+- 后端框架：Spring，Spring MVC，Spring Boot，Spring Cloud Alibaba，MyBatis，MyBatis Plus
+- 前端框架：Vue
+- 数据库：MySQL，Redis
+- 消息队列：RabbitMQ
+- 工具：Git，SVN，Maven
 
 # 致谢
 感谢您花时间阅读我的简历，期待能有机会和您共事。

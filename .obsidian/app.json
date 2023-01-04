@@ -4,5 +4,12 @@
   "alwaysUpdateLinks": true,
   "tabSize": 4,
   "strictLineBreaks": false,
-  "readableLineLength": true
+  "readableLineLength": true,
+  "pdfExportSettings": {
+    "includeName": false,
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
 }

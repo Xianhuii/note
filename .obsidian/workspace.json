@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "个人/简历.md",
+                "file": "个人/简先辉_Java工程师.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "个人/简历.md",
+                "file": "个人/简先辉_Java工程师.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "个人/简历.md",
+                "file": "个人/简先辉_Java工程师.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "个人/简历.md"
+                "file": "个人/简先辉_Java工程师.md"
               }
             }
           },
@@ -143,7 +143,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -163,7 +164,7 @@
     "每日学习/3、Spring声明式事务的工作原理.md",
     "每日学习/4、Spring编程式事务的工作原理.md",
     "个人/Java程序员简历模板.md",
-    "个人/简历.md",
+    "个人/简先辉_Java工程师.md",
     "每日学习/2、Spring事务的类层次结构.md",
     "Spring全家桶/SpringMVC/11、RequestMappingHandlerAdapter详解.md",
     "Spring全家桶/SpringMVC/6、RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
