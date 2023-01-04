@@ -18,7 +18,12 @@
 
 
 # 技术文章
-深入学习官方文档和源码，总结
+深入学习官方文档和源码，总结在学习和工作过程中遇到的技术问题，如：
+- [RequestMappingHandlerMapping请求地址映射的初始化流程)](https://www.cnblogs.com/Xianhuii/p/16980975.html)
+- [RequestMappingHandlerMapping的请求地址映射流程)](https://www.cnblogs.com/Xianhuii/p/16988549.html)
+- [RequestMappingHandlerAdapter详解)](https://www.cnblogs.com/Xianhuii/p/17018699.html)
+- [Spring MVC拦截器HandlerInterceptor全解！](https://www.cnblogs.com/Xianhuii/p/16990517.html)
+- ……
 
 # 技能清单
 - 编程语言：Java，JavaScript
