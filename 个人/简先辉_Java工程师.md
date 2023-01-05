@@ -12,6 +12,8 @@
 # 工作经历
 
 ## 法信公证云（2021年11月~2022年1月）
+根据需求进行设计和开发，参与项目：电子数据保管平台、知产业务后台、公证处后台、仓储系统和百翎原创保护平台等。
+
 
 ## 厦门立林科技有限公司（2021年7月~2021年11月）
 ### IoT云平台接入第三方
@@ -19,9 +21,9 @@
 
 # 技术文章
 深入学习官方文档和源码，总结在学习和工作过程中遇到的技术问题，如：
-- [RequestMappingHandlerMapping请求地址映射的初始化流程)](https://www.cnblogs.com/Xianhuii/p/16980975.html)
-- [RequestMappingHandlerMapping的请求地址映射流程)](https://www.cnblogs.com/Xianhuii/p/16988549.html)
-- [RequestMappingHandlerAdapter详解)](https://www.cnblogs.com/Xianhuii/p/17018699.html)
+- [RequestMappingHandlerMapping请求地址映射的初始化流程](https://www.cnblogs.com/Xianhuii/p/16980975.html)
+- [RequestMappingHandlerMapping的请求地址映射流程](https://www.cnblogs.com/Xianhuii/p/16988549.html)
+- [RequestMappingHandlerAdapter详解](https://www.cnblogs.com/Xianhuii/p/17018699.html)
 - [Spring MVC拦截器HandlerInterceptor全解！](https://www.cnblogs.com/Xianhuii/p/16990517.html)
 - ……
 
@@ -32,6 +34,7 @@
 - 数据库：MySQL，Redis
 - 消息队列：RabbitMQ
 - 工具：Git，SVN，Maven
+- 其他：熟悉Spring Web MVC源码，MySQL优化
 
 # 致谢
 感谢您花时间阅读我的简历，期待能有机会和您共事。

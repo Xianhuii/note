@@ -23,23 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2022-12-12T025440.200.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/DispatcherServlet是怎么初始化各核心功能的？.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/DispatcherServlet是怎么处理请求的？.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/RequestMappingHandlerMapping请求地址映射的初始化流程！.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/attachments/DispatcherServlet处理请求流程.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/attachments/HandlerAdapter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/attachments/HandlerExceptionResolver.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/attachments/HandlerMapping.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/attachments/MultipartResolver.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/attachments/RequestMappingHandlerMapping.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../每日学习/梳理DispatcherServlet核心功能！.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.obsidian/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../每日学习/DispatcherServlet核心组件.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../每日学习/Spring MVC是一个Servlet.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/Spring MVC是一个Servlet！.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +40,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
@@ -136,6 +122,13 @@
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servletmvc.ServletMvcApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringTransactionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="spring-transaction" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.springtransaction.SpringTransactionApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -330,6 +323,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="524" y="345" width="516" height="292" key="coderead.maven.search/0.0.1920.1040@0.0.1920.1040" timestamp="1669087957138" />
+    <state x="764" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1672885075296">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="764" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1672885075296" />
     <state x="368" y="248" width="1183" height="583" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1669951872162">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
