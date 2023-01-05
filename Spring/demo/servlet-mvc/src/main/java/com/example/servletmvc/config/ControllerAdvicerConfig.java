@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @ControllerAdvice
 public class ControllerAdvicerConfig {
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = ArithmeticException.class)
     @ResponseBody
     public String exception(Exception e) {
-        return e.getMessage();
+        return this.getClass().getName() + "\r\n" + e.getClass().getName() + "\r\n" + e.getMessage();
     }
 }
