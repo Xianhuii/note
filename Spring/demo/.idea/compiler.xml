@@ -15,7 +15,7 @@
     <bytecodeTargetLevel target="8">
       <module name="servlet-mvc" target="1.8" />
       <module name="spring-transaction" target="1.8" />
-      <module name="websocket" target="17" />
+      <module name="websocket" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
