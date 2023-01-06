@@ -333,10 +333,10 @@
     <state width="1238" height="261" key="GridCell.Tab.2.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673014253927" />
     <state width="1397" height="230" key="GridCell.Tab.2.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517838" />
     <state width="1877" height="151" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1672905077833" />
-    <state x="286" y="42" key="SettingsEditor" timestamp="1670600752944">
+    <state x="286" y="42" key="SettingsEditor" timestamp="1673017894615">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="286" y="42" key="SettingsEditor/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670600752944" />
+    <state x="286" y="42" key="SettingsEditor/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673017894615" />
     <state x="2906" y="47" key="SettingsEditor/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670078609237" />
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1669625501586" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1666087482007">
@@ -373,10 +373,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="623" y="225" width="988" height="678" key="search.everywhere.popup" timestamp="1672902023818">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="429" y="187" width="672" height="522" key="search.everywhere.popup" timestamp="1673017897249">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="427" y="185" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1670943812990" />
+    <state x="429" y="187" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673017897249" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1672902023818" />
