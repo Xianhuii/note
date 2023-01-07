@@ -17,6 +17,8 @@ Spring事务的实际源码在`spring-tx`中：
 `mybatis-spring-boot-starter`内部会引入`spring-tx`： 
 ![[Pasted image 20230106231444.png]]
 # 2 基础理论
+# 2.1 事务
+
 
 # 3 声明式事务
 
