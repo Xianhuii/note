@@ -14,7 +14,7 @@ Spring事务的实际源码在`spring-tx`中：
     <artifactId>mybatis-spring-boot-starter</artifactId>
 </dependency>
 ```
-`mybatis-spring-boot-starter`内部会引入`spring-tx`：
+`mybatis-spring-boot-starter`内部会引入`spring-tx`： 
 ![[Pasted image 20230106231444.png]]
 # 2 基础理论
 
