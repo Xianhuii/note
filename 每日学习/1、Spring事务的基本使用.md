@@ -60,6 +60,7 @@ Spring中对事务的配置位于`org.springframework.transaction.TransactionDef
 
 #### 1 读未提交
 读未提交（`TransactionDefinition.ISOLATION_READ_UNCOMMITTED`）：后一个事务可以读取前一个事务还未提交的数据。
+
 该级别允许后一个事务读取前一个事务修改但还未提交的数据（即读取所有已修改的数据），由于前一个事务可能会被回滚，因此可能会出现脏读、不可重复读和幻读的问题。
 
 脏读：
@@ -80,8 +81,13 @@ Spring中对事务的配置位于`org.springframework.transaction.TransactionDef
 4. 后一个事务再次读取时，发现新数据不存在。
 
 #### 2 读已提交
-读已提交（`TransactionDefinition.ISOLATION_READ_COMMITTED`）：后一个事务只可以读取前一个事务已提交的数据。
-该级别只允许读取自身事务范围中已提交的数据，解决了脏读问题。但是它没有限制自身事务外的未提交数据（如插入新的数据），可能会出现不可重复读和幻读的问题。
+读已提交（`TransactionDefinition.ISOLATION_READ_COMMITTED`）：后一个事务只可以读取SQL执行前，前一个事务已提交的数据。
+
+该级别只允许读取自身事务范围中已提交的数据，解决了脏读问题。
+
+它可以读取当前事务启动后，SQL执行前，前一个事务已提交的数据，可能会出现不可重复读问题。
+
+它没有限制自身事务外的未提交数据（如插入新的数据），可能会出现幻读的问题。
 
 不可重复读：
 1. 后一个事务读取数据（A）。
@@ -95,7 +101,26 @@ Spring中对事务的配置位于`org.springframework.transaction.TransactionDef
 4. 后一个事务再次读取时，发现新数据不存在。
 
 ### 3 可重复读
-可重复读（`TransactionDefinition.ISOLATION_REPEATABLE_READ`）：
+可重复读（`TransactionDefinition.ISOLATION_REPEATABLE_READ`）：后一个事务只可以查询到事务启动前，前一个事务已提交的数据。
+
+它主要是对读取数据的版本进行控制，用于解决不可重复读问题。
+
+它没有限制自身事务外的未提交数据（如插入新的数据），仍可能会出现幻读的问题。
+
+不可重复读：
+1. 后一个事务开启事务。
+2. 后一个事务读取数据（A）。
+3. 前一个事务修改并提交该数据（B）。
+5. 后一个事务再次读取该数据，获取的是当前事务版本的数据（A）。
+
+幻读：
+1. 前一个事务插入了一个新数据。
+2. 后一个事务读取到新数据。
+3. 前一个事务回滚后，新数据被删除。
+4. 后一个事务再次读取时，发现新数据不存在。
+
+#### 4 序列化
+
 
 # 3 声明式事务
 
