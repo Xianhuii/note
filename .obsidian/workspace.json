@@ -139,12 +139,11 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -159,9 +158,9 @@
   },
   "active": "d22f886bd3e14795",
   "lastOpenFiles": [
+    "每日学习/1、Spring事务的基本使用.md",
     "个人/简先辉_Java工程师.md",
     "Spring全家桶/SpringMVC/12、ExceptionHandlerExceptionResolver详解.md",
-    "每日学习/1、Spring事务的基本使用.md",
     "每日学习/3、Spring声明式事务的工作原理.md",
     "每日学习/4、Spring编程式事务的工作原理.md",
     "个人/Java程序员简历模板.md",

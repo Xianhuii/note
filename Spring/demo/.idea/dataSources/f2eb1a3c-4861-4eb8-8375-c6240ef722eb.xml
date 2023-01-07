@@ -748,5 +748,25 @@ SELECT|sys.sys_config:null
       <ObjectGrants>ALL PRIVILEGES!
 </ObjectGrants>
     </user>
+    <table id="232" parent="6" name="tb_account"/>
+    <column id="233" parent="232" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="234" parent="232" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="235" parent="232" name="money">
+      <Position>3</Position>
+      <DataType>decimal(11,2 digit)|0s</DataType>
+    </column>
+    <key id="236" parent="232" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>

@@ -6,6 +6,7 @@ Spring事务的实际源码在`spring-tx`中：
    <artifactId>spring-tx</artifactId>
 </dependency>
 ```
+
 在Spring体系中，通常ORM框架内部都会直接引用`spring-tx`。因此，我们不必额外手动引入。
 例如，我们需要使用`Mybatis`作为数据库访问层，只需要引入如下依赖：
 ```xml
@@ -14,11 +15,57 @@ Spring事务的实际源码在`spring-tx`中：
     <artifactId>mybatis-spring-boot-starter</artifactId>
 </dependency>
 ```
+
 `mybatis-spring-boot-starter`内部会引入`spring-tx`： 
 ![[Pasted image 20230106231444.png]]
 # 2 基础理论
 # 2.1 事务
-事务（Transaction）是
+在实际业务场景中，可能需要对数据库进行多次操作，但是这些操作在逻辑上是一个整体。
+
+事务（Transaction）的作用就是保证这些操作在执行过程中的整体性，要么同时成功，要么同时失败。
+
+举个最典型的例子，存在账务表`tb_account`：
+| id  | name | money |
+| --- | ---- | ----- |
+| 1   | zhangsan | 100   |
+| 2   | lisi | 100      |
+
+如果`zhangsan`向`lisi`转账50元，需要执行如下SQL（暂时不考虑账户为负的问题）：
+```sql
+UPDATE tb_account SET money = (money - 50) WHERE id = 1;
+UPDATE tb_account SET money = (money + 50) WHERE id = 2;
+```
+
+正常情况下，`zhangsan`的账户会变为50，`lisi`的账户会变为150。
+
+但是在处理过程中出现了异常，第一条SQL执行成功，而第二个条SQL执行失败，就会变成`zhangsan`的账户为50，而`lisi`的账户仍为100。
+
+如果使用事务对这两条SQL进行管理，那么在上述异常情况下，第二条SQL执行失败后，第一条SQL会回滚。因此`zhangsan`和`lisi`的账户会恢复成初始状态100。
+## 2.2 Spring中事务的配置
+Spring中对事务的配置位于`org.springframework.transaction.TransactionDefinition`，可以分为事务隔离级别、事务传播类型和其他三类。
+
+需要注意的是，这些配置本质上是底层数据库所具有的功能，Spring只是将对应的参数传递给数据库进行执行。
+### 2.2.1 事务隔离级别
+事务隔离级别指的是：多个事务对同一个数据的可见性。
+
+我们先考虑一个问题：什么情况下会存在多个事务对同一个数据进行操作？
+1. 高并发情况下，多个请求在同一时间内对同一数据进行操作。
+2. 大事务情况下，上一个事务还没有提交，下一个事务就开始对同一个数据进行操作。
+
+事务隔离级别在数据库底层通常是使用锁实现的。
+
+因此，在选择事务隔离级别时，我们需要综合考虑系统的并发程度、事务的大小以及SQL对锁的影响。
+
+事务的隔离级别分为4个层次，它们的值与`java.sql.Connection.TRANSACTION_Xxx`一一对应。
+
+#### 1 读未提交
+读未提交（`TransactionDefinition.ISOLATION_READ_UNCOMMITTED`）：后一个事务可以读取前一个事务还未提交的数据。
+该级别允许后一个事务读取前一个事务修改但还未提交的数据，由于前一个事务可能会被回滚，因此可能会出现脏读、不可重复读和幻读的问题。
+#### 2 读已提交
+读已提交（`TransactionDefinition.ISOLATION_READ_COMMITTED`）：后一个事务只可以读取前一个事务已提交的数据。
+可能会出现不可重复读和幻读的问题，解决了脏读问题。
+### 3 可重复读
+可重复读（`TransactionDefinition.ISOLATION_REPEATABLE_READ`）：
 
 # 3 声明式事务
 
