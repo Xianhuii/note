@@ -18,7 +18,7 @@ Spring事务的实际源码在`spring-tx`中：
 ![[Pasted image 20230106231444.png]]
 # 2 基础理论
 # 2.1 事务
-
+事务（Transaction）是
 
 # 3 声明式事务
 
