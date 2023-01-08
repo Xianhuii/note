@@ -220,7 +220,7 @@ protected boolean isExistingTransaction(Object transaction) {
 2. 如果内层方法的事务传播行为是`PROPAGATION_NOT_SUPPORTED`，会暂停外层方法的事务，并返回当前处理结果的`TransactionStatus`对象。
 3. 如果内层方法的事务传播行为是`PROPAGATION_REQUIRES_NEW`，会暂停外层方法的事务，开启内层方法的新事务，并返回该新事务的`TransactionStatus`对象。
 4. 如果内层方法的事务传播行为是`PROPAGATION_NESTED`，会判断数据库是否支持嵌套事务。如果不支持，会抛出异常；如果支持保存点方式的嵌套事务（JDBC），会创建保存点；如果不支持保存点方式的嵌套事务（JTA），会创建嵌套事务作为新事务。
-5. 如果内层方法的事务传播行为是`PROPAGATION_SUPPORTS`或`PROPAGATION_REQUIRED`。如果内层方法的事务隔离级别是`ISOLATION_DEFAULT`，并且外层方法的事务隔离级别与内层方法不一致，会抛出异常。如果内层方法不是只读，但外层方法是只读，会抛出异常。
+5. 如果内层方法的事务传播行为是`PROPAGATION_SUPPORTS`或`PROPAGATION_REQUIRED`。如果内层方法的事务隔离级别是`ISOLATION_DEFAULT`，并且外层方法的事务隔离级别与内层方法不一致，会抛出异常。如果内层方法不是只读，但外层方法是只读，会抛出异常。由于当前已存在事务，所以不用其他特殊处理。
 ```java
 private TransactionStatus handleExistingTransaction(  
       TransactionDefinition definition, Object transaction, boolean debugEnabled)  
@@ -274,11 +274,11 @@ private TransactionStatus handleExistingTransaction(
       }  
       else {  
          // Nested transaction through nested begin and commit/rollback calls.  
-         // Usually only for JTA: Spring synchronization might get activated here         // in case of a pre-existing JTA transaction.         return startTransaction(definition, transaction, debugEnabled, null);  
+         // Usually only for JTA: Spring synchronization might get activated here         // in case of a pre-existing JTA transaction.         
+         return startTransaction(definition, transaction, debugEnabled, null);  
       }  
    }  
-  
-   // Assumably PROPAGATION_SUPPORTS or PROPAGATION_REQUIRED.  
+   // 如果内层方法的事务传播行为是`PROPAGATION_SUPPORTS`或`PROPAGATION_REQUIRED`。如果内层方法的事务隔离级别是`ISOLATION_DEFAULT`，并且外层方法的事务隔离级别与内层方法不一致，会抛出异常。如果内层方法不是只读，但外层方法是只读，会抛出异常。由于当前已存在事务，所以不用其他特殊处理。
    if (debugEnabled) {  
       logger.debug("Participating in existing transaction");  
    }  
