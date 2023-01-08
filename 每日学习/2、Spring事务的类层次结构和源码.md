@@ -1,4 +1,4 @@
-如果有这么一个需求：支持所有数据库系统的事务管理，包括创建事务、提交事务和回滚事务。
+如果有这么一个需求：支持所有数据库系统的事务管理，包括获取事务、提交事务和回滚事务。
 
 你会怎么设计？
 ![[Pasted image 20230108121500.png]]
@@ -8,14 +8,14 @@
 通过学习Spring事务的类层次结构，一方面可以深入理解Spring事务的使用，另一方面可以提高自己的抽象思维。
 
 # 1 TransactionManager
-Spring将事务管理抽象成`TransactionManager`体系结构，该体系的核心功能就是封装各种数据库的创建事务、提交事务和回滚事务方法。
+Spring将事务管理抽象成`TransactionManager`体系结构，该体系的核心功能就是封装各种数据库的获取事务、提交事务和回滚事务方法。
 ![[TransactionManager.png]]
 
 `TransactionManager`是事务管理的顶级抽象。为了兼容命令式和反应式的实现，实际上它只是一个标记接口，并没有定义方法。
 
 `TransactionManager`下层有`PlatformTransactionManager`和`ReactiveTransactionManager`两个子接口，分别代表命令式和反应式的编程风格。其中，`ReactiveTransactionManager`的反应式接口在日常工作中几乎不使用，这里不过多介绍。
 
-`PlatformTransactionManager`（命令式编程）是日常使用的事务管理器，其中定义了创建事务、提交事务和回滚事务3个基础方法：
+`PlatformTransactionManager`（命令式编程）是日常使用的事务管理器，其中定义了获取事务、提交事务和回滚事务3个基础方法：
 ![[PlatformTransactionManager.png]]
 
 ## 1.1 AbstractPlatformTransactionManager
@@ -23,12 +23,12 @@ Spring将事务管理抽象成`TransactionManager`体系结构，该体系的核
 
 `AbstractPlatformTransactionManager`抽象类实现上述3个基础方法，定义了Spring事务管理的工作流，但是具体功能实际上仍然是交给不同数据库实现类去完成（模板方法）。
 
-本节简单介绍创建事务、提交事务和回滚事务的入口，后续会详细介绍整个流程。
+本节简单介绍获取事务、提交事务和回滚事务的入口，后续会详细介绍整个流程。
 
-`AbstractPlatformTransactionManager#getTransaction()`方法中定义的创建事务的工作流，会根据事务传播行为进行对应处理：
+`AbstractPlatformTransactionManager#getTransaction()`方法中定义的获取事务的工作流，会根据事务传播行为进行对应处理：
 ```java
 public final TransactionStatus getTransaction(@Nullable TransactionDefinition definition) throws TransactionException {
-   // 1、创建事务
+   // 1、获取事务
    Object transaction = doGetTransaction();  
    // 2、当前已存在事务：根据事务传播行为处理
    if (isExistingTransaction(transaction)) {
@@ -156,4 +156,152 @@ public final void rollback(TransactionStatus status) throws TransactionException
 Spring事务管理器可以通过`TransactionStatus`对象来判断事务的状态，用来决定是否进行提交事务、回滚事务或者其他操作。
 ![[TransactionStatus.png]]
 
-# 4 创建事务流程
+# 4 获取事务流程
+获取事务的入口在`PlatformTransactionManager#getTransaction()`方法。
+
+`AbstractPlatformTransactionManager#getTransaction()`对该方法进行了实现。该方法会根据事务传播行为进行创建事务，或者返回已存在的事务。接下来介绍该方法的执行逻辑。
+## 4.1 获取事务配置
+首先，会判断是否有指定事务配置对象。如果不存在，会使用`StaticTransactionDefinition`对象作为默认值，它本质上使用`TransactionDefinition`中的默认配置：
+```java
+TransactionDefinition def = (definition != null ? definition : TransactionDefinition.withDefaults());
+```
+
+## 4.2 获取当前线程的事务
+使用`AbstractPlatformTransactionManager#doGetTransaction()`方法获取当前线程绑定的事务：
+```java
+Object transaction = doGetTransaction();
+```
+
+`DataSourceTransactionManager#doGetTransaction()`对该方法进行了实现：
+```java
+protected Object doGetTransaction() {  
+   // 创建txObject
+   DataSourceTransactionObject txObject = new DataSourceTransactionObject();  
+   txObject.setSavepointAllowed(isNestedTransactionAllowed());  
+   // 获取当前线程绑定的数据库连接：当前事务/null
+   ConnectionHolder conHolder =  
+         (ConnectionHolder) TransactionSynchronizationManager.getResource(obtainDataSource());  
+   txObject.setConnectionHolder(conHolder, false);  
+   return txObject;  
+}
+```
+
+`TransactionSynchronizationManager#resources`中会保存每个`dataSource`对应的事务资源：
+```java
+private static final ThreadLocal<Map<Object, Object>> resources =  
+      new NamedThreadLocal<>("Transactional resources");
+```
+
+如果当前已存在事务，会返回该事务资源。如果当前不存在事务，会返回`null`。
+
+## 4.3 已存在事务的处理流程
+如果当前线程已经存在事务，说明出现了Spring事务方法的相互调用，会根据事务传播行为进行不同处理：
+```java
+// 判断当前线程是否已存在事务
+if (isExistingTransaction(transaction)) {  
+   // 执行已存在事务的处理流程
+   return handleExistingTransaction(def, transaction, debugEnabled);  
+}
+```
+
+通过`AbstractPlatformTransactionManager#isExistingTransaction()`方法可以判断当前线程是否已存在事务。
+
+`DataSourceTransactionManager#isExistingTransaction()`实现如下：
+```java
+protected boolean isExistingTransaction(Object transaction) {  
+   DataSourceTransactionObject txObject = (DataSourceTransactionObject) transaction;  
+   // 是否存在connectionHolder && 事务是否启动
+   return (txObject.hasConnectionHolder() && txObject.getConnectionHolder().isTransactionActive());  
+}
+```
+
+`AbstractPlatformTransactionManager#handleExistingTransaction()`方法定义了外层方法已存在事务时，内层方法根据不同事务传播行为进行的不同处理流程：
+1. 如果内层方法的事务传播行为是`PROPAGATION_NEVER`，会抛出异常。
+2. 如果内层方法的事务传播行为是`PROPAGATION_NOT_SUPPORTED`，会暂停外层方法的事务，并返回当前处理结果的`TransactionStatus`对象。
+3. 如果内层方法的事务传播行为是`PROPAGATION_REQUIRES_NEW`，会暂停外层方法的事务，开启内层方法的新事务，并返回该新事务的`TransactionStatus`对象。
+4. 如果内层方法的事务传播行为是`PROPAGATION_NESTED`，会判断数据库是否支持嵌套事务。如果不支持，会抛出异常；如果支持保存点方式的嵌套事务（JDBC），会创建保存点；如果不支持保存点方式的嵌套事务（JTA），会创建嵌套事务作为新事务。
+5. 如果内层方法的事务传播行为是`PROPAGATION_SUPPORTS`或`PROPAGATION_REQUIRED`。如果内层方法的事务隔离级别是`ISOLATION_DEFAULT`，并且外层方法的事务隔离级别与内层方法不一致，会抛出异常。和是否只读，
+```java
+private TransactionStatus handleExistingTransaction(  
+      TransactionDefinition definition, Object transaction, boolean debugEnabled)  
+      throws TransactionException {  
+   // 如果内层方法的事务传播行为是PROPAGATION_NEVER，会抛出异常。
+   if (definition.getPropagationBehavior() == TransactionDefinition.PROPAGATION_NEVER) {  
+      throw new IllegalTransactionStateException(  
+            "Existing transaction found for transaction marked with propagation 'never'");  
+   }  
+   // 如果内层方法的事务传播行为是`PROPAGATION_NOT_SUPPORTED`，会暂停外层方法的事务，并返回当前处理结果的`TransactionStatus`对象。
+   if (definition.getPropagationBehavior() == TransactionDefinition.PROPAGATION_NOT_SUPPORTED) {  
+      if (debugEnabled) {  
+         logger.debug("Suspending current transaction");  
+      }  
+      Object suspendedResources = suspend(transaction);  
+      boolean newSynchronization = (getTransactionSynchronization() == SYNCHRONIZATION_ALWAYS);  
+      return prepareTransactionStatus(  
+            definition, null, false, newSynchronization, debugEnabled, suspendedResources);  
+   }  
+   // 如果内层方法的事务传播行为是`PROPAGATION_REQUIRES_NEW`，会暂停外层方法的事务，开启内层方法的新事务，并返回该新事务的`TransactionStatus`对象。
+   if (definition.getPropagationBehavior() == TransactionDefinition.PROPAGATION_REQUIRES_NEW) {  
+      if (debugEnabled) {  
+         logger.debug("Suspending current transaction, creating new transaction with name [" +  
+               definition.getName() + "]");  
+      }  
+      SuspendedResourcesHolder suspendedResources = suspend(transaction);  
+      try {  
+         return startTransaction(definition, transaction, debugEnabled, suspendedResources);  
+      }  
+      catch (RuntimeException | Error beginEx) {  
+         resumeAfterBeginException(transaction, suspendedResources, beginEx);  
+         throw beginEx;  
+      }  
+   }  
+   // 如果内层方法的事务传播行为是`PROPAGATION_NESTED`，会判断数据库是否支持嵌套事务。如果不支持，会抛出异常；如果支持保存点方式的嵌套事务（JDBC），会创建保存点；如果不支持保存点方式的嵌套事务（JTA），会创建嵌套事务作为新事务。
+   if (definition.getPropagationBehavior() == TransactionDefinition.PROPAGATION_NESTED) {  
+      if (!isNestedTransactionAllowed()) {  
+         throw new NestedTransactionNotSupportedException(  
+               "Transaction manager does not allow nested transactions by default - " +  
+               "specify 'nestedTransactionAllowed' property with value 'true'");  
+      }  
+      if (debugEnabled) {  
+         logger.debug("Creating nested transaction with name [" + definition.getName() + "]");  
+      }  
+      if (useSavepointForNestedTransaction()) {  
+         // Create savepoint within existing Spring-managed transaction,  
+         // through the SavepointManager API implemented by TransactionStatus.         // Usually uses JDBC 3.0 savepoints. Never activates Spring synchronization.         DefaultTransactionStatus status =  
+               prepareTransactionStatus(definition, transaction, false, false, debugEnabled, null);  
+         status.createAndHoldSavepoint();  
+         return status;  
+      }  
+      else {  
+         // Nested transaction through nested begin and commit/rollback calls.  
+         // Usually only for JTA: Spring synchronization might get activated here         // in case of a pre-existing JTA transaction.         return startTransaction(definition, transaction, debugEnabled, null);  
+      }  
+   }  
+  
+   // Assumably PROPAGATION_SUPPORTS or PROPAGATION_REQUIRED.  
+   if (debugEnabled) {  
+      logger.debug("Participating in existing transaction");  
+   }  
+   if (isValidateExistingTransaction()) {  
+      if (definition.getIsolationLevel() != TransactionDefinition.ISOLATION_DEFAULT) {  
+         Integer currentIsolationLevel = TransactionSynchronizationManager.getCurrentTransactionIsolationLevel();  
+         if (currentIsolationLevel == null || currentIsolationLevel != definition.getIsolationLevel()) {  
+            Constants isoConstants = DefaultTransactionDefinition.constants;  
+            throw new IllegalTransactionStateException("Participating transaction with definition [" +  
+                  definition + "] specifies isolation level which is incompatible with existing transaction: " +  
+                  (currentIsolationLevel != null ?  
+                        isoConstants.toCode(currentIsolationLevel, DefaultTransactionDefinition.PREFIX_ISOLATION) :  
+                        "(unknown)"));  
+         }  
+      }  
+      if (!definition.isReadOnly()) {  
+         if (TransactionSynchronizationManager.isCurrentTransactionReadOnly()) {  
+            throw new IllegalTransactionStateException("Participating transaction with definition [" +  
+                  definition + "] is not marked as read-only but existing transaction is");  
+         }  
+      }  
+   }  
+   boolean newSynchronization = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);  
+   return prepareTransactionStatus(definition, transaction, false, newSynchronization, debugEnabled, null);  
+}
+```
