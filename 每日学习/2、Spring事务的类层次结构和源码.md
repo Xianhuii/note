@@ -156,6 +156,8 @@ public final void rollback(TransactionStatus status) throws TransactionException
 Spring事务管理器可以通过`TransactionStatus`对象来判断事务的状态，用来决定是否进行提交事务、回滚事务或者其他操作。
 ![[TransactionStatus.png]]
 
+需要注意的是，`TransactionStatus`表示的是逻辑事务的状态，即虽然它的`isNewTransaction()`返回值是`true`，但实际上数据库并没有创建物理事务。
+
 # 4 获取事务流程
 获取事务的入口在`PlatformTransactionManager#getTransaction()`方法。
 
@@ -166,7 +168,7 @@ Spring事务管理器可以通过`TransactionStatus`对象来判断事务的状�
 TransactionDefinition def = (definition != null ? definition : TransactionDefinition.withDefaults());
 ```
 
-## 4.2 获取当前线程的事务
+## 4.2 获取当前线程的事务（外层方法事务）
 使用`AbstractPlatformTransactionManager#doGetTransaction()`方法获取当前线程绑定的事务：
 ```java
 Object transaction = doGetTransaction();
@@ -194,7 +196,7 @@ private static final ThreadLocal<Map<Object, Object>> resources =
 
 如果当前已存在事务，会返回该事务资源。如果当前不存在事务，会返回`null`。
 
-## 4.3 已存在事务的处理流程
+## 4.3 已存在外层事务的处理流程
 如果当前线程已经存在事务，说明出现了Spring事务方法的相互调用，会根据事务传播行为进行不同处理：
 ```java
 // 判断当前线程是否已存在事务
@@ -306,5 +308,60 @@ private TransactionStatus handleExistingTransaction(
 }
 ```
 
-## 4.4 不存在事务，校验过期时间
-如果外层方法不存在事务，
+## 4.4 不存在外层事务，校验过期时间
+如果外层方法不存在事务，需要校验内层方法设置的过期时间。如果过期时间小于`-1`，会抛出异常：
+```java
+if (def.getTimeout() < TransactionDefinition.TIMEOUT_DEFAULT) {  
+   throw new InvalidTimeoutException("Invalid transaction timeout", def.getTimeout());  
+}
+```
+
+## 4.5 不存在外层事务，内层方法事务传播行为是PROPAGATION_MANDATORY
+如果外层方法不存在事务，但是内层方法设置的事务传播行为是`PROPAGATION_MANDATORY`，会抛出异常：
+```java
+if (def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_MANDATORY) {  
+   throw new IllegalTransactionStateException(  
+         "No existing transaction found for transaction marked with propagation 'mandatory'");  
+}
+```
+
+## 4.6 不存在外层事务，内层方法事务传播行为是PROPAGATION_REQUIRED/PROPAGATION_REQUIRES_NEW/PROPAGATION_NESTED
+如果外层方法不存在事务，同时内层方法设置的事务传播行为是`PROPAGATION_REQUIRED`、`PROPAGATION_REQUIRES_NEW`或`PROPAGATION_NESTED`，会创建一个新事务：
+```java
+else if (def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_REQUIRED ||  
+      def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_REQUIRES_NEW ||  
+      def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_NESTED) {  
+   SuspendedResourcesHolder suspendedResources = suspend(null);  
+   if (debugEnabled) {  
+      logger.debug("Creating new transaction with name [" + def.getName() + "]: " + def);  
+   }  
+   try {  
+      return startTransaction(def, transaction, debugEnabled, suspendedResources);  
+   }  
+   catch (RuntimeException | Error ex) {  
+      resume(null, suspendedResources);  
+      throw ex;  
+   }  
+}
+```
+
+## 4.7 不存在外层事务，内层方法事务为其他
+如果外层方法不存在事务，同时内层方法设置的事务传播行为不是上述所有情况时，即当前事务传播行为是`PROPAGATION_SUPPORTS`、`PROPAGATION_NOT_SUPPORTED`或`PROPAGATION_NEVER`，实际上不会创建新事务：
+```java
+else {  
+   // Create "empty" transaction: no actual transaction, but potentially synchronization.  
+   if (def.getIsolationLevel() != TransactionDefinition.ISOLATION_DEFAULT && logger.isWarnEnabled()) {  
+      logger.warn("Custom isolation level specified but no actual transaction initiated; " +  
+            "isolation level will effectively be ignored: " + def);  
+   }  
+   boolean newSynchronization = (getTransactionSynchronization() == SYNCHRONIZATION_ALWAYS);  
+   return prepareTransactionStatus(def, null, true, newSynchronization, debugEnabled, null);  
+}
+```
+
+## 4.8 其他方法
+在获取事务流程中，会调用一些比较重要的方法：
+- `startTransaction()`：开始新事务。
+- `suspend()`：暂停事务。
+- `resume()`：恢复事务。
+- `TransactionSynchronizationManager`的各个静态方法：保存当前线程事务的状态信息。
