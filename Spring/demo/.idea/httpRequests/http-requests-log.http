@@ -1,5 +1,11 @@
 GET http://localhost:8080/test
 
+<> 2023-01-08T070902.200.txt
+
+###
+
+GET http://localhost:8080/test
+
 <> 2023-01-07T101503.200.txt
 
 ###
@@ -295,12 +301,6 @@ GET http://localhost:10001/cors
 GET http://localhost:10001/CrossOrigin
 
 <> 2022-12-14T102056.200.txt
-
-###
-
-GET http://localhost:10001/CrossOrigin
-
-<> 2022-12-14T101941.200.txt
 
 ###
 
