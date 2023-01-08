@@ -305,3 +305,6 @@ private TransactionStatus handleExistingTransaction(
    return prepareTransactionStatus(definition, transaction, false, newSynchronization, debugEnabled, null);  
 }
 ```
+
+## 4.4 不存在事务，校验过期时间
+如果当前不存在事务，
