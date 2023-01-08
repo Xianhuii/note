@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/1、Spring事务的基本使用.md",
+                "file": "每日学习/2、Spring事务的类层次结构.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/1、Spring事务的基本使用.md",
+                "file": "每日学习/2、Spring事务的类层次结构.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/1、Spring事务的基本使用.md",
+                "file": "每日学习/2、Spring事务的类层次结构.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/1、Spring事务的基本使用.md"
+                "file": "每日学习/2、Spring事务的类层次结构.md"
               }
             }
           },
@@ -156,9 +156,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "b0a56dff85469e9a",
+  "active": "d22f886bd3e14795",
   "lastOpenFiles": [
-    "每日学习/1、Spring事务的基本使用.md",
+    "Spring全家桶/Transaction/1、Spring事务的基本使用.md",
     "个人/简先辉_Java工程师.md",
     "Spring全家桶/SpringMVC/12、ExceptionHandlerExceptionResolver详解.md",
     "每日学习/3、Spring声明式事务的工作原理.md",
