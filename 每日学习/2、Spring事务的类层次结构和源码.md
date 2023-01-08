@@ -144,6 +144,9 @@ public final void rollback(TransactionStatus status) throws TransactionException
 如果需要修改事务配置，直接更改`DefaultTransactionDefinition`的对应值即可。
 ![[DefaultTransactionDefinition.png]]
 
+`DefaultTransactionDefinition`有一个特别的子类：`TransactionTemplate`。它定义了事务管理的模板方法`execute()`，通过内部持有`PlatformTransactionManager`对象，以自身为事务配置，可以很方便地对事务进行管理。
+![[DefaultTransactionDefinition 1.png]]
+
 
 
 
