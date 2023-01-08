@@ -7,7 +7,7 @@
 
 通过学习Spring事务的类层次结构，一方面可以深入理解Spring事务的使用，另一方面可以提高自己的抽象思维。
 
-# 1 类层次结构
+# 1 TransactionManager
 Spring将事务管理抽象成`TransactionManager`体系结构，该体系的核心功能就是封装各种数据库的创建事务、提交事务和回滚事务方法。
 ![[TransactionManager.png]]
 
@@ -127,6 +127,24 @@ public final void rollback(TransactionStatus status) throws TransactionException
 
 `DataSourceTransactionManager`有一个`JdbcTransactionManager`实现类，它与事务管理工作流关系不大，主要用来对JDBC异常进行解析。
 
-`DataSourceTransactionManager`包含我们日常工作中实际事务管理工作流的整体流程，接下来主要对其中的创建事务、提交事务和回滚事务的流程进行详细介绍。
+# 2 TransactionDefinition
+`TransactionDefinition`表示事务的配置。
 
-# 2 创建事务流程
+在创建事务时，需要为事务指定配置，就需要传入`TransactionDefinition`的实现类对象。
+
+在`TransactionDefinition`中，定义了获取事务配置的方法，Spring通过这些方法获取相关配置。它还定义了事务配置的各个常量。
+![[TransactionDefinition.png]]
+
+我们在使用编程式事务时，可以使用`DefaultTransactionDefinition`实现类，它指定了各个事务配置ide默认值：
+- 事务传播行为：`PROPAGATION_REQUIRED`。
+- 事务隔离级别：`ISOLATION_DEFAULT`，对于MySQL是可重复读。
+- 过期时间：`TIMEOUT_DEFAULT`。
+- 是否只读：`false`。
+
+如果需要修改事务配置，直接更改`DefaultTransactionDefinition`的对应值即可。
+![[DefaultTransactionDefinition.png]]
+
+
+
+
+# 4 创建事务流程
