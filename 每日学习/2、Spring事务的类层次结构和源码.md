@@ -147,6 +147,11 @@ public final void rollback(TransactionStatus status) throws TransactionException
 `DefaultTransactionDefinition`有一个特别的子类：`TransactionTemplate`。它定义了事务管理的模板方法`execute()`，通过内部持有`PlatformTransactionManager`对象，以自身为事务配置，可以很方便地对事务进行管理。
 ![[DefaultTransactionDefinition 1.png]]
 
+# 3 TransactionStatus
+`TransactionStatus`表示事务的状态。
+
+Spring事务管理器可以通过`TransactionStatus`对象来判断事务的状态，用来决定是否进行提交事务、回滚事务或者其他操作。
+![[TransactionStatus.png]]
 
 
 
