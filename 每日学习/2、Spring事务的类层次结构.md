@@ -8,3 +8,7 @@
 通过学习Spring事务的类层次结构，一方面可以深入理解Spring事务的使用，另一方面可以提高自己的抽象思维。
 
 # 1 TransactionManager
+Spring将事务管理抽象成`TransactionManager`体系结构，该体系的核心功能就是封装各种数据库的创建事务、提交事务和回滚事务方法。
+![[TransactionManager.png]]
+
+`TransactionManager`是事务管理的顶级抽象，
