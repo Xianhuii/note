@@ -135,13 +135,16 @@ public final void rollback(TransactionStatus status) throws TransactionException
 在`TransactionDefinition`中，定义了获取事务配置的方法，Spring通过这些方法获取相关配置。它还定义了事务配置的各个常量。
 ![[TransactionDefinition.png]]
 
-我们在使用编程式事务时，可以使用`DefaultTransactionDefinition`实现类，它指定了各个事务配置ide默认值：
+我们在使用编程式事务时，可以使用`DefaultTransactionDefinition`实现类，它指定了各个事务配置的默认值：
 - 事务传播行为：`PROPAGATION_REQUIRED`。
 - 事务隔离级别：`ISOLATION_DEFAULT`，对于MySQL是可重复读。
 - 过期时间：`TIMEOUT_DEFAULT`。
 - 是否只读：`false`。
 
 如果需要修改事务配置，直接更改`DefaultTransactionDefinition`的对应值即可。
+
+实际上`TransactionDefinition`本身就会设置各个事务配置的默认值。
+
 ![[DefaultTransactionDefinition.png]]
 
 `DefaultTransactionDefinition`有一个特别的子类：`TransactionTemplate`。它定义了事务管理的模板方法`execute()`，通过内部持有`PlatformTransactionManager`对象，以自身为事务配置，可以很方便地对事务进行管理。
