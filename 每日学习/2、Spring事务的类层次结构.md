@@ -91,3 +91,18 @@ public final void commit(TransactionStatus status) throws TransactionException {
    processCommit(defStatus);  
 }
 ```
+
+`AbstractPlatformTransactionManager#rollback()`方法中定义了回滚事务的工作流：
+```java
+public final void rollback(TransactionStatus status) throws TransactionException {  
+   if (status.isCompleted()) {  
+      throw new IllegalTransactionStateException(  
+            "Transaction is already completed - do not call commit or rollback more than once per transaction");  
+   }  
+  
+   DefaultTransactionStatus defStatus = (DefaultTransactionStatus) status;  
+   // 回滚事务
+   processRollback(defStatus, false);  
+}
+```
+
