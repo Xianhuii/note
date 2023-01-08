@@ -153,6 +153,4 @@ public final void rollback(TransactionStatus status) throws TransactionException
 Spring事务管理器可以通过`TransactionStatus`对象来判断事务的状态，用来决定是否进行提交事务、回滚事务或者其他操作。
 ![[TransactionStatus.png]]
 
-
-
 # 4 创建事务流程
