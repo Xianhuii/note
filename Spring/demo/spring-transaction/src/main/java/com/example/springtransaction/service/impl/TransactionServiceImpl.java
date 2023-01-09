@@ -1,6 +1,7 @@
 package com.example.springtransaction.service.impl;
 
 import com.example.springtransaction.service.ITransactionService;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class TransactionServiceImpl implements ITransactionService {
 
     @Autowired
     private PlatformTransactionManager platformTransactionManager;
+
+    @Autowired
+    private BeanFactory beanFactory;
 
     @Transactional
     @Override
