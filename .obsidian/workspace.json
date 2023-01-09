@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b4812170936bfcd7",
+        "id": "122a6420ae59db9a",
         "type": "tabs",
         "children": [
           {
-            "id": "d22f886bd3e14795",
+            "id": "8b8387f96725df26",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "每日学习/4、TransactionTemplate的工作原理.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/4、TransactionTemplate的工作原理.md",
+                "file": "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +98,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/4、TransactionTemplate的工作原理.md",
+                "file": "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +121,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/4、TransactionTemplate的工作原理.md"
+                "file": "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md"
               }
             }
           },
@@ -156,10 +151,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d22f886bd3e14795",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
     "Spring全家桶/Transaction/1、Spring事务的基本使用.md",
-    "每日学习/4、TransactionTemplate的工作原理.md",
+    "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
     "每日学习/3、Spring声明式事务的工作原理.md",
     "Spring全家桶/Transaction/2、Spring事务的类层次结构及核心源码.md",
     "个人/简先辉_Java工程师.md",

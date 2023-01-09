@@ -29,7 +29,7 @@ public TransactionTemplate transactionTemplate(PlatformTransactionManager transa
 ```
 
 # 2 事务管理流程
-通过`TransactionTemplate#execute()`方法可以进行编程式事务管理。
+通过`TransactionTemplate#execute()`方法可以进行编程式事务管理，其内部会调用`transactionManager`进行获取事务、提交事务和回滚事务：
 ```java
 public <T> T execute(TransactionCallback<T> action) throws TransactionException {  
    Assert.state(this.transactionManager != null, "No PlatformTransactionManager set");  
