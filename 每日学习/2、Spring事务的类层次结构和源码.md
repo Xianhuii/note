@@ -159,6 +159,12 @@ Spring事务管理器可以通过`TransactionStatus`对象来判断事务的状�
 需要注意的是，`TransactionStatus`表示的是逻辑事务的状态，即虽然它的`isNewTransaction()`返回值是`true`，但实际上数据库并没有创建物理事务。
 
 # 4 TransactionSynchronizationManager
+![[TransactionSynchronization 1.png]]
+
+`TransactionSynchronizationManager`贯穿了事务管理的整个流程，它会保存事务资源、事务名称、事务隔离级别等信息。
+
+同时，`TransactionSynchronizationManager`可以对当前线程的事务添加`TransactionSynchronization`回调，可以对事务管理的节点进行拦截：
+![[TransactionSynchronization.png]]
 
 # 5 获取事务流程
 获取事务的入口在`PlatformTransactionManager#getTransaction()`方法。
@@ -366,4 +372,349 @@ else {
 - `startTransaction()`：开始新事务。
 - `suspend()`：暂停事务。
 - `resume()`：恢复事务。
-- `TransactionSynchronizationManager`的各个静态方法：保存当前线程事务的状态信息。
+- `prepareSynchronization()`：保存`TransactionSynchronizationManager`中当前线程事务的状态信息。
+
+### 1 startTransaction()
+`startTransaction()`方法会开启一个新的物理事务：
+1. 开启新的物理事务，并绑定到`TransactionSynchronizationManager`，交给子类实现。对于`DataSourceTransactionManager`，会调用`con.setAutoCommit(false);`方法。
+2. 初始化`TransactionSynchronizationManager`中当前事务的信息。
+
+方法源码如下：
+```java
+private TransactionStatus startTransaction(TransactionDefinition definition, Object transaction,  
+      boolean debugEnabled, @Nullable SuspendedResourcesHolder suspendedResources) {  
+  
+   boolean newSynchronization = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);  
+   DefaultTransactionStatus status = newTransactionStatus(  
+         definition, transaction, true, newSynchronization, debugEnabled, suspendedResources);  
+   // 开启新的物理事务，并绑定到TransactionSynchronizationManager，交给子类实现。对于DataSourceTransactionManager，会调用con.setAutoCommit(false)方法
+   doBegin(transaction, definition);  
+   // 保存当前事务信息
+   prepareSynchronization(status, definition);  
+   return status;  
+}
+```
+
+### 2 suspend()
+`suspend()`方法可以暂停指定事务，例如内层方法的事务传播行为是`PROPAGATION_NOT_SUPPORTED`或`PROPAGATION_REQUIRES_NEW`，就需要暂停外层方法的事务：
+```java
+protected final SuspendedResourcesHolder suspend(@Nullable Object transaction) throws TransactionException {  
+   if (TransactionSynchronizationManager.isSynchronizationActive()) {  
+      // 执行TransactionSynchronizationManager中的suspend()回调
+      List<TransactionSynchronization> suspendedSynchronizations = doSuspendSynchronization();  
+      try {  
+         Object suspendedResources = null;  
+         if (transaction != null) {  
+            // 由子类去暂定事务
+            suspendedResources = doSuspend(transaction);  
+         }  
+         // 清空被暂停事务在TransactionSynchronizationManager中的信息
+         String name = TransactionSynchronizationManager.getCurrentTransactionName();  
+         TransactionSynchronizationManager.setCurrentTransactionName(null);  
+         boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();  
+         TransactionSynchronizationManager.setCurrentTransactionReadOnly(false);  
+         Integer isolationLevel = TransactionSynchronizationManager.getCurrentTransactionIsolationLevel();  
+         TransactionSynchronizationManager.setCurrentTransactionIsolationLevel(null);  
+         boolean wasActive = TransactionSynchronizationManager.isActualTransactionActive();  
+         TransactionSynchronizationManager.setActualTransactionActive(false);  
+         // 保存被暂停事务的信息，用于后续恢复事务
+         return new SuspendedResourcesHolder(  
+               suspendedResources, suspendedSynchronizations, name, readOnly, isolationLevel, wasActive);  
+      }  
+      catch (RuntimeException | Error ex) {  
+         // doSuspend failed - original transaction is still active...  
+         doResumeSynchronization(suspendedSynchronizations);  
+         throw ex;  
+      }  
+   }  
+   else if (transaction != null) {  
+      // Transaction active but no synchronization active.  
+      Object suspendedResources = doSuspend(transaction);  
+      return new SuspendedResourcesHolder(suspendedResources);  
+   }  
+   else {  
+      // Neither transaction nor synchronization active.  
+      return null;  
+   }  
+}
+```
+
+对于`DataSourceTransactionManager`来说，它的`doSuspend()`方法会清除`txObject`对象的数据库连接，同时解除`TransactionSynchronizationManager`中当前事务的绑定：
+```java
+protected Object doSuspend(Object transaction) {  
+   DataSourceTransactionObject txObject = (DataSourceTransactionObject) transaction;  
+   txObject.setConnectionHolder(null);  
+   return TransactionSynchronizationManager.unbindResource(obtainDataSource());  
+}
+```
+
+### 3 resume()
+如果暂停外层方法事务后，创建内层方法的事务失败了，需要恢复外层方法的事务。
+如果内层方法的事务提交或回滚后，也需要恢复外层方法的事务。
+```java
+protected final void resume(@Nullable Object transaction, @Nullable SuspendedResourcesHolder resourcesHolder)  
+      throws TransactionException {  
+  
+   if (resourcesHolder != null) {  
+      Object suspendedResources = resourcesHolder.suspendedResources;  
+      if (suspendedResources != null) {  
+         // 由子类进行恢复事务
+         doResume(transaction, suspendedResources);  
+      }  
+      List<TransactionSynchronization> suspendedSynchronizations = resourcesHolder.suspendedSynchronizations;  
+      // 更新TransactionSynchronizationManager中当前事务的信息，执行其resume()回调
+      if (suspendedSynchronizations != null) {  
+         TransactionSynchronizationManager.setActualTransactionActive(resourcesHolder.wasActive);  
+         TransactionSynchronizationManager.setCurrentTransactionIsolationLevel(resourcesHolder.isolationLevel);  
+         TransactionSynchronizationManager.setCurrentTransactionReadOnly(resourcesHolder.readOnly);  
+         TransactionSynchronizationManager.setCurrentTransactionName(resourcesHolder.name);  
+         doResumeSynchronization(suspendedSynchronizations);  
+      }  
+   }  
+}
+```
+
+对于对于`DataSourceTransactionManager`来说，它的`duResume()`方法会重新在`TransactionSynchronizationManager`中绑定当前事务：
+```java
+protected void doResume(@Nullable Object transaction, Object suspendedResources) {  
+   TransactionSynchronizationManager.bindResource(obtainDataSource(), suspendedResources);  
+}
+```
+
+### 4 prepareSynchronization()
+`prepareSynchronization()`方法用于更新`TransactionSynchronizationManager`中当前事务的信息：
+```java
+protected void prepareSynchronization(DefaultTransactionStatus status, TransactionDefinition definition) {  
+   if (status.isNewSynchronization()) {  
+      TransactionSynchronizationManager.setActualTransactionActive(status.hasTransaction());  
+      TransactionSynchronizationManager.setCurrentTransactionIsolationLevel(  
+            definition.getIsolationLevel() != TransactionDefinition.ISOLATION_DEFAULT ?  
+                  definition.getIsolationLevel() : null);  
+      TransactionSynchronizationManager.setCurrentTransactionReadOnly(definition.isReadOnly());  
+      TransactionSynchronizationManager.setCurrentTransactionName(definition.getName());  
+      TransactionSynchronizationManager.initSynchronization();  
+   }  
+}
+```
+
+# 6 提交事务流程
+获取事务的入口在`PlatformTransactionManager#commit()`方法。
+
+`AbstractPlatformTransactionManager#commit()`对该方法进行了实现：
+```java
+public final void commit(TransactionStatus status) throws TransactionException {  
+   if (status.isCompleted()) {  
+      throw new IllegalTransactionStateException(  
+            "Transaction is already completed - do not call commit or rollback more than once per transaction");  
+   }  
+  
+   DefaultTransactionStatus defStatus = (DefaultTransactionStatus) status;  
+   // 根据rollbackOnly状态进行回滚
+   if (defStatus.isLocalRollbackOnly()) {  
+      if (defStatus.isDebug()) {  
+         logger.debug("Transactional code has requested rollback");  
+      }  
+      processRollback(defStatus, false);  
+      return;  
+   }  
+   if (!shouldCommitOnGlobalRollbackOnly() && defStatus.isGlobalRollbackOnly()) {  
+      if (defStatus.isDebug()) {  
+         logger.debug("Global transaction is marked as rollback-only but transactional code requested commit");  
+      }  
+      processRollback(defStatus, true);  
+      return;  
+   }  
+   // 具体提交事务流程
+   processCommit(defStatus);  
+}
+```
+
+`processCommit()`方法如下：
+```java
+private void processCommit(DefaultTransactionStatus status) throws TransactionException {  
+   try {  
+      boolean beforeCompletionInvoked = false;  
+  
+      try {  
+         boolean unexpectedRollback = false;  
+         prepareForCommit(status);  
+         // 触发TransactionSynchronizationManager的beforeCommit()回调
+         triggerBeforeCommit(status);  
+         // 触发TransactionSynchronizationManager的beforeCompletion()回调
+         triggerBeforeCompletion(status);  
+         beforeCompletionInvoked = true;  
+  
+         if (status.hasSavepoint()) {  
+            if (status.isDebug()) {  
+               logger.debug("Releasing transaction savepoint");  
+            }  
+            unexpectedRollback = status.isGlobalRollbackOnly();  
+            // 如果有保存点，请求数据库释放保存点
+            status.releaseHeldSavepoint();  
+         }  
+         else if (status.isNewTransaction()) {  
+            if (status.isDebug()) {  
+               logger.debug("Initiating transaction commit");  
+            }  
+            unexpectedRollback = status.isGlobalRollbackOnly();  
+            // 如果是新事务，请求数据库提交事务
+            doCommit(status);  
+         }  
+         else if (isFailEarlyOnGlobalRollbackOnly()) {  
+            unexpectedRollback = status.isGlobalRollbackOnly();  
+         }  
+  
+         // Throw UnexpectedRollbackException if we have a global rollback-only  
+         // marker but still didn't get a corresponding exception from commit.         if (unexpectedRollback) {  
+            throw new UnexpectedRollbackException(  
+                  "Transaction silently rolled back because it has been marked as rollback-only");  
+         }  
+      }  
+      catch (UnexpectedRollbackException ex) {  
+         // can only be caused by doCommit  
+         triggerAfterCompletion(status, TransactionSynchronization.STATUS_ROLLED_BACK);  
+         throw ex;  
+      }  
+      catch (TransactionException ex) {  
+         // can only be caused by doCommit  
+         if (isRollbackOnCommitFailure()) {  
+            doRollbackOnCommitException(status, ex);  
+         }  
+         else {  
+            triggerAfterCompletion(status, TransactionSynchronization.STATUS_UNKNOWN);  
+         }  
+         throw ex;  
+      }  
+      catch (RuntimeException | Error ex) {  
+         if (!beforeCompletionInvoked) {  
+            triggerBeforeCompletion(status);  
+         }  
+         doRollbackOnCommitException(status, ex);  
+         throw ex;  
+      }  
+     try {  
+         // 触发TransactionSynchronizationManager的afterCommit()回调
+         triggerAfterCommit(status);  
+      }  
+      finally {  
+         // 触发TransactionSynchronizationManager的afterCompletion()回调
+         triggerAfterCompletion(status, TransactionSynchronization.STATUS_COMMITTED);  
+      }  
+  
+   }  
+   finally {  
+      // 清除TransactionSynchronizationManager中当前线程事务的信息
+      cleanupAfterCompletion(status);  
+   }  
+}
+```
+
+需要注意的是，在`cleanupAfterCompletion()`方法中对事务是否需要恢复进行的处理：
+```java
+private void cleanupAfterCompletion(DefaultTransactionStatus status) {  
+   status.setCompleted();  
+   if (status.isNewSynchronization()) {  
+      TransactionSynchronizationManager.clear();  
+   }  
+   if (status.isNewTransaction()) {  
+      doCleanupAfterCompletion(status.getTransaction());  
+   }  
+   if (status.getSuspendedResources() != null) {  
+      if (status.isDebug()) {  
+         logger.debug("Resuming suspended transaction after completion of inner transaction");  
+      }  
+      Object transaction = (status.hasTransaction() ? status.getTransaction() : null);  
+      // 恢复方法外层的事务
+      resume(transaction, (SuspendedResourcesHolder) status.getSuspendedResources());  
+   }  
+}
+```
+
+# 7 回滚事务流程
+获取事务的入口在`PlatformTransactionManager#rollback()`方法。
+
+`AbstractPlatformTransactionManager#rollback()`对该方法进行了实现：
+```java
+public final void rollback(TransactionStatus status) throws TransactionException {  
+   if (status.isCompleted()) {  
+      throw new IllegalTransactionStateException(  
+            "Transaction is already completed - do not call commit or rollback more than once per transaction");  
+   }  
+  
+   DefaultTransactionStatus defStatus = (DefaultTransactionStatus) status;  
+   // 具体事务回滚
+   processRollback(defStatus, false);  
+}
+```
+
+`processRollback()`方法如下：
+```java
+private void processRollback(DefaultTransactionStatus status, boolean unexpected) {  
+   try {  
+      boolean unexpectedRollback = unexpected;  
+  
+      try {  
+         // 触发TransactionSynchronizationManager的beforeCompletion()回调
+         triggerBeforeCompletion(status);  
+  
+         if (status.hasSavepoint()) {  
+            if (status.isDebug()) {  
+               logger.debug("Rolling back transaction to savepoint");  
+            }  
+            // 如果有保存点，请求数据库回滚到保存点
+            status.rollbackToHeldSavepoint();  
+         }  
+         else if (status.isNewTransaction()) {  
+            if (status.isDebug()) {  
+               logger.debug("Initiating transaction rollback");  
+            }  
+            // 如果是单纯新事务，请求数据库回滚事务
+            doRollback(status);  
+         }  
+         else {  
+            // 如果加入到外层方法的事务中  
+            if (status.hasTransaction()) {  
+               if (status.isLocalRollbackOnly() || isGlobalRollbackOnParticipationFailure()) {  
+                  if (status.isDebug()) {  
+                     logger.debug("Participating transaction failed - marking existing transaction as rollback-only");  
+                  }  
+                  // 将外层方法的事务设为rollbackOnly，由外层事务提交时进行回滚
+                  doSetRollbackOnly(status);  
+               }  
+               else {  
+                  if (status.isDebug()) {  
+                     logger.debug("Participating transaction failed - letting transaction originator decide on rollback");  
+                  }  
+               }  
+            }  
+            else {  
+               logger.debug("Should roll back transaction but cannot - no transaction available");  
+            }  
+            // Unexpected rollback only matters here if we're asked to fail early  
+            if (!isFailEarlyOnGlobalRollbackOnly()) {  
+               unexpectedRollback = false;  
+            }  
+         }  
+      }  
+      catch (RuntimeException | Error ex) {  
+         triggerAfterCompletion(status, TransactionSynchronization.STATUS_UNKNOWN);  
+         throw ex;  
+      }  
+      // 触发TransactionSynchronizationManager的afterCompletion()回调
+      triggerAfterCompletion(status, TransactionSynchronization.STATUS_ROLLED_BACK);  
+  
+      // Raise UnexpectedRollbackException if we had a global rollback-only marker  
+      if (unexpectedRollback) {  
+         throw new UnexpectedRollbackException(  
+               "Transaction rolled back because it has been marked as rollback-only");  
+      }  
+   }  
+   finally {  
+      // 清除TransactionSynchronizationManager中当前事务的信息
+      cleanupAfterCompletion(status);  
+   }  
+}
+```
+
+# 8 总结
+我们整体过了一遍
