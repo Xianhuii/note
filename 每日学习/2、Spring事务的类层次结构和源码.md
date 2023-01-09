@@ -717,4 +717,23 @@ private void processRollback(DefaultTransactionStatus status, boolean unexpected
 ```
 
 # 8 总结
-我们整体过了一遍
+Spring事务管理本质上就是`PlatformTransactionManager`中的3个方法：
+1. `getTransaction(TransactionDefinition):TransactionStatus`：获取事务。
+2. `commit(TransactionStatus)`：提交事务。
+3. `rollback(TransactionStatus)`：回滚事务。
+
+如果我们要使用`PlatformTransactionManager`进行事务管理，也非常简单：
+```java
+PlatformTransactionManager txManager = new JdbcTransactionManager(dataSource);
+DefaultTransactionDefinition txDefinition = new DefaultTransactionDefinition();
+TransactionStatus txStatus = txManager.getTransaction(txDefinition);
+try {
+	// 业务方法
+} catch (Exception e) {
+	txManager.rollback(txStatus);
+	throw e;
+}
+txManager.commit(status);
+```
+
+`TransactionSynchronizationManager`贯穿整个事务管理的流程，我们可以通过其实时获取当前事务的信息，也可以添加各个回调来对事务管理流程进行拦截。
