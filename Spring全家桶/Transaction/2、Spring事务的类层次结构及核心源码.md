@@ -44,7 +44,7 @@ public final TransactionStatus getTransaction(@Nullable TransactionDefinition de
    else if (def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_REQUIRED ||  
          def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_REQUIRES_NEW ||  
          def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_NESTED) {  
-      // 暂定外层事务
+      // 暂停外层事务
       SuspendedResourcesHolder suspendedResources = suspend(null);  
       if (debugEnabled) {  
          logger.debug("Creating new transaction with name [" + def.getName() + "]: " + def);  
@@ -122,7 +122,6 @@ public final void rollback(TransactionStatus status) throws TransactionException
 
 ## 1.2 DataSourceTransactionManager
 `DataSourceTransactionManager`内部持有一个`DataSource`对象，通过该对象进行不同数据库的事务管理。
-
 ![[DataSourceTransactionManager.png]]
 
 `DataSourceTransactionManager`有一个`JdbcTransactionManager`实现类，它与事务管理工作流关系不大，主要用来对JDBC异常进行解析。
@@ -159,12 +158,11 @@ Spring事务管理器可以通过`TransactionStatus`对象来判断事务的状�
 需要注意的是，`TransactionStatus`表示的是逻辑事务的状态，即虽然它的`isNewTransaction()`返回值是`true`，但实际上数据库并没有创建物理事务。
 
 # 4 TransactionSynchronizationManager
-![[TransactionSynchronization 1.png]]
 
 `TransactionSynchronizationManager`贯穿了事务管理的整个流程，它会保存事务资源、事务名称、事务隔离级别等信息。
 
 同时，`TransactionSynchronizationManager`可以对当前线程的事务添加`TransactionSynchronization`回调，可以对事务管理的节点进行拦截：
-![[TransactionSynchronization.png]]
+![[TransactionSynchronization 1.png]]
 
 # 5 获取事务流程
 获取事务的入口在`PlatformTransactionManager#getTransaction()`方法。
