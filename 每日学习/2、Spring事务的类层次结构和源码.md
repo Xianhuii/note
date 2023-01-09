@@ -158,17 +158,19 @@ Spring事务管理器可以通过`TransactionStatus`对象来判断事务的状�
 
 需要注意的是，`TransactionStatus`表示的是逻辑事务的状态，即虽然它的`isNewTransaction()`返回值是`true`，但实际上数据库并没有创建物理事务。
 
-# 4 获取事务流程
+# 4 TransactionSynchronizationManager
+
+# 5 获取事务流程
 获取事务的入口在`PlatformTransactionManager#getTransaction()`方法。
 
 `AbstractPlatformTransactionManager#getTransaction()`对该方法进行了实现。该方法会根据事务传播行为进行创建事务，或者返回已存在的事务。接下来介绍该方法的执行逻辑。
-## 4.1 获取事务配置
+## 5.1 获取事务配置
 首先，会判断是否有指定事务配置对象。如果不存在，会使用`StaticTransactionDefinition`对象作为默认值，它本质上使用`TransactionDefinition`中的默认配置：
 ```java
 TransactionDefinition def = (definition != null ? definition : TransactionDefinition.withDefaults());
 ```
 
-## 4.2 获取当前线程的事务（外层方法事务）
+## 5.2 获取当前线程的事务（外层方法事务）
 使用`AbstractPlatformTransactionManager#doGetTransaction()`方法获取当前线程绑定的事务：
 ```java
 Object transaction = doGetTransaction();
@@ -196,7 +198,7 @@ private static final ThreadLocal<Map<Object, Object>> resources =
 
 如果当前已存在事务，会返回该事务资源。如果当前不存在事务，会返回`null`。
 
-## 4.3 已存在外层事务的处理流程
+## 5.3 已存在外层事务的处理流程
 如果当前线程已经存在事务，说明出现了Spring事务方法的相互调用，会根据事务传播行为进行不同处理：
 ```java
 // 判断当前线程是否已存在事务
@@ -308,7 +310,7 @@ private TransactionStatus handleExistingTransaction(
 }
 ```
 
-## 4.4 不存在外层事务，校验过期时间
+## 5.4 不存在外层事务，校验过期时间
 如果外层方法不存在事务，需要校验内层方法设置的过期时间。如果过期时间小于`-1`，会抛出异常：
 ```java
 if (def.getTimeout() < TransactionDefinition.TIMEOUT_DEFAULT) {  
@@ -316,7 +318,7 @@ if (def.getTimeout() < TransactionDefinition.TIMEOUT_DEFAULT) {
 }
 ```
 
-## 4.5 不存在外层事务，内层方法事务传播行为是PROPAGATION_MANDATORY
+## 5.5 不存在外层事务，内层方法事务传播行为是PROPAGATION_MANDATORY
 如果外层方法不存在事务，但是内层方法设置的事务传播行为是`PROPAGATION_MANDATORY`，会抛出异常：
 ```java
 if (def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_MANDATORY) {  
@@ -325,7 +327,7 @@ if (def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_MANDATORY)
 }
 ```
 
-## 4.6 不存在外层事务，内层方法事务传播行为是PROPAGATION_REQUIRED/PROPAGATION_REQUIRES_NEW/PROPAGATION_NESTED
+## 5.6 不存在外层事务，内层方法事务传播行为是PROPAGATION_REQUIRED/PROPAGATION_REQUIRES_NEW/PROPAGATION_NESTED
 如果外层方法不存在事务，同时内层方法设置的事务传播行为是`PROPAGATION_REQUIRED`、`PROPAGATION_REQUIRES_NEW`或`PROPAGATION_NESTED`，会创建一个新事务：
 ```java
 else if (def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_REQUIRED ||  
@@ -345,7 +347,7 @@ else if (def.getPropagationBehavior() == TransactionDefinition.PROPAGATION_REQUI
 }
 ```
 
-## 4.7 不存在外层事务，内层方法事务为其他
+## 5.7 不存在外层事务，内层方法事务为其他
 如果外层方法不存在事务，同时内层方法设置的事务传播行为不是上述所有情况时，即当前事务传播行为是`PROPAGATION_SUPPORTS`、`PROPAGATION_NOT_SUPPORTED`或`PROPAGATION_NEVER`，实际上不会创建新事务：
 ```java
 else {  
@@ -359,7 +361,7 @@ else {
 }
 ```
 
-## 4.8 其他方法
+## 5.8 其他方法
 在获取事务流程中，会调用一些比较重要的方法：
 - `startTransaction()`：开始新事务。
 - `suspend()`：暂停事务。
