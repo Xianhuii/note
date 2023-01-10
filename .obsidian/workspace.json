@@ -13,14 +13,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/Spring IoC学习路线.md",
+                "file": "Spring全家桶/core/1、Spring IoC学习路线.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4aba406cefb87082",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "每日学习/2、BeanFactory.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -86,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/Spring IoC学习路线.md",
+                "file": "每日学习/2、BeanFactory.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/Spring IoC学习路线.md",
+                "file": "每日学习/2、BeanFactory.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/Spring IoC学习路线.md"
+                "file": "每日学习/2、BeanFactory.md"
               }
             }
           },
@@ -156,8 +170,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "b6519258ba59b8d8",
+  "active": "4aba406cefb87082",
   "lastOpenFiles": [
+    "Spring全家桶/core/1、Spring IoC学习路线.md",
     "每日学习/4、Spring声明式事务的工作原理.md",
     "Spring全家桶/未命名.md",
     "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
@@ -166,7 +181,6 @@
     "个人/简先辉_Java工程师.md",
     "Spring全家桶/SpringMVC/12、ExceptionHandlerExceptionResolver详解.md",
     "个人/Java程序员简历模板.md",
-    "Spring全家桶/SpringMVC/11、RequestMappingHandlerAdapter详解.md",
-    "Spring全家桶/SpringMVC/6、RequestMappingHandlerMapping请求地址映射的初始化流程！.md"
+    "Spring全家桶/SpringMVC/11、RequestMappingHandlerAdapter详解.md"
   ]
 }

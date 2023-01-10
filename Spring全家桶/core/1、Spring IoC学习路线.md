@@ -10,7 +10,9 @@ Spring IoC容器本质上是一个管理Java对象的工具。
 4. 读取依赖配置：`AnnotatedBeanDefinitionReader`、`ClassPathBeanDefinitionScanner`和`BeanDefinitionReader`
 5. `Environment`
 
-通过系统学习这些模块，就可以建立Spring的坚实基础。后续再深入学习Spring的启动流程、生命周期等细节，就能够全面掌握Spring的核心功能了。
+通过系统学习这些模块，就可以建立Spring的坚实基础。
+
+后续再深入学习Spring的启动流程、生命周期、作用域等细节，就能够全面掌握Spring的核心功能了。
 
 # 1 BeanFactory
 ![[DefaultListableBeanFactory.png]]
