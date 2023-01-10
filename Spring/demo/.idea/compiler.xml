@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-transaction" />
-        <module name="spring-core" />
         <module name="websocket" />
         <module name="servlet-mvc" />
       </profile>
