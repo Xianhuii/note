@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "122a6420ae59db9a",
+        "id": "fb568471c55aab1b",
         "type": "tabs",
         "children": [
           {
-            "id": "8b8387f96725df26",
+            "id": "b6519258ba59b8d8",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -81,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -98,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -120,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md"
-              }
+              "state": {}
             }
           },
           {
@@ -151,17 +147,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e275dab41eb9f4d9",
+  "active": "b6519258ba59b8d8",
   "lastOpenFiles": [
-    "Spring全家桶/Transaction/1、Spring事务的基本使用.md",
+    "每日学习/4、Spring声明式事务的工作原理.md",
+    "Spring全家桶/未命名.md",
     "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
-    "每日学习/3、Spring声明式事务的工作原理.md",
+    "Spring全家桶/Transaction/1、Spring事务的基本使用.md",
     "Spring全家桶/Transaction/2、Spring事务的类层次结构及核心源码.md",
     "个人/简先辉_Java工程师.md",
     "Spring全家桶/SpringMVC/12、ExceptionHandlerExceptionResolver详解.md",
     "个人/Java程序员简历模板.md",
     "Spring全家桶/SpringMVC/11、RequestMappingHandlerAdapter详解.md",
-    "Spring全家桶/SpringMVC/6、RequestMappingHandlerMapping请求地址映射的初始化流程！.md",
-    "attachments/RequestMappingHandlerAdapter.png"
+    "Spring全家桶/SpringMVC/6、RequestMappingHandlerMapping请求地址映射的初始化流程！.md"
   ]
 }

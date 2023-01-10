@@ -24,7 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../每日学习/4、TransactionTemplate的工作原理.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/4、TransactionTemplate的工作原理.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +120,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.SpringTransactionApplication">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="generated-requests#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -135,6 +147,13 @@
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servletmvc.ServletMvcApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringCoreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="spring-core" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.SpringCoreApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -208,7 +227,7 @@
       <workItem from="1670852035786" duration="2652000" />
       <workItem from="1670934386737" duration="8730000" />
       <workItem from="1672815048990" duration="22000" />
-      <workItem from="1673151767475" duration="37724000" />
+      <workItem from="1673151767475" duration="41689000" />
     </task>
     <servers />
   </component>
@@ -240,6 +259,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1668392753445" />
+    <state x="259" y="78" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1673319629408">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="259" y="78" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673319629408" />
     <state x="385" y="204" width="876" height="601" key="#xdebugger.evaluate" timestamp="1673248448154">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -378,14 +401,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1184" height="500" key="javadoc.popup.new/0.0.1920.1040@0.0.1920.1040" timestamp="1669000196229" />
-    <state x="335" y="129" key="new project wizard" timestamp="1666923455466">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="437" y="195" width="672" height="522" key="search.everywhere.popup" timestamp="1673267315496">
+    <state x="14" y="99" key="new project wizard" timestamp="1673319727971">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="437" y="195" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673267315496" />
+    <state x="14" y="99" key="new project wizard/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673319727971" />
+    <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
+    <state x="438" y="196" width="672" height="522" key="search.everywhere.popup" timestamp="1673319378677">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="438" y="196" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673319378677" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1672902023818" />
