@@ -1,4 +1,5 @@
 # 1 BeanFactory
+![[DefaultListableBeanFactory.png]]
 
 # 2 AplicationContext
 

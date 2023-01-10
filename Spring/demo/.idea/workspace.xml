@@ -23,15 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/spring-core/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-core/spring-core.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/container/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/container/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/Spring IoC核心体系架构.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/Spring IoC核心体系架构.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,7 +242,7 @@
       <workItem from="1670852035786" duration="2652000" />
       <workItem from="1670934386737" duration="8730000" />
       <workItem from="1672815048990" duration="22000" />
-      <workItem from="1673151767475" duration="43969000" />
+      <workItem from="1673151767475" duration="44392000" />
     </task>
     <servers />
   </component>
@@ -297,10 +290,10 @@
     <state width="857" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673249176650" />
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855463073" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1672905103421" />
-    <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1673233714414">
+    <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1673322543888">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673233714414" />
+    <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673322543888" />
     <state x="3115" y="237" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670935323060" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1670474069637" />
     <state width="1238" height="212" key="GridCell.Tab.0.bottom" timestamp="1673321620424">
@@ -429,10 +422,10 @@
     </state>
     <state x="14" y="99" key="new project wizard/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673320655919" />
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="439" y="197" width="672" height="522" key="search.everywhere.popup" timestamp="1673320236254">
+    <state x="440" y="198" width="672" height="522" key="search.everywhere.popup" timestamp="1673322170440">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="439" y="197" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673320236254" />
+    <state x="440" y="198" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673322170440" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1672902023818" />
