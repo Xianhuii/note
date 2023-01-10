@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/Spring IoC核心体系架构.md",
+                "file": "每日学习/Spring IoC容器学习路线.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/Spring IoC核心体系架构.md",
+                "file": "每日学习/Spring IoC容器学习路线.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/Spring IoC核心体系架构.md",
+                "file": "每日学习/Spring IoC容器学习路线.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/Spring IoC核心体系架构.md"
+                "file": "每日学习/Spring IoC容器学习路线.md"
               }
             }
           },
