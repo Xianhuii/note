@@ -23,6 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/spring-core/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/spring-core.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/container/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/container/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +127,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringCoreApplication">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ioc.container.Main" />
+      <module name="spring-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ioc.container.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -174,6 +195,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="HTTP Request.generated-requests#5" />
         <item itemvalue="HTTP Request.generated-requests#10" />
         <item itemvalue="HTTP Request.generated-requests#1" />
@@ -227,7 +249,7 @@
       <workItem from="1670852035786" duration="2652000" />
       <workItem from="1670934386737" duration="8730000" />
       <workItem from="1672815048990" duration="22000" />
-      <workItem from="1673151767475" duration="42469000" />
+      <workItem from="1673151767475" duration="43159000" />
     </task>
     <servers />
   </component>
@@ -247,9 +269,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="440" y="94" key="#Project_Structure" timestamp="1668564612973">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="244" y="0" key="#Project_Structure" timestamp="1673320666596">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
+    <state x="244" y="0" key="#Project_Structure/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673320666596" />
     <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1668564612973" />
     <state x="414" y="174" width="1186" height="716" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1669625488085">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -368,10 +391,10 @@
     <state width="646" height="407" key="XDebugger.FullValuePopup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673248779369" />
     <state width="726" height="457" key="XDebugger.FullValuePopup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670853443523" />
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1672903597881" />
-    <state x="139" y="266" width="555" height="225" key="coderead.maven.search" timestamp="1673015579555">
+    <state x="142" y="269" width="555" height="225" key="coderead.maven.search" timestamp="1673320841342">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="139" y="266" width="555" height="225" key="coderead.maven.search/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673015579555" />
+    <state x="142" y="269" width="555" height="225" key="coderead.maven.search/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673320841342" />
     <state x="524" y="345" width="516" height="292" key="coderead.maven.search/0.0.1920.1040@0.0.1920.1040" timestamp="1669087957138" />
     <state x="289" y="265" width="476" height="334" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1673084357233">
       <screen x="0" y="0" width="1280" height="800" />
@@ -401,10 +424,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1184" height="500" key="javadoc.popup.new/0.0.1920.1040@0.0.1920.1040" timestamp="1669000196229" />
-    <state x="14" y="99" key="new project wizard" timestamp="1673319727971">
+    <state x="14" y="99" key="new project wizard" timestamp="1673320655919">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="14" y="99" key="new project wizard/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673319727971" />
+    <state x="14" y="99" key="new project wizard/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673320655919" />
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
     <state x="439" y="197" width="672" height="522" key="search.everywhere.popup" timestamp="1673320236254">
       <screen x="0" y="0" width="1280" height="800" />

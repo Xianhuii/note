@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-transaction" />
+        <module name="spring-core" />
         <module name="websocket" />
         <module name="servlet-mvc" />
       </profile>
@@ -22,7 +23,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="servlet-mvc" options="-parameters" />
-      <module name="spring-core" options="-parameters" />
+      <module name="spring-core" options="" />
       <module name="spring-transaction" options="-parameters" />
       <module name="websocket" options="-parameters" />
     </option>

@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/servlet-mvc/pom.xml" />
         <option value="$PROJECT_DIR$/websocket/pom.xml" />
         <option value="$PROJECT_DIR$/spring-transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-core/pom.xml" />
       </list>
     </option>
   </component>
