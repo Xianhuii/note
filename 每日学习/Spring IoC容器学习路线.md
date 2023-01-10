@@ -7,8 +7,7 @@ Spring IoC容器本质上是一个管理Java对象的工具。
 在Spring IoC容器中，将上述功能拆分成了以下模块：
 1. `BeanFactory`
 2. `ApplicationContext`
-3. `Resource`
-4. `BeanDefinition`
+4. 读取依赖配置：`AnnotatedBeanDefinitionReader`、`ClassPathBeanDefinitionScanner`和`BeanDefinitionReader`
 5. `Environment`
 
 # 1 BeanFactory
@@ -35,7 +34,7 @@ Spring IoC容器本质上是一个管理Java对象的工具。
 
 `ApplicationContext`除了集成`BeanFactory`的功能，它提供了从不同形式配置中获取依赖关系和获取环境变量的能力。
 
-例如，`AnnotationConfigApplicationContext`可以从注解中获取依赖关系，`ClassPathXmlApplicationContext`和`FileSystemXmlApplicationContext`可以从`Xml`文件中获取依赖关系。
+例如，`AnnotationConfigApplicationContext`可以从注解中获取依赖关系，`ClassPathXmlApplicationContext`和`FileSystemXmlApplicationContext`可以从`xml`文件中获取依赖关系。
 
 因此，我们只要掌握上述`ApplicationContext`实现类，就能够对不同形式的依赖配置，环境变量的读取有深入的理解。
 
@@ -43,9 +42,29 @@ Spring IoC容器本质上是一个管理Java对象的工具。
 
 例如Spring Boot中可能会使用`ServletWebServerApplicationContext`，但是它们的基本原理都是差不多的。只要我们掌握上述实现类，管他是什么实现类，大概看一下源码就都能很快的掌握。
 
-# 3 Resouce
+# 3 BeanDefinition
+![[BeanDefinition.png]]
+`BeanDefinition`是依赖关系在`BeanFactory`中的缓存。
 
-# 5 BeanDefinition
+在创建`bean`时，`BeanFactory`会根据对应的`BeanDefinition`进行创建对象，设置成员变量。
+
+`BeanDefinition`定义了依赖关系的各种属性，学习`BeanDefinitio`可以帮助我们深入理解日常工作中要怎么定义配置依赖关系，也可以深入理解`BeanFactory`是怎么创建对象，设置成员变量的。
+
+# 4 AnnotatedBeanDefinitionReader
+![[AnnotatedBeanDefinitionReader.png]]
+`AnnotatedBeanDefinitionReader`会根据类对象读取注解形式的依赖关系。
+
+例如，给定一个`@Configuration`标注的类对象，它可以从该类对象为入口，读取所有相关的依赖关系。
+
+# 5 ClassPathBeanDefinitionScanner
+![[ClassPathBeanDefinitionScanner.png]]
+`ClassPathBeanDefinitionScanner`会根据给定包路径进行扫描，读取所有注解形式的依赖关系。
+
+# 6 BeanDefinitionReader
+![[BeanDefinitionReader.png]]
+`BeanDefinitionReader`是读取`xml`和`groovy`形式依赖关系的工具，可以将这些配置文件中的依赖关系解析成`BeanDefinition`，并且缓存到`BeanFactory`中。
+
+
 
 # 3 Environment
 ![[StandardEnvironment.png]]
