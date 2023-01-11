@@ -543,7 +543,8 @@ public static BeanDefinitionHolder createScopedProxy(BeanDefinitionHolder defini
    String targetBeanName = getTargetBeanName(originalBeanName);  
   
    // Create a scoped proxy definition for the original bean name,  
-   // "hiding" the target bean in an internal target definition.   RootBeanDefinition proxyDefinition = new RootBeanDefinition(ScopedProxyFactoryBean.class);  
+   // "hiding" the target bean in an internal target definition.   
+   RootBeanDefinition proxyDefinition = new RootBeanDefinition(ScopedProxyFactoryBean.class);  
    proxyDefinition.setDecoratedDefinition(new BeanDefinitionHolder(targetDefinition, targetBeanName));  
    proxyDefinition.setOriginatingBeanDefinition(targetDefinition);  
    proxyDefinition.setSource(definition.getSource());  
@@ -608,4 +609,148 @@ ComponentE@7cbd213e
 class ComponentE$$EnhancerBySpringCGLIB$$d7c7ac87
 ```
 
-## 2.9 
+实际上，作用域代理要配合`ScopedObject`接口使用。`ScopedProxyFactoryBean`创建代理`bean`对象时，会使用`DelegatingIntroductionInterceptor`对`ScopedObject`接口的方法进行拦截（由于目前不知道这样做的目的，这里不过多介绍）：
+```java
+public Object invoke(MethodInvocation mi) throws Throwable {  
+   if (isMethodOnIntroducedInterface(mi)) {  
+      // Using the following method rather than direct reflection, we  
+      // get correct handling of InvocationTargetException      
+      // if the introduced method throws an exception.      
+      Object retVal = AopUtils.invokeJoinpointUsingReflection(this.delegate, mi.getMethod(), mi.getArguments());  
+  
+      // Massage return value if possible: if the delegate returned itself,  
+      // we really want to return the proxy.      
+      if (retVal == this.delegate && mi instanceof ProxyMethodInvocation) {  
+         Object proxy = ((ProxyMethodInvocation) mi).getProxy();  
+         if (mi.getMethod().getReturnType().isInstance(proxy)) {  
+            retVal = proxy;  
+         }  
+      }  
+      return retVal;  
+   }  
+  
+   return doProceed(mi);  
+}
+```
+
+## 2.9 注册到Spring容器
+最后，会将`BeanDefinitionHolder`信息添加到Spring容器：
+```java
+BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
+```
+
+`BeanDefinitionReaderUtils#registerBeanDefinition()`方法如下：
+```java
+public static void registerBeanDefinition(  
+      BeanDefinitionHolder definitionHolder, 
+      BeanDefinitionRegistry registry)  
+      throws BeanDefinitionStoreException {  
+  
+   // Register bean definition under primary name.  
+   String beanName = definitionHolder.getBeanName();  
+   registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());  
+  
+   // Register aliases for bean name, if any.  
+   String[] aliases = definitionHolder.getAliases();  
+   if (aliases != null) {  
+      for (String alias : aliases) {  
+         registry.registerAlias(beanName, alias);  
+      }  
+   }  
+}
+```
+
+不同的`BeanDefinitionRegistry`实现类会有不同的注册逻辑，这里主要介绍`DefaultListableBeanFactory`的实现。
+
+`DefaultListableBeanFactory#registerBeanDefinition()`方法
+```java
+public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)  
+      throws BeanDefinitionStoreException {  
+  
+   Assert.hasText(beanName, "Bean name must not be empty");  
+   Assert.notNull(beanDefinition, "BeanDefinition must not be null");  
+  
+   if (beanDefinition instanceof AbstractBeanDefinition) {  
+      try {  
+         // 校验
+         ((AbstractBeanDefinition) beanDefinition).validate();  
+      }  
+      catch (BeanDefinitionValidationException ex) {  
+         throw new BeanDefinitionStoreException(beanDefinition.getResourceDescription(), beanName,  
+               "Validation of bean definition failed", ex);  
+      }  
+   }  
+  
+   // 校验beanName是否已存在
+   BeanDefinition existingDefinition = this.beanDefinitionMap.get(beanName);  
+   // 如果beanName已存在
+   if (existingDefinition != null) {  
+      // 如果Spring容器不允许重载BeanDefinition，抛出异常
+      if (!isAllowBeanDefinitionOverriding()) {  
+         throw new BeanDefinitionOverrideException(beanName, beanDefinition, existingDefinition);  
+      }  
+      // 如果Spring容器不允许重载BeanDefinition，会进行覆盖
+      else if (existingDefinition.getRole() < beanDefinition.getRole()) {  
+         // e.g. was ROLE_APPLICATION, now overriding with ROLE_SUPPORT or ROLE_INFRASTRUCTURE  
+         if (logger.isInfoEnabled()) {  
+            logger.info("Overriding user-defined bean definition for bean '" + beanName +  
+                  "' with a framework-generated bean definition: replacing [" +  
+                  existingDefinition + "] with [" + beanDefinition + "]");  
+         }  
+      }  
+      else if (!beanDefinition.equals(existingDefinition)) {  
+         if (logger.isDebugEnabled()) {  
+            logger.debug("Overriding bean definition for bean '" + beanName +  
+                  "' with a different definition: replacing [" + existingDefinition +  
+                  "] with [" + beanDefinition + "]");  
+         }  
+      }  
+      else {  
+         if (logger.isTraceEnabled()) {  
+            logger.trace("Overriding bean definition for bean '" + beanName +  
+                  "' with an equivalent definition: replacing [" + existingDefinition +  
+                  "] with [" + beanDefinition + "]");  
+         }  
+      }  
+      this.beanDefinitionMap.put(beanName, beanDefinition);  
+   }  
+   // 如果beanName不存在
+   else {  
+      // 如果Spring容器已经进入创建bean的阶段：加锁进行更新
+      if (hasBeanCreationStarted()) {  
+         synchronized (this.beanDefinitionMap) {  
+            this.beanDefinitionMap.put(beanName, beanDefinition);  
+            List<String> updatedDefinitions = new ArrayList<>(this.beanDefinitionNames.size() + 1);  
+            updatedDefinitions.addAll(this.beanDefinitionNames);  
+            updatedDefinitions.add(beanName);  
+            this.beanDefinitionNames = updatedDefinitions;  
+            removeManualSingletonName(beanName);  
+         }  
+      }  
+      // 如果Spring容器没有进入创建bean的阶段，即还在注册阶段：直接更新
+      else {  
+         this.beanDefinitionMap.put(beanName, beanDefinition);  
+         this.beanDefinitionNames.add(beanName);  
+         removeManualSingletonName(beanName);  
+      }  
+      this.frozenBeanDefinitionNames = null;  
+   }  
+   // 如果beanName对应的BeanDefinition和单例对象已经存在：即发生了覆盖
+   if (existingDefinition != null || containsSingleton(beanName)) {  
+      // 清除该beanName（以及子bean）的mergedBeanDefinition和单例对象缓存
+      resetBeanDefinition(beanName);  
+   }  
+   // 否则，如果Spring容器可以缓存BeanDefinition的元数据
+   else if (isConfigurationFrozen()) {  
+      // 清除所有allBeanNamesByType和singletonBeanNamesByType缓存（类对象-beanNmae映射的缓存）
+      clearByTypeCache();  
+   }  
+}
+```
+
+# 3 小结
+通过阅读`AnnotatedBeanDefinitionReader`的源码，我们对注解形式的依赖配置有了更深层次的理解。
+
+它可以类对象中的所有注解信息，生成`beanName`，并且设置一些基本的`BeanDefinition`属性：instanceSupplier、scope、lazyInit、primary、dependsOn、description。
+
+如果进行了作用域代理，还会设置代理相关信息。

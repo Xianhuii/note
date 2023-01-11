@@ -2,6 +2,7 @@ package ioc.beandefinitionreader;
 
 import ioc.beandefinitionreader.component.ComponentC;
 import ioc.beandefinitionreader.component.ComponentE;
+import org.springframework.aop.scope.ScopedObject;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -20,5 +21,6 @@ public class ScopeProxyMain {
         System.out.println(((BeanFactory) registry).getBean("scopedTarget.componentE"));
         System.out.println(((BeanFactory) registry).getBean(ComponentE.class));
         System.out.println(((BeanFactory) registry).getBean(ComponentE.class).getClass());
+//        System.out.println((ScopedObject)(((BeanFactory) registry).getBean(ComponentE.class)).getTargetObject());
     }
 }
