@@ -52,13 +52,16 @@ private <T> void doRegisterBean(
    if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {  
       return;  
    }  
-  
+   // 指定创建bean的回调/工厂方法
    abd.setInstanceSupplier(supplier);  
+   // 指定作用域
    ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);  
    abd.setScope(scopeMetadata.getScopeName());  
+   // 指定bean的名字
    String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));  
-  
+   // 指定类对象标注通用的注解：@Lazy、@Primary、@DependsOn、@Role、@Description
    AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);  
+   // 指定传参的注解：@Primary、@Lazy等
    if (qualifiers != null) {  
       for (Class<? extends Annotation> qualifier : qualifiers) {  
          if (Primary.class == qualifier) {  
@@ -72,6 +75,7 @@ private <T> void doRegisterBean(
          }  
       }  
    }  
+   // BeanDefinition自定义处理拦截
    if (customizers != null) {  
       for (BeanDefinitionCustomizer customizer : customizers) {  
          customizer.customize(abd);  
@@ -79,7 +83,13 @@ private <T> void doRegisterBean(
    }  
   
    BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);  
+   // 判断并创建代理
    definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);  
+   // 注册到Spring容器
    BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);  
 }
 ```
+
+## 2.1 创建AnnotatedGenericBeanDefinition
+![[AnnotatedGenericBeanDefinition.png]]
+`AnnotatedGenericBeanDefinition`是`GenericBeanDefinition`的子类。
