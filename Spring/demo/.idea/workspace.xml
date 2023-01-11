@@ -23,7 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/component/ComponentA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/AnnotatedBeanDefinitionReaderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/AnnotatedBeanDefinitionReaderMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/2、AnnotatedBeanDefinitionReader.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/2、AnnotatedBeanDefinitionReader.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +124,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ServletMvcApplication">
+  <component name="RunManager" selected="Application.AnnotatedBeanDefinitionReaderMain">
+    <configuration name="AnnotatedBeanDefinitionReaderMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.AnnotatedBeanDefinitionReaderMain" />
+      <module name="spring-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ioc.beandefinitionreader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ioc.container.Main" />
       <module name="spring-core" />
@@ -129,6 +147,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -174,6 +203,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AnnotatedBeanDefinitionReaderMain" />
         <item itemvalue="HTTP Request.generated-requests#5" />
         <item itemvalue="HTTP Request.generated-requests#1" />
         <item itemvalue="HTTP Request.generated-requests#10" />
@@ -232,7 +262,7 @@
       <workItem from="1673343448819" duration="5982000" />
       <workItem from="1673355952010" duration="3490000" />
       <workItem from="1673405233261" duration="2002000" />
-      <workItem from="1673407602497" duration="64000" />
+      <workItem from="1673407602497" duration="1779000" />
     </task>
     <servers />
   </component>
@@ -291,10 +321,10 @@
     </state>
     <state x="385" y="204" key="#xdebugger.evaluate/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673248448154" />
     <state x="329" y="219" width="876" height="601" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1668394988302" />
-    <state width="1101" height="426" key="DebuggerActiveHint" timestamp="1673358904828">
+    <state width="1101" height="426" key="DebuggerActiveHint" timestamp="1673408990261">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1101" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673358904828" />
+    <state width="1101" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673408990261" />
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855463073" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1672905103421" />
     <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1673406939431">
@@ -303,52 +333,52 @@
     <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673406939431" />
     <state x="3115" y="237" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670935323060" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1670474069637" />
-    <state width="1238" height="344" key="GridCell.Tab.0.bottom" timestamp="1673359153053">
+    <state width="1238" height="200" key="GridCell.Tab.0.bottom" timestamp="1673409332195">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="344" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673359153053" />
+    <state width="1238" height="200" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673409332195" />
     <state width="1397" height="230" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="344" key="GridCell.Tab.0.center" timestamp="1673359153053">
+    <state width="1238" height="200" key="GridCell.Tab.0.center" timestamp="1673409332195">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="344" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673359153053" />
+    <state width="1238" height="200" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673409332195" />
     <state width="1397" height="230" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="344" key="GridCell.Tab.0.left" timestamp="1673359153053">
+    <state width="1238" height="200" key="GridCell.Tab.0.left" timestamp="1673409332195">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="344" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673359153053" />
+    <state width="1238" height="200" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673409332195" />
     <state width="1397" height="230" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="344" key="GridCell.Tab.0.right" timestamp="1673359153053">
+    <state width="1238" height="200" key="GridCell.Tab.0.right" timestamp="1673409332195">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="344" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673359153053" />
+    <state width="1238" height="200" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673409332195" />
     <state width="1397" height="230" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="344" key="GridCell.Tab.1.bottom" timestamp="1673359153053">
+    <state width="1238" height="306" key="GridCell.Tab.1.bottom" timestamp="1673409245987">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="344" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673359153053" />
+    <state width="1238" height="306" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673409245987" />
     <state width="1397" height="230" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="344" key="GridCell.Tab.1.center" timestamp="1673359153053">
+    <state width="1238" height="306" key="GridCell.Tab.1.center" timestamp="1673409245987">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="344" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673359153053" />
+    <state width="1238" height="306" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673409245987" />
     <state width="1397" height="230" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="344" key="GridCell.Tab.1.left" timestamp="1673359153053">
+    <state width="1238" height="306" key="GridCell.Tab.1.left" timestamp="1673409245987">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="344" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673359153053" />
+    <state width="1238" height="306" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673409245987" />
     <state width="1397" height="230" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="344" key="GridCell.Tab.1.right" timestamp="1673359153053">
+    <state width="1238" height="306" key="GridCell.Tab.1.right" timestamp="1673409245987">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="344" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673359153053" />
+    <state width="1238" height="306" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673409245987" />
     <state width="1397" height="230" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
     <state width="1238" height="344" key="GridCell.Tab.2.bottom" timestamp="1673359153053">
@@ -784,6 +814,11 @@
           <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-web/5.3.22/spring-web-5.3.22-sources.jar!/org/springframework/web/context/support/AnnotationConfigWebApplicationContext.java</url>
           <line>167</line>
           <option name="timeStamp" value="237" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/AnnotatedBeanDefinitionReader.java</url>
+          <line>252</line>
+          <option name="timeStamp" value="240" />
         </line-breakpoint>
         <line-breakpoint type="java-field">
           <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23-sources.jar!/org/springframework/web/servlet/handler/AbstractHandlerMethodMapping.java</url>
