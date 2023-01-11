@@ -8,19 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "b6519258ba59b8d8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Spring全家桶/core/1、Spring IoC学习路线.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "4aba406cefb87082",
             "type": "leaf",
             "state": {
@@ -32,22 +19,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "524a02f65f7ba749",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "每日学习/2、AnnotatedBeanDefinitionReader.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -183,11 +156,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "524a02f65f7ba749",
+  "active": "4aba406cefb87082",
   "lastOpenFiles": [
-    "每日学习/BeanDefinition.md",
-    "每日学习/2、AnnotatedBeanDefinitionReader.md",
     "Spring全家桶/core/1、Spring IoC学习路线.md",
+    "每日学习/2、AnnotatedBeanDefinitionReader.md",
+    "每日学习/BeanDefinition.md",
     "每日学习/4、Spring声明式事务的工作原理.md",
     "Spring全家桶/未命名.md",
     "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",

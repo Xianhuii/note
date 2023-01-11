@@ -56,9 +56,7 @@ Spring IoC容器本质上是一个管理Java对象的工具。
 
 # 4 AnnotatedBeanDefinitionReader
 ![[AnnotatedBeanDefinitionReader.png]]
-`AnnotatedBeanDefinitionReader`会根据类对象读取注解形式的依赖关系。
-
-例如，给定一个`@Configuration`标注的类对象，它可以从该类对象为入口，读取所有相关的依赖关系。
+`AnnotatedBeanDefinitionReader`会根据类对象读取基本注解信息，并注册该类。
 
 # 5 ClassPathBeanDefinitionScanner
 ![[ClassPathBeanDefinitionScanner.png]]
