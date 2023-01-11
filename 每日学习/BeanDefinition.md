@@ -1,0 +1,5 @@
+BeanDefinition
+BeanDefinitionReaderUtils
+BeanDefinitionHolder
+BeanDefinitionRegistry
+BeanDefinitionReader
