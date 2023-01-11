@@ -23,6 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/ScopeProxyMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/component/ComponentE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../每日学习/2、AnnotatedBeanDefinitionReader.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/2、AnnotatedBeanDefinitionReader.md" afterDir="false" />
     </list>
@@ -94,8 +96,8 @@
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ioc.beandefinitionreader" />
       <recent name="ioc.beandefinitionreader.component" />
+      <recent name="ioc.beandefinitionreader" />
       <recent name="com.example.servletmvc.controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -122,22 +124,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.BeanNameMain">
+  <component name="RunManager" selected="Application.ScopeProxyMain">
     <configuration name="AnnotatedBeanDefinitionReaderMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.AnnotatedBeanDefinitionReaderMain" />
-      <module name="spring-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ioc.beandefinitionreader.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AnnotatedGenericBeanDefinitionMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.AnnotatedGenericBeanDefinitionMain" />
       <module name="spring-core" />
       <extension name="coverage">
         <pattern>
@@ -177,6 +166,19 @@
     </configuration>
     <configuration name="ScopeMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.ScopeMain" />
+      <module name="spring-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ioc.beandefinitionreader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScopeProxyMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.ScopeProxyMain" />
       <module name="spring-core" />
       <extension name="coverage">
         <pattern>
@@ -231,11 +233,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ScopeProxyMain" />
         <item itemvalue="Application.BeanNameMain" />
         <item itemvalue="Application.ScopeMain" />
         <item itemvalue="Application.InstanceSupplierMain" />
         <item itemvalue="Application.AnnotatedBeanDefinitionReaderMain" />
-        <item itemvalue="Application.AnnotatedGenericBeanDefinitionMain" />
       </list>
     </recent_temporary>
   </component>
@@ -290,7 +292,7 @@
       <workItem from="1673343448819" duration="5982000" />
       <workItem from="1673355952010" duration="3490000" />
       <workItem from="1673405233261" duration="2002000" />
-      <workItem from="1673407602497" duration="15029000" />
+      <workItem from="1673407602497" duration="19343000" />
     </task>
     <servers />
   </component>
@@ -350,10 +352,10 @@
     </state>
     <state x="385" y="204" key="#xdebugger.evaluate/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673413730481" />
     <state x="329" y="219" width="876" height="601" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1668394988302" />
-    <state width="1101" height="426" key="DebuggerActiveHint" timestamp="1673439969060">
+    <state width="1101" height="426" key="DebuggerActiveHint" timestamp="1673440922476">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1101" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439969060" />
+    <state width="1101" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673440922476" />
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855463073" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1672905103421" />
     <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1673422596399">
@@ -362,52 +364,52 @@
     <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673422596399" />
     <state x="3115" y="237" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670935323060" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1670474069637" />
-    <state width="1238" height="131" key="GridCell.Tab.0.bottom" timestamp="1673439981060">
+    <state width="1238" height="181" key="GridCell.Tab.0.bottom" timestamp="1673444248051">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="131" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439981060" />
+    <state width="1238" height="181" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673444248051" />
     <state width="1397" height="230" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="131" key="GridCell.Tab.0.center" timestamp="1673439981060">
+    <state width="1238" height="181" key="GridCell.Tab.0.center" timestamp="1673444248051">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="131" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439981060" />
+    <state width="1238" height="181" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673444248051" />
     <state width="1397" height="230" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="131" key="GridCell.Tab.0.left" timestamp="1673439981060">
+    <state width="1238" height="181" key="GridCell.Tab.0.left" timestamp="1673444248051">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="131" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439981060" />
+    <state width="1238" height="181" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673444248051" />
     <state width="1397" height="230" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="131" key="GridCell.Tab.0.right" timestamp="1673439981060">
+    <state width="1238" height="181" key="GridCell.Tab.0.right" timestamp="1673444248051">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="131" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439981060" />
+    <state width="1238" height="181" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673444248051" />
     <state width="1397" height="230" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="131" key="GridCell.Tab.1.bottom" timestamp="1673439861844">
+    <state width="1238" height="268" key="GridCell.Tab.1.bottom" timestamp="1673441025862">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="131" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439861844" />
+    <state width="1238" height="268" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673441025862" />
     <state width="1397" height="230" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="131" key="GridCell.Tab.1.center" timestamp="1673439861844">
+    <state width="1238" height="268" key="GridCell.Tab.1.center" timestamp="1673441025862">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="131" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439861844" />
+    <state width="1238" height="268" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673441025862" />
     <state width="1397" height="230" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="131" key="GridCell.Tab.1.left" timestamp="1673439861844">
+    <state width="1238" height="268" key="GridCell.Tab.1.left" timestamp="1673441025862">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="131" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439861844" />
+    <state width="1238" height="268" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673441025862" />
     <state width="1397" height="230" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="131" key="GridCell.Tab.1.right" timestamp="1673439861844">
+    <state width="1238" height="268" key="GridCell.Tab.1.right" timestamp="1673441025862">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="131" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673439861844" />
+    <state width="1238" height="268" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673441025862" />
     <state width="1397" height="230" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670855517836" />
     <state width="1877" height="151" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
     <state width="1238" height="344" key="GridCell.Tab.2.bottom" timestamp="1673359153053">
@@ -854,16 +856,6 @@
           <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-beans/5.3.23/spring-beans-5.3.23-sources.jar!/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java</url>
           <line>1245</line>
           <option name="timeStamp" value="248" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/AnnotationBeanNameGenerator.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="254" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/AnnotationBeanNameGenerator.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="255" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/AnnotationBeanNameGenerator.java</url>
