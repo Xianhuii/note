@@ -57,7 +57,7 @@ private <T> void doRegisterBean(
    // 指定作用域
    ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);  
    abd.setScope(scopeMetadata.getScopeName());  
-   // 指定bean的名字
+   // 生成beanName
    String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));  
    // 指定类对象标注通用的注解：@Lazy、@Primary、@DependsOn、@Role、@Description
    AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);  
@@ -342,3 +342,54 @@ Spring作用域表示`bean`的存活周期。
 
 例如，`singleton`表示`bean`在容器中只会创建一次，多次调用`getBean()`方法得到的都是同一个对象；`prototype`表示`bean`在容器中会创建多次，每次调用`getBean()`方法得到的都是新的对象。
 
+`AnnotatedBeanDefinitionReader`会从`@Scope`中获取作用域，然后设置到`Beandefinition`的`scope`属性中：
+```java
+ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);  
+abd.setScope(scopeMetadata.getScopeName());
+```
+
+`AnnotatedBeanDefinitionReader`会调用`AnnotationScopeMetadataResolver#resolveScopeMetadata()`方法获取作用域信息：
+```java
+public ScopeMetadata resolveScopeMetadata(BeanDefinition definition) {  
+   ScopeMetadata metadata = new ScopeMetadata();  
+   if (definition instanceof AnnotatedBeanDefinition) {  
+      AnnotatedBeanDefinition annDef = (AnnotatedBeanDefinition) definition;  
+      // 获取@Scope注解信息
+      AnnotationAttributes attributes = AnnotationConfigUtils.attributesFor(  
+            annDef.getMetadata(), this.scopeAnnotationType);  
+      if (attributes != null) {  
+         metadata.setScopeName(attributes.getString("value"));  
+         ScopedProxyMode proxyMode = attributes.getEnum("proxyMode");  
+         if (proxyMode == ScopedProxyMode.DEFAULT) {  
+            proxyMode = this.defaultProxyMode;  
+         }  
+         metadata.setScopedProxyMode(proxyMode);  
+      }  
+   }  
+   return metadata;  
+}
+```
+
+如果没有添加`@Scope`注解，那么返回的是`scopeName`默认值`singleton`。
+
+## 2.5 生成beanName
+接下来会生成`beanName`。如果指定名字，则用对应形参值；如果没有指定名字，会生成名字：
+```java
+String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
+```
+
+`AnnotatedBeanDefinition`会调用`AnnotationBeanNameGenerator#generateBeanName()`方法生成`beanName`：
+```java
+public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry) {  
+   if (definition instanceof AnnotatedBeanDefinition) {  
+      // 根据注解生成beanName
+      String beanName = determineBeanNameFromAnnotation((AnnotatedBeanDefinition) definition);  
+      if (StringUtils.hasText(beanName)) {  
+         // Explicit bean name found.  
+         return beanName;  
+      }  
+   }  
+   // 根据默认规则生成beanName 
+   return buildDefaultBeanName(definition, registry);  
+}
+```
