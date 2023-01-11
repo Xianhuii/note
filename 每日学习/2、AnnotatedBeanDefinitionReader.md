@@ -52,7 +52,7 @@ private <T> void doRegisterBean(
    if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {  
       return;  
    }  
-   // 指定创建bean的回调/工厂方法
+   // 指定创建bean的方法
    abd.setInstanceSupplier(supplier);  
    // 指定作用域
    ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);  
@@ -253,3 +253,92 @@ static boolean isPresent(String className, ClassLoader classLoader) {
 ```
 
 ## 2.3 添加instanceSupplier回调
+`BeanDefinition`的`instanceSupplier`属性通常作为创建`bean`对象的特殊回调。
+
+在`AbstractAutowireCapableBeanFactory#createBeanInstance()`方法中，会根据`BeanDefinition`中是否有`instanceSupplier`信息来执行回调：
+```java
+protected BeanWrapper createBeanInstance(String beanName, 
+										 RootBeanDefinition mbd, 
+										 @Nullable Object[] args) {  
+   // 省略……
+   Supplier<?> instanceSupplier = mbd.getInstanceSupplier();  
+   if (instanceSupplier != null) {  
+      return obtainFromSupplier(instanceSupplier, beanName);  
+   }  
+   // 省略……
+}
+```
+
+内部`AbstractAutowireCapableBeanFactory#obtainFromSupplier()`方法如下：
+```java
+protected BeanWrapper obtainFromSupplier(Supplier<?> instanceSupplier, String beanName) {  
+   Object instance;  
+  
+   String outerBean = this.currentlyCreatedBean.get();  
+   this.currentlyCreatedBean.set(beanName);  
+   try {  
+      // 调用回调方法
+      instance = instanceSupplier.get();  
+   }  
+   finally {  
+      if (outerBean != null) {  
+         this.currentlyCreatedBean.set(outerBean);  
+      }  
+      else {  
+         this.currentlyCreatedBean.remove();  
+      }  
+   }  
+  
+   if (instance == null) {  
+      instance = new NullBean();  
+   }  
+   BeanWrapper bw = new BeanWrapperImpl(instance);  
+   initBeanWrapper(bw);  
+   return bw;  
+}
+```
+
+由于`AbstractAutowireCapableBeanFactory`是`DefaultListableBeanFactory`的父类，`DefaultListableBeanFactory`又是`ApplicationContext`的代理类，所有这个规则基本对于所有Spring容器都成立。
+
+最后，我们举个代码例子。我们有`ComponentB`：
+```java
+public class ComponentB {  
+    private String name;  
+  
+    public String getName() {  
+        return name;  
+    }  
+  
+    public void setName(String name) {  
+        this.name = name;  
+    }  
+}
+```
+
+在`registerBean()`方法指定回调方法：
+```java
+// 创建registry  
+BeanDefinitionRegistry registry = new DefaultListableBeanFactory();  
+// 创建reader，指定registry  
+AnnotatedBeanDefinitionReader reader = new AnnotatedBeanDefinitionReader(registry);  
+// 注册指定类作为bean，指定创建bean的方法  
+reader.registerBean(ComponentB.class, () -> {  
+    ComponentB componentB = new ComponentB();  
+    componentB.setName("instanceSupplier");  
+    return componentB;  
+});  
+// 打印ComponentB的信息  
+ComponentB componentB = ((BeanFactory) registry).getBean(ComponentB.class);  
+System.out.println(componentB.getName());
+```
+
+输出结果如下：
+```
+instanceSupplier
+```
+
+## 2.4 设置作用域
+Spring作用域表示`bean`的存活周期。
+
+例如，`singleton`表示`bean`在容器中只会创建一次，多次调用`getBean()`方法得到的都是同一个对象；`prototype`表示`bean`在容器中会创建多次，每次调用`getBean()`方法得到的都是新的对象。
+
