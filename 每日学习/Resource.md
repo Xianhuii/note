@@ -39,5 +39,12 @@ Spring提供了很多内置实现类，这里简单介绍一些典型的。
 ![[ServletContextResource.png]]
 `ServletContextResource`提供了对Web应用根路径下资源的统一处理。
 
-## 2.6 InputStreamResource
+## 2.6 ByteArrayResource
+![[ByteArrayResource.png]]
+`ByteArrayResource`缓存了`byteArray`数据，可以重复获取。
+
+## 2.7 InputStreamResource
 ![[InputStreamResource.png]]
+`InputStreamResource`是对`InputStream`的封装，它应该作为`Resource`的兜底选择。
+
+# 3 ResourceLoader
