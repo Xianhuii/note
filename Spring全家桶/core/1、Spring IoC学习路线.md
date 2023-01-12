@@ -8,7 +8,8 @@ Spring IoC容器本质上是一个管理Java对象的工具。
 1. `BeanFactory`
 2. `ApplicationContext`
 4. 读取依赖配置：`AnnotatedBeanDefinitionReader`、`ClassPathBeanDefinitionScanner`和`BeanDefinitionReader`
-5. `Environment`
+5. `Resource`
+6. `Environment`
 
 通过系统学习这些模块，就可以建立Spring的坚实基础。
 
@@ -66,7 +67,9 @@ Spring IoC容器本质上是一个管理Java对象的工具。
 ![[BeanDefinitionReader.png]]
 `BeanDefinitionReader`是读取`xml`和`groovy`形式依赖关系的工具，可以将这些配置文件中的依赖关系解析成`BeanDefinition`，并且缓存到`BeanFactory`中。
 
-# 7 Environment
+# 7 Resource
+
+# 8 Environment
 ![[StandardEnvironment.png]]
 `Environment`表示环境变量，包括系统环境变量、Spring Boot的profile、`xxx.properties`和`xxx.yml`。
 
