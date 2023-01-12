@@ -48,3 +48,6 @@ Spring提供了很多内置实现类，这里简单介绍一些典型的。
 `InputStreamResource`是对`InputStream`的封装，它应该作为`Resource`的兜底选择。
 
 # 3 ResourceLoader
+`ResourceLoader`是加载
+
+![[ResourceLoader.png]]
