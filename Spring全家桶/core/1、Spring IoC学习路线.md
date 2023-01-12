@@ -68,6 +68,10 @@ Spring IoC容器本质上是一个管理Java对象的工具。
 `BeanDefinitionReader`是读取`xml`和`groovy`形式依赖关系的工具，可以将这些配置文件中的依赖关系解析成`BeanDefinition`，并且缓存到`BeanFactory`中。
 
 # 7 Resource
+![[Resource.png]]
+`Resource`是Spring对资源的一种抽象，用于对资源的统一处理，比如`xml`文件或类路径都是一种资源。
+
+典型的应用是，`ClassPathBeanDefinitionScanner`在读取依赖关系时，会将获取类路径的资源进行处理。
 
 # 8 Environment
 ![[StandardEnvironment.png]]
