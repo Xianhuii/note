@@ -59,7 +59,15 @@ Spring提供了很多内置实现类，这里简单介绍一些典型的。
 
 但是，`AbstractApplicationContext`的子类`GenericApplicationContext`重写了这一规则，它内部持有`ResourceLoader`对象，可以动态进行资源解析；只有在未设置的情况下才会使用默认规则。
 
-## 2.1 
+## 2.1 DefaultResourceLoader
+
+## 2.2 ServletContextResourceLoader
+
+## 2.3 FileSystemResourceLoader
+
+## 2.4 ClassRelativeResourceLoader
+
+## 2.5 AbstractApplicationContext
 
 ![[ResourceLoader.png]]
 
