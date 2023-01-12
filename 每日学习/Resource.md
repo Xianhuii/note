@@ -1,4 +1,4 @@
-# 1 Resource接口介绍
+# 1 Resource
 ![[Resource 1.png]]
 
 `org.springframework.core.io.Resource`是Spring对底层资源的统一抽象。它提供了访问资源的统一方法：
@@ -8,7 +8,7 @@
 
 `Resource`在Spring IoC容器中有着广泛应用，主要作用是读取不同形式的依赖配置。例如，`ClassPathBeanDefinitionScanner`会扫描指定路径的所有`bean`对象，将路径封装成`UrlResource`或`FileUrlResource`。
 
-# 2 内置实现类
+# 2 Resource常用实现类
 Spring提供了很多内置实现类，这里简单介绍一些典型的。
 
 ## 2.1 UrlResource
