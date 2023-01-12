@@ -157,6 +157,147 @@ public Resource getResource(String location) {
 ![[ResourcePatternResolver.png]]
 `ResourcePatternResolver`继承了`ResourceLoader`接口，并新增了`getResources()`方法，可以根据通配符等路径模式获取资源。
 
+![[ResourcePatternResolver 1.png]]
+`ResourcePatternResolver`的基础实现类是`PathMatchingResourcePatternResolver`，其中定义了加载资源的基本逻辑。
 
+需要注意的是，`Application`继承了`ResourcePatternResolver`接口，因此它本身就具备加载资源的功能。
 
-![[ResourceLoader.png]]
+## 3.1 PathMatchingResourcePatternResolver
+`PathMatchingResourcePatternResolver#getResources()`方法定义了加载资源的基本逻辑：
+```java
+public Resource[] getResources(String locationPattern) throws IOException {  
+   Assert.notNull(locationPattern, "Location pattern must not be null");  
+   // 以"classpath*:"开头
+   if (locationPattern.startsWith(CLASSPATH_ALL_URL_PREFIX)) {  
+      // 如果路径满足pathMatcher规则，按规则加载资源
+      if (getPathMatcher().isPattern(locationPattern.substring(CLASSPATH_ALL_URL_PREFIX.length()))) {  
+         return findPathMatchingResources(locationPattern);  
+      }  
+      // 如果路径不满足pathMatcher规则，查找所有类路径资源
+      else {  
+         return findAllClassPathResources(locationPattern.substring(CLASSPATH_ALL_URL_PREFIX.length()));  
+      }  
+   }  
+   // 不是以"classpath*:"开头
+   else {  
+      // Generally only look for a pattern after a prefix here,  
+      // and on Tomcat only after the "*/" separator for its "war:" protocol.      
+      int prefixEnd = (locationPattern.startsWith("war:") ? locationPattern.indexOf("*/") + 1 :  
+            locationPattern.indexOf(':') + 1);  
+      if (getPathMatcher().isPattern(locationPattern.substring(prefixEnd))) {  
+         // a file pattern  
+         return findPathMatchingResources(locationPattern);  
+      }  
+      else {  
+         // a single resource with the given name  
+         return new Resource[] {getResourceLoader().getResource(locationPattern)};  
+      }  
+   }  
+}
+```
+
+`PathMatchingResourcePatternResolver#findPathMatchingResources()`方法会查找符合规则的资源（JAR文件、ZIP文件或文件系统中）：
+```java
+protected Resource[] findPathMatchingResources(String locationPattern) throws IOException {  
+   // 解析根路径：例如通配符前的地址（“/WEB-INF/*.xml” → “/WEB-INF/”）
+   String rootDirPath = determineRootDir(locationPattern);  
+   // 解析子路径：“/WEB-INF/*.xml” → “*.xml”
+   String subPattern = locationPattern.substring(rootDirPath.length());  
+   // 递归获取根路径的资源：默认调用DefaultResourceLoader获取资源
+   Resource[] rootDirResources = getResources(rootDirPath);  
+   Set<Resource> result = new LinkedHashSet<>(16);  
+   // 遍历根路径，继续查找符合规则的资源
+   for (Resource rootDirResource : rootDirResources) {  
+      rootDirResource = resolveRootDirResource(rootDirResource);  
+      URL rootDirUrl = rootDirResource.getURL();  
+      if (equinoxResolveMethod != null && rootDirUrl.getProtocol().startsWith("bundle")) {  
+         URL resolvedUrl = (URL) ReflectionUtils.invokeMethod(equinoxResolveMethod, null, rootDirUrl);  
+         if (resolvedUrl != null) {  
+            rootDirUrl = resolvedUrl;  
+         }  
+         rootDirResource = new UrlResource(rootDirUrl);  
+      }  
+      if (rootDirUrl.getProtocol().startsWith(ResourceUtils.URL_PROTOCOL_VFS)) {  
+         result.addAll(VfsResourceMatchingDelegate.findMatchingResources(rootDirUrl, subPattern, getPathMatcher()));  
+      }  
+      else if (ResourceUtils.isJarURL(rootDirUrl) || isJarResource(rootDirResource)) {  
+         result.addAll(doFindPathMatchingJarResources(rootDirResource, rootDirUrl, subPattern));  
+      }  
+      else {  
+         result.addAll(doFindPathMatchingFileResources(rootDirResource, subPattern));  
+      }  
+   }  
+   if (logger.isTraceEnabled()) {  
+      logger.trace("Resolved location pattern [" + locationPattern + "] to resources " + result);  
+   }  
+   return result.toArray(new Resource[0]);  
+}
+```
+
+`PathMatchingResourcePatternResolver#findAllClassPathResources()`方法会查找类路径上的资源：
+```java
+protected Resource[] findAllClassPathResources(String location) throws IOException {  
+   String path = location;  
+   if (path.startsWith("/")) {  
+      path = path.substring(1);  
+   }  
+   Set<Resource> result = doFindAllClassPathResources(path);  
+   if (logger.isTraceEnabled()) {  
+      logger.trace("Resolved classpath location [" + location + "] to resources " + result);  
+   }  
+   return result.toArray(new Resource[0]);  
+}
+```
+
+## 3.2 AbstractApplicationContext
+`AbstractApplicationContext`有个`resourcePatternResolver`成员变量，它的`getResources()`方法会交给这个成员变量执行：
+```java
+public Resource[] getResources(String locationPattern) throws IOException {  
+   return this.resourcePatternResolver.getResources(locationPattern);  
+}
+```
+
+`GenericApplicationContext`会重写这个方法：
+```java
+public Resource[] getResources(String locationPattern) throws IOException {  
+   if (this.resourceLoader instanceof ResourcePatternResolver) {  
+      return ((ResourcePatternResolver) this.resourceLoader).getResources(locationPattern);  
+   }  
+   return super.getResources(locationPattern);  
+}
+```
+
+# 4 ResourceLoader和ApplicationContext的关系
+![[ResourcePatternResolver 2.png]]
+`ApplicationContext`继承了`ResourcePatternResolver`接口，实现了`getResource()`和`getResources()`方法。
+
+# 5 ResourceLoaderAware
+![[ResourceLoaderAware.png]]
+只要某个`bean`实现了`ResourceLoaderAware`接口，在`ApplicationContext`实例化`bean`对象时，会将自身作为形参，触发`setResourceLoader()`方法。
+
+具体源码位于`ApplicationContextAwareProcessor#invokeAwareInterfaces()`方法：
+```java
+private void invokeAwareInterfaces(Object bean) {  
+   if (bean instanceof EnvironmentAware) {  
+      ((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());  
+   }  
+   if (bean instanceof EmbeddedValueResolverAware) {  
+      ((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(this.embeddedValueResolver);  
+   }  
+   if (bean instanceof ResourceLoaderAware) {  
+      ((ResourceLoaderAware) bean).setResourceLoader(this.applicationContext);  
+   }  
+   if (bean instanceof ApplicationEventPublisherAware) {  
+      ((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(this.applicationContext);  
+   }  
+   if (bean instanceof MessageSourceAware) {  
+      ((MessageSourceAware) bean).setMessageSource(this.applicationContext);  
+   }  
+   if (bean instanceof ApplicationStartupAware) {  
+      ((ApplicationStartupAware) bean).setApplicationStartup(this.applicationContext.getApplicationStartup());  
+   }  
+   if (bean instanceof ApplicationContextAware) {  
+      ((ApplicationContextAware) bean).setApplicationContext(this.applicationContext);  
+   }  
+}
+```
