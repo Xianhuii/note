@@ -153,7 +153,10 @@ public Resource getResource(String location) {
 }
 ```
 
-![[ResourceLoader.png]]
-
 # 3 ResourcePatternResolver
+![[ResourcePatternResolver.png]]
+`ResourcePatternResolver`继承了`ResourceLoader`接口，并新增了`getResources()`方法，可以根据通配符等路径模式获取资源。
 
+
+
+![[ResourceLoader.png]]
