@@ -47,8 +47,19 @@ Spring提供了很多内置实现类，这里简单介绍一些典型的。
 `InputStreamResource`是对`InputStream`的封装，它应该作为`Resource`的兜底选择。
 
 # 2 ResourceLoader
-`ResourceLoader`是加载
+![[ResourceLoader 1.png]]
+`ResourceLoader`是加载类路径或文件系统资源的工具类，它可以根据指定的路径获取对应的`Resource`。
 
+![[ResourceLoader 2.png]]
+`ResourceLoader`的基础实现类是`DefaultResourceLoader`，其中定义了加载资源的基本逻辑，默认会解析成`ClassPathResource`或`ClassPathContextResource`对象。
+
+`ServletContextResourceLoader`、`FileSystemResourceLoader`和`ClassRelativeResourceLoader`子类会重写`getResourceByPath()`方法，分别解析成对应的`XxxResource`对象。
+
+需要注意的是，`AbstractApplicationContext`也继承了`DefaultResourceLoader`类，它会采取相同的逻辑加载资源。
+
+但是，`AbstractApplicationContext`的子类`GenericApplicationContext`重写了这一规则，它内部持有`ResourceLoader`对象，可以动态进行资源解析；只有在未设置的情况下才会使用默认规则。
+
+## 2.1 
 
 ![[ResourceLoader.png]]
 
