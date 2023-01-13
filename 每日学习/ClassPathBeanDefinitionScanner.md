@@ -105,7 +105,7 @@ public void setResourceLoader(@Nullable ResourceLoader resourceLoader) {
 }
 ```
 
-在设置`resourcePatternResolver`时，会判断`registry`是否是`ResourcePatternResolver`实现类（因为`ApplicationContext`继承了`ResourcePatternResolver`接口，而`DefaultListableBeanFactory`则没有）。如果是，直接将`registry`赋值给`resourcePatternResolver`；如果不是，则会新建一个`PathMatchingResourcePatternResolver`对象：
+在初始化`resourcePatternResolver`时，会判断`registry`是否是`ResourcePatternResolver`实现类（因为`ApplicationContext`继承了`ResourcePatternResolver`接口，而`DefaultListableBeanFactory`则没有）。如果是，直接将`registry`赋值给`resourcePatternResolver`；如果不是，则会新建一个`PathMatchingResourcePatternResolver`对象：
 ```java
 public static ResourcePatternResolver getResourcePatternResolver(@Nullable ResourceLoader resourceLoader) {  
    if (resourceLoader instanceof ResourcePatternResolver) {  
@@ -120,7 +120,7 @@ public static ResourcePatternResolver getResourcePatternResolver(@Nullable Resou
 }
 ```
 
-在设置`componentsIndex`时，会尝试读取`META-INF/spring.components`文件中定义的配置信息，后续扫描时会从配置信息里获取符合条件的`bean`进行加载：
+在初始化`componentsIndex`时，会尝试读取`META-INF/spring.components`文件中定义的配置信息，后续扫描时会从配置信息里获取符合条件的`bean`进行加载：
 ```java
 private static CandidateComponentsIndex doLoadIndex(ClassLoader classLoader) {  
    // 读取spring.index.ignore配置，需要关闭spring.components功能时可以将设为false
@@ -129,11 +129,12 @@ private static CandidateComponentsIndex doLoadIndex(ClassLoader classLoader) {
    }  
   
    try {  
-      // 读取
+      // 读取META-INF/spring.components
       Enumeration<URL> urls = classLoader.getResources(COMPONENTS_RESOURCE_LOCATION);  
       if (!urls.hasMoreElements()) {  
          return null;  
       }  
+      // 获取配置
       List<Properties> result = new ArrayList<>();  
       while (urls.hasMoreElements()) {  
          URL url = urls.nextElement();  
@@ -152,5 +153,16 @@ private static CandidateComponentsIndex doLoadIndex(ClassLoader classLoader) {
    }  
 }
 ```
+
+`META-INF/spring.components`文件格式如下：
+```
+全限定类名1=注解全限定类名1,注解全限定类名2
+全限定类名2=注解全限定类名1
+```
+
+需要特别注意的是，如果初始化了`componentsIndex`，后续扫描时只会在`META-INF/spring.components`文件中筛选路径匹配的类进行注册。如果遇到包下的`bean`扫描不到时，可以从这方面考虑。
+
+## 3.2 扫描
+
 
 # 4 典型案例
