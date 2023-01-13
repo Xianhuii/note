@@ -23,7 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/ClassPathBeanDefinitionScannerMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +90,7 @@
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -98,7 +98,7 @@
       <recent name="ioc.beandefinitionreader.component" />
       <recent name="com.example.servletmvc.controller" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
   </component>
@@ -122,9 +122,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ScopeProxyMain">
-    <configuration name="AnnotatedBeanDefinitionReaderMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.AnnotatedBeanDefinitionReaderMain" />
+  <component name="RunManager" selected="Application.ClassPathBeanDefinitionScannerMain">
+    <configuration name="BeanNameMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.BeanNameMain" />
       <module name="spring-core" />
       <extension name="coverage">
         <pattern>
@@ -136,8 +136,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BeanNameMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.BeanNameMain" />
+    <configuration name="ClassPathBeanDefinitionScannerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.ClassPathBeanDefinitionScannerMain" />
       <module name="spring-core" />
       <extension name="coverage">
         <pattern>
@@ -188,6 +188,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServletMvcApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="servlet-mvc" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servletmvc.ServletMvcApplication" />
@@ -220,11 +231,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClassPathBeanDefinitionScannerMain" />
         <item itemvalue="Application.ScopeProxyMain" />
         <item itemvalue="Application.BeanNameMain" />
         <item itemvalue="Application.ScopeMain" />
         <item itemvalue="Application.InstanceSupplierMain" />
-        <item itemvalue="Application.AnnotatedBeanDefinitionReaderMain" />
       </list>
     </recent_temporary>
   </component>
@@ -281,7 +292,7 @@
       <workItem from="1673405233261" duration="2002000" />
       <workItem from="1673407602497" duration="23239000" />
       <workItem from="1673489073716" duration="19879000" />
-      <workItem from="1673579591247" duration="974000" />
+      <workItem from="1673579591247" duration="2565000" />
     </task>
     <servers />
   </component>
@@ -466,6 +477,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="368" y="248" width="1183" height="583" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1669951872162" />
+    <state x="2725" y="50" width="1250" height="786" maximized="true" key="dock-window-1" timestamp="1673605598809">
+      <screen x="2560" y="0" width="1440" height="900" />
+    </state>
+    <state x="2725" y="50" width="1250" height="786" maximized="true" key="dock-window-1/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673605598809" />
     <state x="441" y="194" width="564" height="536" key="find.popup" timestamp="1673413059408">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -480,10 +495,10 @@
     </state>
     <state x="14" y="99" key="new project wizard/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673320655919" />
     <state x="335" y="129" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1666923455466" />
-    <state x="492" y="250" width="672" height="522" key="search.everywhere.popup" timestamp="1673535882056">
+    <state x="493" y="251" width="672" height="522" key="search.everywhere.popup" timestamp="1673584982379">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="492" y="250" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673535882056" />
+    <state x="493" y="251" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673584982379" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1672902023818" />
