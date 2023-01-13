@@ -23,15 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/component/ComponentA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/component/ComponentB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/component/ComponentC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/component/ComponentD.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/component/ComponentE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/resources/META-INF/spring.components" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/ClassPathBeanDefinitionScannerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/ioc/beandefinitionreader/ClassPathBeanDefinitionScannerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-core/target/classes/ioc/beandefinitionreader/ClassPathBeanDefinitionScannerMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/target/classes/ioc/beandefinitionreader/ClassPathBeanDefinitionScannerMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../每日学习/ClassPathBeanDefinitionScanner.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/ClassPathBeanDefinitionScanner.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +293,7 @@
       <workItem from="1673405233261" duration="2002000" />
       <workItem from="1673407602497" duration="23239000" />
       <workItem from="1673489073716" duration="19879000" />
-      <workItem from="1673579591247" duration="16950000" />
+      <workItem from="1673579591247" duration="17592000" />
     </task>
     <servers />
   </component>
@@ -324,10 +317,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="377" y="223" key="#Notifications/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673407334116" />
-    <state x="244" y="0" key="#Project_Structure" timestamp="1673355791079">
+    <state x="244" y="0" key="#Project_Structure" timestamp="1673624789795">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="244" y="0" key="#Project_Structure/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673355791079" />
+    <state x="244" y="0" key="#Project_Structure/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673624789795" />
     <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1668564612973" />
     <state x="393" y="304" key="#Updates" timestamp="1673407658122">
       <screen x="0" y="0" width="1280" height="800" />
@@ -338,6 +331,10 @@
     </state>
     <state x="276" y="134" width="954" height="593" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673355860929" />
     <state x="414" y="174" width="1186" height="716" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1669625488085" />
+    <state x="322" y="200" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1673624826337">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="322" y="200" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673624826337" />
     <state x="510" y="169" key="#com.intellij.ide.util.MemberChooser" timestamp="1673445701655">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
