@@ -13,12 +13,13 @@ public class ClassPathBeanDefinitionScannerMain {
     public static void main(String[] args) {
         // 创建registry
         BeanDefinitionRegistry registry = new DefaultListableBeanFactory();
-        // 创建scanner，指定registry
+        // 创建scanner，设置registry
         ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry);
         // 扫描指定包下的bean
-        scanner.scan("ioc.beandefinitionreader.component");
-        //
-        System.out.println(registry.getBeanDefinitionCount());
+        scanner.scan("com.example.component");
         System.out.println(Arrays.toString(registry.getBeanDefinitionNames()));
+        // 获取bean
+//        BeanFactory beanFactory = (BeanFactory) registry;
+//        Object bean = beanFactory.getBean("");
     }
 }

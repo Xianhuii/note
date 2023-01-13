@@ -1,7 +1,10 @@
 # 1 介绍
 `ClassPathBeanDefinitionScanner`可以扫描指定路径下的`@Component`类，将这些类解析成`BeanDefinition`，注册到Spring容器中。
 
-
+在`AnnotationConfigApplicationContext`中，就会使用这种方式加载指定路径下的`bean`。例如：
+```java
+ApplicationContext context = new AnnotationConfigApplicationContext("com.example.component");
+```
 
 ![[ClassPathBeanDefinitionScanner 2.png]]
 `ClassPathScanningCandidateComponentProvider`成员变量：
@@ -22,7 +25,101 @@
 - `scopeMetadataResolver`：作用域解析器，会先获取`@Scope`注解的`value`和`proxyMode`属性，没有则使用默认值（`singleton`和`ScopedProxyMode.NO`）。
 - `includeAnnotationConfig`：是否往Spring容器注册默认的`XxxProcessor`，默认为`true`。
 # 2 基本使用
+在使用`ClassPathBeanDefinitionScanner`时，首先需要为其设置`registry`属性，通常通过构造函数进行设置。
+
+`DefaultListableBeanFactory`和`GenericApplicationContext`都实现了`BeandefinitionRegistry`接口，Spring容器实现类基本上都可以作为`registry`设置到`ClassPathBeanDefinitionScanner`中。
+
+然后，通过`ClassPathBeanDefinitionScanner#scan()`就可以扫描指定包下的所有类文件，将符合条件的类作为`BeanDefinition`，注册到`registry`中。
+
+以下是使用`ClassPathBeanDefinitionScanner`扫描指定包下所有`bean`的最基本使用：
+```java
+// 创建registry  
+BeanDefinitionRegistry registry = new DefaultListableBeanFactory();  
+// 创建scanner，设置registry  
+ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry);  
+// 扫描指定包下的bean  
+scanner.scan("com.example.component");  
+// 获取bean  
+BeanFactory beanFactory = (BeanFactory) registry;  
+Object bean = beanFactory.getBean("xxx");
+```
 
 # 3 源码解读
+## 3.1 构造函数初始化
+我们通常会使用`ClassPathBeanDefinitionScanner(BeanDefinitionRegistry)`构造函数进行初始化，为其指定`registry`属性：
+```java
+public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry) {  
+   this(registry, true);  
+}
+```
+
+在这个过程中，除了`registry`，还会初始化`includeFilters`、`environment`、`resourcePatternResolver`、`metadataReaderFactory`和`componentsIndex`等属性：
+```java
+public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters,  
+      Environment environment, @Nullable ResourceLoader resourceLoader) {  
+  
+   Assert.notNull(registry, "BeanDefinitionRegistry must not be null");  
+   // 初始化registry
+   this.registry = registry;  
+   // 初始化includeFilters：添加@Component、@ManagedBean和@Named条件
+   if (useDefaultFilters) {  
+      registerDefaultFilters();  
+   }  
+   // 初始化environment
+   setEnvironment(environment);  
+   // 初始化resourcePatternResolver、metadataReaderFactory和componentsIndex
+   setResourceLoader(resourceLoader);  
+}
+```
+
+在`ClassPathScanningCandidateComponentProvider#registerDefaultFilters()`方法中，会添加校验`@Component`、`@ManagedBean`和`@Named`三个条件的注解过滤器。需要注意的是，后两个过滤器只有在引入相关依赖的时候才会生效：
+```java
+protected void registerDefaultFilters() {  
+   this.includeFilters.add(new AnnotationTypeFilter(Component.class));  
+   ClassLoader cl = ClassPathScanningCandidateComponentProvider.class.getClassLoader();  
+   try {  
+      this.includeFilters.add(new AnnotationTypeFilter(  
+            ((Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)), false));  
+      logger.trace("JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning");  
+   }  
+   catch (ClassNotFoundException ex) {  
+      // JSR-250 1.1 API (as included in Java EE 6) not available - simply skip.  
+   }  
+   try {  
+      this.includeFilters.add(new AnnotationTypeFilter(  
+            ((Class<? extends Annotation>) ClassUtils.forName("javax.inject.Named", cl)), false));  
+      logger.trace("JSR-330 'javax.inject.Named' annotation found and supported for component scanning");  
+   }  
+   catch (ClassNotFoundException ex) {  
+      // JSR-330 API not available - simply skip.  
+   }  
+}
+```
+
+在`ClassPathScanningCandidateComponentProvider#setResourceLoader()`方法中，会初始化`resourcePatternResolver`、`metadataReaderFactory`和`componentsIndex`：
+```java
+public void setResourceLoader(@Nullable ResourceLoader resourceLoader) {  
+   this.resourcePatternResolver = ResourcePatternUtils.getResourcePatternResolver(resourceLoader);  
+   this.metadataReaderFactory = new CachingMetadataReaderFactory(resourceLoader);  
+   this.componentsIndex = CandidateComponentsIndexLoader.loadIndex(this.resourcePatternResolver.getClassLoader());  
+}
+```
+
+在设置`resourcePatternResolver`时，会判断`registry`是否是`ResourcePatternResolver`实现类（因为`ApplicationContext`继承了`ResourcePatternResolver`接口，而`DefaultListableBeanFactory`则没有）。如果是，直接将`registry`赋值给`resourcePatternResolver`；如果不是，则会新建一个`PathMatchingResourcePatternResolver`对象：
+```java
+public static ResourcePatternResolver getResourcePatternResolver(@Nullable ResourceLoader resourceLoader) {  
+   if (resourceLoader instanceof ResourcePatternResolver) {  
+      return (ResourcePatternResolver) resourceLoader;  
+   }  
+   else if (resourceLoader != null) {  
+      return new PathMatchingResourcePatternResolver(resourceLoader);  
+   }  
+   else {  
+      return new PathMatchingResourcePatternResolver();  
+   }  
+}
+```
+
+在设置`componentsIndex`时，会
 
 # 4 典型案例
