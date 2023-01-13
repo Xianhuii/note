@@ -1,5 +1,9 @@
 # 1 介绍
+`ClassPathBeanDefinitionScanner`可以扫描指定路径下的`@Component`类，将这些类解析成`BeanDefinition`，注册到Spring容器中。
 
+
+
+![[ClassPathBeanDefinitionScanner 2.png]]
 `ClassPathScanningCandidateComponentProvider`成员变量：
 - `resourcePattern`：资源文件的路径匹配模式，默认是`**/*.class`，表示会扫描所有类文件。
 - `includeFilters`：过滤器，满足条件的类会被注册成`bean`。默认条件为标注`@Component`、`@ManagedBean`或`@Named`注解，后两个条件成立需要引入相关依赖。
