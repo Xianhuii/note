@@ -1,1 +1,2 @@
-ioc.beandefinitionreader.component.ComponentA
+com.example.component.ComponentA=org.springframework.stereotype.Component
+ioc.beandefinitionreader.component.ComponentD=org.springframework.stereotype.Component,org.springframework.context.annotation.Scope
