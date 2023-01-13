@@ -11,12 +11,12 @@
 - `componentsIndex`：
 
 `ClassPathBeanDefinitionScanner`成员变量：
-- `registry`：
-- `beanDefinitionDefaults`：
+- `registry`：`BeanDefinition`注册器，实际上就是Spring容器。
+- `beanDefinitionDefaults`：`BeanDefinition`默认属性的封装工具。
 - `autowireCandidatePatterns`：
-- `beanNameGenerator`：
-- `scopeMetadataResolver`：
-- `includeAnnotationConfig`：
+- `beanNameGenerator`：`beanName`生成器，会先获取`@Component`、`@ManagedBean`、`@Named`或`@Component`子注解的`value`属性，没有再按类名生成。
+- `scopeMetadataResolver`：作用域解析器，会先获取`@Scope`注解的`value`和`proxyMode`属性，没有则使用默认值（`singleton`和`ScopedProxyMode.NO`）。
+- `includeAnnotationConfig`：是否往Spring容器注册默认的`XxxProcessor`，默认为`true`。
 # 2 基本使用
 
 # 3 源码解读
