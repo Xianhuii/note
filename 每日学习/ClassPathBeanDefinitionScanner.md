@@ -163,7 +163,7 @@ private static CandidateComponentsIndex doLoadIndex(ClassLoader classLoader) {
 需要特别注意的是，`spring.components`中仅支持`@Indexed`及其子注解的配置，如果初始化了`componentsIndex`，后续扫描时只会在`META-INF/spring.components`文件中筛选路径匹配的类进行注册。如果遇到包下的`bean`扫描不到时，可以从这方面考虑。
 
 ## 3.2 扫描
-通过`ClassPathBeanDefinitionScanner#scan()`方法可以扫描指定包：
+通过`ClassPathBeanDefinitionScanner#scan()`方法可以扫描指定包，注册`XxxProcessor`，并且计算本次注册`bean`的数量：
 ```java
 public int scan(String... basePackages) {  
    int beanCountAtScanStart = this.registry.getBeanDefinitionCount();  
@@ -177,7 +177,7 @@ public int scan(String... basePackages) {
 }
 ```
 
-`ClassPathBeanDefinitionScanner#doScan()`方法是扫描的核心方法：
+`ClassPathBeanDefinitionScanner#doScan()`方法是扫描的核心方法，它会扫描指定包，设置`BeanDefinition`的基本属性，最后注册到`registry`中：
 ```java
 protected Set<BeanDefinitionHolder> doScan(String... basePackages) {  
    Assert.notEmpty(basePackages, "At least one base package must be specified");  
