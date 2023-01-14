@@ -160,9 +160,60 @@ private static CandidateComponentsIndex doLoadIndex(ClassLoader classLoader) {
 全限定类名2=注解全限定类名1
 ```
 
-需要特别注意的是，如果初始化了`componentsIndex`，后续扫描时只会在`META-INF/spring.components`文件中筛选路径匹配的类进行注册。如果遇到包下的`bean`扫描不到时，可以从这方面考虑。
+需要特别注意的是，`spring.components`中仅支持`@Indexed`及其子注解的配置，如果初始化了`componentsIndex`，后续扫描时只会在`META-INF/spring.components`文件中筛选路径匹配的类进行注册。如果遇到包下的`bean`扫描不到时，可以从这方面考虑。
 
 ## 3.2 扫描
+通过`ClassPathBeanDefinitionScanner#scan()`方法可以扫描指定包：
+```java
+public int scan(String... basePackages) {  
+   int beanCountAtScanStart = this.registry.getBeanDefinitionCount();  
+   // 实际扫描方法
+   doScan(basePackages);  
+   // 注册XxxProcessor
+   if (this.includeAnnotationConfig) {  
+      AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);  
+   }  
+   return (this.registry.getBeanDefinitionCount() - beanCountAtScanStart);  
+}
+```
+
+`ClassPathBeanDefinitionScanner#doScan()`方法是扫描的核心方法：
+```java
+protected Set<BeanDefinitionHolder> doScan(String... basePackages) {  
+   Assert.notEmpty(basePackages, "At least one base package must be specified");  
+   Set<BeanDefinitionHolder> beanDefinitions = new LinkedHashSet<>();  
+   // 遍历basePackages
+   for (String basePackage : basePackages) {  
+      // 从指定basePackage中筛选满足条件的类，解析成BeanDefinition
+      Set<BeanDefinition> candidates = findCandidateComponents(basePackage);  
+      // 遍历candidates，设置基本属性
+      for (BeanDefinition candidate : candidates) {  
+         // 设置作用域
+         ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(candidate);  
+         candidate.setScope(scopeMetadata.getScopeName());  
+         // 设置beanName
+         String beanName = this.beanNameGenerator.generateBeanName(candidate, this.registry);  
+         // 设置AbstractBeanDefinition相关基本属性
+         if (candidate instanceof AbstractBeanDefinition) {  
+            postProcessBeanDefinition((AbstractBeanDefinition) candidate, beanName);  
+         }  
+         // 设置AnnotatedBeanDefinition相关基本属性
+         if (candidate instanceof AnnotatedBeanDefinition) {  
+            AnnotationConfigUtils.processCommonDefinitionAnnotations((AnnotatedBeanDefinition) candidate);  
+         }  
+         // 校验是否重复注册&注册到Spring容器
+         if (checkCandidate(beanName, candidate)) {  
+            BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(candidate, beanName);  
+            definitionHolder =  
+                  AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);  
+            beanDefinitions.add(definitionHolder);  
+            registerBeanDefinition(definitionHolder, this.registry);  
+         }  
+      }  
+   }  
+   return beanDefinitions;  
+}
+```
 
 
 # 4 典型案例
