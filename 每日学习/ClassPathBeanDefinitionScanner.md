@@ -163,6 +163,7 @@ private static CandidateComponentsIndex doLoadIndex(ClassLoader classLoader) {
 需要特别注意的是，开启`spring.components`还需要`includeFilters`中仅支持`@Indexed`及其子注解的条件过滤器，如果初始化了`componentsIndex`，后续扫描时只会在`META-INF/spring.components`文件中筛选路径匹配的类进行注册。如果遇到包下的`bean`扫描不到时，可以从这方面考虑。
 
 ## 3.2 扫描
+### 3.2.1 scan
 通过`ClassPathBeanDefinitionScanner#scan()`方法可以扫描指定包，注册`XxxProcessor`，并且计算本次注册`bean`的数量：
 ```java
 public int scan(String... basePackages) {  
@@ -177,6 +178,7 @@ public int scan(String... basePackages) {
 }
 ```
 
+### 3.2.2 doScan
 `ClassPathBeanDefinitionScanner#doScan()`方法是扫描的核心方法，它会扫描指定包，设置`BeanDefinition`的基本属性，最后注册到`registry`中：
 ```java
 protected Set<BeanDefinitionHolder> doScan(String... basePackages) {  
@@ -215,6 +217,7 @@ protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
 }
 ```
 
+#### findCandidateComponents
 `ClassPathScanningCandidateComponentProvider#findCandidateComponents()`包含扫描包的核心代码。
 
 如果开启了`spring.components`配置，并且`includeFilters`中只有`@Indexed`及其子注解条件（或者注解全限定类名以`javax.`开头），就会从`spring.components`中扫描满足条件的类进行解析。
@@ -235,7 +238,8 @@ public Set<BeanDefinition> findCandidateComponents(String basePackage) {
 }
 ```
 
-我们先来看`ClassPathScanningCandidateComponentProvider#addCandidateComponentsFromIndex()`方法，
+##### 扫描spring.components
+我们先来看`ClassPathScanningCandidateComponentProvider#addCandidateComponentsFromIndex()`方法，它会从`spring.components`中获取满足条件的全限定类名，然后读取对应类文件，最后构建成`BeanDefinition`对象：
 ```java
 private Set<BeanDefinition> addCandidateComponentsFromIndex(CandidateComponentsIndex index, String basePackage) {  
    Set<BeanDefinition> candidates = new LinkedHashSet<>();  
@@ -290,5 +294,184 @@ public Set<String> getCandidateTypes(String basePackage, String stereotype) {
 }
 ```
 
-`SimpleMetadataReaderFactory#getMetadataReader()`
+`SimpleMetadataReaderFactory#getMetadataReader()`会使用`resourceLoader`读取类文件（涉及到`Resource`相关知识，可以查看[Spring的Resource体系介绍](https://www.cnblogs.com/Xianhuii/p/17048240.html)），然后解析类文件的注解信息：
+```java
+public MetadataReader getMetadataReader(String className) throws IOException {  
+   try {  
+      // 类文件路径：classpath:全限定类名.class
+      String resourcePath = ResourceLoader.CLASSPATH_URL_PREFIX +  
+            ClassUtils.convertClassNameToResourcePath(className) + ClassUtils.CLASS_FILE_SUFFIX;  
+      // 获取类文件的ClassPathResource对象
+      Resource resource = this.resourceLoader.getResource(resourcePath);  
+      // 读取元数据
+      return getMetadataReader(resource);  
+   }  
+   catch (FileNotFoundException ex) {  
+   }  
+}
+```
+
+`SimpleMetadataReaderFactory#getMetadataReader()`方法实际上会创建一个`SimpleMetadataReader`对象，在它的构造函数中会解析注解元数据。解析过程会使用`ASM`操作Java字节码，这里不进行过多介绍（还没研究过）：
+```java
+SimpleMetadataReader(Resource resource, @Nullable ClassLoader classLoader) throws IOException {  
+   SimpleAnnotationMetadataReadingVisitor visitor = new SimpleAnnotationMetadataReadingVisitor(classLoader);  
+   // 解析注解元数据：调用ClassReader#accept()方法
+   getClassReader(resource).accept(visitor, PARSING_OPTIONS);  
+   this.resource = resource;  
+   this.annotationMetadata = visitor.getMetadata();  
+}
+```
+
+回到`ClassPathScanningCandidateComponentProvider#addCandidateComponentsFromIndex()`方法，接下来会调用`ClassPathScanningCandidateComponentProvider#isCandidateComponent()`方法进行过滤：
+1. 按`excludeFilters`条件过滤（默认是空）。
+2. 按`includeFilters`条件过滤（默认是`@Component`）。
+3. 按`@Conditional`条件过滤（参考[深入理解AnnotatedBeanDefinitionReader](https://www.cnblogs.com/Xianhuii/p/17045118.html#22-conditional%E6%A0%A1%E9%AA%8C)）。
+
+`ClassPathScanningCandidateComponentProvider#isCandidateComponent()`方法如下：
+```java
+protected boolean isCandidateComponent(MetadataReader metadataReader) throws IOException {  
+   // 按excludeFilters条件过滤（默认是空）
+   for (TypeFilter tf : this.excludeFilters) {  
+      if (tf.match(metadataReader, getMetadataReaderFactory())) {  
+         return false;  
+      }  
+   }  
+   // 按includeFilters条件过滤（默认是@Component）
+   for (TypeFilter tf : this.includeFilters) {  
+      if (tf.match(metadataReader, getMetadataReaderFactory())) {  
+         // 按@Conditional条件过滤
+         return isConditionMatch(metadataReader);  
+      }  
+   }  
+   return false;  
+}
+```
+
+接下来，会创建`ScannedGenericBeanDefinition`对象，设置好相关基本信息。然后还会对`ScannedGenericBeanDefinition`对象进行一次判断，这次主要是校验这个`bean`能否成功初始化：
+```java
+protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {  
+   AnnotationMetadata metadata = beanDefinition.getMetadata();  
+   return (metadata.isIndependent() && (metadata.isConcrete() ||  
+         (metadata.isAbstract() && metadata.hasAnnotatedMethods(Lookup.class.getName()))));  
+}
+```
+
+##### 扫描类路径
+`ClassPathScanningCandidateComponentProvider#scanCandidateComponents()`方法会扫描类路径下所有满足条件的类。它的操作与扫描`spring.components`配置一致，只是类文件来源不同：
+```java
+private Set<BeanDefinition> scanCandidateComponents(String basePackage) {  
+   Set<BeanDefinition> candidates = new LinkedHashSet<>();  
+   try {  
+      // 类文件路径匹配规则：classpath*:包路径/**/*.class
+      String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX +  
+            resolveBasePackage(basePackage) + '/' + this.resourcePattern;  
+      // 加载包路径下所有类文件
+      Resource[] resources = getResourcePatternResolver().getResources(packageSearchPath);  
+      // 遍历所有类文件
+      for (Resource resource : resources) {   
+         try {  
+            // 读取元数据
+            MetadataReader metadataReader = getMetadataReaderFactory().getMetadataReader(resource);  
+            // 校验是否满足excludeFilters和includeFilters条件（注意校验顺序）
+            if (isCandidateComponent(metadataReader)) {  
+               // 解析成BeanDefinition，设置基本属性
+               ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition(metadataReader);  
+               sbd.setSource(resource);  
+               // 校验BeanDefinition是否满足条件：比如是否可以进行初始化
+               if (isCandidateComponent(sbd)) {  
+                  candidates.add(sbd);  
+               }  
+            }  
+         }
+         catch (Throwable ex) {  
+            throw new BeanDefinitionStoreException(  
+                  "Failed to read candidate component class: " + resource, ex);  
+         }  
+      }  
+   }  
+   catch (IOException ex) {  
+      throw new BeanDefinitionStoreException("I/O failure during classpath scanning", ex);  
+   }  
+   return candidates;  
+}
+```
+
+#### 注册Beandefinition
+回到`ClassPathBeanDefinitionScanner#doScan()`方法，此时我们已经得到了`BeanDefinition`对象。接下来会进行设置作用域、`beanName`等基本属性，可以参考[深入理解AnnotatedBeanDefinitionReader](https://www.cnblogs.com/Xianhuii/p/17045118.html#24-%E8%AE%BE%E7%BD%AE%E4%BD%9C%E7%94%A8%E5%9F%9F)。
+
+### 3.2.3 registerAnnotationConfigProcessors
+回到`ClassPathBeanDefinitionScanner#scan()`方法，在扫描并注册完指定路径下的类后，还会注册`XxxProcessor`：
+```java
+// 默认为true
+if (this.includeAnnotationConfig) {  
+   AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);  
+}
+```
+
+在`AnnotationConfigUtils#registerAnnotationConfigProcessors()`方法中，
+```java
+public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(  
+      BeanDefinitionRegistry registry, @Nullable Object source) {  
+  
+   DefaultListableBeanFactory beanFactory = unwrapDefaultListableBeanFactory(registry);  
+   if (beanFactory != null) {  
+      if (!(beanFactory.getDependencyComparator() instanceof AnnotationAwareOrderComparator)) {  
+         beanFactory.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);  
+      }  
+      if (!(beanFactory.getAutowireCandidateResolver() instanceof ContextAnnotationAutowireCandidateResolver)) {  
+         beanFactory.setAutowireCandidateResolver(new ContextAnnotationAutowireCandidateResolver());  
+      }  
+   }  
+  
+   Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);  
+  
+   if (!registry.containsBeanDefinition(CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
+      RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class);  
+      def.setSource(source);  
+      beanDefs.add(registerPostProcessor(registry, def, CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME));  
+   }  
+  
+   if (!registry.containsBeanDefinition(AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
+      RootBeanDefinition def = new RootBeanDefinition(AutowiredAnnotationBeanPostProcessor.class);  
+      def.setSource(source);  
+      beanDefs.add(registerPostProcessor(registry, def, AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME));  
+   }  
+  
+   // Check for JSR-250 support, and if present add the CommonAnnotationBeanPostProcessor.  
+   if (jsr250Present && !registry.containsBeanDefinition(COMMON_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
+      RootBeanDefinition def = new RootBeanDefinition(CommonAnnotationBeanPostProcessor.class);  
+      def.setSource(source);  
+      beanDefs.add(registerPostProcessor(registry, def, COMMON_ANNOTATION_PROCESSOR_BEAN_NAME));  
+   }  
+  
+   // Check for JPA support, and if present add the PersistenceAnnotationBeanPostProcessor.  
+   if (jpaPresent && !registry.containsBeanDefinition(PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
+      RootBeanDefinition def = new RootBeanDefinition();  
+      try {  
+         def.setBeanClass(ClassUtils.forName(PERSISTENCE_ANNOTATION_PROCESSOR_CLASS_NAME,  
+               AnnotationConfigUtils.class.getClassLoader()));  
+      }  
+      catch (ClassNotFoundException ex) {  
+         throw new IllegalStateException(  
+               "Cannot load optional framework class: " + PERSISTENCE_ANNOTATION_PROCESSOR_CLASS_NAME, ex);  
+      }  
+      def.setSource(source);  
+      beanDefs.add(registerPostProcessor(registry, def, PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME));  
+   }  
+  
+   if (!registry.containsBeanDefinition(EVENT_LISTENER_PROCESSOR_BEAN_NAME)) {  
+      RootBeanDefinition def = new RootBeanDefinition(EventListenerMethodProcessor.class);  
+      def.setSource(source);  
+      beanDefs.add(registerPostProcessor(registry, def, EVENT_LISTENER_PROCESSOR_BEAN_NAME));  
+   }  
+  
+   if (!registry.containsBeanDefinition(EVENT_LISTENER_FACTORY_BEAN_NAME)) {  
+      RootBeanDefinition def = new RootBeanDefinition(DefaultEventListenerFactory.class);  
+      def.setSource(source);  
+      beanDefs.add(registerPostProcessor(registry, def, EVENT_LISTENER_FACTORY_BEAN_NAME));  
+   }  
+  
+   return beanDefs;  
+}
+```
 # 4 典型案例
