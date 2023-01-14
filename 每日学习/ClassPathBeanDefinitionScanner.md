@@ -589,4 +589,34 @@ public BeanDefinition parse(Element element, ParserContext parserContext) {
 ```
 
 ## 4.5 ClassPathMapperScanner
-Mybatis的`ClassPathMapperScanner`继承了`ClassPathBeanDefinitionScanner`，
+Mybatis的`ClassPathMapperScanner`继承了`ClassPathBeanDefinitionScanner`，`@MapperScan`使用它来注册`bean`。
+
+`org.mybatis.spring.mapper.MapperScannerConfigurer#postProcessBeanDefinitionRegistry()：
+```java
+public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {  
+  if (this.processPropertyPlaceHolders) {  
+    processPropertyPlaceHolders();  
+  }  
+  
+  ClassPathMapperScanner scanner = new ClassPathMapperScanner(registry);  
+  scanner.setAddToConfig(this.addToConfig);  
+  scanner.setAnnotationClass(this.annotationClass);  
+  scanner.setMarkerInterface(this.markerInterface);  
+  scanner.setSqlSessionFactory(this.sqlSessionFactory);  
+  scanner.setSqlSessionTemplate(this.sqlSessionTemplate);  
+  scanner.setSqlSessionFactoryBeanName(this.sqlSessionFactoryBeanName);  
+  scanner.setSqlSessionTemplateBeanName(this.sqlSessionTemplateBeanName);  
+  scanner.setResourceLoader(this.applicationContext);  
+  scanner.setBeanNameGenerator(this.nameGenerator);  
+  scanner.setMapperFactoryBeanClass(this.mapperFactoryBeanClass);  
+  if (StringUtils.hasText(lazyInitialization)) {  
+    scanner.setLazyInitialization(Boolean.valueOf(lazyInitialization));  
+  }  
+  if (StringUtils.hasText(defaultScope)) {  
+    scanner.setDefaultScope(defaultScope);  
+  }  
+  scanner.registerFilters();  
+  scanner.scan(  
+      StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));  
+}
+```
