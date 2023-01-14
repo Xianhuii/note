@@ -19,7 +19,7 @@ public class ClassPathBeanDefinitionScannerMain {
         scanner.scan("com.example.component");
         System.out.println(Arrays.toString(registry.getBeanDefinitionNames()));
         // 获取bean
-//        BeanFactory beanFactory = (BeanFactory) registry;
-//        Object bean = beanFactory.getBean("");
+        BeanFactory beanFactory = (BeanFactory) registry;
+        Object bean = beanFactory.getBean("");
     }
 }

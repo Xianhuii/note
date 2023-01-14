@@ -1,10 +1,7 @@
 # 1 介绍
 `ClassPathBeanDefinitionScanner`可以扫描指定路径下的`@Component`类，将这些类解析成`BeanDefinition`，注册到Spring容器中。
 
-在`AnnotationConfigApplicationContext`中，就会使用这种方式加载指定路径下的`bean`。例如：
-```java
-ApplicationContext context = new AnnotationConfigApplicationContext("com.example.component");
-```
+此外，`ClassPathBeanDefinitionScanner`通过注册相关注解后处理器，提供了对`@Order`、`@Priority`、`@Autowired`、`@Configuration`和`@EventListener`等注解的支持。
 
 ![[ClassPathBeanDefinitionScanner 2.png]]
 `ClassPathScanningCandidateComponentProvider`成员变量：
@@ -408,43 +405,49 @@ if (this.includeAnnotationConfig) {
 }
 ```
 
-在`AnnotationConfigUtils#registerAnnotationConfigProcessors()`方法中，
+在`AnnotationConfigUtils#registerAnnotationConfigProcessors()`方法中，会添加许多后处理器：
+- `ConfigurationClassPostProcessor`：处理`@Configuration`。
+- `AutowiredAnnotationBeanPostProcessor`：处理`@Autowired`和`@Value`。
+- `CommonAnnotationBeanPostProcessor`：提供对JSR-250的支持。
+- `internalPersistenceAnnotationProcessor`：提供对JPA的支持。
+- `EventListenerMethodProcessor`和`DefaultEventListenerFactory`：处理`@EventListener`。
+
+`AnnotationConfigUtils#registerAnnotationConfigProcessors()`方法如下：
 ```java
 public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(  
       BeanDefinitionRegistry registry, @Nullable Object source) {  
   
    DefaultListableBeanFactory beanFactory = unwrapDefaultListableBeanFactory(registry);  
    if (beanFactory != null) {  
+      // 添加对@Order的支持
       if (!(beanFactory.getDependencyComparator() instanceof AnnotationAwareOrderComparator)) {  
          beanFactory.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);  
       }  
+      // 添加对@Qualifier和@Value的支持
       if (!(beanFactory.getAutowireCandidateResolver() instanceof ContextAnnotationAutowireCandidateResolver)) {  
          beanFactory.setAutowireCandidateResolver(new ContextAnnotationAutowireCandidateResolver());  
       }  
    }  
-  
    Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);  
-  
+   // 添加ConfigurationClassPostProcessor后处理器：@Configuration
    if (!registry.containsBeanDefinition(CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
       RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class);  
       def.setSource(source);  
       beanDefs.add(registerPostProcessor(registry, def, CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME));  
    }  
-  
+   // 添加AutowiredAnnotationBeanPostProcessor后处理器：@Autowired和@Value
    if (!registry.containsBeanDefinition(AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
       RootBeanDefinition def = new RootBeanDefinition(AutowiredAnnotationBeanPostProcessor.class);  
       def.setSource(source);  
       beanDefs.add(registerPostProcessor(registry, def, AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME));  
    }  
-  
-   // Check for JSR-250 support, and if present add the CommonAnnotationBeanPostProcessor.  
+   // 添加CommonAnnotationBeanPostProcessor后处理器：@PostConstruct、@PreDestroy、@Resource等
    if (jsr250Present && !registry.containsBeanDefinition(COMMON_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
       RootBeanDefinition def = new RootBeanDefinition(CommonAnnotationBeanPostProcessor.class);  
       def.setSource(source);  
       beanDefs.add(registerPostProcessor(registry, def, COMMON_ANNOTATION_PROCESSOR_BEAN_NAME));  
    }  
-  
-   // Check for JPA support, and if present add the PersistenceAnnotationBeanPostProcessor.  
+   // 添加PersistenceAnnotationBeanPostProcessor后处理器：支持JPA功能
    if (jpaPresent && !registry.containsBeanDefinition(PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
       RootBeanDefinition def = new RootBeanDefinition();  
       try {  
@@ -458,13 +461,13 @@ public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(
       def.setSource(source);  
       beanDefs.add(registerPostProcessor(registry, def, PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME));  
    }  
-  
+   // 添加EventListenerMethodProcessor后处理器：@EventListener
    if (!registry.containsBeanDefinition(EVENT_LISTENER_PROCESSOR_BEAN_NAME)) {  
       RootBeanDefinition def = new RootBeanDefinition(EventListenerMethodProcessor.class);  
       def.setSource(source);  
       beanDefs.add(registerPostProcessor(registry, def, EVENT_LISTENER_PROCESSOR_BEAN_NAME));  
    }  
-  
+   // 添加DefaultEventListenerFactory后处理器：@EventListener
    if (!registry.containsBeanDefinition(EVENT_LISTENER_FACTORY_BEAN_NAME)) {  
       RootBeanDefinition def = new RootBeanDefinition(DefaultEventListenerFactory.class);  
       def.setSource(source);  
@@ -474,4 +477,116 @@ public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(
    return beanDefs;  
 }
 ```
+
+关于后处理器的执行原理，会在后续的文章中详细介绍。
+
 # 4 典型案例
+## 4.1 DefaultListableBeanFactory
+在使用`DefaultListableBeanFactory`时，可以用`ClassPathBeanDefinitionScanner`为其注册`bean`，这也是最基础的用法：
+```java
+// 创建registry  
+BeanDefinitionRegistry registry = new DefaultListableBeanFactory();  
+// 创建scanner，设置registry  
+ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry);  
+// 扫描指定包下的bean  
+scanner.scan("com.example.component");  
+// 获取bean  
+BeanFactory beanFactory = (BeanFactory) registry;  
+Object bean = beanFactory.getBean("");
+```
+
+## 4.2 AnnotationConfigApplicationContext
+在使用`AnnotationConfigApplicationContext`时，它内部会调用`ClassPathBeanDefinitionScanner`成员变量进行注册`bean`：
+```java
+ApplicationContext context = new AnnotationConfigApplicationContext("com.example.component");
+```
+
+其他`AnnotationConfigApplicationContext`、`AnnotationConfigWebApplicationContext`、`AnnotationConfigServletWebApplicationContext`和`AnnotationConfigReactiveWebServerApplicationContext`等`ApplicationContext`实现类也会使用这种方式进行扫描。
+
+### 4.3 @ComponentScan
+`@ComponentScan`底层会调用`ClassPathBeanDefinitionScanner`进行注册`bean`，`ComponentScanAnnotationParser#parse()`：
+```java
+public Set<BeanDefinitionHolder> parse(AnnotationAttributes componentScan, String declaringClass) {  
+   ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(this.registry,  
+         componentScan.getBoolean("useDefaultFilters"), this.environment, this.resourceLoader);  
+  
+   Class<? extends BeanNameGenerator> generatorClass = componentScan.getClass("nameGenerator");  
+   boolean useInheritedGenerator = (BeanNameGenerator.class == generatorClass);  
+   scanner.setBeanNameGenerator(useInheritedGenerator ? this.beanNameGenerator :  
+         BeanUtils.instantiateClass(generatorClass));  
+  
+   ScopedProxyMode scopedProxyMode = componentScan.getEnum("scopedProxy");  
+   if (scopedProxyMode != ScopedProxyMode.DEFAULT) {  
+      scanner.setScopedProxyMode(scopedProxyMode);  
+   }  
+   else {  
+      Class<? extends ScopeMetadataResolver> resolverClass = componentScan.getClass("scopeResolver");  
+      scanner.setScopeMetadataResolver(BeanUtils.instantiateClass(resolverClass));  
+   }  
+  
+   scanner.setResourcePattern(componentScan.getString("resourcePattern"));  
+  
+   for (AnnotationAttributes includeFilterAttributes : componentScan.getAnnotationArray("includeFilters")) {  
+      List<TypeFilter> typeFilters = TypeFilterUtils.createTypeFiltersFor(includeFilterAttributes, this.environment,  
+            this.resourceLoader, this.registry);  
+      for (TypeFilter typeFilter : typeFilters) {  
+         scanner.addIncludeFilter(typeFilter);  
+      }  
+   }  
+   for (AnnotationAttributes excludeFilterAttributes : componentScan.getAnnotationArray("excludeFilters")) {  
+      List<TypeFilter> typeFilters = TypeFilterUtils.createTypeFiltersFor(excludeFilterAttributes, this.environment,  
+         this.resourceLoader, this.registry);  
+      for (TypeFilter typeFilter : typeFilters) {  
+         scanner.addExcludeFilter(typeFilter);  
+      }  
+   }  
+  
+   boolean lazyInit = componentScan.getBoolean("lazyInit");  
+   if (lazyInit) {  
+      scanner.getBeanDefinitionDefaults().setLazyInit(true);  
+   }  
+  
+   Set<String> basePackages = new LinkedHashSet<>();  
+   String[] basePackagesArray = componentScan.getStringArray("basePackages");  
+   for (String pkg : basePackagesArray) {  
+      String[] tokenized = StringUtils.tokenizeToStringArray(this.environment.resolvePlaceholders(pkg),  
+            ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS);  
+      Collections.addAll(basePackages, tokenized);  
+   }  
+   for (Class<?> clazz : componentScan.getClassArray("basePackageClasses")) {  
+      basePackages.add(ClassUtils.getPackageName(clazz));  
+   }  
+   if (basePackages.isEmpty()) {  
+      basePackages.add(ClassUtils.getPackageName(declaringClass));  
+   }  
+  
+   scanner.addExcludeFilter(new AbstractTypeHierarchyTraversingFilter(false, false) {  
+      @Override  
+      protected boolean matchClassName(String className) {  
+         return declaringClass.equals(className);  
+      }  
+   });  
+   return scanner.doScan(StringUtils.toStringArray(basePackages));  
+}
+```
+
+## 4.4 <context:component-scan/>
+`<context:component-scan/>`也会使用`ClassPathBeanDefinitionScanner`进行注册`bean`，`ComponentScanBeanDefinitionParser#parse()`：
+```java
+public BeanDefinition parse(Element element, ParserContext parserContext) {  
+   String basePackage = element.getAttribute(BASE_PACKAGE_ATTRIBUTE);  
+   basePackage = parserContext.getReaderContext().getEnvironment().resolvePlaceholders(basePackage);  
+   String[] basePackages = StringUtils.tokenizeToStringArray(basePackage,  
+         ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS);  
+  
+   // Actually scan for bean definitions and register them.  
+   ClassPathBeanDefinitionScanner scanner = configureScanner(parserContext, element);  
+   Set<BeanDefinitionHolder> beanDefinitions = scanner.doScan(basePackages);  
+   registerComponents(parserContext.getReaderContext(), beanDefinitions, element);  
+  
+   return null;  
+}
+```
+
+## 4.5 ClassPathMapperScanner
+Mybatis的`ClassPathMapperScanner`继承了`ClassPathBeanDefinitionScanner`，
