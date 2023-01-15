@@ -64,7 +64,11 @@ public class AppConfig {
 
 ---
 ![[Environment 1.png]]
+`Environment`所具备的对`profiles`和`properties`环境的基本操作，在`AbstractEnvironment`中都已经实现了，通过`customizePropertySources()`方法使子类可以添加额外自定义配置文件。
 
+`StandardEnvironment`、`StandardServletEnvironment`和`StandardReactiveWebEnvironment`是Spring为`standard`应用、`Servlet Web`应用和`Reactive Web`应用提供的运行时环境，我们可以根据项目实际情况进行选择。
+
+`ApplicationEnvironment`、`ApplicationServletEnvironment`和`ApplicationReactiveWebEnvironment`则是Spring Boot内置的实现类，专门用于`SpringApplication`。
 
 # 2 AbstractEnvironment
 
