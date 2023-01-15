@@ -123,12 +123,66 @@ protected Set<String> doGetActiveProfiles() {
 }
 ```
 
+`AbstractEnvironment#getSystemProperties()`方法可以获取系统配置信息：
+```java
+public Map<String, Object> getSystemProperties() {  
+   try {  
+      return (Map) System.getProperties();  
+   }  
+   catch (AccessControlException ex) {  
+      return (Map) new ReadOnlySystemAttributesMap() {  
+         @Override  
+         @Nullable         
+         protected String getSystemAttribute(String attributeName) {  
+            try {  
+               return System.getProperty(attributeName);  
+            }  
+            catch (AccessControlException ex) {    
+               return null;  
+            }  
+         }  
+      };  
+   }  
+}
+```
 
+`AbstractEnvironment#getSystemEnvironment()`方法可以获取系统环境信息：
+```java
+public Map<String, Object> getSystemEnvironment() {  
+   if (suppressGetenvAccess()) {  
+      return Collections.emptyMap();  
+   }  
+   try {  
+      return (Map) System.getenv();  
+   }  
+   catch (AccessControlException ex) {  
+      return (Map) new ReadOnlySystemAttributesMap() {  
+         @Override  
+         @Nullable         
+         protected String getSystemAttribute(String attributeName) {  
+            try {  
+               return System.getenv(attributeName);  
+            }  
+            catch (AccessControlException ex) {  
+               return null;  
+            }  
+         }  
+      };  
+   }  
+}
+```
 # 3 StandardEnvironment
+`StandardEnvironment`通过`customizePropertySources()`方法添加了`systemEnvironment`和`systemProperties`环境变量：
+```java
+protected void customizePropertySources(MutablePropertySources propertySources) {  
+   propertySources.addLast(  
+         new PropertiesPropertySource(SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME, getSystemProperties()));  
+   propertySources.addLast(  
+         new SystemEnvironmentPropertySource(SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME, getSystemEnvironment()));  
+}
+```
 
-# 4 ApplicationEnvironment
-
-# 5 StandardServletEnvironment
-
-# 6 StandardReactiveWebEnvironment
+## 3.1 StandardServletEnvironment
+`StandardServletEnvironment`通过`customizePropertySources()`方法添加了`servletConfigInitParams`、`servletContextInitParams`和`jndiProperties`
+# 5 StandardReactiveWebEnvironment
 
