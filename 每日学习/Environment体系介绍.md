@@ -63,14 +63,66 @@ public class AppConfig {
 ```
 
 ---
-![[Environment 1.png]]
-`Environment`所具备的对`profiles`和`properties`环境的基本操作，在`AbstractEnvironment`中都已经实现了，通过`customizePropertySources()`方法使子类可以添加额外自定义配置文件。
+![[Environment 2.png]]
+`ConfigurableEnvironment`提供了管理`profiles`和`properties`环境的基本方法。
+
+在`AbstractEnvironment`中实现了对`profiles`和`properties`环境的基本操作，并通过`customizePropertySources()`方法使子类可以添加额外自定义配置文件。
 
 `StandardEnvironment`、`StandardServletEnvironment`和`StandardReactiveWebEnvironment`是Spring为`standard`应用、`Servlet Web`应用和`Reactive Web`应用提供的运行时环境，我们可以根据项目实际情况进行选择。
 
 `ApplicationEnvironment`、`ApplicationServletEnvironment`和`ApplicationReactiveWebEnvironment`则是Spring Boot内置的实现类，专门用于`SpringApplication`。
 
 # 2 AbstractEnvironment
+![[AbstractEnvironment.png]]
+`AbstractEnvironment`的`propetySources`保存了配置文件的信息，通过`propertyResolver`可以从配置文件中获取指定属性值。`activeProfiles`和`defaultProfiles`则起着缓存对应配置的作用。
+
+`AbstractEnvironment`的核心在于它的构造函数，子类在初始化时都会调用这些构造函数进行默认处理。
+
+无参构造函数：
+```java
+public AbstractEnvironment() {  
+   this(new MutablePropertySources());  
+}
+```
+
+有参构造函数：
+```java
+protected AbstractEnvironment(MutablePropertySources propertySources) {  
+   this.propertySources = propertySources;  
+   this.propertyResolver = createPropertyResolver(propertySources);  
+   customizePropertySources(propertySources);  
+}
+```
+
+子类可以通过`AbstractEnvironment#customizePropertySources()`方法用来添加配置文件：
+```java
+protected void customizePropertySources(MutablePropertySources propertySources) {  
+}
+```
+
+在获取配置时，会使用`propertyResolver`读取配置文件，例如：
+```java
+public String getProperty(String key) {  
+   return this.propertyResolver.getProperty(key);  
+}
+```
+
+在获取`profiles`信息时，则会进行缓存处理，例如：
+```java
+protected Set<String> doGetActiveProfiles() {  
+   synchronized (this.activeProfiles) {  
+      if (this.activeProfiles.isEmpty()) {  
+         String profiles = doGetActiveProfilesProperty();  
+         if (StringUtils.hasText(profiles)) {  
+            setActiveProfiles(StringUtils.commaDelimitedListToStringArray(  
+                  StringUtils.trimAllWhitespace(profiles)));  
+         }  
+      }  
+      return this.activeProfiles;  
+   }  
+}
+```
+
 
 # 3 StandardEnvironment
 
