@@ -1,5 +1,5 @@
 # 1 介绍
-
+`Environment`接口表示当前应用的运行时环境。
 # 2 AbstractEnvironment
 
 # 3 StandardEnvironment
