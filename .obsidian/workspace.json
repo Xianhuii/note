@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/Environment体系介绍.md",
+                "file": "Spring全家桶/core/5、Environment体系介绍.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/Environment体系介绍.md",
+                "file": "Spring全家桶/core/5、Environment体系介绍.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/Environment体系介绍.md",
+                "file": "Spring全家桶/core/5、Environment体系介绍.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/Environment体系介绍.md"
+                "file": "Spring全家桶/core/5、Environment体系介绍.md"
               }
             }
           },
@@ -158,9 +158,9 @@
   },
   "active": "546f8bfd02fa7939",
   "lastOpenFiles": [
-    "Spring全家桶/core/4、ClassPathBeanDefinitionScanner.md",
-    "每日学习/Environment体系介绍.md",
     "Spring全家桶/core/2、AnnotatedBeanDefinitionReader.md",
+    "Spring全家桶/core/5、Environment体系介绍.md",
+    "Spring全家桶/core/4、ClassPathBeanDefinitionScanner.md",
     "Spring全家桶/core/1、Spring IoC学习路线.md",
     "Spring全家桶/core/3、Resource体系介绍.md",
     "每日学习/BeanDefinition.md",
