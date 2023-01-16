@@ -7,7 +7,7 @@
 
 在缓存`BeanDefinition`后，实例化`bean`前，还可以通过`BeanFactoryPostProcessor`等方式对`BeanDefinition`进行修改，以此来增强功能（AOP就是通过类似方式实现的）。
 
-因此，我们也可以从这个角度来理解Spring容器：
+因此，我们也可以从这个角度来理解Spring容器：配置文件→`BeanDefinition`→`bean`。
 
 BeanDefinition
 BeanDefinitionReaderUtils
