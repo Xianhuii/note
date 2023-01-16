@@ -9,6 +9,10 @@
 
 因此，我们也可以从这个角度来理解Spring容器：配置文件→`BeanDefinition`→`bean`。
 
+# 2 体系
+![[BeanDefinition 1.png]]
+
+
 BeanDefinition
 BeanDefinitionReaderUtils
 BeanDefinitionHolder
