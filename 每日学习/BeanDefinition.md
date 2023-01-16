@@ -1,3 +1,6 @@
+# 1 介绍
+`BeanDefinition`是Spring中非常重要的一个概念。
+
 BeanDefinition
 BeanDefinitionReaderUtils
 BeanDefinitionHolder
