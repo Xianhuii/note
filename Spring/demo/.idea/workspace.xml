@@ -23,6 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -297,7 +298,7 @@
       <workItem from="1673407602497" duration="23239000" />
       <workItem from="1673489073716" duration="19879000" />
       <workItem from="1673579591247" duration="51236000" />
-      <workItem from="1673844345939" duration="37730000" />
+      <workItem from="1673844345939" duration="39367000" />
     </task>
     <servers />
   </component>
@@ -513,10 +514,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="299" y="182" key="run.anything.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673849555505" />
-    <state x="524" y="282" width="672" height="522" key="search.everywhere.popup" timestamp="1673964423476">
+    <state x="527" y="285" width="672" height="522" key="search.everywhere.popup" timestamp="1673967933153">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="524" y="282" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673964423476" />
+    <state x="527" y="285" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673967933153" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1672902023818" />

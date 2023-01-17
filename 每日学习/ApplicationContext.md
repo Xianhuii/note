@@ -1,0 +1,3 @@
+AnnotationConfigApplicationContext
+AnnotationConfigServletWebServerApplicationContext
+AnnotationConfigReactiveWebServerApplicationContext
