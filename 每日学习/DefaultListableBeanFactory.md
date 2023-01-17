@@ -20,7 +20,8 @@
 
 # 2 DefaultListableBeanFactory
 
-`DefaultListableBeanFactory`的成员变量很多，这里
+`DefaultListableBeanFactory`的成员变量很多，这里介绍其中最核心的：
+- `beanDefinitionMap`：`BeanDefinition`的缓存，`key`是`beanName`。
 
 `DefaultListableBeanFactory`中最核心的流程（方法）包括：
 1. 注册`BeanDefinition`
@@ -106,9 +107,8 @@ public void registerBeanDefinition(String beanName, BeanDefinition beanDefinitio
 ```java
 protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {  
    RootBeanDefinition mbdToUse = mbd;  
-  
-   // Make sure bean class is actually resolved at this point, and  
-   // clone the bean definition in case of a dynamically resolved Class   // which cannot be stored in the shared merged bean definition.   Class<?> resolvedClass = resolveBeanClass(mbd, beanName);  
+   // 解析bean对应的beanClass对象，用于后面的实例化
+   Class<?> resolvedClass = resolveBeanClass(mbd, beanName);  
    if (resolvedClass != null && !mbd.hasBeanClass() && mbd.getBeanClassName() != null) {  
       mbdToUse = new RootBeanDefinition(mbd);  
       mbdToUse.setBeanClass(resolvedClass);  
@@ -124,8 +124,9 @@ protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable O
    }  
   
    try {  
-      // Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.  
+      // 触发InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation()和BeanPostProcessor#postProcessAfterInitialization()方法
       Object bean = resolveBeforeInstantiation(beanName, mbdToUse);  
+      // 如果通过InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation()方法实例化对象，就直接返回了
       if (bean != null) {  
          return bean;  
       }  
@@ -136,12 +137,12 @@ protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable O
    }  
   
    try {  
+      // 使用BeanFactory默认策略实例化对象：使用instanceSupplier、factoryMethodName或构造函数
       Object beanInstance = doCreateBean(beanName, mbdToUse, args);
       return beanInstance;  
    }  
-   catch (BeanCreationException | ImplicitlyAppearedSingletonException ex) {  
-      // A previously detected exception with proper bean creation context already,  
-      // or illegal singleton state to be communicated up to DefaultSingletonBeanRegistry.      throw ex;  
+   catch (BeanCreationException | ImplicitlyAppearedSingletonException ex) {
+      throw ex;  
    }  
    catch (Throwable ex) {  
       throw new BeanCreationException(  
