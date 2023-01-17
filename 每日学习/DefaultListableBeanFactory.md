@@ -210,9 +210,6 @@ protected Object resolveBeforeInstantiation(String beanName, RootBeanDefinition 
 8. 触发`initMethod`回调。
 9. 触发`BeanPostProcessor#postProcessAfterInitialization()`回调。
 
-需要注意的是，由于存在循环依赖的情况：
-1. 在创建`bean`后，依赖注入前，会将未完全实例化的`bean`信息缓存到`singletonFactories`和`registeredSingletons`。
-
 `AbstractAutowireCapableBeanFactory#doCreateBean()`：
 ```java
 protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {  
@@ -315,4 +312,9 @@ protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable
    return exposedObject;  
 }
 ```
+
+需要注意的是，由于存在循环依赖的情况：
+1. 在创建`bean`后，依赖注入前，会将未完全实例化的`bean`信息缓存到`singletonFactories`和`registeredSingletons`。
+
+
 # getBean
