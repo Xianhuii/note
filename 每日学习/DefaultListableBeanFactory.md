@@ -103,7 +103,7 @@ public void registerBeanDefinition(String beanName, BeanDefinition beanDefinitio
 ```
 
 ## 2.2 createBean
-
+创建`bean`的底层方法位于`AbstractAutowireCapableBeanFactory#createBean()`。
 ```java
 protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {  
    RootBeanDefinition mbdToUse = mbd;  
@@ -150,4 +150,21 @@ protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable O
    }  
 }
 ```
+
+### 2.2.1 解析beanClass
+为了创建`bean`，首先要知道它的`beanClass`是什么。
+
+解析常规`beanClass`的底层方法位于`AbstractBeanDefinition#resolveBeanClass()`。简单来说，它会根据`beanClassName`加载对应的类对象，并且缓存起来：
+```java
+public Class<?> resolveBeanClass(@Nullable ClassLoader classLoader) throws ClassNotFoundException {  
+   String className = getBeanClassName();  
+   if (className == null) {  
+      return null;  
+   }  
+   Class<?> resolvedClass = ClassUtils.forName(className, classLoader);  
+   this.beanClass = resolvedClass;  
+   return resolvedClass;  
+}
+```
+
 # getBean
