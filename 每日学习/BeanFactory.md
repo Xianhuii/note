@@ -19,9 +19,13 @@
 在对Spring IoC容器有了整体的认识后，再去针对性研究它提供的特性功能，就能够完全掌握Spring IoC容器。
 
 # 2 DefaultListableBeanFactory
-
+![[DefaultListableBeanFactory 1.png]]
 `DefaultListableBeanFactory`的成员变量很多，这里介绍其中最核心的：
 - `beanDefinitionMap`：`BeanDefinition`的缓存，`key`是`beanName`。
+- `mergedBeanDefinitions`：合并后的`BeanDefinition`缓存。
+- `singletonFactories`：单例`bean`的缓存，保存创建后且依赖注入前的单例对象。
+- `earlySingletonObjects`：单例`bean`的缓存，保存依赖注入且回调完的单例对象。
+- `singletonObjects`：单例`bean`的缓存，保存最终的单例对象。
 
 `DefaultListableBeanFactory`中最核心的流程（方法）包括：
 1. 注册`BeanDefinition`
@@ -320,7 +324,11 @@ protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable
 2. 在依赖注入并且执行完回调方法之后，会将完全实例化的`bean`信息缓存到`earlySingletonObjects`中，并移除`singletonFactories`中的缓存。
 
 ## 2.3 获取bean
-获取`bean`的底层方法位于`AbstractBeanFactory#doGetBean()`方法。
+获取`bean`的底层方法位于`AbstractBeanFactory#doGetBean()`方法，主要包括以下步骤：
+1. 解析`beanName`。
+2. 从三级缓存中获取`bean`，如果存在则直接返回。
+3. 合并`BeanDefinition`。
+4. 根据作用域创建`bean`。
 
 ```java
 protected <T> T doGetBean(  
