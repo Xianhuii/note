@@ -314,7 +314,8 @@ protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable
 ```
 
 需要注意的是，由于存在循环依赖的情况：
-1. 在创建`bean`后，依赖注入前，会将未完全实例化的`bean`信息缓存到`singletonFactories`和`registeredSingletons`。
+1. 在创建`bean`后，依赖注入前，会将未完全实例化的`bean`信息缓存到`singletonFactories`。
+2. 在依赖注入并且执行完回调方法之后，会将完全实例化的`bean`信息缓存到`earlySingletonObjects`中，并移除`singletonFactories`中的缓存。
 
 
 # getBean
