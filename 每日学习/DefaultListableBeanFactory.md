@@ -21,6 +21,12 @@
 # 2 DefaultListableBeanFactory
 
 `DefaultListableBeanFactory`的成员变量很多，这里
+
+`DefaultListableBeanFactory`中最核心的流程（方法）包括：
+1. 注册`BeanDefinition`
+2. 创建`bean`
+3. 获取`bean`
+
 ## 2.1 registerBeanDefinition
 注册`BeanDefinition`是`BeanDefinitionRegistry`接口提供的方法，`DefaultListableBeanFactory`对其进行了实现。
 
@@ -95,6 +101,52 @@ public void registerBeanDefinition(String beanName, BeanDefinition beanDefinitio
 }
 ```
 
-# createBean
+## 2.2 createBean
 
+```java
+protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {  
+   RootBeanDefinition mbdToUse = mbd;  
+  
+   // Make sure bean class is actually resolved at this point, and  
+   // clone the bean definition in case of a dynamically resolved Class   // which cannot be stored in the shared merged bean definition.   Class<?> resolvedClass = resolveBeanClass(mbd, beanName);  
+   if (resolvedClass != null && !mbd.hasBeanClass() && mbd.getBeanClassName() != null) {  
+      mbdToUse = new RootBeanDefinition(mbd);  
+      mbdToUse.setBeanClass(resolvedClass);  
+   }  
+  
+   // Prepare method overrides.  
+   try {  
+      mbdToUse.prepareMethodOverrides();  
+   }  
+   catch (BeanDefinitionValidationException ex) {  
+      throw new BeanDefinitionStoreException(mbdToUse.getResourceDescription(),  
+            beanName, "Validation of method overrides failed", ex);  
+   }  
+  
+   try {  
+      // Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.  
+      Object bean = resolveBeforeInstantiation(beanName, mbdToUse);  
+      if (bean != null) {  
+         return bean;  
+      }  
+   }  
+   catch (Throwable ex) {  
+      throw new BeanCreationException(mbdToUse.getResourceDescription(), beanName,  
+            "BeanPostProcessor before instantiation of bean failed", ex);  
+   }  
+  
+   try {  
+      Object beanInstance = doCreateBean(beanName, mbdToUse, args);
+      return beanInstance;  
+   }  
+   catch (BeanCreationException | ImplicitlyAppearedSingletonException ex) {  
+      // A previously detected exception with proper bean creation context already,  
+      // or illegal singleton state to be communicated up to DefaultSingletonBeanRegistry.      throw ex;  
+   }  
+   catch (Throwable ex) {  
+      throw new BeanCreationException(  
+            mbdToUse.getResourceDescription(), beanName, "Unexpected exception during bean creation", ex);  
+   }  
+}
+```
 # getBean
