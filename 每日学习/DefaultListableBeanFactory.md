@@ -197,7 +197,22 @@ protected Object resolveBeforeInstantiation(String beanName, RootBeanDefinition 
 如果在这个阶段创建了`bean`，那么会直接返回，不会继续执行后续创建`bean`操作。
 
 ### 2.2.3 创建bean
-`AbstractAutowireCapableBeanFactory#doCreateBean()`会根据`RootBeanDefinition`的信息进行创建对象。：
+`AbstractAutowireCapableBeanFactory#doCreateBean()`会根据`RootBeanDefinition`的信息进行创建对象。
+
+简单来说，包括以下步骤：
+1. 通过`instanceSupplier`、工厂方法和构造函数等方式创建对象。‘
+2. 触发`MergedBeanDefinitionPostProcessor#postProcessMergedBeanDefinition()`回调。
+3. `InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation()`回调。
+4. 依赖注入。
+5. 触发`BeanNameAware`、`BeanClassLoaderAware`和`BeanFactoryAware`回调。
+6. 触发`BeanPostProcessor#postProcessBeforeInitialization()`回调。
+7. 触发`InitializingBean#afterPropertiesSet()`回调。
+8. 触发`initMethod`回调。
+9. 触发`BeanPostProcessor#postProcessAfterInitialization()`回调。
+
+
+
+`AbstractAutowireCapableBeanFactory#doCreateBean()`：
 ```java
 protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {  
    BeanWrapper instanceWrapper = null;  
@@ -206,9 +221,11 @@ protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable
       instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);  
    }  
    if (instanceWrapper == null) {  
-      /* 创建bean，将当前beanName添加到currentlyCreatedBean缓存：
+      /* 创建bean：
          1、instanceSupplier#get()方法创建
-         2、factoryBean
+         2、factoryMethod工厂方法创建
+         3、有参构造函数创建
+         4、无参构造函数创建
       */
       instanceWrapper = createBeanInstance(beanName, mbd, args);  
    }  
