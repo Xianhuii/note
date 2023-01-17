@@ -24,7 +24,16 @@
 ## 2.1 registerBeanDefinition
 注册`BeanDefinition`是`BeanDefinitionRegistry`接口提供的方法，`DefaultListableBeanFactory`对其进行了实现。
 
-由于
+注册`BeanDefinition`的过程主要是将其保存到`beanDefinitionMap`缓存中，其中`beanName`作为`key`：
+```java
+private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
+```
+
+考虑到`beanName`可能被重复注册多次的情况。一方面，要对此做出限制，主要是通过`allowBeanDefinitionOverriding`属性；另一方面，在覆盖时需要将旧的`beanDefinition`衍生出的各种缓存清除，保证数据的一致性。
+
+与`beanDefinition`相关的缓存包括（没有全部列出）：
+- `mergedBeanDefinitions`、`mergedBeanDefinitionHolders`
+- `singletonObjects`、`singletonFactories`、`earlySingletonObjects`、`registeredSingletons`、`disposableBeans`、`dependentBeanMap`
 
 `DefaultListableBeanFactory#registerBeanDefinition()`：
 ```java
