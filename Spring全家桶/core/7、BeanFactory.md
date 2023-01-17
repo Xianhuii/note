@@ -469,3 +469,50 @@ protected <T> T doGetBean(
    return adaptBeanInstance(name, beanInstance, requiredType);  
 }
 ```
+
+需要注意的是，在`AbstractBeanFactory#getObjectForBeanInstance()`方法中，会根据`bean`的类型进行处理。如果是`FactoryBean`类型，会调用`FactoryBean#getObject()`获取实际`bean`（这是AOP的基础）：
+```java
+protected Object getObjectForBeanInstance(  
+      Object beanInstance, String name, String beanName, @Nullable RootBeanDefinition mbd) {  
+  
+   // Don't let calling code try to dereference the factory if the bean isn't a factory.  
+   if (BeanFactoryUtils.isFactoryDereference(name)) {  
+      if (beanInstance instanceof NullBean) {  
+         return beanInstance;  
+      }  
+      if (!(beanInstance instanceof FactoryBean)) {  
+         throw new BeanIsNotAFactoryException(beanName, beanInstance.getClass());  
+      }  
+      if (mbd != null) {  
+         mbd.isFactoryBean = true;  
+      }  
+      return beanInstance;  
+   }  
+  
+   // Now we have the bean instance, which may be a normal bean or a FactoryBean.  
+   // If it's a FactoryBean, we use it to create a bean instance, unless the   
+   // caller actually wants a reference to the factory.   
+   if (!(beanInstance instanceof FactoryBean)) {  
+      return beanInstance;  
+   }  
+  
+   Object object = null;  
+   if (mbd != null) {  
+      mbd.isFactoryBean = true;  
+   }  
+   else {  
+      object = getCachedObjectForFactoryBean(beanName);  
+   }  
+   if (object == null) {  
+      // Return bean instance from factory.  
+      FactoryBean<?> factory = (FactoryBean<?>) beanInstance;  
+      // Caches object obtained from FactoryBean if it is a singleton.  
+      if (mbd == null && containsBeanDefinition(beanName)) {  
+         mbd = getMergedLocalBeanDefinition(beanName);  
+      }  
+      boolean synthetic = (mbd != null && mbd.isSynthetic());  
+      object = getObjectFromFactoryBean(factory, beanName, !synthetic);  
+   }  
+   return object;  
+}
+```
