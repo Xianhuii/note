@@ -114,7 +114,7 @@ protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable O
       mbdToUse.setBeanClass(resolvedClass);  
    }  
   
-   // Prepare method overrides.  
+   // Prepare method overrides：校验lookup方法是否存在
    try {  
       mbdToUse.prepareMethodOverrides();  
    }  
@@ -167,4 +167,134 @@ public Class<?> resolveBeanClass(@Nullable ClassLoader classLoader) throws Class
 }
 ```
 
+### 2.2.2 实例化前的回调
+在创建`bean`之前，会先触发`InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation()`和`BeanPostProcessor#postProcessAfterInitialization()`方法回调：
+```java
+protected Object resolveBeforeInstantiation(String beanName, RootBeanDefinition mbd) {  
+   Object bean = null;  
+   if (!Boolean.FALSE.equals(mbd.beforeInstantiationResolved)) {  
+      // Make sure bean class is actually resolved at this point.  
+      if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {  
+         Class<?> targetType = determineTargetType(beanName, mbd);  
+         if (targetType != null) {  
+            // InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation()回调
+            bean = applyBeanPostProcessorsBeforeInstantiation(targetType, beanName);  
+            if (bean != null) {  
+               // BeanPostProcessor#postProcessAfterInitialization()
+               bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);  
+            }  
+         }  
+      }  
+      mbd.beforeInstantiationResolved = (bean != null);  
+   }  
+   return bean;  
+}
+```
+
+在这个阶段，会触发常见的`InstantiationAwareBeanPostProcessor`实现类如下：
+- `AbstractAutoProxyCreator`：将符合条件的`bean`用AOP代理封装起来，并指定代理的拦截器。
+
+如果在这个阶段创建了`bean`，那么会直接返回，不会继续执行后续创建`bean`操作。
+
+### 2.2.3 创建bean
+`AbstractAutowireCapableBeanFactory#doCreateBean()`会根据`RootBeanDefinition`的信息进行创建对象。：
+```java
+protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {  
+   BeanWrapper instanceWrapper = null;  
+   if (mbd.isSingleton()) {  
+      // 如果factoryBeanInstanceCache有，直接取
+      instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);  
+   }  
+   if (instanceWrapper == null) {  
+      /* 创建bean，将当前beanName添加到currentlyCreatedBean缓存：
+         1、instanceSupplier#get()方法创建
+         2、factoryBean
+      */
+      instanceWrapper = createBeanInstance(beanName, mbd, args);  
+   }  
+   
+   Object bean = instanceWrapper.getWrappedInstance();  
+   Class<?> beanType = instanceWrapper.getWrappedClass();  
+   if (beanType != NullBean.class) {  
+      mbd.resolvedTargetType = beanType;  
+   }  
+  
+   // 触发MergedBeanDefinitionPostProcessor#postProcessMergedBeanDefinition()回调
+   synchronized (mbd.postProcessingLock) {  
+      if (!mbd.postProcessed) {  
+         try {  
+            applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName);  
+         }  
+         catch (Throwable ex) {  
+            throw new BeanCreationException(mbd.getResourceDescription(), beanName,  
+                  "Post-processing of merged bean definition failed", ex);  
+         }  
+         mbd.postProcessed = true;  
+      }  
+   }  
+  
+   // Eagerly cache singletons to be able to resolve circular references  
+   // even when triggered by lifecycle interfaces like BeanFactoryAware.   
+   boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences && isSingletonCurrentlyInCreation(beanName));  
+   if (earlySingletonExposure) {  
+      // 如果是提前暴露的单例bean：缓存单例对象：singletonFactories和registeredSingletons
+      addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));  
+   }  
+  
+   // 实例化bean
+   Object exposedObject = bean;  
+   try {  
+      /* 
+         1、InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation()回调
+         2、依赖注入
+      */ 
+      populateBean(beanName, mbd, instanceWrapper);  
+      /*
+	     1、触发BeanNameAware、BeanClassLoaderAware和BeanFactoryAware回调
+	     2、触发BeanPostProcessor#postProcessBeforeInitialization()回调
+	     3、触发InitializingBean#afterPropertiesSet()回调
+	     4、触发initMethod回调
+	     5、触发BeanPostProcessor#postProcessAfterInitialization()回调
+      */
+      exposedObject = initializeBean(beanName, exposedObject, mbd);  
+   }  
+   catch (Throwable ex) {  
+      
+   }  
+   // 如果是提前暴露的单例bean
+   if (earlySingletonExposure) {  
+      // 从缓存中获取：singletonObjects、earlySingletonObjects、singletonFactories
+      Object earlySingletonReference = getSingleton(beanName, false);  
+      if (earlySingletonReference != null) {  
+         if (exposedObject == bean) {  
+            exposedObject = earlySingletonReference;  
+         }  
+         else if (!this.allowRawInjectionDespiteWrapping && hasDependentBean(beanName)) {  
+            // 清除依赖bean的缓存
+            String[] dependentBeans = getDependentBeans(beanName);  
+            Set<String> actualDependentBeans = new LinkedHashSet<>(dependentBeans.length);  
+            for (String dependentBean : dependentBeans) {  
+               if (!removeSingletonIfCreatedForTypeCheckOnly(dependentBean)) {  
+                  actualDependentBeans.add(dependentBean);  
+               }  
+            }  
+            if (!actualDependentBeans.isEmpty()) {  
+               throw new BeanCurrentlyInCreationException();  
+            }  
+         }  
+      }  
+   }  
+  
+   // Register bean as disposable.  
+   try {  
+      registerDisposableBeanIfNecessary(beanName, bean, mbd);  
+   }  
+   catch (BeanDefinitionValidationException ex) {  
+      throw new BeanCreationException(  
+            mbd.getResourceDescription(), beanName, "Invalid destruction signature", ex);  
+   }  
+  
+   return exposedObject;  
+}
+```
 # getBean
