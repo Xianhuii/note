@@ -155,3 +155,10 @@ public void refresh() throws BeansException, IllegalStateException {
 }
 ```
 # 2 AnnotationConfigServletWebServerApplicationContext
+![[AnnotationConfigServletWebServerApplicationContext.png]]
+
+`AnnotationConfigServletWebServerApplicationContext`的成员变量与`AnnotationConfigApplicationContext`差不多，只是多了web相关的信息：
+- `servletContext`：
+- `webServet`：
+- `servletConfig`：
+
