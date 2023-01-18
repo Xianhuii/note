@@ -1,4 +1,11 @@
 ![[ApplicationContext 1.png]]
+`ApplicationContext`是Spring容器针对应用层开放的接口。
+
+相对于`BeanFactory`体系，仅仅起着容器的作用，需要借助`AnnatatedBeanDefinitionReader`手动注册类对象，或者`ClassPathBeanDefinitionScanner`扫描指定路径，才能完成Spring容器的初始化。
+
+`ApplicationContext`体系直接将`AnnatatedBeanDefinitionReader`和`ClassPathBeanDefinitionScanner`作为自己的成员变量，集成了读取依赖配置和注册`BeanDefinition`的功能。此外，还提供了许多增强的功能，比如触发`BeanFactoryPostProcessor`回调，自动实例化单例`bean`等。
+
+`ApplicationContext`体系十分复杂，但是它的核心实现类只有`AnnotationConfigApplicationContext`和`AnnotationConfigServletWebServerApplicationContext`。我们只需要重点学习这两个实现类，就能深刻理解`ApplicationContext`的实现原理。
 
 # 1 AnnotationConfigApplicationContext
 ![[AnnotationConfigApplicationContext 1.png]]
@@ -154,13 +161,27 @@ public void refresh() throws BeansException, IllegalStateException {
    }  
 }
 ```
+
+## 1.4 getBean
+`AbstractApplicationContext#getBean()`会交给内部的`beanFactory`去执行：
+```java
+public Object getBean(String name) throws BeansException {  
+   assertBeanFactoryActive();  
+   return getBeanFactory().getBean(name);  
+}
+```
+
 # 2 AnnotationConfigServletWebServerApplicationContext
 ![[AnnotationConfigServletWebServerApplicationContext.png]]
 
 `AnnotationConfigServletWebServerApplicationContext`的成员变量与`AnnotationConfigApplicationContext`差不多，只是多了web相关的信息：
-- `servletContext`：
-- `webServet`：
-- `servletConfig`：
+- `servletContext`
+- `webServet`
+- `servletConfig`
+
+并且此时会缓存待注册的类对象和扫描路径，在`refresh()`方法中才会进行实际注册：
+- `annotatedClasses`：待注册类对象。
+- `basePackages`：待扫描路径。
 
 `AnnotationConfigServletWebServerApplicationContext`的使用主要是在Spring Boot项目中，`AnnotationConfigServletWebServerApplicationContext.Factory#create()`：
 ```java
@@ -198,5 +219,57 @@ public AbstractApplicationContext() {
 ```
 
 ## 2.2 register和scan
+`AnnotationConfigServletWebServerApplicationContext#register()`方法会缓存待注册的类对象：
+```java
+public final void register(Class<?>... annotatedClasses) {  
+   this.annotatedClasses.addAll(Arrays.asList(annotatedClasses));  
+}
+```
+
+`AnnotationConfigServletWebServerApplicationContext#scan()`方法会缓存待扫描的路径：
+```java
+public final void scan(String... basePackages) {
+   this.basePackages = basePackages;  
+}
+```
+
+在后续refresh阶段的`AnnotationConfigServletWebServerApplicationContext#postProcessBeanFactory()`方法中，才会进行实际注册`BeanDefinition`：
+```java
+protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {  
+   super.postProcessBeanFactory(beanFactory);  
+   if (this.basePackages != null && this.basePackages.length > 0) {  
+      this.scanner.scan(this.basePackages);  
+   }  
+   if (!this.annotatedClasses.isEmpty()) {  
+      this.reader.register(ClassUtils.toClassArray(this.annotatedClasses));  
+   }  
+}
+```
 
 ## 2.3 refresh
+`ServletWebServerApplicationContext#refresh()`方法实际上会调用到`AbstractApplicationContext#refresh()`方法：
+```java
+public final void refresh() throws BeansException, IllegalStateException {  
+   try {  
+      super.refresh();  
+   }  
+   catch (RuntimeException ex) {  
+      WebServer webServer = this.webServer;  
+      if (webServer != null) {  
+         webServer.stop();  
+      }  
+      throw ex;  
+   }  
+}
+```
+
+需要注意的是，此时调用`postProcessBeanFactory()`方法时，会进行实际注册`BeanDefinition`操作。
+
+## 2.4 getBean
+`AbstractApplicationContext#getBean()`会交给内部的`beanFactory`去执行：
+```java
+public Object getBean(String name) throws BeansException {  
+   assertBeanFactoryActive();  
+   return getBeanFactory().getBean(name);  
+}
+```
