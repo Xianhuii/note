@@ -162,3 +162,20 @@ public void refresh() throws BeansException, IllegalStateException {
 - `webServet`：
 - `servletConfig`：
 
+`AnnotationConfigServletWebServerApplicationContext`的使用主要是在Spring Boot项目中，`AnnotationConfigServletWebServerApplicationContext.Factory#create()`：
+```java
+public ConfigurableApplicationContext create(WebApplicationType webApplicationType) {  
+   return (webApplicationType != WebApplicationType.SERVLET) ? null  
+         : new AnnotationConfigServletWebServerApplicationContext();  
+}
+```
+
+虽然经过了多层封装，但是接下来还是会依次调用以下方法进行容器初始化：
+1. `register()`或`scan()`：注册`BeanDefinition`。
+2. `refresh()`：初始化容器。
+
+## 2.1 构造函数
+
+## 2.2 register和scan
+
+## 2.3 refresh
