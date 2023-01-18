@@ -175,6 +175,27 @@ public ConfigurableApplicationContext create(WebApplicationType webApplicationTy
 2. `refresh()`：初始化容器。
 
 ## 2.1 构造函数
+使用默认无参构造函数，会初始化`AnnotatedBeanDefinitionReader`和`ClassPathBeanDefinitionScanner`对象，用于读取依赖配置：
+```java
+public AnnotationConfigServletWebServerApplicationContext() {  
+   this.reader = new AnnotatedBeanDefinitionReader(this);  
+   this.scanner = new ClassPathBeanDefinitionScanner(this);  
+}
+```
+
+在父类`GenericApplicationContext`的默认无参构造函数中，会初始化`beanFactory`：
+```java
+public GenericApplicationContext() {  
+   this.beanFactory = new DefaultListableBeanFactory();  
+}
+```
+
+在父类`AbstractApplicationContext`的默认无参构造函数中，会初始化`resourcePatternResolver`：
+```java
+public AbstractApplicationContext() {  
+   this.resourcePatternResolver = getResourcePatternResolver();  
+}
+```
 
 ## 2.2 register和scan
 
