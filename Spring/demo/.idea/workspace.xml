@@ -23,8 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/applicationcontext/AnnotationConfigApplicationContextMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/applicationcontext/config/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/ApplicationContext.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/ApplicationContext.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,18 +92,19 @@
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\resources\META-INF" />
-      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\com\example\component" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="applicationcontext.config" />
       <recent name="environment.component" />
       <recent name="ioc.beandefinitionreader" />
       <recent name="ioc.beandefinitionreader.component" />
       <recent name="com.example.servletmvc.controller" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\resources\META-INF" />
+      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\com\example\component" />
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
   </component>
@@ -125,7 +128,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringTransactionApplication">
+  <component name="RunManager" selected="Application.AnnotationConfigApplicationContextMain">
+    <configuration name="AnnotationConfigApplicationContextMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="applicationcontext.AnnotationConfigApplicationContextMain" />
+      <module name="spring-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="applicationcontext.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AopMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="aop.AopMain" />
       <module name="spring-core" />
@@ -158,19 +174,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="environment.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EnvironmentMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ioc.environment.EnvironmentMain" />
-      <module name="spring-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ioc.environment.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -236,11 +239,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AnnotationConfigApplicationContextMain" />
         <item itemvalue="Application.AopMain" />
         <item itemvalue="Application.EnvironmentMain (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.BeanNameMain" />
-        <item itemvalue="Application.EnvironmentMain" />
       </list>
     </recent_temporary>
   </component>
@@ -298,7 +301,7 @@
       <workItem from="1673407602497" duration="23239000" />
       <workItem from="1673489073716" duration="19879000" />
       <workItem from="1673579591247" duration="51236000" />
-      <workItem from="1673844345939" duration="39367000" />
+      <workItem from="1673844345939" duration="41620000" />
     </task>
     <servers />
   </component>
@@ -372,10 +375,10 @@
     <state width="1101" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673963754359" />
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626267176" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1672905103421" />
-    <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1673927566865">
+    <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1674012129466">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673927566865" />
+    <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1674012129466" />
     <state x="3115" y="237" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670935323060" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1670474069637" />
     <state width="1238" height="275" key="GridCell.Tab.0.bottom" timestamp="1673964510640">
@@ -514,10 +517,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="299" y="182" key="run.anything.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673849555505" />
-    <state x="527" y="285" width="672" height="522" key="search.everywhere.popup" timestamp="1673967933153">
+    <state x="528" y="286" width="672" height="522" key="search.everywhere.popup" timestamp="1674010918961">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="527" y="285" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673967933153" />
+    <state x="528" y="286" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1674010918961" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1672902023818" />
