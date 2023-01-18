@@ -3,7 +3,12 @@
 # 1 AnnotationConfigApplicationContext
 ![[AnnotationConfigApplicationContext 1.png]]
 
-
+`AnnotationConfigApplicationContext`的核心成员变量：
+- `beanFactory`：`DefaultListableBeanFactory`对象，Spring IoC容器。
+- `reader`：`AnnotatedBeanDefinitionReader`对象，用于将指定类对象注册成`bean`。
+- `scanner`：`ClassPathBeanDefiniionScanner`对象，用于将指定路径下的类对象注册成`bean`。
+- `environment`：运行时环境。
+- `beanFactoryPostProcessors`：`BeanFactoryPostPr4ocessor`缓存。
 
 `AnnotationConfigApplicationContext`的基本使用：
 ```java
