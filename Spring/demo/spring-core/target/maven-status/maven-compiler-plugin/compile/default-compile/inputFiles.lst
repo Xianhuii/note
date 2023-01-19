@@ -14,6 +14,7 @@ D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\ioc\beandefinitionreader\
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\ioc\beandefinitionreader\ScopeMain.java
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\aop\AopMain.java
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\aop\aspect\AspectA.java
+D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\applicationcontext\config\AppConfig.java
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\ioc\container\config\AppConfig.java
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\com\example\component\ComponentC.java
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\environment\config\AppConfig.java
@@ -29,3 +30,4 @@ D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\ioc\beandefinitionreader\
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\ioc\beandefinitionreader\component\ComponentA.java
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\ioc\environment\EnvironmentMain.java
 D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\aop\component\ComponentA.java
+D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\applicationcontext\AnnotationConfigApplicationContextMain.java

@@ -6,11 +6,11 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class AspectA {
-    @Pointcut("execution(* aop.component.*.*(..))")
+    @Pointcut("execution(* *(..))")
     public void pointcut() {}
 
-     @Before("pointcut()")
+    @Before("pointcut()")
     public void before() {
-
+         System.out.println("before");
      }
 }
