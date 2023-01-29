@@ -1,1 +1,4 @@
+ConfigurationClassPostProcessor：解析`@Configuration`注解
 AspectJAwareAdvisorAutoProxyCreator
+AnnotationAwareAspectJAutoProxyCreator
+AspectJAutoProxyRegistrar
