@@ -19,8 +19,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "0bd6d22af6d2fef3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "每日学习/Spring AOP工作原理.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -86,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring全家桶/core/8、ApplicationContext.md",
+                "file": "每日学习/Spring AOP工作原理.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring全家桶/core/8、ApplicationContext.md",
+                "file": "每日学习/Spring AOP工作原理.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring全家桶/core/8、ApplicationContext.md"
+                "file": "每日学习/Spring AOP工作原理.md"
               }
             }
           },
@@ -156,10 +170,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "79f8de2c7ceaffe8",
+  "active": "0bd6d22af6d2fef3",
   "lastOpenFiles": [
-    "attachments/ApplicationContext.png",
     "Spring全家桶/core/8、ApplicationContext.md",
+    "attachments/ApplicationContext.png",
     "Spring全家桶/core/7、BeanFactory.md",
     "Spring全家桶/core/6、BeanDefinition.md",
     "Spring全家桶/core/5、Environment体系介绍.md",
