@@ -116,6 +116,46 @@ public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(
 ```
 
 ## 2.2 执行ConfigurationClassPostProcessor
+`ConfigurationClassPostProcessor`是`BeanDefinitionRegistryPostProcessor`实现类。
+
+因此，在`AbstractApplicationContext#refresh()`的`invokeBeanFactoryPostProcessors`阶段，会执行它的`postProcessBeanDefinitionRegistry()`方法。该方法会遍历所有已经注册的`beanDefinition`，对其中标注`@Configuration`的使用`ConfigurationClassParser`进行处理。
+
+其中与AOP功能有关的是，它会解析`@Import`注解，注册相关配置类。
+
+对于`@EnableAspectJAutoProxy`注解，它会引入`AspectJAutoProxyRegistrar`配置类：
+```java
+@Target(ElementType.TYPE)  
+@Retention(RetentionPolicy.RUNTIME)  
+@Documented  
+@Import(AspectJAutoProxyRegistrar.class)  
+public @interface EnableAspectJAutoProxy {  
+   boolean proxyTargetClass() default false;  
+   boolean exposeProxy() default false;  
+}
+```
+
+`AspectJAutoProxyRegistrar`是`ImportBeanDefinitionRegistrar`实现类，`ConfigurationClassParser`会调用它的`registerBeanDefinitions()`方法。该方法会注册`AnnotationAwareAspectJAutoProxyCreator`，并且根据`@EnableAspectJAutoProxy`的属性设置代理类型：
+```java
+public void registerBeanDefinitions(  
+      AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {  
+   // 注册AnnotationAwareAspectJAutoProxyCreator
+   AopConfigUtils.registerAspectJAnnotationAutoProxyCreatorIfNecessary(registry);  
+  
+   // 根据@EnableAspectJAutoProxy的属性设置配置
+   AnnotationAttributes enableAspectJAutoProxy =  
+         AnnotationConfigUtils.attributesFor(importingClassMetadata, EnableAspectJAutoProxy.class);  
+   if (enableAspectJAutoProxy != null) {  
+      if (enableAspectJAutoProxy.getBoolean("proxyTargetClass")) {  
+         AopConfigUtils.forceAutoProxyCreatorToUseClassProxying(registry);  
+      }  
+      if (enableAspectJAutoProxy.getBoolean("exposeProxy")) {  
+         AopConfigUtils.forceAutoProxyCreatorToExposeProxy(registry);  
+      }  
+   }  
+}
+```
+
+`AnnotationAwareAspectJAutoProxyCreator`是Spring AOP功能的核心类，它是`BeanPostProcessor`实现类，一方面会缓存切面信息，另一方面会将匹配的`bean`封装成对应代理对象。
 
 ConfigurationClassPostProcessor：解析`@Configuration`注解
 ConfigurationClassParser：解析`@Import`注解，对于Spring AOP来说，它会引入`AspectJAutoProxyRegistrar`
