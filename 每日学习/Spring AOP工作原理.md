@@ -1,7 +1,0 @@
-ConfigurationClassPostProcessor：解析`@Configuration`注解
-ConfigurationClassParser：解析`@Import`注解，对于Spring AOP来说，它会引入`AspectJAutoProxyRegistrar`
-AspectJAutoProxyRegistrar：注册`AnnotationAwareAspectJAutoProxyCreator`
-AnnotationAwareAspectJAutoProxyCreator：是一个`BeanPostProcessor`，会根据`@Aspect`缓存切面信息，并且对特定`bean`创建代理对象进行封装
-BeanFactoryAspectJAdvisorsBuilder：会根据`@Aspect`创建并缓存切面信息
-InstantiationModelAwarePointcutAdvisorImpl：默认的切面信息缓存
-ProxyFactory：根据切面信息创建代理对象进行封装`bean`

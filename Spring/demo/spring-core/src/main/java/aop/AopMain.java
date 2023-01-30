@@ -15,7 +15,7 @@ public class AopMain {
 //        AspectA aspectA = context.getBean(AspectA.class);
 //        System.out.println(aspectA);
         ComponentA componentA = context.getBean(ComponentA.class);
-        System.out.println(componentA);
+//        System.out.println(componentA);
         componentA.test();
 //        BeanDefinitionRegistry beanDefinitionRegistry = new DefaultListableBeanFactory();
 //        AnnotatedBeanDefinitionReader reader = new AnnotatedBeanDefinitionReader(beanDefinitionRegistry);

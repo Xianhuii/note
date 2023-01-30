@@ -12,7 +12,7 @@ public class AspectA {
     public void pointcut() {}
 
     @Before("pointcut()")
-    public void before1() {
+    public void before() {
          System.out.println("before");
      }
 }
