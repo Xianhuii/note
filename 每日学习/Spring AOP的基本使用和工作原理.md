@@ -201,7 +201,8 @@ public List<Advisor> findAdvisorBeans() {
    String[] advisorNames = this.cachedAdvisorBeanNames;  
    if (advisorNames == null) {  
       // Do not initialize FactoryBeans here: We need to leave all regular beans  
-      // uninitialized to let the auto-proxy creator apply to them!      advisorNames = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(  
+      // uninitialized to let the auto-proxy creator apply to them!      
+      advisorNames = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(  
             this.beanFactory, Advisor.class, true, false);  
       this.cachedAdvisorBeanNames = advisorNames;  
    }  
@@ -232,7 +233,8 @@ public List<Advisor> findAdvisorBeans() {
                               "' with dependency on currently created bean: " + ex.getMessage());  
                      }  
                      // Ignore: indicates a reference back to the bean we're trying to advise.  
-                     // We want to find advisors other than the currently created bean itself.                     continue;  
+                     // We want to find advisors other than the currently created bean itself.                     
+                     continue;  
                   }  
                }  
                throw ex;  
@@ -262,7 +264,8 @@ public List<Advisor> buildAspectJAdvisors() {
                   continue;  
                }  
                // We must be careful not to instantiate beans eagerly as in this case they  
-               // would be cached by the Spring container but would not have been weaved.               Class<?> beanType = this.beanFactory.getType(beanName, false);  
+               // would be cached by the Spring container but would not have been weaved.               
+               Class<?> beanType = this.beanFactory.getType(beanName, false);  
                if (beanType == null) {  
                   continue;  
                }  
