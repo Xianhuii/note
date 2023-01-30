@@ -23,8 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/transaction/config/TransactionConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/transaction/service/ITransactionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/transaction/service/impl/TransactionServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../每日学习/Spring AOP的基本使用和工作原理.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +82,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/spring-core/src/main/resources/META-INF" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/spring-core/src/main/java/transaction" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -91,19 +95,20 @@
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\transaction" />
+      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\resources\META-INF" />
+      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\com\example\component" />
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="transaction.config" />
       <recent name="applicationcontext.config" />
       <recent name="environment.component" />
       <recent name="ioc.beandefinitionreader" />
       <recent name="ioc.beandefinitionreader.component" />
-      <recent name="com.example.servletmvc.controller" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\resources\META-INF" />
-      <recent name="D:\Xianhuii\note\Spring\demo\spring-core\src\main\java\com\example\component" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\blog\note\Spring\CORS\demo\servlet-mvc\src\main\resources" />
     </key>
   </component>
@@ -189,6 +194,19 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -289,7 +307,7 @@
       <workItem from="1673579591247" duration="51236000" />
       <workItem from="1673844345939" duration="56776000" />
       <workItem from="1674990017767" duration="23991000" />
-      <workItem from="1675063563255" duration="734000" />
+      <workItem from="1675063563255" duration="2423000" />
     </task>
     <servers />
   </component>
