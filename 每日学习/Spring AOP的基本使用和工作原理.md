@@ -138,7 +138,7 @@ public @interface EnableAspectJAutoProxy {
 ```java
 public void registerBeanDefinitions(  
       AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {  
-   // 注册AnnotationAwareAspectJAutoProxyCreator
+   // 注册AnnotationAwareAspectJAutoProxyCreator，并且设置优先级为最高
    AopConfigUtils.registerAspectJAnnotationAutoProxyCreatorIfNecessary(registry);  
   
    // 根据@EnableAspectJAutoProxy的属性设置配置
@@ -157,11 +157,9 @@ public void registerBeanDefinitions(
 
 `AnnotationAwareAspectJAutoProxyCreator`是Spring AOP功能的核心类，它是`BeanPostProcessor`实现类，一方面会缓存切面信息，另一方面会将匹配的`bean`封装成对应代理对象。
 
+## 2.3 AnnotationAwareAspectJAutoProxyCreator
 
 
-ConfigurationClassPostProcessor：解析`@Configuration`注解
-ConfigurationClassParser：解析`@Import`注解，对于Spring AOP来说，它会引入`AspectJAutoProxyRegistrar`
-AspectJAutoProxyRegistrar：注册`AnnotationAwareAspectJAutoProxyCreator`
 AnnotationAwareAspectJAutoProxyCreator：是一个`BeanPostProcessor`，会根据`@Aspect`缓存切面信息，并且对特定`bean`创建代理对象进行封装
 BeanFactoryAspectJAdvisorsBuilder：会根据`@Aspect`创建并缓存切面信息
 InstantiationModelAwarePointcutAdvisorImpl：默认的切面信息缓存
