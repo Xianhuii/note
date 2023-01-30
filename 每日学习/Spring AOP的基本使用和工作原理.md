@@ -68,7 +68,54 @@ test
 在Spring Boot项目中，默认会使用`ApplicationContext`实现类作为容器，所以也可以使用AOP功能。
 
 # 2 工作原理
+## 2.1 注册ConfigurationClassPostProcessor
+`ApplicationContext`实现类读取配置类时，可以使用`AnnotatedBeanDefinitionReader`或`ClassPathBeanDefinitionScanner`。
 
+`AnnotatedBeanDefinitionReader`在在初始化时，就会注册`ConfigurationClassPostProcessor`：
+```java
+public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry, Environment environment) {  
+   Assert.notNull(registry, "BeanDefinitionRegistry must not be null");  
+   Assert.notNull(environment, "Environment must not be null");  
+   this.registry = registry;  
+   this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);  
+   AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);  
+}
+```
+
+`ClassPathBeanDefinitionScanner`在扫描路径时，默认也会注册`ConfigurationClassPostProcessor`：
+```java
+public int scan(String... basePackages) {  
+   int beanCountAtScanStart = this.registry.getBeanDefinitionCount();  
+  
+   doScan(basePackages);  
+  
+   // Register annotation config processors, if necessary.  
+   if (this.includeAnnotationConfig) {  
+      AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);  
+   }  
+  
+   return (this.registry.getBeanDefinitionCount() - beanCountAtScanStart);  
+}
+```
+
+注册的实际逻辑位于`AnnotationConfigUtils#registerAnnotationConfigProcessors()`：`
+```java
+public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(  
+      BeanDefinitionRegistry registry, @Nullable Object source) {  
+   // ……省略
+   Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);  
+  
+   if (!registry.containsBeanDefinition(CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME)) {  
+      RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class);  
+      def.setSource(source);  
+      beanDefs.add(registerPostProcessor(registry, def, CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME));  
+   }    
+   // ……省略
+   return beanDefs;  
+}
+```
+
+## 2.2 执行ConfigurationClassPostProcessor
 
 ConfigurationClassPostProcessor：解析`@Configuration`注解
 ConfigurationClassParser：解析`@Import`注解，对于Spring AOP来说，它会引入`AspectJAutoProxyRegistrar`

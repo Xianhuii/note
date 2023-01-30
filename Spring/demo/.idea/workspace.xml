@@ -23,13 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/aop/AopMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/aop/AopMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/aop/aspect/AspectA.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/aop/aspect/AspectA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-core/target/classes/aop/AopMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/target/classes/aop/AopMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-core/target/classes/aop/aspect/AspectA.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/target/classes/aop/aspect/AspectA.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../每日学习/Spring AOP工作原理.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/Spring AOP的基本使用和工作原理.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../每日学习/Spring AOP的基本使用和工作原理.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,7 +298,7 @@
       <workItem from="1673489073716" duration="19879000" />
       <workItem from="1673579591247" duration="51236000" />
       <workItem from="1673844345939" duration="56776000" />
-      <workItem from="1674990017767" duration="13484000" />
+      <workItem from="1674990017767" duration="14926000" />
     </task>
     <servers />
   </component>
@@ -371,10 +366,10 @@
     </state>
     <state x="385" y="204" width="697" height="596" key="#xdebugger.evaluate/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1674999739699" />
     <state x="329" y="219" width="876" height="601" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1668394988302" />
-    <state width="1101" height="426" key="DebuggerActiveHint" timestamp="1675001287342">
+    <state width="1101" height="426" key="DebuggerActiveHint" timestamp="1675052508106">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1101" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675001287342" />
+    <state width="1101" height="426" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675052508106" />
     <state width="964" height="479" key="DebuggerActiveHint/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626267176" />
     <state width="1285" height="553" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1672905103421" />
     <state x="493" y="211" key="FileChooserDialogImpl" timestamp="1674020246679">
@@ -383,52 +378,52 @@
     <state x="493" y="211" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1674020246679" />
     <state x="3115" y="237" key="FileChooserDialogImpl/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670935323060" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1670474069637" />
-    <state width="1238" height="216" key="GridCell.Tab.0.bottom" timestamp="1675051700597">
+    <state width="1238" height="151" key="GridCell.Tab.0.bottom" timestamp="1675053104706">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="216" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675051700597" />
+    <state width="1238" height="151" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675053104706" />
     <state width="1397" height="295" key="GridCell.Tab.0.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626432616" />
     <state width="1877" height="151" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="216" key="GridCell.Tab.0.center" timestamp="1675051700597">
+    <state width="1238" height="151" key="GridCell.Tab.0.center" timestamp="1675053104706">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="216" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675051700597" />
+    <state width="1238" height="151" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675053104706" />
     <state width="1397" height="295" key="GridCell.Tab.0.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626432616" />
     <state width="1877" height="151" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="216" key="GridCell.Tab.0.left" timestamp="1675051700597">
+    <state width="1238" height="151" key="GridCell.Tab.0.left" timestamp="1675053104706">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="216" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675051700597" />
+    <state width="1238" height="151" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675053104706" />
     <state width="1397" height="295" key="GridCell.Tab.0.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626432616" />
     <state width="1877" height="151" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="216" key="GridCell.Tab.0.right" timestamp="1675051700597">
+    <state width="1238" height="151" key="GridCell.Tab.0.right" timestamp="1675053104706">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="216" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675051700597" />
+    <state width="1238" height="151" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675053104706" />
     <state width="1397" height="295" key="GridCell.Tab.0.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626432616" />
     <state width="1877" height="151" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1672905078046" />
-    <state width="1238" height="240" key="GridCell.Tab.1.bottom" timestamp="1675050499063">
+    <state width="1238" height="151" key="GridCell.Tab.1.bottom" timestamp="1675053104707">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="240" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675050499063" />
+    <state width="1238" height="151" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675053104707" />
     <state width="1397" height="295" key="GridCell.Tab.1.bottom/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626420114" />
     <state width="1877" height="151" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="240" key="GridCell.Tab.1.center" timestamp="1675050499063">
+    <state width="1238" height="151" key="GridCell.Tab.1.center" timestamp="1675053104707">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="240" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675050499063" />
+    <state width="1238" height="151" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675053104707" />
     <state width="1397" height="295" key="GridCell.Tab.1.center/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626420114" />
     <state width="1877" height="151" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="240" key="GridCell.Tab.1.left" timestamp="1675050499063">
+    <state width="1238" height="151" key="GridCell.Tab.1.left" timestamp="1675053104706">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="240" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675050499063" />
+    <state width="1238" height="151" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675053104706" />
     <state width="1397" height="295" key="GridCell.Tab.1.left/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626420114" />
     <state width="1877" height="151" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
-    <state width="1238" height="240" key="GridCell.Tab.1.right" timestamp="1675050499063">
+    <state width="1238" height="151" key="GridCell.Tab.1.right" timestamp="1675053104707">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="240" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675050499063" />
+    <state width="1238" height="151" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675053104707" />
     <state width="1397" height="295" key="GridCell.Tab.1.right/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1673626420114" />
     <state width="1877" height="151" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1672905081783" />
     <state width="1238" height="174" key="GridCell.Tab.2.bottom" timestamp="1674097810888">
@@ -515,10 +510,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="299" y="182" key="run.anything.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673849555505" />
-    <state x="542" y="300" width="672" height="522" key="search.everywhere.popup" timestamp="1675001291021">
+    <state x="544" y="302" width="672" height="522" key="search.everywhere.popup" timestamp="1675052907517">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="542" y="300" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675001291021" />
+    <state x="544" y="302" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675052907517" />
     <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1670934854328" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1672902023818" />
@@ -886,94 +881,24 @@
           <option name="timeStamp" value="303" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.22/spring-aop-5.3.22-sources.jar!/org/springframework/aop/config/AopConfigUtils.java</url>
-          <line>122</line>
-          <option name="timeStamp" value="342" />
+          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.22/spring-context-5.3.22-sources.jar!/org/springframework/context/annotation/ConfigurationClassPostProcessor.java</url>
+          <line>235</line>
+          <option name="timeStamp" value="366" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/ImportBeanDefinitionRegistrar.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="343" />
+          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/support/PostProcessorRegistrationDelegate.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="367" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.23/spring-aop-5.3.23-sources.jar!/org/springframework/aop/config/AopConfigUtils.java</url>
-          <line>134</line>
-          <option name="timeStamp" value="347" />
+          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java</url>
+          <line>559</line>
+          <option name="timeStamp" value="368" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.23/spring-aop-5.3.23-sources.jar!/org/springframework/aop/config/AopConfigUtils.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="348" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/AspectJAutoProxyRegistrar.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="349" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java</url>
-          <line>156</line>
-          <option name="timeStamp" value="351" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java</url>
-          <line>163</line>
-          <option name="timeStamp" value="353" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/ConfigurationClassPostProcessor.java</url>
-          <line>276</line>
-          <option name="timeStamp" value="355" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/annotation/ConfigurationClassPostProcessor.java</url>
-          <line>280</line>
-          <option name="timeStamp" value="356" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.22/spring-aop-5.3.22-sources.jar!/org/springframework/aop/framework/autoproxy/AbstractAutoProxyCreator.java</url>
-          <line>250</line>
-          <option name="timeStamp" value="357" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.22/spring-aop-5.3.22-sources.jar!/org/springframework/aop/framework/autoproxy/AbstractAutoProxyCreator.java</url>
-          <line>254</line>
-          <option name="timeStamp" value="358" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.23/spring-aop-5.3.23-sources.jar!/org/springframework/aop/framework/autoproxy/AbstractAutoProxyCreator.java</url>
-          <line>340</line>
-          <option name="timeStamp" value="359" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-core/src/main/java/aop/AopMain.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="360" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.22/spring-aop-5.3.22-sources.jar!/org/springframework/aop/aspectj/annotation/AnnotationAwareAspectJAutoProxyCreator.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="361" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.23/spring-aop-5.3.23-sources.jar!/org/springframework/aop/aspectj/annotation/BeanFactoryAspectJAdvisorsBuilder.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="362" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.23/spring-aop-5.3.23-sources.jar!/org/springframework/aop/aspectj/annotation/BeanFactoryAspectJAdvisorsBuilder.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="363" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.23/spring-aop-5.3.23-sources.jar!/org/springframework/aop/aspectj/annotation/ReflectiveAspectJAdvisorFactory.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="364" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-aop/5.3.23/spring-aop-5.3.23-sources.jar!/org/springframework/aop/aspectj/annotation/BeanFactoryAspectJAdvisorsBuilder.java</url>
-          <line>140</line>
-          <option name="timeStamp" value="365" />
+          <url>jar://$PROJECT_DIR$/../../../../itsoftware/apache-maven-3.8.1/repo/org/springframework/spring-context/5.3.23/spring-context-5.3.23-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java</url>
+          <line>555</line>
+          <option name="timeStamp" value="369" />
         </line-breakpoint>
         <line-breakpoint type="java-field">
           <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.3.23/spring-webmvc-5.3.23-sources.jar!/org/springframework/web/servlet/handler/AbstractHandlerMethodMapping.java</url>
