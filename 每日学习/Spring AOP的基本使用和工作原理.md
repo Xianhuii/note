@@ -521,7 +521,11 @@ public Object invoke(Object proxy, Method method, Object[] args) throws Throwabl
 }
 ```
 
-AnnotationAwareAspectJAutoProxyCreator：是一个`BeanPostProcessor`，会根据`@Aspect`缓存切面信息，并且对特定`bean`创建代理对象进行封装
-BeanFactoryAspectJAdvisorsBuilder：会根据`@Aspect`创建并缓存切面信息
-InstantiationModelAwarePointcutAdvisorImpl：默认的切面信息缓存
-ProxyFactory：根据切面信息创建代理对象进行封装`bean`
+# 3 小结
+以上介绍了Spring AOP的基本使用和工作原理，更多细节可以查看相关源码。
+
+Spring AOP是对IoC基础扩展点使用的典型案例。
+
+它基于`ApplicationContext`实现类的基础功能`ConfigurationClassPostProcessor`，通过`@Import`注解注册自定义的`AnnotationAwareAspectJAutoProxyCreator`。
+
+由于`AnnotationAwareAspectJAutoProxyCreator`是`BeanPostProcessor`，可以创建并缓存所有切面`bean`，并且在业务`bean`实例化后动态决定是否选择是否进行AOP代理。
