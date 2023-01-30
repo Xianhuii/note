@@ -157,6 +157,8 @@ public void registerBeanDefinitions(
 
 `AnnotationAwareAspectJAutoProxyCreator`是Spring AOP功能的核心类，它是`BeanPostProcessor`实现类，一方面会缓存切面信息，另一方面会将匹配的`bean`封装成对应代理对象。
 
+
+
 ConfigurationClassPostProcessor：解析`@Configuration`注解
 ConfigurationClassParser：解析`@Import`注解，对于Spring AOP来说，它会引入`AspectJAutoProxyRegistrar`
 AspectJAutoProxyRegistrar：注册`AnnotationAwareAspectJAutoProxyCreator`
