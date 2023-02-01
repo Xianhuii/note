@@ -13,20 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/4、Spring声明式事务的工作原理.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "90aceeb23e8759db",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "消息队列/使用消息队列必须考虑的问题.md",
+                "file": "缓存/使用Redis必须考虑的问题.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,15 +26,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "缓存/使用Redis必须考虑的问题.md",
+                "file": "消息队列/使用消息队列必须考虑的问题.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -183,9 +169,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "bd9fd1420642c92e",
+  "active": "a9f504e1f225b12e",
   "lastOpenFiles": [
     "消息队列/使用消息队列必须考虑的问题.md",
+    "缓存/使用Redis必须考虑的问题.md",
     "每日学习/4、Spring声明式事务的工作原理.md",
     "Spring全家桶/Transaction/1、Spring事务的基本使用.md",
     "Spring全家桶/core/8、ApplicationContext.md",
@@ -193,7 +180,6 @@
     "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
     "Spring全家桶/core/9、Spring AOP的基本使用和工作原理.md",
     "attachments/ApplicationContext.png",
-    "Spring全家桶/core/7、BeanFactory.md",
-    "Spring全家桶/core/6、BeanDefinition.md"
+    "Spring全家桶/core/7、BeanFactory.md"
   ]
 }
