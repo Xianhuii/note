@@ -6,7 +6,7 @@
 在实际业务场景中，也可以用来缓存一些特殊数据，例如登录用户的`token`、分布式锁等。
 
 # 2 Redis有哪些数据类型？
-> string，list，hash，set，zset，
+> string，list，hash，set，zset，位图，HyperLogLog，布隆过滤器。
 
 string可以存储字符串：
 ```bash
@@ -15,7 +15,7 @@ set name Xianhuii
 
 list可以存储有序列表：
 ```bash
-rpush app QQ WeChat Dingding
+rpush books Java JavaScript Spring
 ```
 
 hash可以存储多个键值对：
@@ -24,8 +24,92 @@ hset person name Xianhuii
 hset person age 18
 ```
 
-set可以存储
+set可以存储去重的无序列表：
+```bash
+sadd books python
+sadd books python
+```
+
+zset可以存储去重的排序列表：
+```bash
+zadd books 10 Java
+zadd books 8 Spring
+zadd books 9 Java
+```
+
+位图可以按位存储信息：
+```bash
+setbit bitMap 1 1
+setbit bitMap 2 0
+```
+
+HyperLogLog可以用于统计大量数据：
+```bash
+pfadd users Xianhuii
+pfadd users CHUAN
+……
+pfcount users
+```
+
+布隆过滤器可以用于大量数据的过滤：
+```bash
+bf.add users Xianhuii
+……
+bf.exists user CHUAN
+```
 
 # 3 Redis的过期策略？
+> 定期删除+惰性删除，内存淘汰策略。
+
+Redis中的key都可以设置过期时间，对于这类数据，会采用`定期删除+惰性删除`策略：
+- 定期删除：Redis将设置过期时间的key存储在一个独立字典中，会定时扫描这个字典，根据过期时间来判断是否删除该key。
+- 惰性删除：如果某个key过期了，但是还没进行定期删除扫描，此时客户端获取这个过期key时，Redis会先判断过期时间，如果过期了就立即删除。
+
+`定期删除+惰性删除`策略在日常工作中也有很多应用，它的原理就是使用定时任务进行轮询，保证整体业务的稳定性；对于轮询间隔的少量数据，使用即使处理的兜底策略。
+
+Redis中的key也可以不设置过期时间，这部分数据不能用`定期删除+惰性删除`策略进行处理。如果内存中存在大量未设置过期时间的key，以及大量设置过期时间但未过期的key，造成内存达到了上线，此时`定期删除+惰性删除`策略就派不上用场了。
+
+此时，Redis会采取内存淘汰策略：
+- `noeviction`（默认）：不再处理写请求，可以继续执行读请求和删除请求。
+- `volatile-lru`：优先淘汰最少使用的、设置过期时间的key。
+- `volatile-ttl`：优先淘汰`ttl`小的、设置过期时间的key。
+- `volatile-random`：随机淘汰设置过期时间的key。
+- `allkeys-lru`（建议使用）：优先淘汰最少使用的全体key。
+- `allkeys-random`：随机淘汰全体key。
+
+简单来说，淘汰策略：
+- 不再写入，需要手动删除。
+- 从`设置过期时间的key集合/全体key集合`中进行`最少使用淘汰/最小ttl淘汰/随机淘汰`。
 
 # 4 Redis如何持久化？
+> RDB，AOF。
+
+Redis的数据全部存储在内存中，如果宕机会造成数据丢失。为此，Redis提供了持久化功能：
+- RDB：定时（周期较长）将内存中的全部数据保存到磁盘文件中，每次都会新生成该时刻的数据文件。
+- AOF：记录对内存进行修改的指令记录，由于可能会有覆盖操作，需要定时对该日志进行瘦身重写，即定时将内存数据转换成操作指令。
+
+RDB是对内存数据的整体备份，生成的文件通常比较少，恢复速度快。但是由于备份周期长，可能会丢失一部分未及时备份的数据。
+
+AOF是对操作指令的记录，随着运行时间增长会变得越来越大，恢复速度慢。
+
+实际项目中通常使用`RDB+AOF混合持久化`策略，使用RDB定期备份内存中的数据，使用AOF记录上个RDB备份周期至今的操作指令。由此既保证了数据的完整性，又大大减小了AOF指令文件，加快了恢复速度。
+
+# 5 如何保证Redis的高可用和高并发？
+> 主从复制，哨兵集群。
+
+Redis高可用，简单来说就是要保证某个服务器宕机后不能影响客户端的业务，Redis提供了`主从复制`功能。
+
+Redis高并发，简单来说就是要能够快速处理客户端的请求，所以通常需要增加服务器实例的数量，Redis提供了`哨兵集群`功能。
+
+实际上`主从复制`和`哨兵集群`是不可分的，它们往往会结合到一起工作。
+
+## 5.1 主从复制
+> 快照同步，增量同步。
+
+可以为Redis服务器设置一个`master`节点和多个`slaver`节点，master负责与客户端进行交互，slaver则会使用`快照同步+增量同步`的方式，定时从master（主从同步）或slaver（从从同步）同步数据。
+
+快照同步类似于RDB持久化方式，它会将内存中的数据持久化到磁盘文件，然后将该磁盘文件数据同步给slaver。
+
+增量同步类似于AOF持久化方式，它会将修改操作指令记录到缓存中，然后将该缓存数据同步给slaver。
+
+## 5.2 哨兵集群
