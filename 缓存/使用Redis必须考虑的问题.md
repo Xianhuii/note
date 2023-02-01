@@ -8,7 +8,23 @@
 # 2 Redis有哪些数据类型？
 > string，list，hash，set，zset，
 
-string是
+string可以存储字符串：
+```bash
+set name Xianhuii
+```
+
+list可以存储有序列表：
+```bash
+rpush app QQ WeChat Dingding
+```
+
+hash可以存储多个键值对：
+```bash
+hset person name Xianhuii
+hset person age 18
+```
+
+set可以存储
 
 # 3 Redis的过期策略？
 
