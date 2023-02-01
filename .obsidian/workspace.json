@@ -26,7 +26,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "消息队列/消息队列必须考虑的问题.md",
+                "file": "消息队列/使用消息队列必须考虑的问题.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bd9fd1420642c92e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "缓存/使用Redis必须考虑的问题.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -34,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -100,7 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "消息队列/消息队列必须考虑的问题.md",
+                "file": "缓存/使用Redis必须考虑的问题.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "消息队列/消息队列必须考虑的问题.md",
+                "file": "缓存/使用Redis必须考虑的问题.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +153,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "消息队列/消息队列必须考虑的问题.md"
+                "file": "缓存/使用Redis必须考虑的问题.md"
               }
             }
           },
@@ -170,8 +183,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "90aceeb23e8759db",
+  "active": "bd9fd1420642c92e",
   "lastOpenFiles": [
+    "消息队列/使用消息队列必须考虑的问题.md",
     "每日学习/4、Spring声明式事务的工作原理.md",
     "Spring全家桶/Transaction/1、Spring事务的基本使用.md",
     "Spring全家桶/core/8、ApplicationContext.md",
@@ -180,7 +194,6 @@
     "Spring全家桶/core/9、Spring AOP的基本使用和工作原理.md",
     "attachments/ApplicationContext.png",
     "Spring全家桶/core/7、BeanFactory.md",
-    "Spring全家桶/core/6、BeanDefinition.md",
-    "Spring全家桶/core/5、Environment体系介绍.md"
+    "Spring全家桶/core/6、BeanDefinition.md"
   ]
 }
