@@ -11,8 +11,13 @@
             "id": "bfdf19f65e2699d2",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "个人/自我介绍.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "个人/自我介绍.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "个人/自我介绍.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "个人/自我介绍.md"
+              }
             }
           },
           {
@@ -149,6 +158,8 @@
   },
   "active": "bfdf19f65e2699d2",
   "lastOpenFiles": [
+    "个人/简先辉_Java工程师.md",
+    "个人/自我介绍.md",
     "缓存/使用Redis必须考虑的问题.md",
     "数据库/MySQL的SQL优化.md",
     "消息队列/使用消息队列必须考虑的问题.md",
@@ -156,8 +167,6 @@
     "Spring全家桶/Transaction/1、Spring事务的基本使用.md",
     "Spring全家桶/core/8、ApplicationContext.md",
     "Spring全家桶/Transaction/2、Spring事务的类层次结构及核心源码.md",
-    "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md",
-    "Spring全家桶/core/9、Spring AOP的基本使用和工作原理.md",
-    "attachments/ApplicationContext.png"
+    "Spring全家桶/Transaction/3、TransactionTemplate的工作原理.md"
   ]
 }
