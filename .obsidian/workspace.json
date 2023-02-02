@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3979cc3672698872",
+        "id": "dd9f3d5d0c14a72f",
         "type": "tabs",
         "children": [
           {
-            "id": "1a504f32e7c6a81e",
+            "id": "bfdf19f65e2699d2",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -147,7 +147,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1a504f32e7c6a81e",
+  "active": "bfdf19f65e2699d2",
   "lastOpenFiles": [
     "缓存/使用Redis必须考虑的问题.md",
     "数据库/MySQL的SQL优化.md",
