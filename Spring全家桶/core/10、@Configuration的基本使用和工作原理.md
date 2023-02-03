@@ -137,7 +137,7 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
       return;  
    }  
   
-   // 2、按照@Order进行排序
+   // 2、按照@Order从小到大排序
    configCandidates.sort((bd1, bd2) -> {  
       int i1 = ConfigurationClassUtils.getOrder(bd1.getBeanDefinition());  
       int i2 = ConfigurationClassUtils.getOrder(bd2.getBeanDefinition());  
@@ -165,11 +165,11 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
    ConfigurationClassParser parser = new ConfigurationClassParser(  
          this.metadataReaderFactory, this.problemReporter, this.environment,  
          this.resourceLoader, this.componentScanBeanNameGenerator, registry);  
-  
    Set<BeanDefinitionHolder> candidates = new LinkedHashSet<>(configCandidates);  
    Set<ConfigurationClass> alreadyParsed = new HashSet<>(configCandidates.size());  
    do {  
       StartupStep processConfig = this.applicationStartup.start("spring.context.config-classes.parse");  
+      // 实际解析
       parser.parse(candidates);  
       parser.validate();  
   
@@ -182,11 +182,13 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
                registry, this.sourceExtractor, this.resourceLoader, this.environment,  
                this.importBeanNameGenerator, parser.getImportRegistry());  
       }  
+      // 如果扫描出新的配置类，进行注册
       this.reader.loadBeanDefinitions(configClasses);  
       alreadyParsed.addAll(configClasses);  
       processConfig.tag("classCount", () -> String.valueOf(configClasses.size())).end();  
   
       candidates.clear();  
+      // 遍历获取新&未处理的配置类
       if (registry.getBeanDefinitionCount() > candidateNames.length) {  
          String[] newCandidateNames = registry.getBeanDefinitionNames();  
          Set<String> oldCandidateNames = new HashSet<>(Arrays.asList(candidateNames));  
@@ -206,6 +208,7 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
          candidateNames = newCandidateNames;  
       }  
    }  
+   // 由于可能通过扫描/引入新的配置类，需要循环对新的配置类进行解析，直到没有新的配置类
    while (!candidates.isEmpty());  
   
    // Register the ImportRegistry as a bean in order to support ImportAware @Configuration classes  
