@@ -185,15 +185,15 @@
   },
   "active": "8137823a449a96c7",
   "lastOpenFiles": [
+    "Spring全家桶/core/9、Spring AOP的基本使用和工作原理.md",
+    "Spring全家桶/core/8、ApplicationContext.md",
+    "Spring全家桶/core/10、@Configuration的基本使用和工作原理.md",
     "个人/期望和问题.md",
     "个人/自我介绍.md",
     "个人/简先辉_Java工程师.md",
     "缓存/使用Redis必须考虑的问题.md",
     "数据库/MySQL的SQL优化.md",
     "消息队列/使用消息队列必须考虑的问题.md",
-    "每日学习/4、Spring声明式事务的工作原理.md",
-    "Spring全家桶/Transaction/1、Spring事务的基本使用.md",
-    "Spring全家桶/core/8、ApplicationContext.md",
-    "Spring全家桶/Transaction/2、Spring事务的类层次结构及核心源码.md"
+    "每日学习/4、Spring声明式事务的工作原理.md"
   ]
 }
