@@ -22,7 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="" />
+    <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/annotation/configuration/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/annotation/configuration/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +128,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AopMain">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration name="AnnotationConfigApplicationContextMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="applicationcontext.AnnotationConfigApplicationContextMain" />
       <module name="spring-core" />
@@ -151,12 +155,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BeanNameMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ioc.beandefinitionreader.BeanNameMain" />
+    <configuration name="EnvironmentMain (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="environment.EnvironmentMain" />
       <module name="spring-core" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ioc.beandefinitionreader.*" />
+          <option name="PATTERN" value="environment.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,12 +168,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EnvironmentMain (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="environment.EnvironmentMain" />
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="annotation.configuration.Main" />
       <module name="spring-core" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="environment.*" />
+          <option name="PATTERN" value="annotation.configuration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -186,6 +190,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -222,11 +237,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.AopMain" />
         <item itemvalue="Application.AnnotationConfigApplicationContextMain" />
         <item itemvalue="Application.EnvironmentMain (1)" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.BeanNameMain" />
       </list>
     </recent_temporary>
   </component>
@@ -288,7 +303,7 @@
       <workItem from="1674990017767" duration="23991000" />
       <workItem from="1675063563255" duration="2423000" />
       <workItem from="1675302970727" duration="1576000" />
-      <workItem from="1675406756188" duration="1178000" />
+      <workItem from="1675406756188" duration="1754000" />
     </task>
     <servers />
   </component>
