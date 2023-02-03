@@ -112,7 +112,7 @@ public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) 
 `ConfigurationClassPostProcessor#processConfigBeanDefinitions()`方法的工作流程：
 1. 遍历容器的`beanDefinitionMap`，获取所有标注`@Configuration`注解的`BeanDefinition`。
 2. 按照`@Order`进行排序。
-3. 解析配置类，处理`@PropertySource`、`@ComponentScan`、`@Import`、`@ImportResource`、`@Order`和`@Bean`等注解。
+3. 解析配置类，处理`@PropertySource`、`@ComponentScan`、`@Import`、`@ImportResource`、和`@Bean`等注解。
 
 `ConfigurationClassPostProcessor#processConfigBeanDefinitions()`：
 ```java
@@ -127,6 +127,7 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
             logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);  
          }  
       }  
+      // 校验@Configuration配置类，设置CONFIGURATION_CLASS_ATTRIBUTE（来自@Configuration注解的proxyBeanMethods属性）和ORDER_ATTRIBUTE（来自@Order注解）属性
       else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)) {  
          configCandidates.add(new BeanDefinitionHolder(beanDef, beanName));  
       }  
@@ -143,7 +144,7 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
       return Integer.compare(i1, i2);  
    });  
   
-   // Detect any custom bean name generation strategy supplied through the enclosing application context  
+   // 设置beanName生成策略
    SingletonBeanRegistry sbr = null;  
    if (registry instanceof SingletonBeanRegistry) {  
       sbr = (SingletonBeanRegistry) registry;  
@@ -156,12 +157,11 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
          }  
       }  
    }  
-  
    if (this.environment == null) {  
       this.environment = new StandardEnvironment();  
    }  
   
-   // Parse each @Configuration class  
+   // 3、解析配置类，处理@PropertySource、@ComponentScan、@Import、@ImportResource、和@Bean等注解
    ConfigurationClassParser parser = new ConfigurationClassParser(  
          this.metadataReaderFactory, this.problemReporter, this.environment,  
          this.resourceLoader, this.componentScanBeanNameGenerator, registry);  
@@ -215,10 +215,13 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
   
    if (this.metadataReaderFactory instanceof CachingMetadataReaderFactory) {  
       // Clear cache in externally provided MetadataReaderFactory; this is a no-op  
-      // for a shared cache since it'll be cleared by the ApplicationContext.      ((CachingMetadataReaderFactory) this.metadataReaderFactory).clearCache();  
+      // for a shared cache since it'll be cleared by the ApplicationContext.      
+      ((CachingMetadataReaderFactory) this.metadataReaderFactory).clearCache();  
    }  
 }
 ```
+
+
 
 ### 2.2.2 增强配置类
 
