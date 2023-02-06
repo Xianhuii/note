@@ -24,7 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dd5a30b1-ce35-4f7a-8dfa-ebe034893a09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.obsidian/workspace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../每日学习/锁.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +305,7 @@
       <workItem from="1675063563255" duration="2423000" />
       <workItem from="1675302970727" duration="1576000" />
       <workItem from="1675406756188" duration="17863000" />
-      <workItem from="1675652905844" duration="1766000" />
+      <workItem from="1675652905844" duration="2152000" />
     </task>
     <servers />
   </component>
@@ -516,11 +516,11 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="299" y="182" key="run.anything.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1673849555505" />
-    <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup" timestamp="1675672310378">
+    <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup" timestamp="1675676229047">
       <screen x="2560" y="0" width="1440" height="900" />
     </state>
     <state x="550" y="308" width="672" height="522" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@0.0.1280.800" timestamp="1675063582700" />
-    <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1675672310378" />
+    <state x="3027" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1280.800/2560.0.1440.900@2560.0.1440.900" timestamp="1675676229047" />
     <state x="467" y="195" width="741" height="587" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1670038418602" />
     <state x="623" y="225" width="988" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1672902023818" />
     <state x="156" y="124" width="548" height="497" key="search.text.field" timestamp="1673961851105">
