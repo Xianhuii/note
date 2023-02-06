@@ -24,8 +24,13 @@
             "id": "a5682a693b84570b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "理财/基金.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ],
@@ -95,6 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "理财/基金.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,6 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "理财/基金.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -132,7 +139,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "理财/基金.md"
+              }
             }
           },
           {
@@ -161,8 +170,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e275dab41eb9f4d9",
+  "active": "a5682a693b84570b",
   "lastOpenFiles": [
+    "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
     "Spring全家桶/SpringMVC/CORS/CORS协议规范.md",
     "Spring全家桶/SpringMVC/CORS/SpringMVC配置CORS（原理篇）.md",
     "Spring全家桶/SpringMVC/CORS/SpringMVC配置CORS（使用篇）.md",
@@ -171,7 +181,6 @@
     "每日学习/4、Spring声明式事务的工作原理.md",
     "个人/简先辉_Java工程师.md",
     "个人/自我介绍.md",
-    "Spring全家桶/core/10、@Configuration的基本使用和工作原理.md",
-    "Spring全家桶/core/9、Spring AOP的基本使用和工作原理.md"
+    "Spring全家桶/core/10、@Configuration的基本使用和工作原理.md"
   ]
 }
