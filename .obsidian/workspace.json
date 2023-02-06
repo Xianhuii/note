@@ -8,19 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "86fbcfb9b017d890",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "个人/期望和问题.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "a5682a693b84570b",
             "type": "leaf",
             "state": {
@@ -46,8 +33,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -113,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "理财/节流.md",
+                "file": "理财/基金.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "理财/节流.md",
+                "file": "理财/基金.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -153,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "理财/节流.md"
+                "file": "理财/基金.md"
               }
             }
           },
@@ -183,8 +169,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "cfcf24409f1090a6",
+  "active": "a5682a693b84570b",
   "lastOpenFiles": [
+    "理财/节流.md",
     "理财/基金.md",
     "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
     "Spring全家桶/SpringMVC/CORS/CORS协议规范.md",
@@ -193,7 +180,6 @@
     "每日学习/面试整理.md",
     "个人/期望和问题.md",
     "每日学习/4、Spring声明式事务的工作原理.md",
-    "个人/简先辉_Java工程师.md",
-    "个人/自我介绍.md"
+    "个人/简先辉_Java工程师.md"
   ]
 }
