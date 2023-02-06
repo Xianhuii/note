@@ -1,1 +1,0 @@
-Ambiguous handler methods mapped for '/context-path/cors': {public java.lang.String com.example.servletmvc.controller.CorsController.getAndPostCors(), public java.lang.String com.example.servletmvc.controller.CorsController.postCors()}
