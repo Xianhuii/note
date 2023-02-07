@@ -22,11 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/servlet-mvc/src/main/java/com/example/servletmvc/config/WebMvcConfig.java" afterDir="false" />
-    </list>
+    <list default="true" id="da511806-6e55-45a2-880c-a74943c1ce8f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
