@@ -1,2 +1,4 @@
-package com.xianhuii.springboot.service;public interface TransactionService {
+package com.xianhuii.springboot.service;
+
+public interface TransactionService {
 }
