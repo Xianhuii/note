@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.boot.autoconfigure.transaction.PlatformTransactionManagerCustomizer</OriginalElement>
+  <nodes>
+    <node x="191.00000000000003" y="85.0">org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration</node>
+    <node x="363.28571428571433" y="255.0">org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration.EnableTransactionManagementConfiguration.JdkDynamicAutoProxyConfiguration</node>
+    <node x="131.00000000000003" y="170.0">org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration.EnableTransactionManagementConfiguration</node>
+    <node x="0.0" y="0.0">org.springframework.boot.autoconfigure.condition.ConditionalOnClass</node>
+    <node x="482.0" y="0.0">org.springframework.boot.context.properties.EnableConfigurationProperties</node>
+    <node x="246.00000000000003" y="0.0">org.springframework.boot.autoconfigure.AutoConfiguration</node>
+    <node x="27.285714285714334" y="255.0">org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration.EnableTransactionManagementConfiguration.CglibAutoProxyConfiguration</node>
+    <node x="0.0" y="335.0">org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration" target="org.springframework.boot.context.properties.EnableConfigurationProperties">
+      <point x="108.66666666666663" y="-17.5" />
+      <point x="462.66666666666663" y="60.0" />
+      <point x="650.0" y="60.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration.EnableTransactionManagementConfiguration.CglibAutoProxyConfiguration" target="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration.EnableTransactionManagementConfiguration">
+      <point x="0.0" y="-17.5" />
+      <point x="185.28571428571433" y="230.0" />
+      <point x="242.50000000000003" y="230.0" />
+      <point x="-111.5" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration" target="org.springframework.boot.autoconfigure.condition.ConditionalOnClass">
+      <point x="-108.66666666666669" y="-17.5" />
+      <point x="245.33333333333334" y="60.0" />
+      <point x="113.0" y="60.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration.EnableTransactionManagementConfiguration" target="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration">
+      <point x="0.0" y="-17.5" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration.EnableTransactionManagementConfiguration.JdkDynamicAutoProxyConfiguration" target="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration.EnableTransactionManagementConfiguration">
+      <point x="0.0" y="-17.5" />
+      <point x="546.2857142857143" y="230.0" />
+      <point x="465.5" y="230.0" />
+      <point x="111.5" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration" target="org.springframework.boot.autoconfigure.AutoConfiguration">
+      <point x="0.0" y="-17.5" />
+      <point x="0.0" y="17.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="500.5" y="182.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
