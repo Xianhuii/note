@@ -22,8 +22,7 @@ Spring Boot的声明式事务的工作原理如上图，总的来说经过三个
 2. `@EnableTransactionManager`会使用@Import注解引入TransactionManagementConfigurationSelector，然后开启基于代理或Aspectj的声明式事务功能。
 3. 对于基于代理的声明式事务，`ProxyTransactionManagementConfiguration`会创建基于`@Transactional`注解的`Advisor`。在bean实例化过程中，AOP功能会根据该`Advisor`对相关bean进行代理。
 
-# 1 自动配置原理
-## 1.1 TransactionAutoConfiguration
+# 1 TransactionAutoConfiguration
 `TransactionAutoConfiguration`会对事务功能进行自动配置，与声明式事务相关的源码如下：
 ```java
 @AutoConfiguration  
@@ -60,7 +59,7 @@ public class TransactionAutoConfiguration {
 
 这两个配置类都是空的，它们的作用其实是标注`@EnableTransactionManagement`注解。
 
-## 1.2 @EnableTransactionManagement
+# 2 @EnableTransactionManagement
 `@EnableTransactionManagement`注解表示开启声明式事务管理功能：
 ```java
 @Target(ElementType.TYPE)  
@@ -99,7 +98,7 @@ public class TransactionManagementConfigurationSelector extends AdviceModeImport
 }
 ```
 
-## 1.3 ProxyTransactionManagementConfiguration
+# 3 ProxyTransactionManagementConfiguration
 `ProxyTransactionManagementConfiguration`的核心作用就是创建声明式事务管理的`Advisor`，AOP会根据它对bean进行动态代理：
 ```java
 @Configuration(proxyBeanMethods = false)  
@@ -140,7 +139,7 @@ public class ProxyTransactionManagementConfiguration extends AbstractTransaction
 }
 ```
 
-### 1.3.1 @Transactional解析器
+## 3.1 @Transactional解析器
 `AnnotationTransactionAttributeSource`中定义了对`@Transactional`等注解的解析规则：
 ```java
 public AnnotationTransactionAttributeSource(boolean publicMethodsOnly) {  
@@ -207,7 +206,7 @@ protected TransactionAttribute parseTransactionAnnotation(AnnotationAttributes a
 }
 ```
 
-### 1.3.2 事务方法拦截器
+## 3.2 事务方法拦截器
 `TransactionInterceptor`中定义了事务方法的执行逻辑，`TransactionInterceptor#invoke()`：
 ```java
 public Object invoke(MethodInvocation invocation) throws Throwable {  
@@ -296,5 +295,98 @@ protected Object invokeWithinTransaction(Method method, @Nullable Class<?> targe
 }
 ```
 
-### 1.3.3 BeanFactoryTransactionAttributeSourceAdvisor
-`BeanFactoryTransactionAttributeSourceAdvisor`定义了声明式事务管理的切面信息，包括
+## 3.3 BeanFactoryTransactionAttributeSourceAdvisor
+`BeanFactoryTransactionAttributeSourceAdvisor`定义了声明式事务管理的切面信息，核心包括：
+- 判断bean对象是否需要进行声明式事务代理：`pointcut`和`transactionAttributeSource`（`AnnotationTransactionAttributeSource`）。
+- 声明式事务的拦截逻辑：`advice`（具体逻辑查看`TransactionInterceptor`）
+
+首先，通过`TransactionAttributeSourcePointcut#matches()`可以判断是否需要进行声明式事务代理：
+```java
+public boolean matches(Method method, Class<?> targetClass) {  
+   // AnnotationTransactionAttributeSource对象
+   TransactionAttributeSource tas = getTransactionAttributeSource();  
+   // 解析@Transactional注解信息
+   return (tas == null || tas.getTransactionAttribute(method, targetClass) != null);  
+}
+```
+
+通过`AbstractFallbackTransactionAttributeSource#getTransactionAttribute()`方法解析`@Transactional`注解信息：
+```java
+public TransactionAttribute getTransactionAttribute(Method method, @Nullable Class<?> targetClass) {  
+   if (method.getDeclaringClass() == Object.class) {  
+      return null;  
+   }  
+  
+   // 获取缓存
+   Object cacheKey = getCacheKey(method, targetClass);  
+   TransactionAttribute cached = this.attributeCache.get(cacheKey);  
+   if (cached != null) {  
+      if (cached == NULL_TRANSACTION_ATTRIBUTE) {  
+         return null;  
+      }  
+      else {  
+         return cached;  
+      }  
+   }  
+   // 解析，并添加到缓存
+   else {  
+      // We need to work it out.  
+      TransactionAttribute txAttr = computeTransactionAttribute(method, targetClass);  
+      // Put it in the cache.  
+      if (txAttr == null) {  
+         this.attributeCache.put(cacheKey, NULL_TRANSACTION_ATTRIBUTE);  
+      }  
+      else {  
+         String methodIdentification = ClassUtils.getQualifiedMethodName(method, targetClass);  
+         if (txAttr instanceof DefaultTransactionAttribute) {  
+            DefaultTransactionAttribute dta = (DefaultTransactionAttribute) txAttr;  
+            dta.setDescriptor(methodIdentification);  
+            dta.resolveAttributeStrings(this.embeddedValueResolver);  
+         }   
+         this.attributeCache.put(cacheKey, txAttr);  
+      }  
+      return txAttr;  
+   }  
+}
+```
+
+`AbstractFallbackTransactionAttributeSource#computeTransactionAttribute()`：
+```java
+protected TransactionAttribute computeTransactionAttribute(Method method, @Nullable Class<?> targetClass) {  
+   // Don't allow non-public methods, as configured.  
+   if (allowPublicMethodsOnly() && !Modifier.isPublic(method.getModifiers())) {  
+      return null;  
+   }  
+  
+   // The method may be on an interface, but we need attributes from the target class.  
+   // If the target class is null, the method will be unchanged.   
+   Method specificMethod = AopUtils.getMostSpecificMethod(method, targetClass);  
+  
+   // 解析方法中的@Transactional信息，会调用SpringTransactionAnnotationParser#parseTransactionAnnotation()方法
+   TransactionAttribute txAttr = findTransactionAttribute(specificMethod);  
+   if (txAttr != null) {  
+      return txAttr;  
+   }  
+  
+   // 解析类中的@Transactinal信息，会调用SpringTransactionAnnotationParser#parseTransactionAnnotation()方法
+   txAttr = findTransactionAttribute(specificMethod.getDeclaringClass());  
+   if (txAttr != null && ClassUtils.isUserLevelMethod(method)) {  
+      return txAttr;  
+   }  
+  
+   // 对method/method.getDeclaringClass()进行解析
+   if (specificMethod != method) {  
+      // Fallback is to look at the original method.  
+      txAttr = findTransactionAttribute(method);  
+      if (txAttr != null) {  
+         return txAttr;  
+      }  
+      // Last fallback is the class of the original method.  
+      txAttr = findTransactionAttribute(method.getDeclaringClass());  
+      if (txAttr != null && ClassUtils.isUserLevelMethod(method)) {  
+         return txAttr;  
+      }  
+   }  
+   return null;  
+}
+```
