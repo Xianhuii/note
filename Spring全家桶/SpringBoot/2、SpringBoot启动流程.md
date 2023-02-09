@@ -20,7 +20,7 @@ new SpringApplication(primarySources).run(args);
 ```
 
 # 1 创建SpringApplication
-
+在创建SpringApplication对象时，会进行以下初始化：
 ```java
 public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {  
    this.resourceLoader = resourceLoader;  
@@ -41,7 +41,7 @@ public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySourc
 ```
 
 # 2 启动SpringApplication
-
+调用`SpringApplication#run()`方法启动项目，会创建并且刷新`applicationContext`：
 ```java
 public ConfigurableApplicationContext run(String... args) {  
    long startTime = System.nanoTime();  
@@ -97,3 +97,15 @@ public ConfigurableApplicationContext run(String... args) {
    return context;  
 }
 ```
+
+## 2.1 prepareEnvironment
+
+## 2.2 printBanner
+
+## 2.3 createApplicationContext
+
+## 2.4 prepareContext
+
+## 2.5 refreshContext
+
+## 2.6 callRunners
