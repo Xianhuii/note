@@ -29,7 +29,56 @@ Spring Boot自动配置的`SPI`机制原理基于`ConfigurationClassPostProcesso
 对于`starter`来说，它只需要定义要相关配置，然后在`META-INF/spring.factories`或`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`中指定配置类就可以了。
 
 # 1 @EnableAutoConfiguration详解
+`@EnableAutoConfiguration`可以开启Spring Boot的自动注册功能，由于它基于`ConfigurationClassPostProcessor`，所以需要同时添加`@Configuration`注解：
+```java
+@Configuration
+@EnableAutoConfiguration
+public class AppConfig {
+}
+```
 
+`@EnableAutoConfiguration`核心源码如下，它会使用`AutoConfigurationImportSelector`，注册`META-INF/spring.factories`和`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`中的类。：
+```java
+@AutoConfigurationPackage  
+@Import(AutoConfigurationImportSelector.class)  
+public @interface EnableAutoConfiguration {  
+   // environment变量是否可以覆盖starter中的配置变量
+   String ENABLED_OVERRIDE_PROPERTY = "spring.boot.enableautoconfiguration";  
+   // 指定排除的类
+   Class<?>[] exclude() default {};  
+   // 指定排除的类名
+   String[] excludeName() default {};  
+}
+```
+
+元注解`@AutoConfigurationPackage`的核心源码如下，默认会扫描标注该注解的类所在的包路径：
+```java
+@Import(AutoConfigurationPackages.Registrar.class)  
+public @interface AutoConfigurationPackage {  
+   // 指定扫描包路径
+   String[] basePackages() default {};  
+   // 指定类，会扫描该类所在包路径
+   Class<?>[] basePackageClasses() default {};  
+}
+```
+
+需要注意的是，我们通常不会直接使用`@EnableAutoConfiguration`，而是使用集成自动配置功能的`@SpringBootApplication`，它与自动配置相关的核心源码如下：
+```java
+@SpringBootConfiguration  // 集成@Configuration功能
+@EnableAutoConfiguration  
+@ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),  
+      @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })  
+public @interface SpringBootApplication {  
+   // 指定自动配置的排除类
+   @AliasFor(annotation = EnableAutoConfiguration.class)  
+   Class<?>[] exclude() default {};  
+   // 指定自动配置的排除类名
+   @AliasFor(annotation = EnableAutoConfiguration.class)  
+   String[] excludeName() default {};  
+}
+```
 
 # 2 自动注册SPI机制原理
+## 2.1 @Import功能
 
+## 2.2 
