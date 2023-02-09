@@ -13,14 +13,54 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring全家桶/SpringBoot/1、SpringBoot自动配置原理.md",
+                "file": "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "37be65674e5caec9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spring全家桶/SpringBoot/2、SpringBoot启动流程.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "0fe2c3a682dc5944",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3e0a1ab25ca88f5a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -70,8 +110,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -87,7 +126,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring全家桶/SpringBoot/1、SpringBoot自动配置原理.md",
+                "file": "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +143,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring全家桶/SpringBoot/1、SpringBoot自动配置原理.md",
+                "file": "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +166,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring全家桶/SpringBoot/1、SpringBoot自动配置原理.md"
+                "file": "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md"
               }
             }
           }
@@ -150,17 +189,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "b611c6a3d489384e",
+  "active": "3e0a1ab25ca88f5a",
   "lastOpenFiles": [
+    "Spring全家桶/SpringBoot/4、SpringBoot内置Servlet容器.md",
+    "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md",
+    "Spring全家桶/SpringBoot/2、SpringBoot启动流程.md",
+    "Spring全家桶/SpringBoot/1、SpringBoot学习路线.md",
     "Spring全家桶/Transaction/4、Spring声明式事务的工作原理.md",
-    "Spring全家桶/SpringBoot/1、SpringBoot自动配置原理.md",
     "理财/基金.md",
     "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
     "Spring/SpringMVC/HandlerAdapter【草稿】.md",
-    "Spring/SpringMVC/HandlerMapping【草稿】.md",
-    "Spring/SpringMVC/Spring MVC请求地址映射详解：HandlerMapping.md",
-    "Spring/SpringMVC/Spring MVC文件请求处理详解：MultipartResolver.md",
-    "Spring/SpringMVC/MultipartResolver文件处理.md"
+    "Spring/SpringMVC/HandlerMapping【草稿】.md"
   ]
 }

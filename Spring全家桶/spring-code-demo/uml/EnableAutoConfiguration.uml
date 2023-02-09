@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.boot.autoconfigure.EnableAutoConfiguration</OriginalElement>
+  <nodes>
+    <node x="346.0" y="180.0">org.springframework.boot.autoconfigure.AutoConfigurationImportSelector</node>
+    <node x="32.66666666666663" y="275.0">org.springframework.context.annotation.ConfigurationClassPostProcessor</node>
+    <node x="723.0" y="180.0">org.springframework.boot.autoconfigure.AutoConfigurationPackage</node>
+    <node x="557.0" y="275.0">org.springframework.boot.autoconfigure.EnableAutoConfiguration</node>
+    <node x="286.83333333333337" y="0.0">org.springframework.context.annotation.ImportBeanDefinitionRegistrar</node>
+    <node x="280.3181818181818" y="95.0">org.springframework.context.annotation.DeferredImportSelector</node>
+    <node x="659.5" y="95.0">org.springframework.context.annotation.Import</node>
+    <node x="869.5" y="95.0">org.springframework.boot.autoconfigure.AutoConfigurationPackages.Registrar</node>
+    <node x="20.0" y="180.0">org.springframework.context.annotation.ConfigurationClassParser</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.boot.autoconfigure.EnableAutoConfiguration" target="org.springframework.boot.autoconfigure.AutoConfigurationImportSelector">
+      <point x="-103.5" y="-17.5" />
+      <point x="591.5" y="255.0" />
+      <point x="524.0" y="255.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.ConfigurationClassParser" target="org.springframework.context.annotation.Import">
+      <point x="95.33333333333331" y="-17.5" />
+      <point x="258.3333333333333" y="160.0" />
+      <point x="677.1666666666667" y="160.0" />
+      <point x="-35.333333333333314" y="17.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.ConfigurationClassPostProcessor" target="org.springframework.context.annotation.ConfigurationClassPostProcessor">
+      <point x="0.0" y="17.5" />
+      <point x="210.66666666666663" y="330.0" />
+      <point x="12.666666666666629" y="330.0" />
+      <point x="12.666666666666629" y="292.5" />
+      <point x="-178.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.AutoConfigurationImportSelector" target="org.springframework.boot.autoconfigure.AutoConfigurationImportSelector">
+      <point x="-118.66666666666667" y="17.5" />
+      <point x="405.3333333333333" y="235.0" />
+      <point x="326.0" y="235.0" />
+      <point x="326.0" y="197.5" />
+      <point x="-178.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.AutoConfigurationPackage" target="org.springframework.boot.autoconfigure.AutoConfigurationPackages.Registrar">
+      <point x="71.5" y="-17.5" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.AutoConfigurationImportSelector" target="org.springframework.context.annotation.DeferredImportSelector">
+      <point x="0.0" y="-17.5" />
+      <point x="524.0" y="150.0" />
+      <point x="479.8181818181818" y="150.0" />
+      <point x="66.5" y="17.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.ConfigurationClassParser" target="org.springframework.context.annotation.ConfigurationClassParser">
+      <point x="-95.33333333333331" y="17.5" />
+      <point x="67.66666666666669" y="235.0" />
+      <point x="0.0" y="235.0" />
+      <point x="0.0" y="197.5" />
+      <point x="-143.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.context.annotation.ConfigurationClassParser" target="org.springframework.context.annotation.ImportBeanDefinitionRegistrar">
+      <point x="-95.33333333333331" y="-17.5" />
+      <point x="67.66666666666669" y="160.0" />
+      <point x="120.09848484848487" y="160.0" />
+      <point x="120.09848484848487" y="75.0" />
+      <point x="454.83333333333337" y="75.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.AutoConfigurationPackage" target="org.springframework.context.annotation.Import">
+      <point x="-71.5" y="-17.5" />
+      <point x="794.5" y="160.0" />
+      <point x="747.8333333333333" y="160.0" />
+      <point x="35.333333333333314" y="17.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.ConfigurationClassParser" target="org.springframework.context.annotation.DeferredImportSelector">
+      <point x="0.0" y="-17.5" />
+      <point x="163.0" y="150.0" />
+      <point x="346.8181818181818" y="150.0" />
+      <point x="-66.5" y="17.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.ConfigurationClassPostProcessor" target="org.springframework.context.annotation.ConfigurationClassParser">
+      <point x="-89.0" y="-17.5" />
+      <point x="121.66666666666663" y="255.0" />
+      <point x="163.0" y="255.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.AutoConfigurationImportSelector" target="org.springframework.boot.autoconfigure.EnableAutoConfiguration">
+      <point x="118.66666666666674" y="17.5" />
+      <point x="642.6666666666667" y="255.0" />
+      <point x="660.5" y="255.0" />
+      <point x="-34.5" y="-17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.AutoConfigurationPackages.Registrar" target="org.springframework.context.annotation.ImportBeanDefinitionRegistrar">
+      <point x="0.0" y="-17.5" />
+      <point x="937.5" y="75.0" />
+      <point x="566.8333333333334" y="75.0" />
+      <point x="112.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.EnableAutoConfiguration" target="org.springframework.context.annotation.Import">
+      <point x="34.5" y="-17.5" />
+      <point x="729.5" y="255.0" />
+      <point x="712.5" y="255.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.EnableAutoConfiguration" target="org.springframework.boot.autoconfigure.AutoConfigurationPackage">
+      <point x="103.5" y="-17.5" />
+      <point x="798.5" y="255.0" />
+      <point x="866.0" y="255.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.ImportBeanDefinitionRegistrar" target="org.springframework.context.annotation.ImportBeanDefinitionRegistrar">
+      <point x="-112.0" y="17.5" />
+      <point x="342.83333333333337" y="55.0" />
+      <point x="266.83333333333337" y="55.0" />
+      <point x="266.83333333333337" y="17.5" />
+      <point x="-168.0" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8598425196850393" x="260.0" y="297.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
