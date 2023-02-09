@@ -121,7 +121,8 @@ private void processImports(ConfigurationClass configClass, SourceClass currentS
             // ImportBeanDefinitionRegistrar导入流程
             else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {  
                // Candidate class is an ImportBeanDefinitionRegistrar ->  
-               // delegate to it to register additional bean definitions               Class<?> candidateClass = candidate.loadClass();  
+               // delegate to it to register additional bean definitions               
+               Class<?> candidateClass = candidate.loadClass();  
                ImportBeanDefinitionRegistrar registrar =  
                      ParserStrategyUtils.instantiateClass(candidateClass, ImportBeanDefinitionRegistrar.class,  
                            this.environment, this.resourceLoader, this.registry);  
@@ -195,6 +196,19 @@ public void processGroupImports() {
 }
 ```
 
+`ConfigurationClassParser.DeferredImportSelectorGrouping#getImports()`中会对每个分组进行处理，然后再获取配置类：
+```java
+public Iterable<Group.Entry> getImports() {  
+   for (DeferredImportSelectorHolder deferredImport : this.deferredImports) {  
+      // 执行分组规则
+      this.group.process(deferredImport.getConfigurationClass().getMetadata(),  
+            deferredImport.getImportSelector());  
+   }  
+   // 获取分组的导入配置
+   return this.group.selectImports();  
+}
+```
+
 ### 2.1.2 ImportBeanDefinitionRegistrar
 对于`ImportBeanDefinitionRegistrar`，它会调用实现类的`ImportBeanDefinitionRegistrar#registerBeanDefinitions()`方法进行注册：
 ```java
@@ -203,4 +217,153 @@ default void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, 
 ```
 
 ## 2.2 AutoConfigurationImportSelector
+### 2.2.1 执行导入规则
+在导入配置时，会先执行导入规则，从`META-INF/spring.factories`和`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`中读取需要注册的类。
 
+具体入口位于`AutoConfigurationImportSelector.AutoConfigurationGroup#process()`方法：
+```java
+public void process(AnnotationMetadata annotationMetadata, DeferredImportSelector deferredImportSelector) {  
+   // 获取目录文件中的类
+   AutoConfigurationEntry autoConfigurationEntry = ((AutoConfigurationImportSelector) deferredImportSelector)  
+         .getAutoConfigurationEntry(annotationMetadata);  
+   // 添加到缓存
+   this.autoConfigurationEntries.add(autoConfigurationEntry);  
+   for (String importClassName : autoConfigurationEntry.getConfigurations()) {  
+      this.entries.putIfAbsent(importClassName, annotationMetadata);  
+   }  
+}
+```
+
+`AutoConfigurationImportSelector#getAutoConfigurationEntry()`方法获取导入配置信息：
+```java
+protected AutoConfigurationEntry getAutoConfigurationEntry(AnnotationMetadata annotationMetadata) {  
+   if (!isEnabled(annotationMetadata)) {  
+      return EMPTY_ENTRY;  
+   }  
+   AnnotationAttributes attributes = getAttributes(annotationMetadata);  
+   // 获取指定目录文件中的所有类名
+   List<String> configurations = getCandidateConfigurations(annotationMetadata, attributes);  
+   // 去重
+   configurations = removeDuplicates(configurations);  
+   // 去除需要排除的类名
+   Set<String> exclusions = getExclusions(annotationMetadata, attributes);  
+   checkExcludedClasses(configurations, exclusions);  
+   configurations.removeAll(exclusions);  
+   // 过滤类名
+   configurations = getConfigurationClassFilter().filter(configurations);  
+   // 出发自动配置导入事件
+   fireAutoConfigurationImportEvents(configurations, exclusions);  
+   return new AutoConfigurationEntry(configurations, exclusions);  
+}
+```
+
+核心代码位于`AutoConfigurationImportSelector#getCandidateConfigurations()`方法，会使用`SPI`机制从`META-INF/spring.factories`和`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`获取需要导入的类：
+```java
+protected List<String> getCandidateConfigurations(AnnotationMetadata metadata, AnnotationAttributes attributes) {  
+   // 导入META-INF/spring.factories中键为org.springframework.boot.autoconfigure.EnableAutoConfiguration的类
+   List<String> configurations = new ArrayList<>(  
+         SpringFactoriesLoader.loadFactoryNames(getSpringFactoriesLoaderFactoryClass(), getBeanClassLoader()));  
+   // 导入META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports中的类
+   ImportCandidates.load(AutoConfiguration.class, getBeanClassLoader()).forEach(configurations::add);   
+   return configurations;  
+}
+```
+
+对于`SpringFactoriesLoader#loadFactoryNames()`，它会读取`META-INF/spring.factories`中的指定键的所有值：
+```java
+public static List<String> loadFactoryNames(Class<?> factoryType, @Nullable ClassLoader classLoader) {  
+   ClassLoader classLoaderToUse = classLoader;  
+   if (classLoaderToUse == null) {  
+      classLoaderToUse = SpringFactoriesLoader.class.getClassLoader();  
+   }  
+   String factoryTypeName = factoryType.getName();  
+   return loadSpringFactories(classLoaderToUse).getOrDefault(factoryTypeName, Collections.emptyList());  
+}
+```
+
+对于`ImportCandidates#load()`，它会读取`META-INF/spring/%s.imports`中的所有值：
+```java
+public static ImportCandidates load(Class<?> annotation, ClassLoader classLoader) {  
+   Assert.notNull(annotation, "'annotation' must not be null");  
+   ClassLoader classLoaderToUse = decideClassloader(classLoader);  
+   String location = String.format(LOCATION, annotation.getName());  
+   Enumeration<URL> urls = findUrlsInClasspath(classLoaderToUse, location);  
+   List<String> importCandidates = new ArrayList<>();  
+   while (urls.hasMoreElements()) {  
+      URL url = urls.nextElement();  
+      importCandidates.addAll(readCandidateConfigurations(url));  
+   }  
+   return new ImportCandidates(importCandidates);  
+}
+```
+
+### 2.2.2 获取自动导入配置
+通过`AutoConfigurationImportSelector.AutoConfigurationGroup#selectImports()`方法，可以获取处理后的自动导入配置：
+```java
+public Iterable<Entry> selectImports() {  
+   if (this.autoConfigurationEntries.isEmpty()) {  
+      return Collections.emptyList();  
+   }  
+   // 过滤
+   Set<String> allExclusions = this.autoConfigurationEntries.stream()  
+         .map(AutoConfigurationEntry::getExclusions).flatMap(Collection::stream).collect(Collectors.toSet());  
+   Set<String> processedConfigurations = this.autoConfigurationEntries.stream()  
+         .map(AutoConfigurationEntry::getConfigurations).flatMap(Collection::stream)  
+         .collect(Collectors.toCollection(LinkedHashSet::new));  
+   processedConfigurations.removeAll(allExclusions);  
+  
+   // 排序并返回
+   return sortAutoConfigurations(processedConfigurations, getAutoConfigurationMetadata()).stream()  
+         .map((importClassName) -> new Entry(this.entries.get(importClassName), importClassName))  
+         .collect(Collectors.toList());  
+}
+```
+
+## 2.3 AutoConfigurationPackages.Registrar
+`AutoConfigurationPackages.Registrar`是`ImportBeanDefinitionRegistrar`实现类，所以会通过`AutoConfigurationPackages.Registrar#registerBeanDefinitions()`方法注册：
+```java
+public void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry) {  
+   register(registry, new PackageImports(metadata).getPackageNames().toArray(new String[0]));  
+}
+```
+
+它会调用`AutoConfigurationPackages#register()`方法扫描指定包路径：
+```java
+public static void register(BeanDefinitionRegistry registry, String... packageNames) {  
+   if (registry.containsBeanDefinition(BEAN)) {  
+      BasePackagesBeanDefinition beanDefinition = (BasePackagesBeanDefinition) registry.getBeanDefinition(BEAN);  
+      beanDefinition.addBasePackages(packageNames);  
+   }  
+   else {  
+      registry.registerBeanDefinition(BEAN, new BasePackagesBeanDefinition(packageNames));  
+   }  
+}
+```
+
+`PackageImports`会从`@AutoConfigurationPackage`的属性中获取包路径，如果没有指定注解属性，则会获取标注该注解的类所在的包路径：
+```java
+PackageImports(AnnotationMetadata metadata) {  
+   // 获取注解属性
+   AnnotationAttributes attributes = AnnotationAttributes  
+         .fromMap(metadata.getAnnotationAttributes(AutoConfigurationPackage.class.getName(), false));  
+   // 获取注解中的包路径
+   List<String> packageNames = new ArrayList<>(Arrays.asList(attributes.getStringArray("basePackages")));  
+   for (Class<?> basePackageClass : attributes.getClassArray("basePackageClasses")) {  
+      packageNames.add(basePackageClass.getPackage().getName());  
+   }  
+   // 没有指定包路径，获取标注类的包路径
+   if (packageNames.isEmpty()) {  
+      packageNames.add(ClassUtils.getPackageName(metadata.getClassName()));  
+   }  
+   this.packageNames = Collections.unmodifiableList(packageNames);  
+}
+```
+
+# 3 总结
+自动配置`SPI`功能是Spring Boot引入第三方组件的基础，也是它如此便利的根本原因。
+
+在学习第三方组件时，可以首先看它的`META-INF/spring.factories`和`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`文件，这是它们的入口。
+
+在创建自己的`starter`，也可以使用这个机制，既遵守官方标准，又方便使用。
+
+自动配置基于`SPI`机制，是SPI的灵活应用（类似的还有JDBC的`DriverManager`）。我们在日常项目中也可以参照它实现逻辑，进行设计和开发。
