@@ -105,8 +105,11 @@ private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners
       DefaultBootstrapContext bootstrapContext, ApplicationArguments applicationArguments) {  
    // 根据webApplicationType创建：ApplicationServletEnvironment、ApplicationReactiveWebEnvironment或ApplicationEnvironment
    ConfigurableEnvironment environment = getOrCreateEnvironment();  
+   // 从命令行中添加propertySource
    configureEnvironment(environment, applicationArguments.getSourceArgs());  
+   // 添加configurationProperties
    ConfigurationPropertySources.attach(environment);  
+   // 发布environmentPrepared事件，
    listeners.environmentPrepared(bootstrapContext, environment);  
    DefaultPropertiesPropertySource.moveToEnd(environment);  
    Assert.state(!environment.containsProperty("spring.main.environment-prefix"),  
