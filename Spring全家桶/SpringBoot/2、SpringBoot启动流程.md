@@ -99,6 +99,27 @@ public ConfigurableApplicationContext run(String... args) {
 ```
 
 ## 2.1 prepareEnvironment
+`SpringApplication#prepareEnvironment()`方法会创建`environment`，
+```java
+private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners listeners,  
+      DefaultBootstrapContext bootstrapContext, ApplicationArguments applicationArguments) {  
+   // 根据webApplicationType创建：ApplicationServletEnvironment、ApplicationReactiveWebEnvironment或ApplicationEnvironment
+   ConfigurableEnvironment environment = getOrCreateEnvironment();  
+   configureEnvironment(environment, applicationArguments.getSourceArgs());  
+   ConfigurationPropertySources.attach(environment);  
+   listeners.environmentPrepared(bootstrapContext, environment);  
+   DefaultPropertiesPropertySource.moveToEnd(environment);  
+   Assert.state(!environment.containsProperty("spring.main.environment-prefix"),  
+         "Environment prefix cannot be set via properties.");  
+   bindToSpringApplication(environment);  
+   if (!this.isCustomEnvironment) {  
+      EnvironmentConverter environmentConverter = new EnvironmentConverter(getClassLoader());  
+      environment = environmentConverter.convertEnvironmentIfNecessary(environment, deduceEnvironmentClass());  
+   }  
+   ConfigurationPropertySources.attach(environment);  
+   return environment;  
+}
+```
 
 ## 2.2 printBanner
 
