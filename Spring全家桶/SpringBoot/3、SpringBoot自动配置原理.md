@@ -6,7 +6,13 @@
 
 另一方面，组件开发者肯定要比我们这些使用者更加熟悉底层细节。因此，最稳妥的方法是由组件开发者去抽象对应组件的基础配置。我们使用者只需要熟悉组件暴露的配置文件即可。这些由组件开发者抽象出的基础配置，在Spring Boot中就是`starter`。
 
-Spring Boot就是为了解决上述问题而开发出来的。它提供自动配置的`SPI`机制，制定了从`starter`读取配置的规则。第三方组件根据规则编写基础配置信息，后续引入依赖时，Spring Boot会根据SPI规则读取配置。
+Spring Boot就是为了解决上述问题而开发出来的。它提供自动配置的`SPI`机制，制定了从`starter`读取配置的规则。第三方组件根据规则编写基础配置信息。后续引入依赖时，我们只要开启`EnableAutoConfiguration`注解，Spring Boot会根据SPI规则读取配置。
+
+![[EnableAutoConfiguration.png]]
+上图Spring Boot自动配置`SPI`机制的相关类图，主要可以分为3个模块：
+1. `ConfigurationClassPostProcessor`：基于`@Configuration`的`BeanFactoryPostProcessor`。
+2. `AutoConfigurationImportSelector`：注册指定目录文件中的配置类。
+3. `Registrar`：注册指定路径下的类。
 
 Spring Boot自动配置的`SPI`机制原理基于`ConfigurationClassPostProcessor`，它是一个`BeanFactoryPostProcessor`，会在读取依赖配置后，对配置类`BeanDefinition`进行处理。自动配置机制使用了其中的`@Import`功能。
 
@@ -20,5 +26,10 @@ Spring Boot自动配置的`SPI`机制原理基于`ConfigurationClassPostProcesso
 2. 注册`META-INF/spring.factories`中键为`org.springframework.boot.autoconfigure.EnableAutoConfiguration`的类。
 3. 注册`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`中的所有类。
 
-Spring Boot自动配置`SPI`机制的相关类图如下：
-![[EnableAutoConfiguration.png]]
+对于`starter`来说，它只需要定义要相关配置，然后在`META-INF/spring.factories`或`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`中指定配置类就可以了。
+
+# 1 @EnableAutoConfiguration详解
+
+
+# 2 自动注册SPI机制原理
+
