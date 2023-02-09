@@ -40,6 +40,24 @@ public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySourc
 }
 ```
 
+默认`BootstrapRegistryInitializer`为空。
+
+默认`ApplicationContextInitializer`实现类包括：
+- org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer
+- org.springframework.boot.context.ContextIdApplicationContextInitializer
+- org.springframework.boot.context.config.DelegatingApplicationContextInitializer
+- org.springframework.boot.rsocket.context.RSocketPortInfoApplicationContextInitializer
+- org.springframework.boot.web.context.ServerPortInfoApplicationContextInitializer
+
+默认`ApplicationListener`实现类包括：
+- org.springframework.boot.ClearCachesApplicationListener
+- org.springframework.boot.builder.ParentContextCloserApplicationListener
+- org.springframework.boot.context.FileEncodingApplicationListener
+- org.springframework.boot.context.config.AnsiOutputApplicationListener
+- org.springframework.boot.context.config.DelegatingApplicationListener
+- org.springframework.boot.context.logging.LoggingApplicationListener
+- org.springframework.boot.env.EnvironmentPostProcessorApplicationListener
+
 # 2 启动SpringApplication
 调用`SpringApplication#run()`方法启动项目，会创建并且刷新`applicationContext`：
 ```java
@@ -109,7 +127,7 @@ private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners
    configureEnvironment(environment, applicationArguments.getSourceArgs());  
    // 添加configurationProperties
    ConfigurationPropertySources.attach(environment);  
-   // 发布environmentPrepared事件，
+   // 发布ApplicationEnvironmentPreparedEvent事件，由ApplicationListener监听并处理
    listeners.environmentPrepared(bootstrapContext, environment);  
    DefaultPropertiesPropertySource.moveToEnd(environment);  
    Assert.state(!environment.containsProperty("spring.main.environment-prefix"),  
@@ -123,6 +141,31 @@ private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners
    return environment;  
 }
 ```
+
+在发布`ApplicationEnvironmentPreparedEvent`事件时，使用了观察者模式。`SimpleApplicationEventMulticaster#multicastEvent()`：
+```java
+public void multicastEvent(final ApplicationEvent event, @Nullable ResolvableType eventType) {  
+   ResolvableType type = (eventType != null ? eventType : resolveDefaultEventType(event));  
+   Executor executor = getTaskExecutor();  
+   for (ApplicationListener<?> listener : getApplicationListeners(event, type)) {  
+      if (executor != null) {  
+         executor.execute(() -> invokeListener(listener, event));  
+      }  
+      else {  
+         invokeListener(listener, event);  
+      }  
+   }  
+}
+```
+
+以下ApplicationListener实现类会监听ApplicationEnvironmentPreparedEvent事件，并调用`ApplicationListener#onApplicationEvent()`方法进行处理：
+- org.springframework.boot.ClearCachesApplicationListener
+- org.springframework.boot.context.FileEncodingApplicationListener
+- org.springframework.boot.context.config.AnsiOutputApplicationListener
+- org.springframework.boot.context.config.DelegatingApplicationListener
+- org.springframework.boot.context.logging.LoggingApplicationListener
+- org.springframework.boot.env.EnvironmentPostProcessorApplicationListener
+- org.springframework.boot.autoconfigure.BackgroundPreinitializer
 
 ## 2.2 printBanner
 
