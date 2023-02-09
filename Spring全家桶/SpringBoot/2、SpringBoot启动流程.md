@@ -1,12 +1,25 @@
+Spring Boot项目都需要一个启动类。
 
+在启动类上标注`@SpringBootApplication`，在main方法中调用`SpringApplication.run()`方法，就可以启动项目：
 ```java
-SpringApplication.run(Application.class, args);
+@SpringBootApplication  
+public class Application {  
+   public static void main(String[] args) {  
+      SpringApplication.run(Application.class, args);  
+   }  
+}
 ```
 
-1. 初始化`SpringApplication`：
+在项目启动过程中，需要经过两个流程：
+1. 创建`SpringApplication`对象
+2. 执行`SpringApplication#run()`方法
+
+简单来说，会执行以下代码：
 ```java
 new SpringApplication(primarySources).run(args);
 ```
+
+# 1 创建SpringApplication
 
 ```java
 public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {  
@@ -27,7 +40,8 @@ public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySourc
 }
 ```
 
-2. 启动`SpringApplication`：
+# 2 启动SpringApplication
+
 ```java
 public ConfigurableApplicationContext run(String... args) {  
    long startTime = System.nanoTime();  
