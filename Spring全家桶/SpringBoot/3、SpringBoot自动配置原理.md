@@ -80,5 +80,127 @@ public @interface SpringBootApplication {
 
 # 2 自动注册SPI机制原理
 ## 2.1 @Import功能
+`@Import`是`ConfigurationClassPostProcessor`针对`@Configuration`配置类提供的增强功能，具体原理可以查看相关文章（[@Configuration的基本使用和工作原理](https://www.cnblogs.com/Xianhuii/p/17090626.html)），这里主要介绍@Import的相关原理。
 
-## 2.2 
+`ConfigurationClassParser#processImports()`定义了具体导入流程：
+```java
+private void processImports(ConfigurationClass configClass, SourceClass currentSourceClass,  
+      Collection<SourceClass> importCandidates, Predicate<String> exclusionFilter,  
+      boolean checkForCircularImports) {  
+  
+   if (importCandidates.isEmpty()) {  
+      return;  
+   }  
+  
+   if (checkForCircularImports && isChainedImportOnStack(configClass)) {  
+      this.problemReporter.error(new CircularImportProblem(configClass, this.importStack));  
+   }  
+   else {  
+      this.importStack.push(configClass);  
+      try {  
+         for (SourceClass candidate : importCandidates) {  
+            // ImportSelector导入流程
+            if (candidate.isAssignable(ImportSelector.class)) {  
+               // Candidate class is an ImportSelector -> delegate to it to determine imports  
+               Class<?> candidateClass = candidate.loadClass();  
+               ImportSelector selector = ParserStrategyUtils.instantiateClass(candidateClass, ImportSelector.class,  
+                     this.environment, this.resourceLoader, this.registry);  
+               Predicate<String> selectorFilter = selector.getExclusionFilter();  
+               if (selectorFilter != null) {  
+                  exclusionFilter = exclusionFilter.or(selectorFilter);  
+               }  
+               if (selector instanceof DeferredImportSelector) {  
+                  this.deferredImportSelectorHandler.handle(configClass, (DeferredImportSelector) selector);  
+               }  
+               else {  
+                  String[] importClassNames = selector.selectImports(currentSourceClass.getMetadata());  
+                  Collection<SourceClass> importSourceClasses = asSourceClasses(importClassNames, exclusionFilter);  
+                  processImports(configClass, currentSourceClass, importSourceClasses, exclusionFilter, false);  
+               }  
+            }  
+            // ImportBeanDefinitionRegistrar导入流程
+            else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {  
+               // Candidate class is an ImportBeanDefinitionRegistrar ->  
+               // delegate to it to register additional bean definitions               Class<?> candidateClass = candidate.loadClass();  
+               ImportBeanDefinitionRegistrar registrar =  
+                     ParserStrategyUtils.instantiateClass(candidateClass, ImportBeanDefinitionRegistrar.class,  
+                           this.environment, this.resourceLoader, this.registry);  
+               configClass.addImportBeanDefinitionRegistrar(registrar, currentSourceClass.getMetadata());  
+            }  
+            // 配置类导入流程
+            else {  
+               // Candidate class not an ImportSelector or ImportBeanDefinitionRegistrar ->  
+               // process it as an @Configuration class               
+               this.importStack.registerImport(  
+                     currentSourceClass.getMetadata(), candidate.getMetadata().getClassName());  
+               processConfigurationClass(candidate.asConfigClass(configClass), exclusionFilter);  
+            }  
+         }  
+      }  
+      catch (BeanDefinitionStoreException ex) {  
+         throw ex;  
+      }  
+      catch (Throwable ex) {  
+         throw new BeanDefinitionStoreException(  
+               "Failed to process import candidates for configuration class [" +  
+               configClass.getMetadata().getClassName() + "]", ex);  
+      }  
+      finally {  
+         this.importStack.pop();  
+      }  
+   }  
+}
+```
+
+### 2.1.1 DeferredImportSelector
+对于`DeferredImportSelector`，导入入口位于`ConfigurationClassParser.DeferredImportSelectorHandler#handle()`：
+```java
+public void handle(ConfigurationClass configClass, DeferredImportSelector importSelector) {  
+   DeferredImportSelectorHolder holder = new DeferredImportSelectorHolder(configClass, importSelector);  
+   if (this.deferredImportSelectors == null) {  
+      DeferredImportSelectorGroupingHandler handler = new DeferredImportSelectorGroupingHandler();  
+      handler.register(holder);  
+      // 实际导入逻辑
+      handler.processGroupImports();  
+   }  
+   else {  
+      this.deferredImportSelectors.add(holder);  
+   }  
+}
+```
+
+它会从DeferredImportSelector实现类中获取需要导入的类，然后继续按照按ImportSelector、ImportBeanDefinitionRegistrar和配置类递归进行导入。`ConfigurationClassParser.DeferredImportSelectorGroupingHandler#processGroupImports()`：
+```java
+public void processGroupImports() {  
+   for (DeferredImportSelectorGrouping grouping : this.groupings.values()) {  
+      Predicate<String> exclusionFilter = grouping.getCandidateFilter();  
+      // 获取分组导入的类，递归进行导入（按ImportSelector、ImportBeanDefinitionRegistrar和配置类）
+      grouping.getImports().forEach(entry -> {  
+         ConfigurationClass configurationClass = this.configurationClasses.get(entry.getMetadata());  
+         try {  
+            processImports(configurationClass, asSourceClass(configurationClass, exclusionFilter),  
+                  Collections.singleton(asSourceClass(entry.getImportClassName(), exclusionFilter)),  
+                  exclusionFilter, false);  
+         }  
+         catch (BeanDefinitionStoreException ex) {  
+            throw ex;  
+         }  
+         catch (Throwable ex) {  
+            throw new BeanDefinitionStoreException(  
+                  "Failed to process import candidates for configuration class [" +  
+                        configurationClass.getMetadata().getClassName() + "]", ex);  
+         }  
+      });  
+   }  
+}
+```
+
+### 2.1.2 ImportBeanDefinitionRegistrar
+对于`ImportBeanDefinitionRegistrar`，它会调用实现类的`ImportBeanDefinitionRegistrar#registerBeanDefinitions()`方法进行注册：
+```java
+default void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {  
+}
+```
+
+## 2.2 AutoConfigurationImportSelector
+
