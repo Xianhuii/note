@@ -12,3 +12,34 @@ SpringBoot为Web应用提供了内置Web服务器，我们不用再额外下载`
 - `spring-boot-starter-tomcat`：内置Tomcat服务器。
 - `spring-boot-starter-jetty`：内置Jetty服务器。
 - `spring-boot-starter-undertow`：内置Undertow服务器。
+
+如果我们不想使用默认内置Web服务器，需要先移除默认值，然后导入需要的：
+```xml
+<dependency>  
+    <groupId>org.springframework.boot</groupId>  
+    <artifactId>spring-boot-starter-web</artifactId>  
+    <exclusions>  
+        <exclusion>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-tomcat</artifactId>  
+        </exclusion>  
+    </exclusions>  
+</dependency>  
+<dependency>  
+    <groupId>org.springframework.boot</groupId>  
+    <artifactId>spring-boot-starter-jetty</artifactId>  
+    <version>2.7.8</version>  
+</dependency>
+```
+
+内置Web服务器的自动配置基于SpringBoot自动配置SPI机制和BeanPostProcessor机制。简单来说包括以下步骤：
+1. 在`org.springframework.boot.autoconfigure.AutoConfiguration.imports`中定义自动配置类：
+	- EmbeddedWebServerFactoryCustomizerAutoConfiguration
+	- ServletWebServerFactoryAutoConfiguration
+	- ReactiveWebServerFactoryAutoConfiguration
+2. 在`EmbeddedWebServerFactoryCustomizerAutoConfiguration`中注册`WebServerFactoryCustomizer`实现类。
+3. 在`ServletWebServerFactoryAutoConfiguration`或`ReactiveWebServerFactoryAutoConfiguration`中注册`WebServerFactoryCustomizerBeanPostProcessor`和`XxxWebServerFactory`。
+4. 在`WebServerFactoryCustomizerBeanPostProcessor`中，使用`WebServerFactory`对`WebServerFactory`的bean对象进行自定义配置。
+5. 在`XxxWebServerApplicationContext`的`onfresh()`阶段，使用`XxxWebServerFactory`创建`WebServer`，并监听指定端口。
+
+# 1 内置Tomcat自动配置原理
