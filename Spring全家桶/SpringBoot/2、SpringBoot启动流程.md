@@ -117,7 +117,7 @@ public ConfigurableApplicationContext run(String... args) {
 ```
 
 ## 2.1 prepareEnvironment
-`SpringApplication#prepareEnvironment()`方法会创建`environment`，
+`SpringApplication#prepareEnvironment()`方法会创建`environment`，并且添加各种类型的配置源：
 ```java
 private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners listeners,  
       DefaultBootstrapContext bootstrapContext, ApplicationArguments applicationArguments) {  
@@ -132,6 +132,7 @@ private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners
    DefaultPropertiesPropertySource.moveToEnd(environment);  
    Assert.state(!environment.containsProperty("spring.main.environment-prefix"),  
          "Environment prefix cannot be set via properties.");  
+   // 将environment绑定到springApplication
    bindToSpringApplication(environment);  
    if (!this.isCustomEnvironment) {  
       EnvironmentConverter environmentConverter = new EnvironmentConverter(getClassLoader());  
@@ -166,6 +167,48 @@ public void multicastEvent(final ApplicationEvent event, @Nullable ResolvableTyp
 - org.springframework.boot.context.logging.LoggingApplicationListener
 - org.springframework.boot.env.EnvironmentPostProcessorApplicationListener
 - org.springframework.boot.autoconfigure.BackgroundPreinitializer
+
+其中与`environment`有关的是`EnvironmentPostProcessorApplicationListener#onApplicationEnvironmentPreparedEvent()`：
+```java
+private void onApplicationEnvironmentPreparedEvent(ApplicationEnvironmentPreparedEvent event) {  
+   ConfigurableEnvironment environment = event.getEnvironment();  
+   SpringApplication application = event.getSpringApplication();  
+   for (EnvironmentPostProcessor postProcessor : getEnvironmentPostProcessors(application.getResourceLoader(),  
+         event.getBootstrapContext())) {  
+      postProcessor.postProcessEnvironment(environment, application);  
+   }  
+}
+```
+
+默认`EnvironmentPostProcessor`实现类包括：
+- org.springframework.boot.env.RandomValuePropertySourceEnvironmentPostProcessor：添加`random`配置源。
+- org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor：用OriginAwareSystemEnvironmentPropertySource替换SystemEnvironmentPropertySource。
+- org.springframework.boot.env.SpringApplicationJsonEnvironmentPostProcessor：解析`spring.application.json`配置。
+- org.springframework.boot.cloud.CloudFoundryVcapEnvironmentPostProcessor：解析`VCAP`元数据。
+- org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor：添加`application.property`、`application.yml`等配置源。
+- org.springframework.boot.reactor.DebugAgentEnvironmentPostProcessor：开启`reactor.tools.agent.ReactorDebugAgent`功能。
+- org.springframework.boot.autoconfigure.integration.IntegrationPropertiesEnvironmentPostProcessor：添加`META-INF/spring.integration.properties`配置源。
+
+其中，我们首先需要了解的是`ConfigDataEnvironmentPostProcessor#postProcessEnvironment()`，它会加载常用的`application.properties`等配置源：
+```java
+void postProcessEnvironment(ConfigurableEnvironment environment, ResourceLoader resourceLoader,  
+      Collection<String> additionalProfiles) {  
+   try {  
+      this.logger.trace("Post-processing environment to add config data");  
+      resourceLoader = (resourceLoader != null) ? resourceLoader : new DefaultResourceLoader();  
+      // 创建ConfigDataEnvironment对象，加载application.properties等配置源
+      getConfigDataEnvironment(environment, resourceLoader, additionalProfiles).processAndApply();  
+   }  
+   catch (UseLegacyConfigProcessingException ex) {  
+      this.logger.debug(LogMessage.format("Switching to legacy config file processing [%s]",  
+            ex.getConfigurationProperty()));  
+      configureAdditionalProfiles(environment, additionalProfiles);  
+      postProcessUsingLegacyApplicationListener(environment, resourceLoader);  
+   }  
+}
+```
+
+
 
 ## 2.2 printBanner
 
