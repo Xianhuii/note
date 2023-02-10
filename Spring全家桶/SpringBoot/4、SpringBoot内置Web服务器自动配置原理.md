@@ -242,6 +242,7 @@ private void createWebServer() {
    }  
    else if (servletContext != null) {  
       try {  
+         // servletContext启动初始化操作：可以注册Servlet/Filter/Listener
          getSelfInitializer().onStartup(servletContext);  
       }  
       catch (ServletException ex) {  

@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "d05e79473c26fd2e",
+        "id": "2d63b7ef1208d37d",
         "type": "tabs",
         "children": [
           {
-            "id": "a6d098bd8066326d",
+            "id": "6d65599f10a84940",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
+                "file": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方法和原理.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
+                "file": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方法和原理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
+                "file": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方法和原理.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md"
+                "file": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方法和原理.md"
               }
             }
           }
@@ -150,17 +150,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e275dab41eb9f4d9",
+  "active": "6d65599f10a84940",
   "lastOpenFiles": [
+    "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
+    "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方法和原理.md",
     "Spring全家桶/SpringBoot/2、SpringBoot启动流程.md",
     "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md",
-    "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
     "Spring全家桶/SpringBoot/1、SpringBoot学习路线.md",
     "Spring全家桶/Transaction/4、Spring声明式事务的工作原理.md",
     "理财/基金.md",
     "conflict-files-obsidian-git.md",
     "Spring/SpringMVC/Spring MVC处理器适配器详解：HandlerAdapter.md",
-    "Spring/SpringMVC/HandlerAdapter【草稿】.md",
-    "Spring/SpringMVC/HandlerMapping【草稿】.md"
+    "Spring/SpringMVC/HandlerAdapter【草稿】.md"
   ]
 }
