@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.boot.autoconfigure.web.embedded.TomcatWebServerFactoryCustomizer</OriginalElement>
+  <nodes>
+    <node x="447.0" y="85.0">org.springframework.boot.web.embedded.tomcat.TomcatWebServer</node>
+    <node x="1657.2552083333335" y="180.0">org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration</node>
+    <node x="980.5833333333333" y="85.0">org.springframework.boot.web.server.WebServerFactoryCustomizer</node>
+    <node x="802.3854166666667" y="370.0">org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration</node>
+    <node x="303.4270833333336" y="0.0">org.springframework.boot.web.server.WebServer</node>
+    <node x="1394.4583333333335" y="275.0">org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration.TomcatWebServerFactoryCustomizerConfiguration</node>
+    <node x="510.25520833333337" y="275.0">org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration.EmbeddedTomcat</node>
+    <node x="755.2552083333334" y="180.0">org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor</node>
+    <node x="379.25520833333337" y="180.0">org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory</node>
+    <node x="954.2552083333334" y="275.0">org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar</node>
+    <node x="808.5052083333334" y="0.0">org.springframework.boot.web.server.WebServerFactory</node>
+    <node x="1271.2552083333335" y="180.0">org.springframework.boot.autoconfigure.web.embedded.TomcatWebServerFactoryCustomizer</node>
+    <node x="20.0" y="85.0">org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar" target="org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor">
+      <point x="0.0" y="-17.5" />
+      <point x="119.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory" target="org.springframework.boot.web.embedded.tomcat.TomcatWebServer">
+      <point x="-42.0" y="-17.5" />
+      <point x="505.25520833333337" y="160.0" />
+      <point x="545.0" y="160.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar" target="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar">
+      <point x="-105.33333333333333" y="17.5" />
+      <point x="1006.921875" y="330.0" />
+      <point x="934.2552083333334" y="330.0" />
+      <point x="934.2552083333334" y="292.5" />
+      <point x="-158.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration.TomcatWebServerFactoryCustomizerConfiguration" target="org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration">
+      <point x="165.33333333333326" y="-17.5" />
+      <point x="1807.7916666666667" y="255.0" />
+      <point x="1935.2552083333335" y="255.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration" target="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration.EmbeddedTomcat">
+      <point x="-148.66666666666663" y="-17.5" />
+      <point x="876.7187500000001" y="350.0" />
+      <point x="603.2552083333334" y="350.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration.EmbeddedTomcat" target="org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory">
+      <point x="-46.5" y="-17.5" />
+      <point x="556.7552083333334" y="255.0" />
+      <point x="547.2552083333334" y="255.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext" target="org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext">
+      <point x="0.0" y="17.5" />
+      <point x="213.0" y="140.0" />
+      <point x="0.0" y="140.0" />
+      <point x="0.0" y="102.5" />
+      <point x="-193.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration" target="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar">
+      <point x="0.0" y="-17.5" />
+      <point x="1025.3854166666667" y="350.0" />
+      <point x="1112.2552083333335" y="350.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.embedded.tomcat.TomcatWebServer" target="org.springframework.boot.web.embedded.tomcat.TomcatWebServer">
+      <point x="-65.33333333333331" y="17.5" />
+      <point x="479.6666666666667" y="140.0" />
+      <point x="427.0" y="140.0" />
+      <point x="427.0" y="102.5" />
+      <point x="-98.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory" target="org.springframework.boot.web.server.WebServer">
+      <point x="-126.0" y="-17.5" />
+      <point x="421.25520833333337" y="160.0" />
+      <point x="416.5" y="160.0" />
+      <point x="416.5" y="65.0" />
+      <point x="388.4270833333336" y="65.0" />
+      <point x="17.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.embedded.TomcatWebServerFactoryCustomizer" target="org.springframework.boot.web.server.WebServerFactoryCustomizer">
+      <point x="0.0" y="-17.5" />
+      <point x="1454.2552083333335" y="160.0" />
+      <point x="1235.5833333333333" y="160.0" />
+      <point x="102.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory" target="org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory">
+      <point x="-112.0" y="17.5" />
+      <point x="435.25520833333337" y="235.0" />
+      <point x="359.25520833333337" y="235.0" />
+      <point x="359.25520833333337" y="197.5" />
+      <point x="-168.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.embedded.TomcatWebServerFactoryCustomizer" target="org.springframework.boot.autoconfigure.web.embedded.TomcatWebServerFactoryCustomizer">
+      <point x="-122.0" y="17.5" />
+      <point x="1332.2552083333335" y="235.0" />
+      <point x="1251.2552083333335" y="235.0" />
+      <point x="1251.2552083333335" y="197.5" />
+      <point x="-183.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor" target="org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor">
+      <point x="-119.0" y="17.5" />
+      <point x="874.2552083333334" y="235.0" />
+      <point x="735.2552083333334" y="235.0" />
+      <point x="735.2552083333334" y="197.5" />
+      <point x="-238.0" y="-0.0" />
+    </edge>
+    <edge source="org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor" target="org.springframework.boot.web.server.WebServerFactoryCustomizer">
+      <point x="0.0" y="-17.5" />
+      <point x="993.2552083333334" y="160.0" />
+      <point x="1031.5833333333333" y="160.0" />
+      <point x="-102.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration.TomcatWebServerFactoryCustomizerConfiguration" target="org.springframework.boot.autoconfigure.web.embedded.TomcatWebServerFactoryCustomizer">
+      <point x="-165.33333333333348" y="-17.5" />
+      <point x="1477.125" y="255.0" />
+      <point x="1454.2552083333335" y="255.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory" target="org.springframework.boot.web.server.WebServerFactory">
+      <point x="126.0" y="-17.5" />
+      <point x="673.2552083333334" y="160.0" />
+      <point x="680.5416666666667" y="160.0" />
+      <point x="680.5416666666667" y="65.0" />
+      <point x="842.8385416666667" y="65.0" />
+      <point x="-68.66666666666663" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.server.WebServerFactoryCustomizer" target="org.springframework.boot.web.server.WebServerFactory">
+      <point x="-1.1368683772161603E-13" y="-17.5" />
+      <point x="1133.5833333333333" y="65.0" />
+      <point x="980.171875" y="65.0" />
+      <point x="68.66666666666663" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor" target="org.springframework.boot.web.server.WebServerFactory">
+      <point x="-158.66666666666663" y="-17.5" />
+      <point x="834.5885416666667" y="160.0" />
+      <point x="911.5052083333334" y="160.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar" target="org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration">
+      <point x="105.33333333333326" y="17.5" />
+      <point x="1217.5885416666665" y="350.0" />
+      <point x="1174.0520833333335" y="350.0" />
+      <point x="148.66666666666663" y="-17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.embedded.tomcat.TomcatWebServer" target="org.springframework.boot.web.server.WebServer">
+      <point x="0.0" y="-17.5" />
+      <point x="545.0" y="65.0" />
+      <point x="422.4270833333336" y="65.0" />
+      <point x="51.0" y="17.5" />
+    </edge>
+    <edge source="org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext" target="org.springframework.boot.web.server.WebServer">
+      <point x="-96.5" y="-17.5" />
+      <point x="116.5" y="55.0" />
+      <point x="320.4270833333336" y="55.0" />
+      <point x="-51.0" y="17.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8486137667304015" x="1095.921252746015" y="325.858164817214" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
