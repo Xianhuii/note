@@ -208,6 +208,29 @@ void postProcessEnvironment(ConfigurableEnvironment environment, ResourceLoader 
 }
 ```
 
+实际加载逻辑位于`ConfigDataEnvironment#processAndApply()`：
+```java
+void processAndApply() {  
+   // 创建importer
+   ConfigDataImporter importer = new ConfigDataImporter(this.logFactory, this.notFoundAction, this.resolvers,  
+         this.loaders);  
+   registerBootstrapBinder(this.contributors, null, DENY_INACTIVE_BINDING);  
+   // 创建contributors，缓存加载的配置源
+   ConfigDataEnvironmentContributors contributors = processInitial(this.contributors, importer);  
+   // 创建activationContext，用于校验配置是否符合激活条件
+   ConfigDataActivationContext activationContext = createActivationContext(  
+         contributors.getBinder(null, BinderOption.FAIL_ON_BIND_TO_INACTIVE_SOURCE));  
+   // 加载配置源
+   contributors = processWithoutProfiles(contributors, importer, activationContext);  
+   // 根据profile过滤配置源
+   activationContext = withProfiles(contributors, activationContext);  
+   contributors = processWithProfiles(contributors, importer, activationContext);  
+   // 添加配置源到environment
+   applyToEnvironment(contributors, activationContext, importer.getLoadedLocations(),  
+         importer.getOptionalLocations());  
+}
+```
+
 
 
 ## 2.2 printBanner
