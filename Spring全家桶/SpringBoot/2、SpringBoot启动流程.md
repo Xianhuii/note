@@ -356,6 +356,12 @@ public void printBanner(Environment environment, Class<?> sourceClass, PrintStre
 ```
 
 ## 2.3 createApplicationContext
+`SpringApplication#createApplicationContext()`会创建applicationContext：
+```java
+protected ConfigurableApplicationContext createApplicationContext() {  
+   return this.applicationContextFactory.create(this.webApplicationType);  
+}
+```
 
 ## 2.4 prepareContext
 
