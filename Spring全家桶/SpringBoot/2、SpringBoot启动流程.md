@@ -222,7 +222,7 @@ void processAndApply() {
          contributors.getBinder(null, BinderOption.FAIL_ON_BIND_TO_INACTIVE_SOURCE));  
    // 加载配置源
    contributors = processWithoutProfiles(contributors, importer, activationContext);  
-   // 根据profile过滤配置源
+   // 根据profile加载配置源
    activationContext = withProfiles(contributors, activationContext);  
    contributors = processWithProfiles(contributors, importer, activationContext);  
    // 添加配置源到environment
@@ -231,9 +231,129 @@ void processAndApply() {
 }
 ```
 
+导入逻辑大概如下：
+1. 遍历`congributors`，从中获取配置文件路径：
+	1. `optional:file:./;optional:file:./config/;optional:file:./config/*/`
+	2. `optional:classpath:/;optional:classpath:/config/`
+2. 遍历上述配置文件路径，使用`ConfigDataLocationResolver`实现类导入其中的配置文件。
 
+在创建`ConfigDataEnvironment`时，会使用SPI机制从`spring.factories`中加载`ConfigDataLocationResolver`实现类。`ConfigDataLocationResolvers#ConfigDataLocationResolvers()`：
+```java
+ConfigDataLocationResolvers(DeferredLogFactory logFactory, ConfigurableBootstrapContext bootstrapContext,  
+      Binder binder, ResourceLoader resourceLoader) {  
+   this(logFactory, bootstrapContext, binder, resourceLoader, SpringFactoriesLoader  
+         .loadFactoryNames(ConfigDataLocationResolver.class, resourceLoader.getClassLoader()));  
+}
+```
+
+默认添加的`ConfigDataLocationResolver`实现类有：
+- org.springframework.boot.context.config.ConfigTreeConfigDataLocationResolver：加载`configtree:`前缀的配置文件。
+- org.springframework.boot.context.config.StandardConfigDataLocationResolver：加载标准路径下的配置文件。
+
+`StandardConfigDataLocationResolver#resolve()`是加载标准路径下配置文件的入口：
+```java
+public List<StandardConfigDataResource> resolve(ConfigDataLocationResolverContext context,  
+      ConfigDataLocation location) throws ConfigDataNotFoundException {  
+   return resolve(getReferences(context, location.split()));  
+}
+```
+
+`StandardConfigDataLocationResolver#getReferences()`会对配置文件路径进行拼接。例如，对于`file:./`，它会为其添加`application`文件名，并根据`propertySourceLoaders`成员变量添加`properties`/`xml`/`yml`/`yaml`等文件后缀。如果有指定`profile`，在`processWithProfiles()`阶段还会生成再生成一份file:./application-`profile`.yml形式的路径进行添加。
+
+`StandardConfigDataLocationResolver`的`propertySourceLoaders`成员变量也是通过SPI机制，从`spring.factories`中加载`PropertySourceLoader`实现类。默认加载：
+- org.springframework.boot.env.PropertiesPropertySourceLoader：加载`properties`和`xml`配置文件。
+- org.springframework.boot.env.YamlPropertySourceLoader：加载`yml`和`yaml`配置文件。
+
+随后，`StandardConfigDataLocationResolver#resolve()`会根据解析出的具体配置文件路径，使用`resourceLoader`加载。`DefaultResourceLoader#getResource()`：
+```java
+public Resource getResource(String location) {  
+   Assert.notNull(location, "Location must not be null");  
+  
+   for (ProtocolResolver protocolResolver : getProtocolResolvers()) {  
+      Resource resource = protocolResolver.resolve(location, this);  
+      if (resource != null) {  
+         return resource;  
+      }  
+   }  
+  
+   if (location.startsWith("/")) {  
+      return getResourceByPath(location);  
+   }  
+   else if (location.startsWith(CLASSPATH_URL_PREFIX)) {  
+      return new ClassPathResource(location.substring(CLASSPATH_URL_PREFIX.length()), getClassLoader());  
+   }  
+   else {  
+      try {  
+         // Try to parse the location as a URL...  
+         URL url = new URL(location);  
+         return (ResourceUtils.isFileURL(url) ? new FileUrlResource(url) : new UrlResource(url));  
+      }  
+      catch (MalformedURLException ex) {  
+         // No URL -> resolve as resource path.  
+         return getResourceByPath(location);  
+      }  
+   }  
+}
+```
 
 ## 2.2 printBanner
+`SpringApplication#printBanner()`方法可以在启动时打印Logo：
+```java
+private Banner printBanner(ConfigurableEnvironment environment) {  
+   // 默认为Banner.Mode.CONSOLE
+   if (this.bannerMode == Banner.Mode.OFF) {  
+      return null;  
+   }  
+   ResourceLoader resourceLoader = (this.resourceLoader != null) ? this.resourceLoader  
+         : new DefaultResourceLoader(null);  
+   SpringApplicationBannerPrinter bannerPrinter = new SpringApplicationBannerPrinter(resourceLoader, this.banner);  
+   if (this.bannerMode == Mode.LOG) {  
+      return bannerPrinter.print(environment, this.mainApplicationClass, logger);  
+   }  
+   return bannerPrinter.print(environment, this.mainApplicationClass, System.out);  
+}
+```
+
+核心代码位于`SpringApplicationBannerPrinter#print()`：
+```java
+Banner print(Environment environment, Class<?> sourceClass, PrintStream out) {  
+   // 根据environment创建banner
+   Banner banner = getBanner(environment);  
+   // 
+   banner.printBanner(environment, sourceClass, out);  
+   return new PrintedBanner(banner, sourceClass);  
+}
+```
+
+`SpringApplicationBannerPrinter#getBanner()`可以根据配置创建对应的banner，只要我们指定相关配置文件，或者添加指定路径的文件，就可以自动进行打印：
+```java
+private Banner getBanner(Environment environment) {  
+   Banners banners = new Banners();  
+   // 添加spring.banner.image.location配置/banner.gif/banner.jpg/banner.png的banner
+   banners.addIfNotNull(getImageBanner(environment));  
+   // 添加spring.banner.location配置/banner.txt的banner
+   banners.addIfNotNull(getTextBanner(environment));  
+   if (banners.hasAtLeastOneBanner()) {  
+      return banners;  
+   }  
+   if (this.fallbackBanner != null) {  
+      return this.fallbackBanner;  
+   }  
+   // 默认SpringBoot官方的banner
+   return DEFAULT_BANNER;  
+}
+```
+
+如果使用默认SpringBoot官方的banner，会调用`SpringBootBanner#printBanner()`方法进行打印。
+
+如果添加图片或文本的banner，会调用`Banners#printBanner()`方法，会遍历添加的banner，调用各自实现去打印：
+```java
+public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {  
+   for (Banner banner : this.banners) {  
+      banner.printBanner(environment, sourceClass, out);  
+   }  
+}
+```
 
 ## 2.3 createApplicationContext
 
