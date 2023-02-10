@@ -215,7 +215,7 @@ void processAndApply() {
    ConfigDataImporter importer = new ConfigDataImporter(this.logFactory, this.notFoundAction, this.resolvers,  
          this.loaders);  
    registerBootstrapBinder(this.contributors, null, DENY_INACTIVE_BINDING);  
-   // 创建contributors，缓存加载的配置源
+   // 初步导入
    ConfigDataEnvironmentContributors contributors = processInitial(this.contributors, importer);  
    // 创建activationContext，用于校验配置是否符合激活条件
    ConfigDataActivationContext activationContext = createActivationContext(  
