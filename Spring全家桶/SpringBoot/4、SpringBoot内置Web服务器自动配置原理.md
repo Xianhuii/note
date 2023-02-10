@@ -43,3 +43,9 @@ SpringBoot为Web应用提供了内置Web服务器，我们不用再额外下载`
 5. 在`XxxWebServerApplicationContext`的`onfresh()`阶段，使用`XxxWebServerFactory`创建`WebServer`，并监听指定端口。
 
 # 1 内置Tomcat自动配置原理
+![[TomcatWebServer 1.png]]
+
+上图展示了内置Tomcat自动配置的相关类图，包括五个核心模块：
+- EmbeddedWebServerFactoryCustomizerAutoConfiguration：注册TomcatWebServerFactoryCustomizer。
+- ServletWebServerFactoryAutoConfiguration：注册WebServerFactoryCustomizerBeanPostProcessor和TomcatServletWebServerFactory
+- 
