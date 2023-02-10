@@ -363,8 +363,139 @@ protected ConfigurableApplicationContext createApplicationContext() {
 }
 ```
 
+webApplicationType在前面的步骤中会根据是否导入相关依赖进行判断：Serlvet、Reactive或None。
+
+默认的applicationContextFactory是`DefaultApplicationContextFactory`。因此，会调用`DefaultApplicationContextFactory#create()`方法：
+```java
+public ConfigurableApplicationContext create(WebApplicationType webApplicationType) {  
+   try {  
+      return getFromSpringFactories(webApplicationType, ApplicationContextFactory::create,  
+            AnnotationConfigApplicationContext::new);  
+   }  
+   catch (Exception ex) {  
+      throw new IllegalStateException("Unable create a default ApplicationContext instance, "  
+            + "you may need a custom ApplicationContextFactory", ex);  
+   }  
+}
+```
+
+接着会调用`DefaultApplicationContextFactory#getFromSpringFactories()`：
+```java
+private <T> T getFromSpringFactories(WebApplicationType webApplicationType,  
+      BiFunction<ApplicationContextFactory, WebApplicationType, T> action, Supplier<T> defaultResult) {  
+   // 遍历spring.factory中的ApplicationContextFactory实现类
+   for (ApplicationContextFactory candidate : SpringFactoriesLoader.loadFactories(ApplicationContextFactory.class,  
+         getClass().getClassLoader())) {  
+      // 调用实现类的ApplicationContextFactory::create方法
+      T result = action.apply(candidate, webApplicationType);  
+      if (result != null) {  
+         return result;  
+      }  
+   }  
+   // 实现类不顶用，调用AnnotationConfigApplicationContext::new
+   return (defaultResult != null) ? defaultResult.get() : null;  
+}
+```
+
+默认会从spring.factory中加载的ApplicationContextFactory实现类包括：
+- org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext.Factory：创建AnnotationConfigReactiveWebServerApplicationContext。
+- org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext.Factory：创建AnnotationConfigServletWebServerApplicationContext。
+
+简单来说，会根据`webApplicationType`创建不同的容器：
+- NONE：AnnotationConfigApplicationContext
+- SERVLET：AnnotationConfigServletWebServerApplicationContext
+- REACTIVE：AnnotationConfigReactiveWebServerApplicationContext
+
 ## 2.4 prepareContext
+`SpringApplication#prepareContext()`方法会对容器进行预处理：
+```java
+private void prepareContext(DefaultBootstrapContext bootstrapContext, ConfigurableApplicationContext context,  
+      ConfigurableEnvironment environment, SpringApplicationRunListeners listeners,  
+      ApplicationArguments applicationArguments, Banner printedBanner) {  
+   // 关联environment
+   context.setEnvironment(environment);  
+   // applicationContext的相关后处理：beanNameGenerator、resourceLoader、addConversionService
+   postProcessApplicationContext(context);  
+   // 触发ApplicationContextInitializer#initialize()回调（来自spring.factories）
+   applyInitializers(context);  
+   // 发布ApplicationContextInitializedEvent事件，ApplicationListener监听
+   listeners.contextPrepared(context);  
+   // 发布BootstrapContextClosedEvent事件，ApplicationListener监听
+   bootstrapContext.close(context);  
+   // 打印启动日志
+   if (this.logStartupInfo) {  
+      logStartupInfo(context.getParent() == null);  
+      logStartupProfileInfo(context);  
+   }  
+   // 添加SpringBoot指定的单例bean
+   ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();  
+   beanFactory.registerSingleton("springApplicationArguments", applicationArguments);  
+   if (printedBanner != null) {  
+      beanFactory.registerSingleton("springBootBanner", printedBanner);  
+   }  
+   // 设置容器参数
+   if (beanFactory instanceof AbstractAutowireCapableBeanFactory) {  
+      ((AbstractAutowireCapableBeanFactory) beanFactory).setAllowCircularReferences(this.allowCircularReferences);  
+      if (beanFactory instanceof DefaultListableBeanFactory) {  
+         ((DefaultListableBeanFactory) beanFactory)  
+               .setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);  
+      }  
+   }  
+   if (this.lazyInitialization) {  
+      context.addBeanFactoryPostProcessor(new LazyInitializationBeanFactoryPostProcessor());  
+   }  
+   context.addBeanFactoryPostProcessor(new PropertySourceOrderingBeanFactoryPostProcessor(context));  
+   // 添加resources作为BeanDefinition到容器：primarySources（启动类）、sources
+   Set<Object> sources = getAllSources();  
+   Assert.notEmpty(sources, "Sources must not be empty");  
+   load(context, sources.toArray(new Object[0]));  
+   // 发布ApplicationPreparedEvent事件，ApplicationListener监听
+   listeners.contextLoaded(context);  
+}
+```
 
 ## 2.5 refreshContext
+`SpringApplication#refreshContext()`方法会调用刷新applicationContest：
+```java
+private void refreshContext(ConfigurableApplicationContext context) {  
+   // 注册shutdownHook
+   if (this.registerShutdownHook) {  
+      shutdownHook.registerApplicationContext(context);  
+   }  
+   // 刷新applicationContest
+   refresh(context);  
+}
+```
 
-## 2.6 callRunners
+它实际上会调用容器自身的刷新方法，对容器进行初始化操作，具体流程可以参看相关文章（[ApplicationContext体系](https://www.cnblogs.com/Xianhuii/p/17060707.html#13-refresh)）。`SpringApplication#refresh()`：
+```java
+protected void refresh(ConfigurableApplicationContext applicationContext) {  
+   applicationContext.refresh();  
+}
+```
+
+## 2.6 afterRefresh
+`SpringApplication#afterRefresh()`方法可以对刷新后的applicationContext进行一个回调操作，默认是个空方法，可以由子类具体去实现：
+```java
+protected void afterRefresh(ConfigurableApplicationContext context, ApplicationArguments args) {  
+}
+```
+
+## 2.7 callRunners
+`SpringApplication#callRunners()`方法会执行容器中`ApplicationRunner`和`CommandLineRunner`的回调，只要我们添加这两个bean，就会在这个阶段进行执行回调：
+```java
+private void callRunners(ApplicationContext context, ApplicationArguments args) {  
+   List<Object> runners = new ArrayList<>();  
+   runners.addAll(context.getBeansOfType(ApplicationRunner.class).values());  
+   runners.addAll(context.getBeansOfType(CommandLineRunner.class).values());  
+   AnnotationAwareOrderComparator.sort(runners);  
+   for (Object runner : new LinkedHashSet<>(runners)) {  
+      if (runner instanceof ApplicationRunner) {  
+         callRunner((ApplicationRunner) runner, args);  
+      }  
+      if (runner instanceof CommandLineRunner) {  
+         callRunner((CommandLineRunner) runner, args);  
+      }  
+   }  
+}
+```
