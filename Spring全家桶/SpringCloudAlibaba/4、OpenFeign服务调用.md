@@ -9,6 +9,13 @@
 ```
 
 ## 1.2 配置
+在`application.properties`中，我们可以配置针对特定第三方微服务的基本配置：
+```properteis
+feign.client.config.service1.connect-timeout=5000  
+feign.client.config.service1.read-timeout=5000
+```
+
+当然，这些基本配置有默认值，我们也可以直接使用默认值。
 
 ## 1.3 业务开发
 首先要为第三方微服务定义一个请求接口。通过`@FeignClient`设置第三方微服务的`服务名`，然后再定义请求接口：
