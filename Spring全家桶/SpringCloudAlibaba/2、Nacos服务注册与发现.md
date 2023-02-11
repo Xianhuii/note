@@ -30,6 +30,8 @@
 ```
 
 ### 1.2.2 配置
+在`application.properties`中配置服务注册与发现信息。
+
 对于Spring MVC，可以设置端口号和应用名：
 ```properties
 server.port=8081  

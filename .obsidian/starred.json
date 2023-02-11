@@ -4,6 +4,16 @@
       "type": "file",
       "title": "5、SpringBoot注册Servlet、Filter和Listener的方法和原理",
       "path": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md"
+    },
+    {
+      "type": "file",
+      "title": "3、Nacos配置中心",
+      "path": "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md"
+    },
+    {
+      "type": "file",
+      "title": "2、Nacos服务注册与发现",
+      "path": "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md"
     }
   ]
 }
