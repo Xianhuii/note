@@ -14,6 +14,11 @@
       "type": "file",
       "title": "2、Nacos服务注册与发现",
       "path": "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md"
+    },
+    {
+      "type": "file",
+      "title": "4、OpenFeign服务调用",
+      "path": "Spring全家桶/SpringCloudAlibaba/4、OpenFeign服务调用.md"
     }
   ]
 }

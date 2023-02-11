@@ -1,5 +1,6 @@
 package com.xianhuii.controller;
 
+import com.xianhuii.feign.Service1Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,6 +19,9 @@ public class ConsumerController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private Service1Client service1Client;
+
     @GetMapping("/consumer")
     public void consumer() throws IOException {
         String result = loadBalancerClient.execute("service1", (instance) -> {
@@ -27,5 +31,10 @@ public class ConsumerController {
             return restTemplate.getForEntity(url, String.class).getBody();
         });
         System.out.println(result);
+    }
+
+    @GetMapping("/consumer2")
+    public void consumer2() {
+        System.out.println(service1Client.test());
     }
 }
