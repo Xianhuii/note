@@ -36,7 +36,7 @@ Spring Cloud Alibaba依赖于Spring Boot和Spring Cloud，我们需要在父工�
 </dependencyManagement>
 ```
 
-`spring-boot-starter-parent`管理着Spring Boogie各个starter的对应版本，`spring-cloud-dependencies`管理着Spring Cloud各个组件的对应版本，`spring-cloud-alibaba-denpendencies`管理着Spring Cloud Alibaba各个组件的对应版本。
+`spring-boot-starter-parent`管理着Spring Boot各个starter的对应版本，`spring-cloud-dependencies`管理着Spring Cloud各个组件的对应版本，`spring-cloud-alibaba-denpendencies`管理着Spring Cloud Alibaba各个组件的对应版本。
 
 在子服务中，引入组件依赖时不必指定版本，会从上述依赖管理中获取对应的版本信息，避免依赖冲突。
 
@@ -46,9 +46,19 @@ Spring Cloud Alibaba依赖于Spring Boot和Spring Cloud，我们需要在父工�
 最新的适配版本可以查看官网（[版本说明 · alibaba/spring-cloud-alibaba Wiki (github.com)](https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E)）。
 
 # 2 子服务
-每个子服务都是一个相对独立的项目，我们可以根据业务引入所需的组件。
+每个子服务都是一个相对独立的项目，我们可以根据业务引入所需的分布式组件。
 
-每个组件都提供了特定的一小块功能，我们可以按需引入：
+每个分布式组件都提供了特定的一小块功能，我们可以按需引入：
 - 服务注册与发现：`spring-cloud-starter-alibaba-nacos-discovery`
 - 配置中心：`spring-cloud-starter-alibaba-nacos-config`
-- 流量哨兵：`spring-cloud-starter-alibaba-sentinel`
+- 服务熔断：`spring-cloud-starter-alibaba-sentinel`
+- 服务路由：`spring-cloud-starter-gateway`
+- 服务调用：`spring-cloud-starter-openfeign`
+- 分布式事务：`spring-cloud-starter-alibaba-seata`
+- ……
+
+除了分布式组件，我们也可以按需引入特定的第三方依赖，例如：`spring-boot-starter-web`。
+
+这些分布式组件都是相互独立的功能，它们会在微服务的特定业务模块下起作用，我们在使用时只需要分别配置即可。
+
+我们在学习和使用分布式组件时，可以将它们当作是独立的个体，类似于Spring MVC和MyBatis的关系，这样可以大大减小学习的压力。
