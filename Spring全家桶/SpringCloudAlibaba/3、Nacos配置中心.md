@@ -29,15 +29,37 @@
 ```
 
 ### 1.3.2 本地配置
+>配置文件源码位于`com.alibaba.cloud.nacos.NacosConfigProperties`。
+
 在本地配置必须指定配置中心的地址：
 ```properties
 spring.cloud.nacos.config.server-addr=127.0.0.1:8848
+```
+
+如果设置了Nacos用户名和密码，也需要添加相关配置：
+```properties
+spring.cloud.nacos.config.username=root  
+spring.cloud.nacos.config.password=root
 ```
 
 如果指定了命名空间，也需要进行配置：
 ```properties
 spring.cloud.nacos.config.namespace=b93fda8d-6585-4aa2-8678-b0dc37511029
 ```
+
+### 1.3.3 启动项目
+启动项目不需要其他配置，像普通Spring Boot项目启动即可：
+```java
+@SpringBootApplication  
+public class Main {  
+    public static void main(String[] args) {  
+        SpringApplication.run(Main.class, args);  
+    }  
+}
+```
+
+我们在项目中可以直接从`environment`中获取到配置中心的配置：
+
 
 # 2 理论
 
