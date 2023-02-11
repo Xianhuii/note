@@ -19,8 +19,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "03629bf8494011ca",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -87,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md",
+                "file": "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md",
+                "file": "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md"
+                "file": "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md"
               }
             }
           }
@@ -150,10 +164,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d405637118145983",
+  "active": "03629bf8494011ca",
   "lastOpenFiles": [
-    "Spring全家桶/SpringCloudAlibaba/1、SpringCloudAlibaba项目搭建流程.md",
     "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md",
+    "Spring全家桶/SpringCloudAlibaba/1、SpringCloudAlibaba项目搭建流程.md",
     "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
     "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
     "Spring全家桶/SpringBoot/2、SpringBoot启动流程.md",
