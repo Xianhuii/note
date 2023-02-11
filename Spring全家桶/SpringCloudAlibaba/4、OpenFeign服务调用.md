@@ -1,3 +1,5 @@
+> 预备知识：[SpringCloudAlibaba项目搭建流程](https://www.cnblogs.com/Xianhuii/p/17111321.html)
+
 # 1 使用
 ## 1.1 依赖
 为了使用OpenFeign，首先需要引入相关依赖：

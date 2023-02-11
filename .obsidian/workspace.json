@@ -4,37 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "27af186e6bbd8435",
+        "id": "33ee473ab191f526",
         "type": "tabs",
         "children": [
           {
-            "id": "65a6e4d78508c5f3",
+            "id": "64b7becaed037ed6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Spring全家桶/SpringCloudAlibaba/4、OpenFeign服务调用.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2cb4daa7da3670b4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Spring全家桶/SpringCloudAlibaba/5、SpringCloudGateway服务路由.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -84,8 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -101,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring全家桶/SpringCloudAlibaba/5、SpringCloudGateway服务路由.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring全家桶/SpringCloudAlibaba/5、SpringCloudGateway服务路由.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Spring全家桶/SpringCloudAlibaba/5、SpringCloudGateway服务路由.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -164,13 +140,13 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2cb4daa7da3670b4",
+  "active": "64b7becaed037ed6",
   "lastOpenFiles": [
-    "Spring全家桶/SpringCloudAlibaba/4、OpenFeign服务调用.md",
     "Spring全家桶/SpringCloudAlibaba/5、SpringCloudGateway服务路由.md",
+    "Spring全家桶/SpringCloudAlibaba/4、OpenFeign服务调用.md",
+    "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
     "Spring全家桶/SpringCloudAlibaba/1、SpringCloudAlibaba项目搭建流程.md",
     "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md",
-    "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
     "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
     "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
     "Spring全家桶/SpringBoot/2、SpringBoot启动流程.md",
