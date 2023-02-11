@@ -12,9 +12,32 @@
 2. 启动：`startup.cmd -m standalone`
 
 ## 1.2 Nacos配置
+首先，通常需要创建命名空间，会生成唯一的`命名空间ID`：
+![[Pasted image 20230211202721.png]]
 
+然后，在对应命名空间中创建配置文件，主要是要指定`Data Id`作为配置文件名，便于识别。
+![[Pasted image 20230211202042.png]]
 
 ## 1.3 项目示例
+### 1.3.1 依赖
+作为配置客户端，需要配置连接配置中心的依赖：
+```xml
+<dependency>  
+    <groupId>com.alibaba.cloud</groupId>  
+    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>  
+</dependency>
+```
+
+### 1.3.2 本地配置
+在本地配置必须指定配置中心的地址：
+```properties
+spring.cloud.nacos.config.server-addr=127.0.0.1:8848
+```
+
+如果指定了命名空间，也需要进行配置：
+```properties
+spring.cloud.nacos.config.namespace=b93fda8d-6585-4aa2-8678-b0dc37511029
+```
 
 # 2 理论
 

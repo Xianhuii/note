@@ -54,6 +54,11 @@ spring.cloud.nacos.discovery.username=root
 spring.cloud.nacos.discovery.password=root
 ```
 
+如果在Nacos服务器上设置了命名空间，则需要指定：
+```properties
+spring.cloud.nacos.discovery.namespace=b93fda8d-6585-4aa2-8678-b0dc37511029
+```
+
 ### 1.2.3 暴露接口
 接着，我们可以按照Spring MVC的功能编写接口：
 ```java
