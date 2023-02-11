@@ -11,9 +11,10 @@
 1. 下载：[Releases · alibaba/nacos (github.com)](https://github.com/alibaba/nacos/releases)
 2. 启动：`startup.cmd -m standalone`
 
-## 1.2 微服务
+## 1.2 Nacos配置
 
 
+## 1.3 项目示例
 
 # 2 理论
 
