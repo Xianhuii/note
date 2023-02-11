@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service2" />
         <module name="service1" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="gateway" options="-parameters" />
       <module name="service1" options="-parameters" />
       <module name="service2" options="-parameters" />
     </option>

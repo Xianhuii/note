@@ -11,6 +11,7 @@
     <modules>
         <module>service1</module>
         <module>service2</module>
+        <module>gateway</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
