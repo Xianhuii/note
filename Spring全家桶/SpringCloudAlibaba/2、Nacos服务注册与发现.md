@@ -21,7 +21,32 @@
 ```
 
 ### 1.2.2 配置
+对于Spring MVC，可以设置端口号和应用名：
+```properties
+server.port=8081  
+spring.application.name=provider-service
+```
 
+对于Nacos，需要设置服务注册地址和服务名：
+```properties
+spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
+spring.cloud.nacos.discovery.service=provider-service
+```
+
+实际上，服务名默认会取`spring.application.name`配置：
+```java
+@Value("${spring.cloud.nacos.discovery.service:${spring.application.name:}}")  
+private String service;
+```
+
+如果设置了Nacos用户名和密码，也需要添加相关配置：
+```properties
+spring.cloud.nacos.discovery.username=root  
+spring.cloud.nacos.discovery.password=root
+```
+
+### 1.2.3 暴露接口
+接着，我们可以
 
 ## 1.3 服务消费者
 
