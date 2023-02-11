@@ -17,16 +17,6 @@ public class Main {
     }
 
     @Bean
-    public SpringClientFactory springClientFactory() {
-        return new SpringClientFactory();
-    }
-
-    @Bean
-    public LoadBalancerClient loadBalancerClient(SpringClientFactory springClientFactory) {
-        return new RibbonLoadBalancerClient(springClientFactory);
-    }
-
-    @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
