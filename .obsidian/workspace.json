@@ -11,8 +11,13 @@
             "id": "64b7becaed037ed6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "MySQL/1、InnoDB存储引擎的索引.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "MySQL/1、InnoDB存储引擎的索引.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "MySQL/1、InnoDB存储引擎的索引.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "MySQL/1、InnoDB存储引擎的索引.md"
+              }
             }
           }
         ],
@@ -142,6 +151,7 @@
   },
   "active": "64b7becaed037ed6",
   "lastOpenFiles": [
+    "MySQL/1、InnoDB存储引擎的索引.md",
     "Spring全家桶/SpringCloudAlibaba/5、SpringCloudGateway服务路由.md",
     "Spring全家桶/SpringCloudAlibaba/4、OpenFeign服务调用.md",
     "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
@@ -150,7 +160,6 @@
     "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
     "Spring全家桶/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
     "Spring全家桶/SpringBoot/2、SpringBoot启动流程.md",
-    "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md",
-    "Spring全家桶/SpringBoot/1、SpringBoot学习路线.md"
+    "Spring全家桶/SpringBoot/3、SpringBoot自动配置原理.md"
   ]
 }
