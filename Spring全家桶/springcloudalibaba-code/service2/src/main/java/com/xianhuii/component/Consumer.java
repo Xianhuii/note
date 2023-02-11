@@ -16,12 +16,12 @@ public class Consumer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        loadBalancerClient.execute("service-provider", (instance) -> {
+        String result = loadBalancerClient.execute("service-provider", (instance) -> {
             String host = instance.getHost();
             int port = instance.getPort();
             String url = "http://" + host + ":" + port + "/test";
-            String result = restTemplate.getForEntity(url, String.class).getBody();
-            return result;
+            return restTemplate.getForEntity(url, String.class).getBody();
         });
+        System.out.println(result);
     }
 }
