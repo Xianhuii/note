@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MySQL/1、InnoDB存储引擎的索引.md",
+                "file": "MySQL/1、InnoDB存储引擎的B+树索引.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MySQL/1、InnoDB存储引擎的索引.md",
+                "file": "MySQL/1、InnoDB存储引擎的B+树索引.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "MySQL/1、InnoDB存储引擎的索引.md",
+                "file": "MySQL/1、InnoDB存储引擎的B+树索引.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MySQL/1、InnoDB存储引擎的索引.md"
+                "file": "MySQL/1、InnoDB存储引擎的B+树索引.md"
               }
             }
           }
@@ -151,7 +151,7 @@
   },
   "active": "64b7becaed037ed6",
   "lastOpenFiles": [
-    "MySQL/1、InnoDB存储引擎的索引.md",
+    "MySQL/1、InnoDB存储引擎的B+树索引.md",
     "Spring全家桶/SpringCloudAlibaba/5、SpringCloudGateway服务路由.md",
     "Spring全家桶/SpringCloudAlibaba/4、OpenFeign服务调用.md",
     "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
