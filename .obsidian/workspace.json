@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Java/JVM/1、Java内存区域.md",
+                "file": "消息队列/使用消息队列必须考虑的问题.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/JVM/1、Java内存区域.md",
+                "file": "消息队列/使用消息队列必须考虑的问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/JVM/1、Java内存区域.md",
+                "file": "消息队列/使用消息队列必须考虑的问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Java/JVM/1、Java内存区域.md"
+                "file": "消息队列/使用消息队列必须考虑的问题.md"
               }
             }
           }
@@ -166,6 +166,7 @@
   },
   "active": "2310fe87822d0c82",
   "lastOpenFiles": [
+    "Java/JVM/1、Java内存区域.md",
     "Java/线程和锁.md",
     "每日学习/面试整理.md",
     "缓存/使用Redis必须考虑的问题.md",
@@ -174,7 +175,6 @@
     "Spring全家桶/SpringCloudAlibaba/4、OpenFeign服务调用.md",
     "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
     "Spring全家桶/SpringCloudAlibaba/1、SpringCloudAlibaba项目搭建流程.md",
-    "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md",
-    "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md"
+    "Spring全家桶/SpringCloudAlibaba/2、Nacos服务注册与发现.md"
   ]
 }
