@@ -199,4 +199,27 @@ SELECT * FROM tb_test WHERE a LIKE '%AAA%' AND b LIKE '%BBB%';
 ### 4.4.2 show index
 通过`show index from tb_name`命令，可以查询表的索引信息。
 
-其中最关键的是`cardinality`值，它
+其中最关键的是`cardinality`值，它表示该索引的唯一值个数（估值）。
+
+优化器会根据`cardinality`值判断是否走该索引。
+
+`cardinality/记录行树`越接近1，表示该索引的选择性越高。
+
+相反，`cardinality/记录行树`越接近于0，表示该索引的选择性越差，我们应该考虑是否有必要创建该索引。
+
+比如对性别字段创建索引，数据量越大时，该索引的`cardinality/记录行树`值就越接近于0。
+
+需要注意的是，`cardinality`是一个预估值，数据库都是通过采样方式来完成的。
+
+## 4.5 查询条件
+走索引的查询条件：
+- `in`
+- `is null`
+- `or`条件都是同一个索引字段
+
+不走索引的查询条件：
+- `not in`
+- `is not null`
+- `!=`、`<>`
+- 隐式类型转换：`where stringVal = 123`
+- 函数运算
