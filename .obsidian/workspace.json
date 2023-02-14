@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "33ee473ab191f526",
+        "id": "0bbf2cb0a238920c",
         "type": "tabs",
         "children": [
           {
-            "id": "64b7becaed037ed6",
+            "id": "19577c89442386db",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/线程和锁.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -87,7 +82,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/线程和锁.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +98,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/线程和锁.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,9 +119,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Java/线程和锁.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -150,11 +141,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "64b7becaed037ed6",
+  "active": "19577c89442386db",
   "lastOpenFiles": [
+    "Java/线程和锁.md",
     "消息队列/使用消息队列必须考虑的问题.md",
     "Java/JVM/1、Java内存区域.md",
-    "Java/线程和锁.md",
     "每日学习/面试整理.md",
     "缓存/使用Redis必须考虑的问题.md",
     "MySQL/1、InnoDB存储引擎的B+树索引.md",
