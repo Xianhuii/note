@@ -140,12 +140,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "4a417aa747174df8",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
+    "Java/JVM/1、Java内存区域.md",
     "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
     "Java/线程和锁.md",
     "消息队列/使用消息队列必须考虑的问题.md",
-    "Java/JVM/1、Java内存区域.md",
     "每日学习/面试整理.md",
     "缓存/使用Redis必须考虑的问题.md",
     "MySQL/1、InnoDB存储引擎的B+树索引.md",
