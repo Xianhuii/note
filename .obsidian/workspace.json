@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "0bbf2cb0a238920c",
+        "id": "9fb055ebd3007281",
         "type": "tabs",
         "children": [
           {
-            "id": "19577c89442386db",
+            "id": "4a417aa747174df8",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -66,13 +61,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -88,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -151,8 +140,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "19577c89442386db",
+  "active": "4a417aa747174df8",
   "lastOpenFiles": [
+    "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
     "Java/线程和锁.md",
     "消息队列/使用消息队列必须考虑的问题.md",
     "Java/JVM/1、Java内存区域.md",
@@ -161,7 +151,6 @@
     "MySQL/1、InnoDB存储引擎的B+树索引.md",
     "Spring全家桶/SpringCloudAlibaba/5、SpringCloudGateway服务路由.md",
     "Spring全家桶/SpringCloudAlibaba/4、OpenFeign服务调用.md",
-    "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md",
-    "Spring全家桶/SpringCloudAlibaba/1、SpringCloudAlibaba项目搭建流程.md"
+    "Spring全家桶/SpringCloudAlibaba/3、Nacos配置中心.md"
   ]
 }
