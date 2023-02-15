@@ -27,4 +27,12 @@ public class CreateThreadDemo {
         thread.start();
         System.out.println("main()");
     }
+
+    class MyThread implements Runnable {
+
+        @Override
+        public void run() {
+
+        }
+    }
 }
