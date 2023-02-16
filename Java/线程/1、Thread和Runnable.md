@@ -300,7 +300,7 @@ private void init(ThreadGroup g, Runnable target, String name,
 
 线程对象初始化后，它的`threadStatus=0`，处于`State.NEW`状态。
 
-## 2.5 启动线程
+## 2.5 启动线程方法
 通过`java.lang.Thread#start()`方法启动线程：
 ```java
 public synchronized void start() {  
@@ -429,7 +429,7 @@ JVM_END
 
 线程对象启动后，它会处于`State.RUNNABLE`状态。
 
-## 2.6 阻塞线程
+## 2.6 阻塞线程方法
 ### 2.6.1 获取锁失败
 如果当前线程在执行时间片中尝试获取锁，但是发现锁被其他线程持有了，那么当前线程就会放弃执行，进入阻塞状态。等到下次执行时，再重新尝试获取锁。
 
@@ -597,7 +597,7 @@ thread1从`TIMED_WAITING`状态苏醒，进入`BLOCKED`状态。
 thread1获取执行时间片，进入`RUNNABLE`状态，从`Thread#sleep()`方法开始执行。
 任务执行完，线程状态都变成了`TERMINATED`。
 
-## 2.7 （时间）等待线程
+## 2.7 （时间）等待线程方法
 使用`Object#wait()`、`Thread#join()`和`LockSupport#park()`方法，可以让线程进入`WAITING`状态。
 
 使用`Thread#sleep()`、`Object#wait(long)`、`Thread#join(long)`、`LockSupport#parkNanos()`和`LockSupport#parkUntil()`方法，可以让线程进入`TIMED_WAITING`状态。
@@ -1195,11 +1195,11 @@ void ObjectMonitor::notifyAll(TRAPS) {
 ```
 
 ### 2.7.2 Thread的方法
-使用`Thread#join()`方法，可以让线程对象进入`WAITING`状态。
+使用`Thread#join()`方法，可以让当前线程进入`WAITING`状态。
 
-使用`Thread#join(long)`和`Thread#sleep()`方法，可以让线程对象进入`TIMED_WAITING`状态。
+使用`Thread#join(long)`和`Thread#sleep()`方法，可以让当前线程进入`TIMED_WAITING`状态。
 
-`Thread#join()`、`Thread#join(long)`和`Thread#join(long,int)`底层是同一个方法：
+`Thread#join()`、`Thread#join(long)`和`Thread#join(long,int)`底层是同一个方法，它们会让当前线程在指定线程执行完成后再执行：
 ```java
 public final synchronized void join(long millis)  
 throws InterruptedException {  
@@ -1237,9 +1237,150 @@ throws InterruptedException {
 - `isAlive()`的作用对象是线程对象，用于校验指定线程的状态。
 - `wait()`的作用对象是当前`join()`方法所在锁对象，会阻塞调用该方法的线程。
 
+`Thread#sleep()`方法会让当前线程进入`TIMED_WAITING`状态，它和`Object#wait(long)`方法的区别是，它不会释放锁：
+```java
+public static native void sleep(long millis) throws InterruptedException;
+```
 
+`JVM_Sleep`方法如下：
+```cpp
+JVM_ENTRY(void, JVM_Sleep(JNIEnv* env, jclass threadClass, jlong millis))  
+  JVMWrapper("JVM_Sleep");  
+  
+  if (millis < 0) {  
+    THROW_MSG(vmSymbols::java_lang_IllegalArgumentException(), "timeout value is negative");  
+  }  
+  
+  if (Thread::is_interrupted (THREAD, true) && !HAS_PENDING_EXCEPTION) {  
+    THROW_MSG(vmSymbols::java_lang_InterruptedException(), "sleep interrupted");  
+  }  
+  
+  // Save current thread state and restore it at the end of this block.  
+  // And set new thread state to SLEEPING.  JavaThreadSleepState jtss(thread);  
+  
+#ifndef USDT2  
+  HS_DTRACE_PROBE1(hotspot, thread__sleep__begin, millis);  
+#else /* USDT2 */  
+  HOTSPOT_THREAD_SLEEP_BEGIN(  
+                             millis);  
+#endif /* USDT2 */  
+  
+  EventThreadSleep event;  
+  
+  if (millis == 0) {  
+    // When ConvertSleepToYield is on, this matches the classic VM implementation of  
+    // JVM_Sleep. Critical for similar threading behaviour (Win32)    
+    // It appears that in certain GUI contexts, it may be beneficial to do a short sleep    
+    // for SOLARIS    
+    if (ConvertSleepToYield) {  
+      os::yield();  
+    } else {  
+      ThreadState old_state = thread->osthread()->get_state();  
+      thread->osthread()->set_state(SLEEPING);  
+      os::sleep(thread, MinSleepInterval, false);  
+      thread->osthread()->set_state(old_state);  
+    }  
+  } else {  
+    ThreadState old_state = thread->osthread()->get_state();  
+    thread->osthread()->set_state(SLEEPING);  
+    if (os::sleep(thread, millis, true) == OS_INTRPT) {  
+      // An asynchronous exception (e.g., ThreadDeathException) could have been thrown on  
+      // us while we were sleeping. We do not overwrite those.      
+      if (!HAS_PENDING_EXCEPTION) {  
+        if (event.should_commit()) {  
+          post_thread_sleep_event(&event, millis);  
+        }  
+#ifndef USDT2  
+        HS_DTRACE_PROBE1(hotspot, thread__sleep__end,1);  
+#else /* USDT2 */  
+        HOTSPOT_THREAD_SLEEP_END(  
+                                 1);  
+#endif /* USDT2 */  
+        // TODO-FIXME: THROW_MSG returns which means we will not call set_state()  
+        // to properly restore the thread state.  That's likely wrong.  
+        THROW_MSG(vmSymbols::java_lang_InterruptedException(), "sleep interrupted");  
+      }  
+    }  
+    thread->osthread()->set_state(old_state);  
+  }  
+  if (event.should_commit()) {  
+    post_thread_sleep_event(&event, millis);  
+  }  
+#ifndef USDT2  
+  HS_DTRACE_PROBE1(hotspot, thread__sleep__end,0);  
+#else /* USDT2 */  
+  HOTSPOT_THREAD_SLEEP_END(  
+                           0);  
+#endif /* USDT2 */  
+JVM_END
+```
 
 ### 2.7.3 LockSupport
-使用`Object#wait()`、`Thread#join()`和`LockSupport#park()`方法，可以让线程进入`WAITING`状态。
+使用`LockSupport#park()`方法，可以让线程进入`WAITING`状态：
+```java
+public static void park() {  
+    UNSAFE.park(false, 0L);  
+}
+```
 
-使用`Thread#sleep()`、`Object#wait(long)`、`Thread#join(long)`、`LockSupport#parkNanos()`和`LockSupport#parkUntil()`方法，可以让线程进入`TIMED_WAITING`状态。
+使用`LockSupport#parkNanos()`和`LockSupport#parkUntil()`方法，可以让线程进入`TIMED_WAITING`状态：
+```java
+public static void parkNanos(long nanos) {  
+    if (nanos > 0)  
+        UNSAFE.park(false, nanos);  
+}
+public static void parkUntil(long deadline) {  
+    UNSAFE.park(true, deadline);  
+}
+```
+
+## 2.8 其他方法
+### 2.8.1 yield
+`Thread#yield()`会使当前线程让出时间片，进入`RUNNABLE`状态，但是不会释放锁，也没办法保证下次是哪个线程抢到时间片。
+
+### 2.8.2 interrupt
+每个线程都会持有一个`interrupted`状态。
+
+使用`Thread.interrupted()`和`thread.isInterrupted()`方法可以获取该状态。
+使用`thread.interrupt()`可以在线程外部设置该状态。
+
+通常会使用`Thread.interrupted()`和`thread.interrupt()`方法来安全的停止线程，例如：
+```java
+Runnable task = new Runnable() {  
+    @Override  
+    public void run() {  
+        while (!Thread.interrupted()) {  
+            System.out.println(Thread.currentThread().getName() + "interrupted: " + Thread.interrupted());  
+        }  
+    }  
+};  
+Thread thread = new Thread(task);  
+thread.start();  
+try {  
+    Thread.sleep(1000);  
+} catch (InterruptedException e) {  
+    e.printStackTrace();  
+}  
+System.out.println("before interrupt(): " + thread.isInterrupted());  
+thread.interrupt();  
+System.out.println("after interrupt()" + thread.isInterrupted());
+```
+
+### 2.8.3 exit
+使用`Thread#exit`方法可以在线程退出时进行回调处理，我们可以重写该方法，用于回收资源等。默认方法如下：
+```java
+private void exit() {  
+    if (group != null) {  
+        group.threadTerminated(this);  
+        group = null;  
+    }  
+    /* Aggressively null out all reference fields: see bug 4006245 */  
+    target = null;  
+    /* Speed the release of some of these resources */  
+    threadLocals = null;  
+    inheritableThreadLocals = null;  
+    inheritedAccessControlContext = null;  
+    blocker = null;  
+    uncaughtExceptionHandler = null;  
+}
+```

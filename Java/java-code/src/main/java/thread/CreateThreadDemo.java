@@ -4,8 +4,9 @@ public class CreateThreadDemo {
     public static void main(String[] args) {
 //        extendsThread();
 //        implementsRunnable();
-        multiTask();
+//        multiTask();
 //        multiTask2();
+        interrupt();
     }
 
     public static void extendsThread() {
@@ -47,6 +48,8 @@ public class CreateThreadDemo {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println(Thread.currentThread().getName() + ":yield()");
+                Thread.yield();
                 System.out.println(Thread.currentThread().getName() + ":run()");
             }
         };
@@ -54,11 +57,8 @@ public class CreateThreadDemo {
         thread1.start();
         Thread thread2 = new Thread(task);
         thread2.start();
-        try {
-            thread1.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        thread1.yield();
+
         System.out.println("main()");
     }
 
@@ -79,12 +79,9 @@ public class CreateThreadDemo {
                 System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getState() + ":" + index);
                 if (index == 0) {
                     index++;
-                    try {
-                        Thread.sleep(1);
-                        System.out.println(Thread.currentThread().getName() + ":after sleep():" + Thread.currentThread().getState() + ":" + index);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    System.out.println(Thread.currentThread().getName() + ":yield()");
+                    Thread.yield();
+                    System.out.println(Thread.currentThread().getName() + ":after yield():" + Thread.currentThread().getState() + ":" + index);
                 }
                 if (index == 1) {
                     this.notifyAll();
@@ -132,5 +129,26 @@ public class CreateThreadDemo {
         for (int i = 0; i < 3; i++) {
             System.out.println("in for(), thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
         }
+    }
+
+    public static void interrupt() {
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    System.out.println(Thread.currentThread().getName() + "interrupted: " + Thread.interrupted());
+                }
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("before interrupt(): " + thread.isInterrupted());
+        thread.interrupt();
+        System.out.println("after interrupt()" + thread.isInterrupted());
     }
 }

@@ -4,37 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "9fb055ebd3007281",
+        "id": "aa835931219f56ba",
         "type": "tabs",
         "children": [
           {
-            "id": "4a417aa747174df8",
+            "id": "d5211c3d7d352d96",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/线程/1、Thread和Runnable.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "8278788921e9f7b0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/线程/1、Thread和Runnable.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -84,8 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -101,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/线程/1、Thread和Runnable.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/线程/1、Thread和Runnable.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Java/线程/1、Thread和Runnable.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -163,10 +139,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "b0a56dff85469e9a",
+  "active": "d5211c3d7d352d96",
   "lastOpenFiles": [
-    "Java/线程/1、线程.md",
     "Java/线程/1、Thread和Runnable.md",
+    "Java/线程/1、线程.md",
     "Java/线程和锁.md",
     "Java/JVM/1、Java内存区域.md",
     "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
