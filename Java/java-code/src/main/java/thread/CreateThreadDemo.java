@@ -105,8 +105,9 @@ public class CreateThreadDemo {
     public static void multiTask2() {
         Runnable task = new MyThread();
         Thread thread1 = new Thread(task, "thread1");
-        thread1.start();
         Thread thread2 = new Thread(task, "thread2");
+        System.out.println("thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
+        thread1.start();
         thread2.start();
         while (!MyThread.exit) {
             System.out.println("thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
