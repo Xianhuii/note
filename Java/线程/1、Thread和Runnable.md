@@ -62,7 +62,10 @@ thread2.start();
 ```
 
 # 2 Thread核心源码
-## 2.1 静态方法
+## 2.1 成员变量
+![[Thread.png]]
+
+## 2.2 静态方法
 Thread在类加载时会执行`registerNatives()`方法，用来加载本地方法：
 ```java
 private static native void registerNatives();  
