@@ -41,7 +41,6 @@ public void run() {
 对于实现`Runnable`接口方式，Thread#run()方法会调用`target.run()`方法，转而执行我们重写的逻辑。这实际上是对代理模式的应用：
 ![[Runnable.png]]
 
-# 2 实现Runnable接口的优点
 
 
 # 3 Thread核心源码
