@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.util.concurrent.Callable</OriginalElement>
+  <nodes>
+    <node x="176.5" y="95.0">java.util.concurrent.RunnableFuture</node>
+    <node x="263.0" y="0.0">java.util.concurrent.Future</node>
+    <node x="50.5" y="95.0">java.lang.Thread</node>
+    <node x="134.69999999999996" y="230.0">java.util.concurrent.FutureTask</node>
+    <node x="382.5" y="95.0">java.util.concurrent.Callable</node>
+    <node x="18.271428571428544" y="0.0">java.lang.Runnable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.util.concurrent.FutureTask" target="java.util.concurrent.Callable">
+      <point x="36.5" y="-17.5" />
+      <point x="244.19999999999996" y="200.0" />
+      <point x="414.0" y="200.0" />
+      <point x="-31.5" y="17.5" />
+    </edge>
+    <edge source="java.util.concurrent.FutureTask" target="java.util.concurrent.FutureTask">
+      <point x="0.0" y="17.5" />
+      <point x="207.69999999999996" y="285.0" />
+      <point x="114.69999999999996" y="285.0" />
+      <point x="114.69999999999996" y="247.5" />
+      <point x="-73.0" y="-0.0" />
+    </edge>
+    <edge source="java.util.concurrent.RunnableFuture" target="java.lang.Runnable">
+      <point x="-46.5" y="-17.5" />
+      <point x="223.0" y="55.0" />
+      <point x="131.67142857142858" y="55.0" />
+      <point x="50.400000000000034" y="17.5" />
+    </edge>
+    <edge source="java.util.concurrent.FutureTask" target="java.lang.Runnable">
+      <point x="-60.833333333333314" y="-17.5" />
+      <point x="146.86666666666665" y="210.0" />
+      <point x="0.0" y="210.0" />
+      <point x="0.0" y="75.0" />
+      <point x="30.871428571428567" y="75.0" />
+      <point x="-50.39999999999998" y="17.5" />
+    </edge>
+    <edge source="java.util.concurrent.RunnableFuture" target="java.util.concurrent.Future">
+      <point x="46.5" y="-17.5" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="java.util.concurrent.FutureTask" target="java.util.concurrent.RunnableFuture">
+      <point x="12.166666666666686" y="-17.5" />
+      <point x="219.86666666666665" y="190.0" />
+      <point x="269.5" y="190.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="java.util.concurrent.FutureTask" target="java.lang.Thread">
+      <point x="-36.5" y="-17.5" />
+      <point x="171.19999999999996" y="200.0" />
+      <point x="124.69999999999999" y="200.0" />
+      <point x="21.19999999999999" y="17.5" />
+    </edge>
+    <edge source="java.lang.Thread" target="java.lang.Thread">
+      <point x="0.0" y="17.5" />
+      <point x="103.5" y="170.0" />
+      <point x="10.5" y="170.0" />
+      <point x="10.5" y="100.83333333333334" />
+      <point x="-53.0" y="-11.666666666666657" />
+    </edge>
+    <edge source="java.lang.Thread" target="java.lang.Runnable">
+      <point x="35.333333333333314" y="-17.5" />
+      <point x="138.83333333333331" y="65.0" />
+      <point x="106.47142857142859" y="65.0" />
+      <point x="25.200000000000045" y="17.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="118.0" y="266.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
