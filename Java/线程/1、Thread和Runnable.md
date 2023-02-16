@@ -1195,7 +1195,40 @@ void ObjectMonitor::notifyAll(TRAPS) {
 ```
 
 ### 2.7.2 Thread的方法
+使用`Thread#join()`方法，可以让线程对象进入`WAITING`状态。
 
+使用`Thread#join(long)`和`Thread#sleep()`方法，可以让线程对象进入`TIMED_WAITING`状态。
+
+`Thread#join()`、`Thread#join(long)`和`Thread#join(long,int)`底层是同一个方法：
+```java
+public final synchronized void join(long millis)  
+throws InterruptedException {  
+    long base = System.currentTimeMillis();  
+    long now = 0;  
+  
+    if (millis < 0) {  
+        throw new IllegalArgumentException("timeout value is negative");  
+    }  
+    // Thread#join()或Thread#join(0)
+    if (millis == 0) {  
+        // 
+        while (isAlive()) {  
+            wait(0);  
+        }  
+    } 
+    // Thread#join(long)
+    else {  
+        while (isAlive()) {  
+            long delay = millis - now;  
+            if (delay <= 0) {  
+                break;  
+            }  
+            wait(delay);  
+            now = System.currentTimeMillis() - base;  
+        }  
+    }  
+}
+```
 
 ### 2.7.3 LockSupport
 使用`Object#wait()`、`Thread#join()`和`LockSupport#park()`方法，可以让线程进入`WAITING`状态。
