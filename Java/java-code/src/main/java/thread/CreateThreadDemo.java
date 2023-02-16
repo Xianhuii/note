@@ -72,6 +72,18 @@ public class CreateThreadDemo {
                     exit = true;
                 }
                 System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getState() + ":" + index);
+                if (index == 0) {
+                    index++;
+                    try {
+                        Thread.sleep(1);
+                        System.out.println(Thread.currentThread().getName() + ":after sleep():" + Thread.currentThread().getState() + ":" + index);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (index == 1) {
+                    this.notifyAll();
+                }
             }
         }
 
@@ -106,14 +118,14 @@ public class CreateThreadDemo {
         Runnable task = new MyThread();
         Thread thread1 = new Thread(task, "thread1");
         Thread thread2 = new Thread(task, "thread2");
-        System.out.println("thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
+        System.out.println("before start(), thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
         thread1.start();
         thread2.start();
         while (!MyThread.exit) {
-            System.out.println("thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
+            System.out.println("in while(), thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
         }
-        for (int i = 0; i < 10; i++) {
-            System.out.println("thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
+        for (int i = 0; i < 3; i++) {
+            System.out.println("in for(), thread1:" + thread1.getState() + ", thread2:" + thread2.getState());
         }
     }
 }
