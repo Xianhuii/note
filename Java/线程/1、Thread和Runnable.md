@@ -602,7 +602,7 @@ thread1获取执行时间片，进入`RUNNABLE`状态，从`Thread#sleep()`方�
 
 使用`Thread#sleep()`、`Object#wait(long)`、`Thread#join(long)`、`LockSupport#parkNanos()`和`LockSupport#parkUntil()`方法，可以让线程进入`TIMED_WAITING`状态。
 
-### 2.7.1 Object
+### 2.7.1 Object的方法
 `Object#wait()`方法有两个要求：
 1. 当前对象是锁对象。
 2. `Object#wait()`在同步代码块中执行。
@@ -1194,7 +1194,7 @@ void ObjectMonitor::notifyAll(TRAPS) {
 }
 ```
 
-### 2.7.2 Thread
+### 2.7.2 Thread的方法
 
 
 ### 2.7.3 LockSupport
