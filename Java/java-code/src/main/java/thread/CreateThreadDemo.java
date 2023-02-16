@@ -71,7 +71,7 @@ public class CreateThreadDemo {
                 if (index == 2) {
                     exit = true;
                 }
-                System.out.println(Thread.currentThread().getName() + ":" + index);
+                System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getState() + ":" + index);
             }
         }
 
