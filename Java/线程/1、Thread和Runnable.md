@@ -61,6 +61,6 @@ Thread thread2 = new Thread(task);
 thread2.start();
 ```
 
-# 3 Thread核心源码
+# 2 Thread核心源码
 
 
