@@ -63,5 +63,41 @@ thread2.start();
 
 # 2 Thread核心源码
 ## 2.1 静态方法
+Thread在类加载时会执行`registerNatives()`方法，用来加载本地方法：
+```java
+private static native void registerNatives();  
+static {  
+    registerNatives();  
+}
+```
 
+在`Thread.c`中，定义了需要加载的本地方法：
+```c
+// 本地方法数组
+static JNINativeMethod methods[] = {  
+    {"start0",           "()V",        (void *)&JVM_StartThread},  
+    {"stop0",            "(" OBJ ")V", (void *)&JVM_StopThread},  
+    {"isAlive",          "()Z",        (void *)&JVM_IsThreadAlive},  
+    {"suspend0",         "()V",        (void *)&JVM_SuspendThread},  
+    {"resume0",          "()V",        (void *)&JVM_ResumeThread},  
+    {"setPriority0",     "(I)V",       (void *)&JVM_SetThreadPriority},  
+    {"yield",            "()V",        (void *)&JVM_Yield},  
+    {"sleep",            "(J)V",       (void *)&JVM_Sleep},  
+    {"currentThread",    "()" THD,     (void *)&JVM_CurrentThread},  
+    {"countStackFrames", "()I",        (void *)&JVM_CountStackFrames},  
+    {"interrupt0",       "()V",        (void *)&JVM_Interrupt},  
+    {"isInterrupted",    "(Z)Z",       (void *)&JVM_IsInterrupted},  
+    {"holdsLock",        "(" OBJ ")Z", (void *)&JVM_HoldsLock},  
+    {"getThreads",        "()[" THD,   (void *)&JVM_GetAllThreads},  
+    {"dumpThreads",      "([" THD ")[[" STE, (void *)&JVM_DumpThreads},  
+    {"setNativeName",    "(" STR ")V", (void *)&JVM_SetNativeThreadName},  
+};  
+
+// 加载本地方法
+JNIEXPORT void JNICALL  
+Java_java_lang_Thread_registerNatives(JNIEnv *env, jclass cls)  
+{  
+    (*env)->RegisterNatives(env, cls, methods, ARRAY_LENGTH(methods));  
+}
+```
 
