@@ -76,8 +76,113 @@ thread2.start();
 - `inheritableThreadLocals`：存储线程本地变量
 - `stackSize`：当前线程的栈大小
 - `tid`：线程id
+- `threadStatus`：线程状态，默认为`0`，映射为`State.NEW`。
 
-## 2.2 静态方法
+## 2.2 线程状态
+Java中的线程包括以下状态：
+- `NEW`：线程对象还没有执行`start()`方法。
+- `RUNNABLE`：线程正在虚拟机中执行。
+- `BLOCKED`：线程由于在等待锁而处于阻塞状态。
+- `WAITING`：线程无限期地等待其他线程执行特定操作（`notify()`等）。
+- `TIMED_WAITING`：线程有限期地等待其他线程执行特定操作（`notify()`等）。
+- `TERMINATED`：线程已经终止退出。
+
+`java.lang.Thread.State`：
+```java
+public enum State {  
+    /**  
+     * Thread state for a thread which has not yet started.     
+     */    
+    NEW,  
+  
+    /**  
+     * Thread state for a runnable thread.  A thread in the runnable     
+     * state is executing in the Java virtual machine but it may     
+     * be waiting for other resources from the operating system     
+     * such as processor.     
+     */    
+    RUNNABLE,  
+  
+    /**  
+     * Thread state for a thread blocked waiting for a monitor lock.     
+     * A thread in the blocked state is waiting for a monitor lock     
+     * to enter a synchronized block/method or     
+     * reenter a synchronized block/method after calling     
+     * {@link Object#wait() Object.wait}.  
+     */    
+    BLOCKED,  
+  
+    /**  
+     * Thread state for a waiting thread.     
+     * A thread is in the waiting state due to calling one of the     
+     * following methods:     
+     * <ul>  
+     *   <li>{@link Object#wait() Object.wait} with no timeout</li>  
+     *   <li>{@link #join() Thread.join} with no timeout</li>  
+     *   <li>{@link LockSupport#park() LockSupport.park}</li>  
+     * </ul>  
+     *     
+     * <p>A thread in the waiting state is waiting for another thread to  
+     * perform a particular action.     
+     *     
+     * For example, a thread that has called <tt>Object.wait()</tt>  
+     * on an object is waiting for another thread to call     
+     * <tt>Object.notify()</tt> or <tt>Object.notifyAll()</tt> on     
+     * that object. A thread that has called <tt>Thread.join()</tt>  
+     * is waiting for a specified thread to terminate.     
+     */    
+    WAITING,  
+  
+    /**  
+     * Thread state for a waiting thread with a specified waiting time.     
+     * A thread is in the timed waiting state due to calling one of     
+     * the following methods with a specified positive waiting time:     
+     * <ul>  
+     *   <li>{@link #sleep Thread.sleep}</li>  
+     *   <li>{@link Object#wait(long) Object.wait} with timeout</li>  
+     *   <li>{@link #join(long) Thread.join} with timeout</li>  
+     *   <li>{@link LockSupport#parkNanos LockSupport.parkNanos}</li>  
+     *   <li>{@link LockSupport#parkUntil LockSupport.parkUntil}</li>  
+     * </ul>  
+     */    
+    TIMED_WAITING,  
+  
+    /**  
+     * Thread state for a terminated thread.     
+     * The thread has completed execution.     
+     */    
+    TERMINATED;  
+}
+```
+
+获取当前线程的状态`java.lang.Thread#getState()`：
+```java
+public State getState() {  
+    // get current thread state  
+    return sun.misc.VM.toThreadState(threadStatus);  
+}
+```
+
+Java会将操作系统的线程状态映射到统一的`State`中，例如`sun.misc.VM#toThreadState()`：
+```java
+public static State toThreadState(int var0) {  
+    if ((var0 & 4) != 0) {  
+        return State.RUNNABLE;  
+    } else if ((var0 & 1024) != 0) {  
+        return State.BLOCKED;  
+    } else if ((var0 & 16) != 0) {  
+        return State.WAITING;  
+    } else if ((var0 & 32) != 0) {  
+        return State.TIMED_WAITING;  
+    } else if ((var0 & 2) != 0) {  
+        return State.TERMINATED;  
+    } else {  
+        return (var0 & 1) == 0 ? State.NEW : State.RUNNABLE;  
+    }  
+}
+```
+
+## 2.3 静态方法
 Thread在类加载时会执行`registerNatives()`方法，用来注册本地方法：
 ```java
 private static native void registerNatives();  
@@ -116,7 +221,7 @@ Java_java_lang_Thread_registerNatives(JNIEnv *env, jclass cls)
 }
 ```
 
-## 2.3 初始化方法
+## 2.4 初始化方法
 我们可以通过构造函数创建线程对象，常用的两个构造函数如下：
 ```java
 public Thread() {  
@@ -193,7 +298,9 @@ private void init(ThreadGroup g, Runnable target, String name,
 }
 ```
 
-## 2.4 启动线程
+线程对象初始化后，它的`threadStatus=0`，处于`State.NEW`状态。
+
+## 2.5 启动线程
 通过`java.lang.Thread#start()`方法启动线程：
 ```java
 public synchronized void start() {  
@@ -320,3 +427,6 @@ JVM_ENTRY(void, JVM_StartThread(JNIEnv* env, jobject jthread))
 JVM_END
 ```
 
+线程对象启动后，它会处于`State.RUNNABLE`状态。
+
+## 2.6 阻塞线程

@@ -11,11 +11,19 @@ public class CreateThreadDemo {
         Thread thread = new Thread() {
             @Override
             public void run() {
+                try {
+                    System.out.println(this.getState());
+                    Thread.sleep(1000);
+                    System.out.println(this.getState());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("run()");
             }
         };
         thread.start();
         System.out.println("main()");
+        System.out.println(thread.getState());
     }
 
     public static void implementsRunnable() {
@@ -33,6 +41,12 @@ public class CreateThreadDemo {
         Runnable task = new Runnable() {
             @Override
             public void run() {
+                try {
+                    this.notifyAll();
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("run()");
             }
         };
