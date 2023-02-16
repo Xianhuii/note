@@ -3,7 +3,8 @@ package thread;
 public class CreateThreadDemo {
     public static void main(String[] args) {
 //        extendsThread();
-        implementsRunnable();
+//        implementsRunnable();
+        multiTask();
     }
 
     public static void extendsThread() {
@@ -26,6 +27,19 @@ public class CreateThreadDemo {
         });
         thread.start();
         System.out.println("main()");
+    }
+
+    public static void multiTask() {
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("run()");
+            }
+        };
+        Thread thread1 = new Thread(task);
+        thread1.start();
+        Thread thread2 = new Thread(task);
+        thread2.start();
     }
 
     class MyThread implements Runnable {
