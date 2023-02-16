@@ -430,3 +430,39 @@ JVM_END
 线程对象启动后，它会处于`State.RUNNABLE`状态。
 
 ## 2.6 阻塞线程
+如果当前线程在执行时间片中尝试获取锁，但是发现锁被其他线程持有了，那么当前线程就会放弃执行，进入阻塞状态。等到下次执行时，再重新尝试获取锁。
+
+例如，我们定义一个任务：
+```java
+static class MyThread implements Runnable {  
+    private volatile int index = 0;  
+  
+    @Override  
+    public void run() {  
+        print();  
+    }  
+  
+    private synchronized void print() {  
+        for (; index < 3; index++) {  
+            if (index == 2) {  
+                System.exit(-1);  
+            }  
+            System.out.println(Thread.currentThread().getName() + ":" + index);  
+        }  
+    }  
+}
+```
+
+使用两个线程去执行：
+```java
+Runnable task = new MyThread();  
+Thread thread1 = new Thread(task, "thread1");  
+thread1.start();  
+Thread thread2 = new Thread(task, "thread2");  
+thread2.start();  
+while (true) {  
+    System.out.println("thread1:" + thread1.getState() + ", thread2:" + thread2.getState());  
+}
+```
+
+由于其中一个线程
