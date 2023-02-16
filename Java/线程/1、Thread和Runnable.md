@@ -62,5 +62,6 @@ thread2.start();
 ```
 
 # 2 Thread核心源码
+## 2.1 静态方法
 
 
