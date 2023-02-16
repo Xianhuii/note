@@ -4,8 +4,8 @@ public class CreateThreadDemo {
     public static void main(String[] args) {
 //        extendsThread();
 //        implementsRunnable();
-//        multiTask();
-        multiTask2();
+        multiTask();
+//        multiTask2();
     }
 
     public static void extendsThread() {
@@ -43,18 +43,23 @@ public class CreateThreadDemo {
             @Override
             public void run() {
                 try {
-                    this.notifyAll();
-                    this.wait();
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("run()");
+                System.out.println(Thread.currentThread().getName() + ":run()");
             }
         };
         Thread thread1 = new Thread(task);
         thread1.start();
         Thread thread2 = new Thread(task);
         thread2.start();
+        try {
+            thread1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("main()");
     }
 
     static class MyThread implements Runnable {

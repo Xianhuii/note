@@ -1211,24 +1211,33 @@ throws InterruptedException {
     }  
     // Thread#join()或Thread#join(0)
     if (millis == 0) {  
-        // 
+        // 如果线程对象仍然存活
         while (isAlive()) {  
+            // 当前线程wait()，
             wait(0);  
         }  
     } 
     // Thread#join(long)
     else {  
+        // 如果线程对象仍然存活
         while (isAlive()) {  
             long delay = millis - now;  
             if (delay <= 0) {  
                 break;  
             }  
+            // 当前线程wait(long)
             wait(delay);  
             now = System.currentTimeMillis() - base;  
         }  
     }  
 }
 ```
+
+需要注意区分`isAlive()`和`wait()`的作用对象：
+- `isAlive()`的作用对象是线程对象，用于校验指定线程的状态。
+- `wait()`的作用对象是当前`join()`方法所在锁对象，会阻塞调用该方法的线程。
+
+
 
 ### 2.7.3 LockSupport
 使用`Object#wait()`、`Thread#join()`和`LockSupport#park()`方法，可以让线程进入`WAITING`状态。
