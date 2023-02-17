@@ -236,6 +236,7 @@ final void runWorker(Worker w) {
                 beforeExecute(wt, task);  
                 Throwable thrown = null;  
                 try {  
+                    // 在work线程中执行task的run()方法
                     task.run();  
                 } catch (RuntimeException x) {  
                     thrown = x; throw x;  
