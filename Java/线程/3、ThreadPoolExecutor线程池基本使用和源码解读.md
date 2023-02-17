@@ -191,3 +191,70 @@ public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
 public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {  
 }
 ```
+
+## 3.4 执行工作线程
+在创建工作线程（`ThreadPoolExecutor#addWorker()`）时，会执行`Worker#Worker()`构造函数，将`Work`作为Runnable任务注入线程：
+```java
+Worker(Runnable firstTask) {  
+    setState(-1); // inhibit interrupts until runWorker  
+    this.firstTask = firstTask;  
+    this.thread = getThreadFactory().newThread(this);  
+}
+```
+
+后续在启动工作线程时，实际上会执行`ThreadPoolExecutor.Worker#run()`方法：
+```java
+public void run() {  
+    runWorker(this);  
+}
+```
+
+实际业务位于`ThreadPoolExecutor#runWorker()`：
+```java
+final void runWorker(Worker w) {  
+    Thread wt = Thread.currentThread();  
+    Runnable task = w.firstTask;  // 获取当前开发人员提交的任务
+    w.firstTask = null;  // 清空任务
+    w.unlock(); // allow interrupts  
+    boolean completedAbruptly = true;  
+    try {  
+        // 循环执行
+        // 1、如果task存在，执行task
+        // 2、否则，获取队列中任务task，如果存在，执行task
+        while (task != null || (task = getTask()) != null) {  
+            w.lock();  
+            // If pool is stopping, ensure thread is interrupted;  
+            // if not, ensure thread is not interrupted.  This            
+            // requires a recheck in second case to deal with            
+            // shutdownNow race while clearing interrupt            
+            if ((runStateAtLeast(ctl.get(), STOP) ||  
+                 (Thread.interrupted() &&  
+                  runStateAtLeast(ctl.get(), STOP))) &&  
+                !wt.isInterrupted())  
+                wt.interrupt();  
+            try {  
+                beforeExecute(wt, task);  
+                Throwable thrown = null;  
+                try {  
+                    task.run();  
+                } catch (RuntimeException x) {  
+                    thrown = x; throw x;  
+                } catch (Error x) {  
+                    thrown = x; throw x;  
+                } catch (Throwable x) {  
+                    thrown = x; throw new Error(x);  
+                } finally {  
+                    afterExecute(task, thrown);  
+                }  
+            } finally {  
+                task = null;  
+                w.completedTasks++;  
+                w.unlock();  
+            }  
+        }  
+        completedAbruptly = false;  
+    } finally {  
+        processWorkerExit(w, completedAbruptly);  
+    }  
+}
+```
