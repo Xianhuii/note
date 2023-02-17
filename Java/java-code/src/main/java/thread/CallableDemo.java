@@ -9,6 +9,7 @@ public class CallableDemo {
         Callable<Integer> task = new Callable() {
             @Override
             public Integer call() throws Exception {
+                // 业务处理
                 return 100;
             }
         };
