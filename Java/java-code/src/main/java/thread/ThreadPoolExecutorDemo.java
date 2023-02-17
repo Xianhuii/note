@@ -19,11 +19,11 @@ public class ThreadPoolExecutorDemo {
             @Override
             public void run() {
                 System.out.println(Thread.currentThread().getName() + ": run()");
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
             }
         };
         for (int i = 0; i < 10; i++) {
