@@ -311,11 +311,9 @@ final void runWorker(Worker w) {
 
 ![[ScheduledFutureTask2.png]]
 `ScheduledFutureTask`核心成员变量如下：
-- `sequenceNumber`：先进先出队列的序号。
 - `time`：下次执行时间戳。
 - `period`：执行周期（0：non-repeating task；正数：fixed-rate execution；负数：fixed-delay execution）
 - `outerTask`：代理的实际任务。
-- `heapIndex`：延迟队列的索引。
 
 工作线程会执行`ScheduledThreadPoolExecutor.ScheduledFutureTask#run()`方法：
 ```java
