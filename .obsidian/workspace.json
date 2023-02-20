@@ -153,6 +153,7 @@
   "active": "e125549e01ce27b1",
   "lastOpenFiles": [
     "Java/线程/3、ThreadPoolExecutor线程池基本使用和源码解读.md",
+    "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md",
     "Java/线程/2、Callable的基本使用和源码解读.md",
     "Java/线程/1、Thread和Runnable.md",
     "Java/线程/1、线程.md",
@@ -160,7 +161,6 @@
     "Java/JVM/1、Java内存区域.md",
     "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
     "消息队列/使用消息队列必须考虑的问题.md",
-    "每日学习/面试整理.md",
-    "缓存/使用Redis必须考虑的问题.md"
+    "每日学习/面试整理.md"
   ]
 }
