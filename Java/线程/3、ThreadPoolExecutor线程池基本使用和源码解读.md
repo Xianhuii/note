@@ -582,3 +582,17 @@ private Runnable getTask() {
     }  
 }
 ```
+
+在上述两种情况下，如果线程池中只存在核心工作线程，并且此时任务队列为空，线程会一直阻塞在`ThreadPoolExecutor#getTask()`方法中：
+```java
+try {  
+    Runnable r = workQueue.take();  
+    if (r != null)  
+        return r;  
+    timedOut = true;  
+} catch (InterruptedException retry) {  
+    timedOut = false;  
+}
+```
+
+此时，通过`ThreadPoolExecutor#shutdownNow()`或`ThreadPoolExecutor#runWorker()`中断线程，会抛出`InterruptedException`异常，在下次循环中就不再从队列中获取任务，从而停止当前线程。
