@@ -260,7 +260,7 @@ final void runWorker(Worker w) {
 }
 ```
 
-## 3.5 工作线程存活时间
+## 3.5 工作线程存活策略
 ### 3.5.1 getTask中的线程存活策略
 当`worker`启动后，会在工作线程中循环执行`firstTask`和`workQueue`中的任务。
 
