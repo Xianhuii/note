@@ -27,6 +27,7 @@ public class ScheduledThreadPoolExecutorDemo {
 //        scheduledThreadPoolExecutor.schedule(task, 1, TimeUnit.SECONDS);
         // 执行定时任务
         scheduledThreadPoolExecutor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
-//        scheduledThreadPoolExecutor.shutdown();
+        scheduledThreadPoolExecutor.shutdown();
+        scheduledThreadPoolExecutor.shutdownNow();
     }
 }
