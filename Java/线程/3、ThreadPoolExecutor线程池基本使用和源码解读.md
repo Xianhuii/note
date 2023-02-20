@@ -1,6 +1,64 @@
 # 1 使用
+线程池使用池化技术，通过重复使用线程，避免了重复创建线程的资源浪费。
 
+首先，我们需要在全局创建`ThreadPoolExecutor`对象，可以通过静态变量，也可以通过Spring单例对象。
+
+然后，在业务调用处，创建任务并提交到线程池。
+
+最后，为了安全考虑，在应用程序关闭时往往需要通过钩子函数，手动关闭线程池。
+
+实例代码如下：
+```java
+BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<>(3);  
+        ThreadFactory threadFactory = Executors.defaultThreadFactory();  
+        RejectedExecutionHandler rejectedExecutionHandler = new ThreadPoolExecutor.CallerRunsPolicy();  
+        // 1、创建线程池  
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(  
+                3,  
+                6,  
+                1,  
+                TimeUnit.SECONDS,  
+                blockingQueue,  
+                threadFactory,  
+                rejectedExecutionHandler);  
+        // 2、创建任务  
+        Runnable task = new Runnable() {  
+            @Override  
+            public void run() {  
+                System.out.println(Thread.currentThread().getName() + ": run()");  
+                try {  
+                    Thread.sleep(500);  
+                } catch (InterruptedException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        };  
+        // 3、提交任务  
+        for (int i = 0; i < 10; i++) {  
+            threadPoolExecutor.submit(task);  
+        }  
+        // 4、关闭线程池  
+        threadPoolExecutor.shutdown();  
+//        threadPoolExecutor.shutdownNow();
+```
 # 2 理论
+线程池的核心逻辑结构包括：
+- 核心工作线程：`corePoolSize`
+- 任务队列：`workQueue`
+- 额外工作线程：`maximumPoolSize`
+- 拒绝策略：`handler`
+
+在线程池正常工作过程中，如果提交一个新任务，会按照以下流程执行：
+1. 如果核心工作线程未满：创建核心工作线程执行任务。
+2. 如果核心工作线程已满：新任务添加到任务队列。
+3. 如果核心工作线程已满，且任务队列已满：新增额外工作线程。
+4. 如果任务队列已满，且额外工作线程已满：执行拒绝策略。
+
+工作线程不仅仅会执行一个任务，它会循环获取队列中的任务进行执行，从而达到重用线程的功能。
+
+在线程池正常工作过程中，如果长时间没有新任务，会根据策略剔除多余的工作线程。
+
+线程池会将任务封装成`RunnableFuture`，如果有返回值，可以直接通过`java.util.concurrent.Future#get()`方法获取。
 
 # 3 源码
 ![[ThreadPoolExecutor.png]]
