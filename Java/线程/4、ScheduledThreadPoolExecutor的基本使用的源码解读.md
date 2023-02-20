@@ -15,21 +15,21 @@ ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoo
 然后，在对应业务场景中，创建任务，并且提交到线程池：
 ```java
 // 2、创建任务  
-        Runnable task = new Runnable() {  
-            @Override  
-            public void run() {  
-                System.out.println(Thread.currentThread().getName() + ": run()");  
-                try {  
-                    Thread.sleep(500);  
-                } catch (InterruptedException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-        };  
-        // 执行延时任务  
-        scheduledThreadPoolExecutor.schedule(task, 1, TimeUnit.SECONDS);  
-        // 执行定时任务  
-        scheduledThreadPoolExecutor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
+Runnable task = new Runnable() {  
+    @Override  
+    public void run() {  
+        System.out.println(Thread.currentThread().getName() + ": run()");  
+        try {  
+            Thread.sleep(500);  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+};  
+// 执行延时任务  
+scheduledThreadPoolExecutor.schedule(task, 1, TimeUnit.SECONDS);  
+// 执行定时任务  
+scheduledThreadPoolExecutor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 ```
 
 在整个线程池使用结束后，需要主动关闭线程池：
