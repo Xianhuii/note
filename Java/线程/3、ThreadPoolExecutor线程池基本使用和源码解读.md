@@ -413,3 +413,115 @@ private void processWorkerExit(Worker w, boolean completedAbruptly) {
 ```
 
 ## 3.6 停止线程池
+在线程池执行过程中，如果遇到需要停止应用程序的场景，首先需要将线程池正确地停止。
+
+`ExecutorService`提供了两种关闭方法：
+1. `shutdown()`：等到队列中地所有任务都执行完成后才关闭线程池，速度慢但安全。
+2. `shutdownNow()`：强行关闭线程池，任务可能在执行到一半时被结束，速度快但不安全。
+
+`ThreadPoolExecutor#shutdown()`会将线程池状态设为`SHUTDOWN`，不再接收新任务，但是已提交任务会继续执行：
+```java
+public void shutdown() {  
+    final ReentrantLock mainLock = this.mainLock;  
+    mainLock.lock();  
+    try {  
+        // 检查关闭权限
+        checkShutdownAccess();  
+        // 设置线程池状态为SHUTDOWN
+        advanceRunState(SHUTDOWN);  
+        // 中断工作线程
+        interruptIdleWorkers();  
+        onShutdown(); // hook for ScheduledThreadPoolExecutor  
+    } finally {  
+        mainLock.unlock();  
+    }  
+    // 终止线程池
+    tryTerminate();  
+}
+```
+
+例如，在`ThreadPoolExecutor#addWorker()`过程中，会直接返回false：
+```java
+private boolean addWorker(Runnable firstTask, boolean core) {  
+    retry:  
+    for (;;) {  
+        int c = ctl.get();  
+        int rs = runStateOf(c);  
+  
+        // Check if queue empty only if necessary.  
+        if (rs >= SHUTDOWN &&  
+            ! (rs == SHUTDOWN &&  
+               firstTask == null &&  
+               ! workQueue.isEmpty()))  
+            return false;
+        }
+        // ……
+    }
+}
+```
+
+`ThreadPoolExecutor#shutdownNow()`会将线程池状态设为`STOP`，不再接收新任务，同时会打断正在运行地工作线程：
+```java
+public List<Runnable> shutdownNow() {  
+    List<Runnable> tasks;  
+    final ReentrantLock mainLock = this.mainLock;  
+    mainLock.lock();  
+    try {  
+        // 检查关闭权限
+        checkShutdownAccess();  
+        // 设置线程池状态为STOP
+        advanceRunState(STOP);  
+        // 中断工作线程
+        interruptWorkers();  
+        // 获取未执行任务
+        tasks = drainQueue();  
+    } finally {  
+        mainLock.unlock();  
+    }  
+    // 终止线程池
+    tryTerminate();  
+    return tasks;  
+}
+```
+
+在`ThreadPoolExecutor#runWorker()`过程中，会触发中断机制：
+```java
+final void runWorker(Worker w) {  
+    // ……
+    try {  
+        while (task != null || (task = getTask()) != null) {  
+            w.lock();  
+            // If pool is stopping, ensure thread is interrupted;  
+            // if not, ensure thread is not interrupted.  This            
+            // requires a recheck in second case to deal with            
+            // shutdownNow race while clearing interrupt            
+            if ((runStateAtLeast(ctl.get(), STOP) ||  
+                 (Thread.interrupted() &&  
+                  runStateAtLeast(ctl.get(), STOP))) &&  
+                !wt.isInterrupted())  
+                wt.interrupt();  
+            // ……
+        }  
+        completedAbruptly = false;  
+    } finally {  
+        processWorkerExit(w, completedAbruptly);  
+    }  
+}
+```
+
+后续不会再获取新任务，`ThreadPoolExecutor#getTask()`：
+```java
+private Runnable getTask() {  
+    boolean timedOut = false; // Did the last poll() time out?  
+    for (;;) {  
+        int c = ctl.get();  
+        int rs = runStateOf(c);  
+        // Check if queue empty only if necessary.  
+        if (rs >= SHUTDOWN && (rs >= STOP || workQueue.isEmpty())) {  
+            decrementWorkerCount();  
+            return null;  
+        }  
+        // ……
+    }  
+}
+```
