@@ -437,5 +437,90 @@ void reExecutePeriodic(RunnableScheduledFuture<?> task) {
 ```
 
 ## 2.5 延迟任务队列
-`ScheduledThreadPoolExecutor`使用的任务队列是`DelayedWorkQueue`，它是执行延时/定时任务的核心。
+`ScheduledThreadPoolExecutor`使用的任务队列是`DelayedWorkQueue`，它是基于堆的数据结构，是执行延时/定时任务的核心，主要用到了`compare/add/pool/take()`方法。
 
+### 2.5.1 compare
+
+### 2.5.2 add
+`ScheduledThreadPoolExecutor.DelayedWorkQueue#add()`用于添加任务：
+```java
+public boolean add(Runnable e) {  
+    return offer(e);  
+}
+```
+
+实际逻辑位于`ScheduledThreadPoolExecutor.DelayedWorkQueue#offer()`：
+```java
+public boolean offer(Runnable x) {  
+    if (x == null) throw new NullPointerException();  
+    RunnableScheduledFuture<?> e = (RunnableScheduledFuture<?>)x;  
+    final ReentrantLock lock = this.lock;  
+    lock.lock();  
+    try {  
+        int i = size;  
+        // 数组扩容
+        if (i >= queue.length)  
+            grow();  
+        size = i + 1;  
+        // 第一个节点，直接添加
+        if (i == 0) {  
+            queue[0] = e;  
+            setIndex(e, 0);  
+        // 子节点，根据下一次执行时间戳进行堆排序
+        } else {  
+            siftUp(i, e);  
+        }  
+        if (queue[0] == e) {  
+            leader = null;  
+            available.signal();  
+        }  
+    } finally {  
+        lock.unlock();  
+    }  
+    return true;  
+}
+```
+
+### 2.5.3 pool
+
+### 2.5.4 take
+`ScheduledThreadPoolExecutor.DelayedWorkQueue#take()`方法用于获取任务，该方法会阻塞线程：
+```java
+public RunnableScheduledFuture<?> take() throws InterruptedException {  
+    final ReentrantLock lock = this.lock;  
+    lock.lockInterruptibly();  
+    try {  
+        for (;;) {  
+            // 获取第一个任务
+            RunnableScheduledFuture<?> first = queue[0];  
+            // 如果任务为空，阻塞线程
+            if (first == null)  
+                available.await();  
+            // 如果任务不为空，判断延时
+            else {  
+                // 获取延时
+                long delay = first.getDelay(NANOSECONDS);  
+                if (delay <= 0)  
+                    return finishPoll(first);  
+                first = null; // don't retain ref while waiting  
+                if (leader != null)  
+                    available.await();  
+                else {  
+                    Thread thisThread = Thread.currentThread();  
+                    leader = thisThread;  
+                    try {  
+                        available.awaitNanos(delay);  
+                    } finally {  
+                        if (leader == thisThread)  
+                            leader = null;  
+                    }  
+                }  
+            }  
+        }  
+    } finally {  
+        if (leader == null && queue[0] != null)  
+            available.signal();  
+        lock.unlock();  
+    }  
+}
+```
