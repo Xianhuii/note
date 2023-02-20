@@ -437,9 +437,30 @@ void reExecutePeriodic(RunnableScheduledFuture<?> task) {
 ```
 
 ## 2.5 延迟任务队列
-`ScheduledThreadPoolExecutor`使用的任务队列是`DelayedWorkQueue`，它是基于堆的数据结构，是执行延时/定时任务的核心，主要用到了`compare/add/pool/take()`方法。
+`ScheduledThreadPoolExecutor`使用的任务队列是`DelayedWorkQueue`，它是基于堆的数据结构，是执行延时/定时任务的核心，主要用到了队列的`add/pool/take()`方法，以及任务的`compareTo()`方法。
 
-### 2.5.1 compare
+### 2.5.1 compareTo
+`ScheduledThreadPoolExecutor.ScheduledFutureTask#compareTo()`用于队列堆中的任务排序，主要是根据下次执行时间戳`time`进行从小到大排序：
+```java
+public int compareTo(Delayed other) {  
+    if (other == this) // compare zero if same object  
+        return 0;  
+    if (other instanceof ScheduledFutureTask) {  
+        ScheduledFutureTask<?> x = (ScheduledFutureTask<?>)other;  
+        long diff = time - x.time;  
+        if (diff < 0)  
+            return -1;  
+        else if (diff > 0)  
+            return 1;  
+        else if (sequenceNumber < x.sequenceNumber)  
+            return -1;  
+        else  
+            return 1;  
+    }  
+    long diff = getDelay(NANOSECONDS) - other.getDelay(NANOSECONDS);  
+    return (diff < 0) ? -1 : (diff > 0) ? 1 : 0;  
+}
+```
 
 ### 2.5.2 add
 `ScheduledThreadPoolExecutor.DelayedWorkQueue#add()`用于添加任务：
@@ -482,6 +503,57 @@ public boolean offer(Runnable x) {
 ```
 
 ### 2.5.3 pool
+`ScheduledThreadPoolExecutor.DelayedWorkQueue#poll()`方法用于获取任务，该方法会阻塞`timeout`时间，如果超时会返回空：
+```java
+public RunnableScheduledFuture<?> poll(long timeout, TimeUnit unit)  
+    throws InterruptedException {  
+    long nanos = unit.toNanos(timeout);  
+    final ReentrantLock lock = this.lock;  
+    lock.lockInterruptibly();  
+    try {  
+        for (;;) {  
+            // 获取第一个任务
+            RunnableScheduledFuture<?> first = queue[0];  
+            // 如果任务为空，阻塞线程nanos
+            if (first == null) {  
+                if (nanos <= 0)  
+                    return null;  
+                else  
+                    nanos = available.awaitNanos(nanos);  
+            } 
+            // 如果任务不为空，判断延时
+            else {  
+                // 获取延时时间：当前时间-下次执行时间
+                long delay = first.getDelay(NANOSECONDS);  
+                // 任务需要执行：获取任务，堆排序
+                if (delay <= 0)  
+                    return finishPoll(first);  
+                // 任务不需要执行：返回null或阻塞线程
+                if (nanos <= 0)  
+                    return null;  
+                first = null; // don't retain ref while waiting  
+                if (nanos < delay || leader != null)  
+                    nanos = available.awaitNanos(nanos);  
+                else {  
+                    Thread thisThread = Thread.currentThread();  
+                    leader = thisThread;  
+                    try {  
+                        long timeLeft = available.awaitNanos(delay);  
+                        nanos -= delay - timeLeft;  
+                    } finally {  
+                        if (leader == thisThread)  
+                            leader = null;  
+                    }  
+                }  
+            }  
+        }  
+    } finally {  
+        if (leader == null && queue[0] != null)  
+            available.signal();  
+        lock.unlock();  
+    }  
+}
+```
 
 ### 2.5.4 take
 `ScheduledThreadPoolExecutor.DelayedWorkQueue#take()`方法用于获取任务，该方法会阻塞线程：
@@ -498,10 +570,12 @@ public RunnableScheduledFuture<?> take() throws InterruptedException {
                 available.await();  
             // 如果任务不为空，判断延时
             else {  
-                // 获取延时
+                // 获取延时时间：当前时间-下次执行时间
                 long delay = first.getDelay(NANOSECONDS);  
+                // 任务需要执行：获取任务，堆排序
                 if (delay <= 0)  
                     return finishPoll(first);  
+                // 任务不需要执行：阻塞线程
                 first = null; // don't retain ref while waiting  
                 if (leader != null)  
                     available.await();  
