@@ -6,7 +6,7 @@
 ![[ThreadPoolExecutor.png]]
 
 ## 3.1 提交任务
-`AbstractExecutorService#submit()`提交任务：
+`AbstractExecutorService#submit()`提交任务，可以根据返回值获取任务的执行结果：
 ```java
 public Future<?> submit(Runnable task) {  
     // 空值校验
@@ -39,29 +39,35 @@ protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable) {
 }
 ```
 
-`ThreadPoolExecutor#execute()`执行任务：
+`ThreadPoolExecutor#execute()`执行任务，正常情况包括以下流程：
+1. 如果核心工作线程未满：创建核心工作线程执行任务。
+2. 如果核心工作线程已满：新任务添加到任务队列。
+3. 如果核心工作线程已满，且任务队列已满：新增额外工作线程。
+4. 如果任务队列已满，且额外工作线程已满：执行拒绝策略。
+
+`ThreadPoolExecutor#execute()`：
 ```java
 public void execute(Runnable command) {  
     // 控制校验
     if (command == null) throw new NullPointerException();  
     int c = ctl.get();  
-    // 1、工作线程数 < corePoolSize：新建线程，并执行
+    // 1、工作线程数 < corePoolSize：新建核心线程，并执行
     if (workerCountOf(c) < corePoolSize) {  
         if (addWorker(command, true))  
             return;  
         c = ctl.get();  
     }  
-    // 2、工作线程数 > corePoolSize && 线程池未停止 && 任务队列未满：添加到任务队列
+    // 2、工作线程数 >= corePoolSize && 线程池未停止 && 任务队列未满：添加到任务队列
     if (isRunning(c) && workQueue.offer(command)) {  
         int recheck = ctl.get();  
-        // 线程池未停止 && 从任务队列中移除任务：执行拒绝策略
+        // 线程池停止 && 从任务队列中移除任务：执行拒绝策略
         if (! isRunning(recheck) && remove(command))  
             reject(command);  
-        // 工作线程数 == 0：新建线程，并执行
+        // 工作线程数 == 0（核心线程数可能设置未0）：新建额外线程，并执行
         else if (workerCountOf(recheck) == 0)  
             addWorker(null, false);  
     }  
-    // 2、工作线程数 > corePoolSize && 任务队列已满：新建额外线程，并执行
+    // 3、工作线程数 >= corePoolSize && 任务队列已满：新建额外线程，并执行
     else if (!addWorker(command, false))  
         // 最大线程数已满：执行拒绝策略
         reject(command);  
@@ -69,7 +75,7 @@ public void execute(Runnable command) {
 ```
 
 ## 3.2 创建工作线程
-`ThreadPoolExecutor#addWorker()`创建工作线程：
+`ThreadPoolExecutor#addWorker()`会根据当前工作线程数量以及`core`实参，创建和启动工作线程：
 ```java
 private boolean addWorker(Runnable firstTask, boolean core) {  
     retry:  // 循环标签
@@ -146,7 +152,11 @@ private boolean addWorker(Runnable firstTask, boolean core) {
 ```
 
 ## 3.3 拒绝策略
-`ThreadPoolExecutor#reject()`方法是执行拒绝策略的入口：
+当线程池正常运行时，如果任务队列已满，并且额外工作线程也达到了最大数量，此时提交新任务会被拒绝。
+
+当线程池正在停止或已经停止，此时提交新任务也会被拒绝。
+
+`ThreadPoolExecutor#reject()`方法是执行拒绝策略的入口，不同拒绝策略会调用对应的实现类方法：
 ```java
 final void reject(Runnable command) {  
     handler.rejectedExecution(command, this);  
@@ -193,6 +203,8 @@ public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
 ```
 
 ## 3.4 执行工作线程
+ThreadPoolExecutor使用`Worker`对线程进行了封装。
+
 在创建工作线程（`ThreadPoolExecutor#addWorker()`）时，会执行`Worker#Worker()`构造函数，将`Work`作为Runnable任务注入线程：
 ```java
 Worker(Runnable firstTask) {  
@@ -209,7 +221,7 @@ public void run() {
 }
 ```
 
-实际业务位于`ThreadPoolExecutor#runWorker()`：
+实际业务位于`ThreadPoolExecutor#runWorker()`，它会循环获取队列中的任务进行执行。如果队列中没有新的任务，它会根据存活策略，结束当前线程：
 ```java
 final void runWorker(Worker w) {  
     Thread wt = Thread.currentThread();  
@@ -261,6 +273,14 @@ final void runWorker(Worker w) {
 ```
 
 ## 3.5 工作线程存活策略
+线程池在执行任务过程中，把队列中的所有任务都执行完了，并且在一段时间内都没有提交新任务。
+
+如果此时线程池中还有`多余`的工作线程，会考虑将它们剔除，避免占用CPU资源。
+
+工作线程是否需要剔除，主要有两个阶段的存活策略：
+1. 在从队列中获取任务时，会根据设置阻塞等待一定时间。如果超时都没有新任务，那么会返回空，跳出执行任务的循环。
+2. 跳出循环后，会判断工作线程数量是否小于最小工作线程容忍数量，进行剔除或替换。
+
 ### 3.5.1 getTask中的线程存活策略
 当`worker`启动后，会在工作线程中循环执行`firstTask`和`workQueue`中的任务。
 
@@ -268,7 +288,7 @@ final void runWorker(Worker w) {
 1. 剔除情况一：开启`allowCoreThreadTimeOut`功能。
 2. 剔除情况二：工作线程数 > 核心线程数。
 
-如果上述条件满足，会从`workQueue`中获取任务（等待`keepAliveTime`时间）：
+如果上述条件满足，会从`workQueue`中获取任务（阻塞等待`keepAliveTime`纳秒）：
 ```java
 workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS);
 ```
@@ -391,3 +411,5 @@ private void processWorkerExit(Worker w, boolean completedAbruptly) {
     }  
 }
 ```
+
+## 3.6 停止线程池
