@@ -45,35 +45,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "b6b080680e8df5b3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6b2523b5826c3d88",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/线程/6、深入理解synchronized.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -140,7 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "个人/面试官最常问的问题.md",
+                "file": "个人/自我介绍.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -157,7 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "个人/面试官最常问的问题.md",
+                "file": "个人/自我介绍.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -180,7 +153,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "个人/面试官最常问的问题.md"
+                "file": "个人/自我介绍.md"
               }
             }
           }
@@ -203,7 +176,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "7220509e01cc19b6",
+  "active": "e125549e01ce27b1",
   "lastOpenFiles": [
     "个人/期望和问题.md",
     "个人/面试官最常问的问题.md",
