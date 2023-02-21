@@ -22,8 +22,13 @@
     },
     {
       "type": "file",
-      "title": "4、ScheduledThreadPoolExecutor的基本使用的源码解读",
-      "path": "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md"
+      "title": "5、ThreadLocal基本使用和源码解读",
+      "path": "Java/线程/5、ThreadLocal基本使用和源码解读.md"
+    },
+    {
+      "type": "file",
+      "title": "6、深入理解synchronized",
+      "path": "Java/线程/6、深入理解synchronized.md"
     }
   ]
 }

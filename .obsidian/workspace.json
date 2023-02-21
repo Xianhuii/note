@@ -13,14 +13,41 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md",
+                "file": "个人/期望和问题.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b6b080680e8df5b3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6b2523b5826c3d88",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Java/线程/6、深入理解synchronized.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -70,8 +97,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -87,7 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md",
+                "file": "个人/期望和问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md",
+                "file": "个人/期望和问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +153,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md"
+                "file": "个人/期望和问题.md"
               }
             }
           }
@@ -150,17 +176,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e125549e01ce27b1",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
-    "Java/线程/3、ThreadPoolExecutor线程池基本使用和源码解读.md",
+    "Java/线程/6、深入理解synchronized.md",
+    "Java/线程/5、ThreadLocal基本使用和源码解读.md",
+    "个人/期望和问题.md",
     "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md",
+    "Java/线程/3、ThreadPoolExecutor线程池基本使用和源码解读.md",
     "Java/线程/2、Callable的基本使用和源码解读.md",
     "Java/线程/1、Thread和Runnable.md",
     "Java/线程/1、线程.md",
     "Java/线程和锁.md",
-    "Java/JVM/1、Java内存区域.md",
-    "Spring全家桶/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
-    "消息队列/使用消息队列必须考虑的问题.md",
-    "每日学习/面试整理.md"
+    "Java/JVM/1、Java内存区域.md"
   ]
 }
