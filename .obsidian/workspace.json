@@ -21,6 +21,32 @@
             }
           },
           {
+            "id": "7abc2be8ca97cf0e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "个人/期望和问题.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "7220509e01cc19b6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "个人/面试官最常问的问题.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "b6b080680e8df5b3",
             "type": "leaf",
             "state": {
@@ -46,7 +72,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -112,7 +139,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "个人/自我介绍.md",
+                "file": "个人/面试官最常问的问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +156,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "个人/自我介绍.md",
+                "file": "个人/面试官最常问的问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -152,7 +179,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "个人/自我介绍.md"
+                "file": "个人/面试官最常问的问题.md"
               }
             }
           }
@@ -175,17 +202,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e125549e01ce27b1",
+  "active": "7220509e01cc19b6",
   "lastOpenFiles": [
     "个人/期望和问题.md",
     "个人/自我介绍.md",
+    "个人/谈薪.md",
     "Java/线程/6、深入理解synchronized.md",
     "Java/线程/5、ThreadLocal基本使用和源码解读.md",
     "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md",
     "Java/线程/3、ThreadPoolExecutor线程池基本使用和源码解读.md",
     "Java/线程/2、Callable的基本使用和源码解读.md",
     "Java/线程/1、Thread和Runnable.md",
-    "Java/线程/1、线程.md",
-    "Java/线程和锁.md"
+    "Java/线程/1、线程.md"
   ]
 }
