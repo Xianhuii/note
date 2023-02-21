@@ -206,6 +206,7 @@
   "active": "7220509e01cc19b6",
   "lastOpenFiles": [
     "个人/期望和问题.md",
+    "个人/面试官最常问的问题.md",
     "个人/自我介绍.md",
     "个人/谈薪.md",
     "Java/线程/6、深入理解synchronized.md",
@@ -213,7 +214,6 @@
     "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md",
     "Java/线程/3、ThreadPoolExecutor线程池基本使用和源码解读.md",
     "Java/线程/2、Callable的基本使用和源码解读.md",
-    "Java/线程/1、Thread和Runnable.md",
-    "Java/线程/1、线程.md"
+    "Java/线程/1、Thread和Runnable.md"
   ]
 }
