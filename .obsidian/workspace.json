@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "个人/期望和问题.md",
+                "file": "个人/自我介绍.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -112,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "个人/期望和问题.md",
+                "file": "个人/自我介绍.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "个人/期望和问题.md",
+                "file": "个人/自我介绍.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -152,7 +152,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "个人/期望和问题.md"
+                "file": "个人/自我介绍.md"
               }
             }
           }
@@ -177,8 +177,8 @@
   },
   "active": "e125549e01ce27b1",
   "lastOpenFiles": [
-    "个人/自我介绍.md",
     "个人/期望和问题.md",
+    "个人/自我介绍.md",
     "Java/线程/6、深入理解synchronized.md",
     "Java/线程/5、ThreadLocal基本使用和源码解读.md",
     "Java/线程/4、ScheduledThreadPoolExecutor的基本使用的源码解读.md",
