@@ -187,7 +187,7 @@ private void set(ThreadLocal<?> key, Object value) {
 }
 ```
 
-`java.lang.ThreadLocal.ThreadLocalMap#replaceStaleEntry()`方法：
+`java.lang.ThreadLocal.ThreadLocalMap#replaceStaleEntry()`方法，会从本地变量数组中找到当前`ThreadLocal`对应的值，替换当前“不新鲜”的值（因为使用了线性探测法，实际位置可能改变）。如果没有找到，则在当前位置新增本地变量：
 ```java
 private void replaceStaleEntry(ThreadLocal<?> key, Object value,  
                                int staleSlot) {  
@@ -204,16 +204,18 @@ private void replaceStaleEntry(ThreadLocal<?> key, Object value,
         if (e.get() == null)  
             slotToExpunge = i;  
   
-    // Find either the key or trailing null slot of run, whichever  
-    // occurs first    for (int i = nextIndex(staleSlot, len);  
+    // 从头开始遍历，直到entry为null
+    for (int i = nextIndex(staleSlot, len);  
          (e = tab[i]) != null;  
          i = nextIndex(i, len)) {  
+        // 获取该位置的key
         ThreadLocal<?> k = e.get();  
   
-        // If we find key, then we need to swap it  
-        // with the stale entry to maintain hash table order.        // The newly stale slot, or any other stale slot        // encountered above it, can then be sent to expungeStaleEntry        // to remove or rehash all of the other entries in run.        if (k == key) {  
+        // 如果找到当前entry，进行覆盖值，并将entry交换到staleSlot位置
+        if (k == key) {  
             e.value = value;  
   
+            // 将entry交换到staleSlot位置
             tab[i] = tab[staleSlot];  
             tab[staleSlot] = e;  
   
@@ -225,11 +227,13 @@ private void replaceStaleEntry(ThreadLocal<?> key, Object value,
         }  
   
         // If we didn't find stale entry on backward scan, the  
-        // first stale entry seen while scanning for key is the        // first still present in the run.        if (k == null && slotToExpunge == staleSlot)  
+        // first stale entry seen while scanning for key is the        
+        // first still present in the run.        
+        if (k == null && slotToExpunge == staleSlot)  
             slotToExpunge = i;  
     }  
   
-    // If key not found, put new entry in stale slot  
+    // 如果没有找到key，则新建entry对象
     tab[staleSlot].value = null;  
     tab[staleSlot] = new Entry(key, value);  
   
@@ -239,7 +243,108 @@ private void replaceStaleEntry(ThreadLocal<?> key, Object value,
 }
 ```
 
-`java.lang.ThreadLocal.ThreadLocalMap#cleanSomeSlots()`方法会
+`java.lang.ThreadLocal.ThreadLocalMap#cleanSomeSlots()`方法会按规则访问本地变量数组，对key为空的本地变量进行清除，释放内存资源：
+```java
+private boolean cleanSomeSlots(int i, int n) {  
+    boolean removed = false;  
+    Entry[] tab = table;  
+    int len = tab.length;  
+    do {  
+        i = nextIndex(i, len);  
+        Entry e = tab[i];  
+        // entry不为空，且key为空（被垃圾收集器回收了）
+        if (e != null && e.get() == null) {  
+            n = len;  
+            removed = true;  
+            i = expungeStaleEntry(i);  
+        }  
+    } while ( (n >>>= 1) != 0);  
+    return removed;  
+}
+```
+
+`java.lang.ThreadLocal.ThreadLocalMap#expungeStaleEntry()`方法会将当前位置，以及其他key为空的本地变量设置为`null`，释放内存资源。同时还会重新计算位置，并且进行交换：
+```java
+private int expungeStaleEntry(int staleSlot) {  
+    Entry[] tab = table;  
+    int len = tab.length;  
+  
+    // 清除当前位置的entry
+    tab[staleSlot].value = null;  
+    tab[staleSlot] = null;  
+    size--;  
+  
+    // Rehash until we encounter null  
+    Entry e;  
+    int i;  
+    for (i = nextIndex(staleSlot, len);  
+         (e = tab[i]) != null;  
+         i = nextIndex(i, len)) {  
+        ThreadLocal<?> k = e.get();  
+        // 如果key为null，进行清除
+        if (k == null) {  
+            e.value = null;  
+            tab[i] = null;  
+            size--;  
+        } 
+        // 如果key不为null，重新计算其位置，进行交换位置
+        else {  
+            int h = k.threadLocalHashCode & (len - 1);  
+            if (h != i) {  
+                tab[i] = null;  
+                while (tab[h] != null)  
+                    h = nextIndex(h, len);  
+                tab[h] = e;  
+            }  
+        }  
+    }  
+    return i;  
+}
+```
+
+`java.lang.ThreadLocal.ThreadLocalMap#rehash()`方法会清除“不新鲜”的本地变量、重新计算&交换位置、扩容：
+```java
+private void rehash() {  
+    // 清除“不新鲜”的本地变量、重新计算&交换位置
+    expungeStaleEntries();  
+  
+    // 本地变量数量大于(threshold - threshold / 4)，进行扩容
+    if (size >= threshold - threshold / 4)  
+        resize();  
+}
+```
+
+`java.lang.ThreadLocal.ThreadLocalMap#resize()`方法会进行扩容，将本地变量数组扩容为原来的2倍：
+```java
+private void resize() {  
+    // 获取oldTab
+    Entry[] oldTab = table;  
+    int oldLen = oldTab.length;  
+    // 创建newLen
+    int newLen = oldLen * 2;  
+    Entry[] newTab = new Entry[newLen];  
+    // rehash和数组复制
+    int count = 0;  
+    for (int j = 0; j < oldLen; ++j) {  
+        Entry e = oldTab[j];  
+        if (e != null) {  
+            ThreadLocal<?> k = e.get();  
+            if (k == null) {  
+                e.value = null; // Help the GC  
+            } else {  
+                int h = k.threadLocalHashCode & (newLen - 1);  
+                while (newTab[h] != null)  
+                    h = nextIndex(h, newLen);  
+                newTab[h] = e;  
+                count++;  
+            }  
+        }  
+    }  
+    setThreshold(newLen);  
+    size = count;  
+    table = newTab;  
+}
+```
 
 ## 3.2 get
 `java.lang.ThreadLocal#get()`方法：
