@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "个人/面试官最常问的问题.md",
+                "file": "个人/谈薪.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -70,8 +70,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "498b15a5676494df",
@@ -87,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "个人/面试官最常问的问题.md",
+                "file": "个人/谈薪.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "个人/面试官最常问的问题.md",
+                "file": "个人/谈薪.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "个人/面试官最常问的问题.md"
+                "file": "个人/谈薪.md"
               }
             }
           }
@@ -152,8 +151,8 @@
   },
   "active": "7220509e01cc19b6",
   "lastOpenFiles": [
-    "个人/自我介绍.md",
     "个人/面试官最常问的问题.md",
+    "个人/自我介绍.md",
     "个人/期望和问题.md",
     "个人/谈薪.md",
     "Java/线程/6、深入理解synchronized.md",
