@@ -100,14 +100,146 @@ Thread.currentThread().getName()pool-1-thread-1
 `java.lang.ThreadLocal#set()`方法：
 ```java
 public void set(T value) {  
+    // 获取当前线程对象
     Thread t = Thread.currentThread();  
+    // 从线程对象中获取ThreadLocalMap
     ThreadLocalMap map = getMap(t);  
     if (map != null)  
+        // 如果已存在，则设置值（已有会覆盖），键为当前ThreadLocal对象的哈希值
         map.set(this, value);  
     else  
+        // 如果不存在，则新建，并且设置值，键为当前ThreadLocal对象哈希值
         createMap(t, value);  
 }
 ```
+
+### 3.1.1 获取ThreadLocalMap
+`java.lang.ThreadLocal#getMap()`方法可以从线程对象中获取`ThreadLocalMap`信息：
+```java
+ThreadLocalMap getMap(Thread t) {  
+    return t.threadLocals;  
+}
+```
+
+### 3.1.2 新建ThreadLocalMap
+如果当前线程对象不存在本地变量信息，则会调用`java.lang.ThreadLocal#createMap()`方法，为线程对象创建本地变量信息：
+```java
+void createMap(Thread t, T firstValue) {  
+    t.threadLocals = new ThreadLocalMap(this, firstValue);  
+}
+```
+
+核心逻辑位于`java.lang.ThreadLocal.ThreadLocalMap#ThreadLocalMap()`：
+```java
+ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {  
+    // 创建Entry数组，长度16
+    table = new Entry[INITIAL_CAPACITY];  
+    // 计算当前ThreadLocal的位置
+    int i = firstKey.threadLocalHashCode & (INITIAL_CAPACITY - 1);  
+    // 在指定位置添加Entry对象
+    table[i] = new Entry(firstKey, firstValue);  
+    // 设置当前本地变量数量
+    size = 1;  
+    // 设置阈值：len*2/3（负载因子为2/3）
+    setThreshold(INITIAL_CAPACITY);  
+}
+```
+
+### 3.1.3 修改ThreadLocalMap
+如果当前线程对象存在本地变量信息，则会直接调用`java.lang.ThreadLocal.ThreadLocalMap#set()`方法，往`ThreadLocalMap`对象添加数据：
+```java
+private void set(ThreadLocal<?> key, Object value) {  
+    // 获取Entry数组和长度
+    Entry[] tab = table;  
+    int len = tab.length;  
+    // 计算当前ThreadLocal的位置
+    int i = key.threadLocalHashCode & (len-1);  
+  
+    // 使用线性探测法解决哈希碰撞((i + 1 < len) ? i + 1 : 0)：以当前位置为起点，循环遍历数组，直到该位置值为null
+    // 在每次循环中，会判断该位置的值是否为当前ThreadLocal对应值，进行覆盖
+    for (Entry e = tab[i];  
+         e != null;  
+         e = tab[i = nextIndex(i, len)]) {  
+        // e不为空，获取ThreadLocal对象k
+        ThreadLocal<?> k = e.get();  
+  
+        // k和key相等，进行覆盖
+        if (k == key) {  
+            e.value = value;  
+            return;  
+        }  
+  
+        // 如果k为null，说明被垃圾回收机制回收了，需要替换这个“不新鲜”的本地变量
+        if (k == null) {  
+            replaceStaleEntry(key, value, i);  
+            return;  
+        }  
+    }  
+  
+    // 没有找到当前ThreadLocal的对应值，进行新增
+    tab[i] = new Entry(key, value);  
+    int sz = ++size;  
+    
+    // 以当前位置为起点，循环遍历数组，对key为null的entry对象进行清除
+    if (!cleanSomeSlots(i, sz) && sz >= threshold)  
+        // 如果当前没有要清除的entry && 数量大于阈值（len*2/3），需要进行rehash
+        rehash();  
+}
+```
+
+`java.lang.ThreadLocal.ThreadLocalMap#replaceStaleEntry()`方法：
+```java
+private void replaceStaleEntry(ThreadLocal<?> key, Object value,  
+                               int staleSlot) {  
+    // 获取Entry数组
+    Entry[] tab = table;  
+    int len = tab.length;  
+    Entry e;  
+  
+    // 往前遍历，直到entry为null：获取最前面的key为null的entry的位置
+    int slotToExpunge = staleSlot;  
+    for (int i = prevIndex(staleSlot, len);  
+         (e = tab[i]) != null;  
+         i = prevIndex(i, len))  
+        if (e.get() == null)  
+            slotToExpunge = i;  
+  
+    // Find either the key or trailing null slot of run, whichever  
+    // occurs first    for (int i = nextIndex(staleSlot, len);  
+         (e = tab[i]) != null;  
+         i = nextIndex(i, len)) {  
+        ThreadLocal<?> k = e.get();  
+  
+        // If we find key, then we need to swap it  
+        // with the stale entry to maintain hash table order.        // The newly stale slot, or any other stale slot        // encountered above it, can then be sent to expungeStaleEntry        // to remove or rehash all of the other entries in run.        if (k == key) {  
+            e.value = value;  
+  
+            tab[i] = tab[staleSlot];  
+            tab[staleSlot] = e;  
+  
+            // Start expunge at preceding stale entry if it exists  
+            if (slotToExpunge == staleSlot)  
+                slotToExpunge = i;  
+            cleanSomeSlots(expungeStaleEntry(slotToExpunge), len);  
+            return;  
+        }  
+  
+        // If we didn't find stale entry on backward scan, the  
+        // first stale entry seen while scanning for key is the        // first still present in the run.        if (k == null && slotToExpunge == staleSlot)  
+            slotToExpunge = i;  
+    }  
+  
+    // If key not found, put new entry in stale slot  
+    tab[staleSlot].value = null;  
+    tab[staleSlot] = new Entry(key, value);  
+  
+    // If there are any other stale entries in run, expunge them  
+    if (slotToExpunge != staleSlot)  
+        cleanSomeSlots(expungeStaleEntry(slotToExpunge), len);  
+}
+```
+
+`java.lang.ThreadLocal.ThreadLocalMap#cleanSomeSlots()`方法会
 
 ## 3.2 get
 `java.lang.ThreadLocal#get()`方法：
