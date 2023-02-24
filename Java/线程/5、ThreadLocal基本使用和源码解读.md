@@ -96,6 +96,8 @@ Thread.currentThread().getName()pool-1-thread-1
 
 
 # 3 源码
+![[ThreadLocal.png]]
+
 ## 3.1 set
 `java.lang.ThreadLocal#set()`方法会为当前线程添加本地变量：
 ```java
