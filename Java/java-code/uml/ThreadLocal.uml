@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.lang.ThreadLocal</OriginalElement>
+  <nodes>
+    <node x="122.79285714285713" y="329.8678385416667">java.lang.ThreadLocal.ThreadLocalMap.Entry</node>
+    <node x="81.24285714285715" y="129.86783854166669">java.lang.ThreadLocal</node>
+    <node x="40.0" y="14.867838541666686">java.lang.Thread</node>
+    <node x="23.173809523809524" y="214.86783854166669">java.lang.ThreadLocal.ThreadLocalMap</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.lang.ThreadLocal.ThreadLocalMap" target="java.lang.ThreadLocal.ThreadLocalMap.Entry">
+      <point x="74.39999999999998" y="17.5" />
+      <point x="190.5738095238095" y="289.8678385416667" />
+      <point x="178.79285714285714" y="289.8678385416667" />
+      <point x="8.0" y="-17.5" />
+    </edge>
+    <edge source="java.lang.ThreadLocal" target="java.lang.ThreadLocal.ThreadLocalMap.Entry">
+      <point x="39.0" y="17.5" />
+      <point x="198.24285714285713" y="194.86783854166669" />
+      <point x="219.67380952380952" y="194.86783854166669" />
+      <point x="219.67380952380952" y="299.8678385416667" />
+      <point x="194.79285714285714" y="299.8678385416667" />
+      <point x="24.0" y="-17.5" />
+    </edge>
+    <edge source="java.lang.ThreadLocal" target="java.lang.ThreadLocal.ThreadLocalMap">
+      <point x="13.0" y="17.5" />
+      <point x="172.24285714285713" y="194.86783854166669" />
+      <point x="190.57380952380953" y="194.86783854166669" />
+      <point x="74.4" y="-17.5" />
+    </edge>
+    <edge source="java.lang.ThreadLocal" target="java.lang.Thread">
+      <point x="-39.0" y="-17.5" />
+      <point x="26.5" y="17.5" />
+    </edge>
+    <edge source="java.lang.ThreadLocal.ThreadLocalMap.Entry" target="java.lang.ThreadLocal">
+      <point x="40.0" y="-17.5" />
+      <point x="210.79285714285714" y="309.8678385416667" />
+      <point x="230.67380952380952" y="309.8678385416667" />
+      <point x="230.67380952380952" y="184.86783854166669" />
+      <point x="224.24285714285713" y="184.86783854166669" />
+      <point x="65.0" y="17.5" />
+    </edge>
+    <edge source="java.lang.Thread" target="java.lang.ThreadLocal">
+      <point x="44.16666666666663" y="17.5" />
+      <point x="137.16666666666663" y="109.86783854166669" />
+      <point x="198.24285714285713" y="109.86783854166669" />
+      <point x="39.0" y="-17.5" />
+    </edge>
+    <edge source="java.lang.ThreadLocal.ThreadLocalMap" target="java.lang.ThreadLocal.ThreadLocalMap">
+      <point x="-74.4" y="17.5" />
+      <point x="41.77380952380952" y="269.8678385416667" />
+      <point x="3.173809523809524" y="269.8678385416667" />
+      <point x="3.173809523809524" y="232.36783854166669" />
+      <point x="-93.0" y="-0.0" />
+    </edge>
+    <edge source="java.lang.ThreadLocal.ThreadLocalMap.Entry" target="java.lang.ThreadLocal.ThreadLocalMap.Entry">
+      <point x="0.0" y="17.5" />
+      <point x="170.79285714285714" y="384.8678385416667" />
+      <point x="102.79285714285713" y="384.8678385416667" />
+      <point x="102.79285714285713" y="347.3678385416667" />
+      <point x="-48.0" y="-0.0" />
+    </edge>
+    <edge source="java.lang.Thread" target="java.lang.Thread">
+      <point x="-44.16666666666667" y="17.5" />
+      <point x="48.83333333333333" y="69.86783854166669" />
+      <point x="20.0" y="69.86783854166669" />
+      <point x="20.0" y="44.03450520833337" />
+      <point x="-53.0" y="11.666666666666686" />
+    </edge>
+    <edge source="java.lang.ThreadLocal.ThreadLocalMap" target="java.lang.ThreadLocal">
+      <point x="-37.19999999999999" y="-17.5" />
+      <point x="78.97380952380954" y="194.86783854166669" />
+      <point x="94.24285714285715" y="194.86783854166669" />
+      <point x="-65.0" y="17.5" />
+    </edge>
+    <edge source="java.lang.ThreadLocal.ThreadLocalMap.Entry" target="java.lang.ThreadLocal.ThreadLocalMap">
+      <point x="-40.0" y="-17.5" />
+      <point x="130.79285714285714" y="309.8678385416667" />
+      <point x="78.97380952380952" y="309.8678385416667" />
+      <point x="-37.2" y="17.5" />
+    </edge>
+    <edge source="java.lang.Thread" target="java.lang.ThreadLocal.ThreadLocalMap">
+      <point x="8.833333333333314" y="17.5" />
+      <point x="101.83333333333331" y="109.86783854166669" />
+      <point x="70.74285714285715" y="109.86783854166669" />
+      <point x="70.74285714285715" y="194.86783854166669" />
+      <point x="41.77380952380955" y="194.86783854166669" />
+      <point x="-74.39999999999998" y="-17.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="137.0" y="180.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
