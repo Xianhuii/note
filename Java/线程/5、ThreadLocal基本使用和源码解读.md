@@ -96,3 +96,43 @@ Thread.currentThread().getName()pool-1-thread-1
 
 
 # 3 源码
+## 3.1 set
+`java.lang.ThreadLocal#set()`方法：
+```java
+public void set(T value) {  
+    Thread t = Thread.currentThread();  
+    ThreadLocalMap map = getMap(t);  
+    if (map != null)  
+        map.set(this, value);  
+    else  
+        createMap(t, value);  
+}
+```
+
+## 3.2 get
+`java.lang.ThreadLocal#get()`方法：
+```java
+public T get() {  
+    Thread t = Thread.currentThread();  
+    ThreadLocalMap map = getMap(t);  
+    if (map != null) {  
+        ThreadLocalMap.Entry e = map.getEntry(this);  
+        if (e != null) {  
+            @SuppressWarnings("unchecked")  
+            T result = (T)e.value;  
+            return result;  
+        }  
+    }  
+    return setInitialValue();  
+}
+```
+
+## 3.3 remove
+`java.lang.ThreadLocal#remove()`方法：
+```java
+public void remove() {  
+    ThreadLocalMap m = getMap(Thread.currentThread());  
+    if (m != null)  
+        m.remove(this);  
+}
+```
