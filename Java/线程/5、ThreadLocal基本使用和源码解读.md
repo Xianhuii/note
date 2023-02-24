@@ -97,7 +97,7 @@ Thread.currentThread().getName()pool-1-thread-1
 
 # 3 源码
 ## 3.1 set
-`java.lang.ThreadLocal#set()`方法：
+`java.lang.ThreadLocal#set()`方法会为当前线程添加本地变量：
 ```java
 public void set(T value) {  
     // 获取当前线程对象
@@ -350,9 +350,12 @@ private void resize() {
 `java.lang.ThreadLocal#get()`方法：
 ```java
 public T get() {  
+    // 获取当前线程对象
     Thread t = Thread.currentThread();  
+    // 从线程对象中获取ThreadLocalMap
     ThreadLocalMap map = getMap(t);  
     if (map != null) {  
+        // 从map中获取当前ThreadLocal对应的值
         ThreadLocalMap.Entry e = map.getEntry(this);  
         if (e != null) {  
             @SuppressWarnings("unchecked")  
@@ -360,16 +363,105 @@ public T get() {
             return result;  
         }  
     }  
+    // 设置并返回初始值（null）
     return setInitialValue();  
 }
 ```
 
+`java.lang.ThreadLocal.ThreadLocalMap#getEntry()`方法会根据ThreadLocal对象获取对应位置的本地变量值：
+```java
+private Entry getEntry(ThreadLocal<?> key) {  
+    // 计算位置
+    int i = key.threadLocalHashCode & (table.length - 1);  
+    // 获取对应位置的entry
+    Entry e = table[i];  
+    // 如果entry匹配当前ThreadLocal：返回对应值
+    if (e != null && e.get() == key)  
+        return e;  
+    else  
+    // 如果entry不匹配当前ThreadLocal（entry==null或key不匹配）：根据线性探测法搜索
+        return getEntryAfterMiss(key, i, e);  
+}
+```
+
+`java.lang.ThreadLocal.ThreadLocalMap#getEntryAfterMiss()`会根据线性探测法进行搜索：
+```java
+private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {  
+    Entry[] tab = table;  
+    int len = tab.length;  
+    // 遍历数组，进行搜索
+    while (e != null) {  
+        ThreadLocal<?> k = e.get();  
+        // 找到：返回
+        if (k == key)  
+            return e;  
+        // key为null：清除
+        if (k == null)  
+            expungeStaleEntry(i);  
+        // 线性探测法下个位置
+        else  
+            i = nextIndex(i, len);  
+        e = tab[i];  
+    }  
+    // 没找到：返回null
+    return null;  
+}
+```
+
+`java.lang.ThreadLocal#setInitialValue()`方法会为当前线程的本地变量设置一个初始值（默认是null）：
+```java
+private T setInitialValue() {  
+    // 生成初始值（默认是null）
+    T value = initialValue();  
+    // 获取当前线程对象
+    Thread t = Thread.currentThread();  
+    // 获取线程对象的ThreadLocalMap
+    ThreadLocalMap map = getMap(t);  
+    // 设置初始值
+    if (map != null)  
+        map.set(this, value);  
+    else  
+        createMap(t, value);  
+    return value;  
+}
+```
+
 ## 3.3 remove
-`java.lang.ThreadLocal#remove()`方法：
+`java.lang.ThreadLocal#remove()`方法会手动清除某个本地变量的对象引用，避免内存泄漏：
 ```java
 public void remove() {  
+    // 获取当前线程对象的ThreadLocalMap
     ThreadLocalMap m = getMap(Thread.currentThread());  
     if (m != null)  
+        // 清除当前ThreadLocal对应的entry
         m.remove(this);  
+}
+```
+
+`java.lang.ThreadLocal.ThreadLocalMap#remove()`：
+```java
+private void remove(ThreadLocal<?> key) {  
+    Entry[] tab = table;  
+    int len = tab.length;  
+    // 计算位置
+    int i = key.threadLocalHashCode & (len-1);  
+    // 遍历数组
+    for (Entry e = tab[i];  
+         e != null;  
+         e = tab[i = nextIndex(i, len)]) {  
+        if (e.get() == key) {  
+            // 清除entry
+            e.clear();  
+            expungeStaleEntry(i);  
+            return;  
+        }  
+    }  
+}
+```
+
+`java.lang.ref.Reference#clear()`方法会将引用设为null，然后再交给`expungeStaleEntry()`方法清除资源：
+```java
+public void clear() {  
+    this.referent = null;  
 }
 ```
