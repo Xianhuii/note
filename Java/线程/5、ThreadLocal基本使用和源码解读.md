@@ -93,10 +93,67 @@ Thread.currentThread().getName()pool-1-thread-1
 ```
 
 # 2 理论
+## 2.1 ThreadLocal本地变量的存储逻辑
+`Thread`中有一个`threadLocals`成员变量，专门用来保存该线程的本地变量：
+```java
+ThreadLocal.ThreadLocalMap threadLocals = null;
+```
 
+`ThreadLocal.ThreadLocalMap`中包含`Entry数组`，其中每个entry表示一个`ThreadLocal-value`本地变量键值对。也就是说，每个线程对象可以有多个本地变量：
+```java
+private Entry[] table;
+```
+
+`ThreadLocal`实际上是提供了从线程对象中添加和获取本地变量键值对的方法，它以自身为key，从线程对象中获取对应的值。
+
+**线程本地变量实际上保存在Thead对象中。**
+
+## 2.2 如何计算ThreadLocal的位置
+首先，会根据ThreadLocal的`threadLocalHashCode`计算位置：
+```java
+int i = key.threadLocalHashCode & (len-1);
+```
+
+如果该位置上已经有entry了（哈希碰撞），会使用线性探测法计算下一个位置，直到没有entry：
+```java
+private static int nextIndex(int i, int len) {  
+    return ((i + 1 < len) ? i + 1 : 0);  
+}
+```
+
+每个ThreadLocal对象在创建时都会计算它的`threadLocalHashCode`：
+```java
+private final int threadLocalHashCode = nextHashCode();
+private static final int HASH_INCREMENT = 0x61c88647;
+private static int nextHashCode() {  
+    return nextHashCode.getAndAdd(HASH_INCREMENT);  
+}
+```
+
+这里的`0x61c88647`是一个斐波那契数，通过该数值计算出来的数组位置会分布比较均匀。
 
 # 3 源码
 ![[ThreadLocal.png]]
+
+`Thread`中有一个`threadLocals`成员变量，专门用来保存该线程的本地变量：
+```java
+ThreadLocal.ThreadLocalMap threadLocals = null;
+```
+
+`ThreadLocal.ThreadLocalMap`中包含`Entry数组`，其中每个entry表示一个`ThreadLocal-value`本地变量键值对。也就是说，每个线程对象可以有多个本地变量：
+```java
+private Entry[] table;
+```
+
+在添加entry时，会根据ThreadLocal的`threadLocalHashCode`值计算索引位置，并且通过线性探测法解决哈希碰撞问题。
+
+在设置本地变量（`java.lang.ThreadLocal#set()`方法）时，如果执行清理工作后，未清理任何数据，并且此时entry数量大于等于`3/4 × len × 2/3`（即`1/2 × len`），就会进行扩容和rehash。
+
+`Entry`继承`WeakReference`，它的key是`ThreadLocal`对象（弱引用对象），值是开发人员设置的本地变量值，所以可能会有本地变量过期和内存泄漏问题。
+
+`ThreadLocal`实际上是提供了从线程对象中添加和获取本地变量键值对的方法，它以自身为key，从线程对象中获取对应的值。
+
+**线程本地变量实际上保存在Thead对象中。**
 
 ## 3.1 set
 `java.lang.ThreadLocal#set()`方法会为当前线程添加本地变量：
