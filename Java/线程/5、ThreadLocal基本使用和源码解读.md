@@ -132,6 +132,90 @@ private static int nextHashCode() {
 
 这里的`0x61c88647`是一个斐波那契数，通过该数值计算出来的数组位置会分布比较均匀。
 
+## 2.3 ThreadLocal内存泄漏问题
+在使用`ThreadLocal`时，不恰当的使用方式可能会引起内存泄漏问题。
+
+实际上，内存泄漏主要由两个强引用关系造成：
+1. ThreadLocal强引用：由声明位置决定（全局变量或局部变量）
+2. ThreadLocalMap强引用：由线程对象决定（线程何时执行完成）
+
+为了使ThreadLocal对象在线程间重复使用，通常会将其声明为全局变量。此时，ThreadLocal强引用关系永远不会断开，ThreadLocalMap的键永远不会被回收。
+
+只有线程执行完成，ThreadLocalMap才会被回收，此时它内部的本地变量值也会被回收（本地变量键由ThreadLocal对象决定）。
+
+在使用线程池情况下，工作线程会重复使用，此时ThreadLocalMap不会被回收，造成内存泄漏。因此，我们需要在使用完本地变量后，手动调用`java.lang.ThreadLocal#remove()`方法，解除ThreadLocalMap对本地变量键值对的强引用关系，此时就可以对本地变量值进行回收，避免内存泄漏。
+
+### 2.3.1 单线程
+创建单个线程任务并执行：
+```java
+Runnable task = new Runnable() {  
+    @Override  
+    public void run() {  
+        // 创建本地变量（局部变量）  
+        ThreadLocal<String> threadName = new ThreadLocal<>();  
+        // 设置线程本地变量  
+        threadName.set(Thread.currentThread().getName());  
+  
+        // ……复杂的业务调用  
+  
+        // 获取线程本地变量  
+        synchronized (threadName) {  
+            System.out.println("ThreadLocal: " + threadName.get());  
+            System.out.println("Thread.currentThread().getName()" + Thread.currentThread().getName());  
+        }  
+    }  
+};  
+new Thread(task).start();
+```
+
+在线程内部创建ThreadLocal，此时也能做到变量在线程间的隔离，但是会重复创建ThreadLocal对象。
+
+当线程执行完成后，退出虚拟机栈。局部变量ThreadLocal的强引用不存在，会被回收。该线程的ThreadLocalMap强引用也会被回收，因此不会有内存泄漏问题。
+
+### 2.3.2 线程池
+使用线程池执行上述任务：
+```java
+ThreadPoolExecutor threadPoolExecutor = threadPoolExecutor();  
+for (int i = 0; i < 10; i++) {  
+    threadPoolExecutor.submit(task);  
+}
+```
+
+由于线程池会对工作线程进行复用，任务执行完成后，局部变量ThreadLocal的强引用不存在，会被回收，但是线程对象的ThreadLocalMap仍然存在，即变量值不会被回收，造成内存泄漏。此时这些本地变量是“不新鲜”的。
+
+ThreadLocal提供清除“不新鲜”本地变量的策略，会在执行`java.lang.ThreadLocal#set()`和`java.lang.ThreadLocal#get()`方法时被触发。
+
+但是如果后续没有执行这两个方法，那么仍然会有内存泄漏的风险。
+
+此时，我们可以使用`java.lang.ThreadLocal#remove()`方法，手动解除ThreadLocalMap对本地变量键值对的强引用关系。
+
+### 2.3.3 最佳实践
+考虑到ThreadLocal在多个线程间的复用问题（避免重复创建对象），通常会将其声明为全局变量，它会始终保持着对各个线程本地变量的强引用关系，不会被回收：
+```java
+public static final ThreadLocal<String> threadName = new ThreadLocal<>();
+```
+
+在线程任务执行完成之后，需要手动调用`java.lang.ThreadLocal#remove()`方法，解除ThreadLocalMap对本地变量键值对的强引用关系，此时就可以对本地变量值进行回收，避免内存泄漏。
+```java
+Runnable task = new Runnable() {  
+    @Override  
+    public void run() {  
+        // 设置线程本地变量  
+        threadName.set(Thread.currentThread().getName());  
+  
+        // ……复杂的业务调用  
+  
+        // 获取线程本地变量  
+        synchronized (threadName) {  
+            System.out.println("ThreadLocal: " + threadName.get());  
+            System.out.println("Thread.currentThread().getName()" + Thread.currentThread().getName());  
+        }  
+        // 线程执行完成前，手动移除本地变量  
+        threadName.remove();  
+    }  
+};  
+```
+
 # 3 源码
 ![[ThreadLocal.png]]
 
