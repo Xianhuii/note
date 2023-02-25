@@ -181,7 +181,7 @@ for (int i = 0; i < 10; i++) {
 }
 ```
 
-由于线程池会对工作线程进行复用，任务执行完成后，局部变量ThreadLocal的强引用不存在，会被回收，但是线程对象的ThreadLocalMap仍然存在，即变量值不会被回收，造成内存泄漏。此时这些本地变量是“不新鲜”的。
+由于线程池会对工作线程进行复用，任务执行完成后，局部变量ThreadLocal的强引用不存在，会被回收，但是线程对象的ThreadLocalMap仍然存在，即本地变量值不会被回收，造成内存泄漏。此时这些本地变量是“不新鲜”的。
 
 ThreadLocal提供清除“不新鲜”本地变量的策略，会在执行`java.lang.ThreadLocal#set()`和`java.lang.ThreadLocal#get()`方法时被触发。
 
@@ -215,6 +215,21 @@ Runnable task = new Runnable() {
     }  
 };  
 ```
+
+## 2.4 ThreadLocalMap扩容问题
+ThreadLocalMap将线程本地变量保存在`Entry数组`中，初始长度为16。
+
+如果我们定义了很多个ThreadLocal本地变量，在调用它们的`ThreadLocal#set()`方法时，会往Entry数组中添加本地变量。
+
+在某次执行`ThreadLocal#set()`方法时，如果满足以下条件，就会触发Entry数组的扩容：
+1. 执行`cleanSomeSlots()`方法后，没有发现需要清除的数据。
+2. 本地变量数量（包括当前）大于等于阈值（数组长度 × 2/3）。
+3. 执行`expungeStaleEntries()`方法后，本地变量数量（包括当前）大于等于阈值（数组长度 × 1/2）。
+
+Entry数组的扩容过程也十分简单：
+1. 新建长度为原来2倍的新数组。
+2. 通过哈希计算，将原数组的本地变量赋值到新数组。
+3. 使用新数组作为本地变量。
 
 # 3 源码
 ![[ThreadLocal.png]]
