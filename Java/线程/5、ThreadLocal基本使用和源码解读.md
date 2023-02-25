@@ -9,7 +9,7 @@
 
 需要注意的是，这里的线程执行逻辑前期和后期，都是相对于线程本地变量而言的。
 
-`ThreadLocal`本身必须是独立于线程之外的，通常会将它设置成静态变量，随着类加载而初始化：
+`ThreadLocal`通常会设置成全局静态变量：
 ```java
 public static final ThreadLocal<String> threadName = new ThreadLocal<>();
 ```
