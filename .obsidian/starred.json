@@ -23,7 +23,7 @@
     {
       "type": "file",
       "title": "6、深入理解synchronized",
-      "path": "Java/线程/6、AbstractQueuedSynchronizer（AQS）.md"
+      "path": "Java/线程/6、CompletableFuture.md"
     }
   ]
 }

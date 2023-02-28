@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Java/线程/6、AbstractQueuedSynchronizer（AQS）.md",
+                "file": "Java/线程/6、CompletableFuture.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/线程/6、AbstractQueuedSynchronizer（AQS）.md",
+                "file": "Java/线程/6、CompletableFuture.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/线程/6、AbstractQueuedSynchronizer（AQS）.md",
+                "file": "Java/线程/6、CompletableFuture.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Java/线程/6、AbstractQueuedSynchronizer（AQS）.md"
+                "file": "Java/线程/6、CompletableFuture.md"
               }
             }
           }
@@ -151,10 +151,10 @@
   },
   "active": "739f970c87ba8b8c",
   "lastOpenFiles": [
-    "Java/线程/1、Thread和Runnable.md",
-    "Java/线程/6、AbstractQueuedSynchronizer（AQS）.md",
     "Java/线程/0、多线程学习路线.md",
     "Java/线程/5、ThreadLocal基本使用和源码解读.md",
+    "Java/线程/6、CompletableFuture.md",
+    "Java/线程/1、Thread和Runnable.md",
     "个人/谈薪.md",
     "个人/面试官最常问的问题.md",
     "个人/自我介绍.md",
