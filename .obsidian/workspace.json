@@ -61,8 +61,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -149,7 +148,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "126ab70f4df8a5ae",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
     "个人/谈薪.md",
     "理财/基金.md",
