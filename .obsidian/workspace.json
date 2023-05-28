@@ -65,7 +65,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -148,7 +149,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e275dab41eb9f4d9",
+  "active": "b7c280a32536d299",
   "lastOpenFiles": [
     "个人/谈薪.md",
     "理财/基金.md",
