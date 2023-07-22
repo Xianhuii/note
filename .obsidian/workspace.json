@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring全家桶/core/1、Spring IoC学习路线.md",
+                "file": "Spring全家桶/core/8、ApplicationContext.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spring全家桶/core/1、Spring IoC学习路线.md",
+                "file": "Spring全家桶/core/8、ApplicationContext.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spring全家桶/core/1、Spring IoC学习路线.md",
+                "file": "Spring全家桶/core/8、ApplicationContext.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring全家桶/core/1、Spring IoC学习路线.md"
+                "file": "Spring全家桶/core/8、ApplicationContext.md"
               }
             }
           },
@@ -159,6 +159,8 @@
   },
   "active": "b7c280a32536d299",
   "lastOpenFiles": [
+    "Spring全家桶/core/7、BeanFactory.md",
+    "Spring全家桶/core/1、Spring IoC学习路线.md",
     "个人/谈薪.md",
     "理财/基金.md",
     "理财/投资计划.md",
@@ -166,8 +168,6 @@
     "个人/象屿科技.md",
     "个人/面试官最常问的问题.md",
     "个人/Java程序员简历模板.md",
-    "个人/期望和问题.md",
-    "个人/自我介绍.md",
-    "Java/线程/6、CompletableFuture.md"
+    "个人/期望和问题.md"
   ]
 }
