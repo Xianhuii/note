@@ -1,16 +1,18 @@
-package beanfactory;
+package aop;
 
+import aspect.AspectBean;
 import bean.BeanObj;
+import config.AopConfiguration;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
+import org.springframework.context.annotation.AnnotatedBeanDefinitionReader;
 
-public class ClassPathBeanDefinitionScannerDemo {
+public class AnnotationConfigApplicationContextAopDemo {
     public static void main(String[] args) {
         BeanFactory beanFactory = new DefaultListableBeanFactory();
-        ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner((BeanDefinitionRegistry) beanFactory);
-        scanner.scan("bean");
+        AnnotatedBeanDefinitionReader reader = new AnnotatedBeanDefinitionReader((BeanDefinitionRegistry) beanFactory);
+        reader.register(AopConfiguration.class, AspectBean.class, BeanObj.class);
         BeanObj bean = beanFactory.getBean(BeanObj.class);
         System.out.println(bean.getValue());
     }
