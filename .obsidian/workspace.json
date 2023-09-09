@@ -11,9 +11,12 @@
             "id": "d3bcba475425ccdc",
             "type": "leaf",
             "state": {
-              "type": "todotxt-view",
+              "type": "markdown",
               "state": {
-                "file": "每日学习/2023-09-09.todotxt"
+                "file": "每日学习/2023-09-09.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -91,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/2023-09-09.todotxt",
+                "file": "每日学习/2023-09-09.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -108,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/2023-09-09.todotxt",
+                "file": "每日学习/2023-09-09.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/2023-09-09.todotxt"
+                "file": "每日学习/2023-09-09.md"
               }
             }
           },
@@ -164,8 +167,9 @@
   },
   "active": "d3bcba475425ccdc",
   "lastOpenFiles": [
-    "每日学习/面试整理.md",
     "每日学习/2023-09-09.todotxt",
+    "每日学习/2023-09-09.md",
+    "每日学习/面试整理.md",
     "每日学习/2023-09-09.todotxt.md",
     "未命名.md",
     "未命名.canvas",
