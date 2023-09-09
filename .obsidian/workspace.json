@@ -4,19 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "1557d1d4524ddcf8",
+        "id": "337d36def8bd8991",
         "type": "tabs",
         "children": [
           {
-            "id": "5028542e1ff556a7",
+            "id": "d3bcba475425ccdc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "todotxt-view",
               "state": {
-                "file": "每日学习/2023-09-09.todotxt.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "每日学习/2023-09-09.todotxt"
               }
             }
           }
@@ -94,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/2023-09-09.todotxt.md",
+                "file": "每日学习/2023-09-09.todotxt",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +108,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/2023-09-09.todotxt.md",
+                "file": "每日学习/2023-09-09.todotxt",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +131,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/2023-09-09.todotxt.md"
+                "file": "每日学习/2023-09-09.todotxt"
               }
             }
           },
@@ -165,10 +162,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "5028542e1ff556a7",
+  "active": "d3bcba475425ccdc",
   "lastOpenFiles": [
     "每日学习/面试整理.md",
+    "每日学习/2023-09-09.todotxt",
     "每日学习/2023-09-09.todotxt.md",
+    "未命名.md",
     "未命名.canvas",
     "JavaFX/布局控制.md",
     "JavaFX/JavaFX思维导图.mm",

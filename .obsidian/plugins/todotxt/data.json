@@ -2,7 +2,9 @@
   "defaultPriorityFilter": "B",
   "defaultOrganizeBy": "project",
   "defaultTodotxt": "default",
-  "additionalExts": [],
+  "additionalExts": [
+    ".todotxt"
+  ],
   "recurringTasks": false,
   "preservePriority": true
 }
