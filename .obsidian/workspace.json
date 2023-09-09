@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/2023-09-09.md",
+                "file": "每日学习/2023-09-09.todotxt.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/2023-09-09.md",
+                "file": "每日学习/2023-09-09.todotxt.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/2023-09-09.md",
+                "file": "每日学习/2023-09-09.todotxt.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/2023-09-09.md"
+                "file": "每日学习/2023-09-09.todotxt.md"
               }
             }
           },
@@ -151,13 +151,11 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-custom-frames:Open Google Calendar": false,
-      "obsidian-custom-frames:Open Todoist": false,
-      "obsidian-custom-frames:Open Obsidian Forum": false,
       "canvas:新建白板": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
@@ -170,7 +168,7 @@
   "active": "5028542e1ff556a7",
   "lastOpenFiles": [
     "每日学习/面试整理.md",
-    "每日学习/2023-09-09.md",
+    "每日学习/2023-09-09.todotxt.md",
     "未命名.canvas",
     "JavaFX/布局控制.md",
     "JavaFX/JavaFX思维导图.mm",
