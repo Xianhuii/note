@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习/2023-09-09.md",
+                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习/2023-09-09.md",
+                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习/2023-09-09.md",
+                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习/2023-09-09.md"
+                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md"
               }
             }
           },
@@ -165,10 +165,16 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "d3bcba475425ccdc",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
-    "每日学习/2023-09-09.todotxt",
+    "编程/Java/框架",
+    "编程/Java/基础",
+    "Java/线程/6、CompletableFuture.md",
+    "Java/线程/2、Callable的基本使用和源码解读.md",
     "每日学习/2023-09-09.md",
+    "编程/Java",
+    "编程",
+    "每日学习/2023-09-09.todotxt",
     "每日学习/面试整理.md",
     "每日学习/2023-09-09.todotxt.md",
     "未命名.md",
