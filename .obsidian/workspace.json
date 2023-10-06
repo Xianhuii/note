@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "编程/Java/2.深入/README.md",
+                "file": "Spring全家桶/SpringMVC/CORS/SpringMVC配置CORS（原理篇）.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "编程/Java/2.深入/README.md",
+                "file": "Spring全家桶/SpringMVC/CORS/SpringMVC配置CORS（原理篇）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "编程/Java/2.深入/README.md",
+                "file": "Spring全家桶/SpringMVC/CORS/SpringMVC配置CORS（原理篇）.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "编程/Java/2.深入/README.md"
+                "file": "Spring全家桶/SpringMVC/CORS/SpringMVC配置CORS（原理篇）.md"
               }
             }
           },
@@ -165,21 +165,23 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e275dab41eb9f4d9",
+  "active": "d3bcba475425ccdc",
   "lastOpenFiles": [
-    "编程/Java/1.基础/6.线程",
-    "编程/Java/1.基础/7.反射",
-    "编程/Java/1.基础/5.JDBC",
-    "编程/Java/1.基础/4.IO",
-    "编程/Java/1.基础/3.集合",
-    "编程/Java/1.基础/2.基础类",
-    "编程/Java/1.基础/1.语法",
-    "编程/Java/2.深入/JavaFX",
-    "编程/Java/2.深入/JVM",
-    "编程/Java/2.深入/Servlet",
-    "编程/Java/4.工具/Xxl-Job",
+    "Spring全家桶/SpringMVC/CORS/SpringMVC配置CORS（使用篇）.md",
+    "Git/凭据助手credential.helper.md",
     "编程/Java/1.基础/README.md",
+    "数据库/MySQL的SQL优化.md",
+    "复盘",
     "编程/Java/2.深入/README.md",
+    "编程/操作系统/Windows",
+    "编程/操作系统/Linux",
+    "编程/操作系统",
+    "编程/Java/4.工具/Xxl-job/未命名",
+    "编程/Java/4.工具/xxl-job",
+    "编程/Web服务器/Jetty",
+    "编程/Web服务器/Nginx",
+    "编程/Web服务器/Tomcat",
+    "编程/Java/4.工具/Netty",
     "Java/线程/5、ThreadLocal基本使用和源码解读.md",
     "Java/线程/6、CompletableFuture.md",
     "Java/线程/2、Callable的基本使用和源码解读.md",
