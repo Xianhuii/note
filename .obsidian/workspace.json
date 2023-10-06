@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md",
+                "file": "编程/Java/2.深入/README.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md",
+                "file": "编程/Java/2.深入/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md",
+                "file": "编程/Java/2.深入/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Java/线程/5、ThreadLocal基本使用和源码解读.md"
+                "file": "编程/Java/2.深入/README.md"
               }
             }
           },
@@ -167,25 +167,32 @@
   },
   "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
-    "编程/Java/框架",
-    "编程/Java/基础",
+    "编程/Java/1.基础/6.线程",
+    "编程/Java/1.基础/7.反射",
+    "编程/Java/1.基础/5.JDBC",
+    "编程/Java/1.基础/4.IO",
+    "编程/Java/1.基础/3.集合",
+    "编程/Java/1.基础/2.基础类",
+    "编程/Java/1.基础/1.语法",
+    "编程/Java/2.深入/JavaFX",
+    "编程/Java/2.深入/JVM",
+    "编程/Java/2.深入/Servlet",
+    "编程/Java/4.工具/Xxl-Job",
+    "编程/Java/1.基础/README.md",
+    "编程/Java/2.深入/README.md",
+    "Java/线程/5、ThreadLocal基本使用和源码解读.md",
     "Java/线程/6、CompletableFuture.md",
     "Java/线程/2、Callable的基本使用和源码解读.md",
     "每日学习/2023-09-09.md",
-    "编程/Java",
-    "编程",
-    "每日学习/2023-09-09.todotxt",
     "每日学习/面试整理.md",
     "每日学习/2023-09-09.todotxt.md",
     "未命名.md",
     "未命名.canvas",
     "JavaFX/布局控制.md",
-    "JavaFX/JavaFX思维导图.mm",
     "attachments/Pasted image 20230905204616.png",
     "attachments/Pasted image 20230904222704.png",
     "attachments/Pasted image 20230904220817.png",
     "Spring全家桶/core/8、ApplicationContext.md",
-    "JavaFX",
     "Spring全家桶/core/7、BeanFactory.md",
     "Spring全家桶/core/1、Spring IoC学习路线.md",
     "个人/谈薪.md",
