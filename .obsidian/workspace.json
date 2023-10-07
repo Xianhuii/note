@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "编程/资料.md",
+                "file": "编程/Java/Java资料.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,14 +94,14 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "编程/资料.md",
+                "file": "编程/Java/Java资料.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "编程/资料.md",
+                "file": "编程/Java/Java资料.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "编程/资料.md"
+                "file": "编程/Java/Java资料.md"
               }
             }
           },
@@ -176,10 +176,17 @@
   },
   "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
-    "编程/未命名",
+    "编程/数据库/PostgreSQL",
+    "编程/运维/k8s",
+    "编程/运维/Docker",
+    "编程/编程资料.md",
+    "编程/运维/运维资料.md",
+    "编程/运维/Jenkins",
+    "编程/Java/Java资料.md",
+    "编程/运维",
+    "编程/理论",
     "编程/Java/3.框架/Shiro",
     "经济学/书单.md",
-    "编程/资料.md",
     "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "经济学",
     "社会学",
@@ -199,21 +206,14 @@
     "找工作/简先辉_Java工程师.md",
     "编程/消息队列/使用Redis必须考虑的问题.md",
     "理财/投资计划.md",
-    "编程/设计模式/策略模式.md",
-    "编程/设计模式/备忘录模式.md",
+    "编程/理论/设计模式/策略模式.md",
+    "编程/理论/设计模式/备忘录模式.md",
     "编程/消息队列/使用消息队列必须考虑的问题.md",
     "JavaFX/布局控制.md",
     "Git/凭据助手credential.helper.md",
-    "Java8语言规范研读/17线程和锁/1同步.md",
-    "Java8语言规范研读/17线程和锁/0前言.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
     "编程/Java/1.基础/6.线程/uml/Callable.png",
     "编程/前端",
-    "复盘",
-    "编程/操作系统/Windows",
-    "编程/操作系统/Linux",
-    "编程/操作系统",
-    "编程/Java/4.工具/Xxl-job/未命名",
     "未命名.canvas",
     "attachments/Pasted image 20230905204616.png",
     "attachments/Pasted image 20230904222704.png",

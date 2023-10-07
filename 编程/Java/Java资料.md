@@ -1,3 +1,7 @@
+---
+tags:
+  - 资料
+---
 # Java
 - [ ] [JDK Download](https://www.oracle.com/cn/java/technologies/downloads/)
 - [ ] [Java核心技术·卷 I（原书第11版） (豆瓣) (douban.com)](https://book.douban.com/subject/34898994/)
@@ -59,3 +63,10 @@
 - [ ] [快速启动 | Seata](https://seata.io/zh-cn/docs/user/quickstart/)
 # Nacos
 - [ ] [Nacos 快速开始](https://nacos.io/zh-cn/docs/quick-start.html)
+# JavaFX
+- [ ] [JavaFX (openjfx.io)](https://openjfx.io/)
+- [ ] 《The Definitive Guide to Modern Java Clients with JavaFX 17: Cross-Platform Mobile and Cloud Development》
+- [ ] 《Learn JavaFX 17 Building User Experience and Interfaces with Java》
+# Cglib
+- [ ] [cglib/cglib: cglib(github.com)](https://github.com/cglib/cglib)
+
