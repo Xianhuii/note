@@ -65,8 +65,12 @@ tags:
 - [ ] [Nacos 快速开始](https://nacos.io/zh-cn/docs/quick-start.html)
 # JavaFX
 - [ ] [JavaFX (openjfx.io)](https://openjfx.io/)
-- [ ] 《The Definitive Guide to Modern Java Clients with JavaFX 17: Cross-Platform Mobile and Cloud Development》
-- [ ] 《Learn JavaFX 17 Building User Experience and Interfaces with Java》
+- [ ] [pdf/it/java/Learn JavaFX 17 Building User Experience and Interfaces with Java.pdf at main · Xianhuii/pdf (github.com)](https://github.com/Xianhuii/pdf/blob/main/it/java/Learn%20JavaFX%2017%20Building%20User%20Experience%20and%20Interfaces%20with%20Java.pdf)
+- [ ] [github.com/Xianhuii/pdf/blob/main/it/java/The Definitive Guide to Modern Java Clients with Java.pdf](https://github.com/Xianhuii/pdf/blob/main/it/java/The%20Definitive%20Guide%20to%20Modern%20Java%20Clients%20with%20Java.pdf)
 # Cglib
 - [ ] [cglib/cglib: cglib(github.com)](https://github.com/cglib/cglib)
-
+# Maven
+- [ ] [Maven – Welcome to Apache Maven](https://maven.apache.org/)
+# ZooKeeper
+- [ ] [apache/zookeeper: Apache ZooKeeper (github.com)](https://github.com/apache/zookeeper)
+- [ ] [Apache ZooKeeper](https://zookeeper.apache.org/)
