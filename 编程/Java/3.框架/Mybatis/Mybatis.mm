@@ -1,9 +1,10 @@
 <map version="freeplane 1.11.5">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
-<node LOCALIZED_TEXT="new_mindmap" FOLDED="false" ID="ID_696401721" CREATED="1610381621824" MODIFIED="1610381621824" STYLE="oval">
+<node TEXT="Mybatis" FOLDED="false" ID="ID_696401721" CREATED="1610381621824" MODIFIED="1696662117798" STYLE="oval">
 <font SIZE="18"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="3" RULE="ON_BRANCH_CREATION"/>
 <hook NAME="MapStyle">
-    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" fit_to_viewport="false" associatedTemplateLocation="template:/standard-1.6.mm" followedTemplateLocation="template:/standard-1.6.mm" followedMapLastTime="1692705696000"/>
+    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" associatedTemplateLocation="template:/standard-1.6.mm" followedTemplateLocation="template:/standard-1.6.mm" followedMapLastTime="1695529230000" fit_to_viewport="false" show_icon_for_attributes="true" show_note_icons="true"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24 pt">
@@ -68,6 +69,14 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="0" RULE="ON_BRANCH_CREATION"/>
+<node TEXT="架构" POSITION="bottom_or_right" ID="ID_1673984015" CREATED="1696662304691" MODIFIED="1696662307984">
+<edge COLOR="#ff0000"/>
+</node>
+<node TEXT="基本使用" POSITION="bottom_or_right" ID="ID_1255805127" CREATED="1696662308321" MODIFIED="1696662313272">
+<edge COLOR="#0000ff"/>
+</node>
+<node TEXT="" POSITION="bottom_or_right" ID="ID_387852903" CREATED="1696662826774" MODIFIED="1696662826774">
+<edge COLOR="#00ff00"/>
+</node>
 </node>
 </map>
