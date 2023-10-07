@@ -19,8 +19,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "01b700d6e706a6c7",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.4.14"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -145,6 +156,16 @@
               "type": "advanced-tables-toolbar",
               "state": {}
             }
+          },
+          {
+            "id": "24128225c9de9686",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
+              }
+            }
           }
         ],
         "currentTab": 4
@@ -165,7 +186,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "d3bcba475425ccdc",
+  "active": "01b700d6e706a6c7",
   "lastOpenFiles": [
     "Spring全家桶/SpringMVC/CORS/SpringMVC配置CORS（使用篇）.md",
     "Git/凭据助手credential.helper.md",
