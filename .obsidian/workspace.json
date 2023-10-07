@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/副业.md",
+                "file": "编程/Java/3.框架/Mybatis/Mybatis插件.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "复盘/副业.md",
+                "file": "编程/Java/3.框架/Mybatis/Mybatis插件.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "复盘/副业.md",
+                "file": "编程/Java/3.框架/Mybatis/Mybatis插件.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "复盘/副业.md"
+                "file": "编程/Java/3.框架/Mybatis/Mybatis插件.md"
               }
             }
           },
@@ -174,10 +174,15 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "dc008a5f4b979698",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
-    "复盘/读书.md",
+    "编程/Java/3.框架/Mybatis/Mybatis.mm",
+    "编程/Java/3.框架/Mybatis/Mybatis操作数据库源码.md",
+    "编程/Java/3.框架/Mybatis/Mybatis插件.md",
+    "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
+    "编程/Java/3.框架/Mybatis/2.Mybatis添加映射接口和映射文件.md",
     "复盘/副业.md",
+    "复盘/读书.md",
     "每日学习/2023-09-09.md",
     "每日学习/面试整理.md",
     "找工作/自我介绍.md",
@@ -199,12 +204,7 @@
     "编程/Java/1.基础/6.线程/uml/Callable.png",
     "编程/Java/1.基础/6.线程/0、多线程学习路线.md",
     "编程/Java/1.基础/6.线程/5、ThreadLocal基本使用和源码解读.md",
-    "软件/Obsidian插件.md",
-    "编程/前端/JavaScript打包下载最佳实践.md",
     "编程/前端",
-    "开发规范/开发注意点.md",
-    "编程/Java/3.框架/SpringFramework/Transaction/1、Spring事务的基本使用.md",
-    "编程/Java/3.框架/SpringMVC/1、Java Web服务器是怎么处理请求的？.md",
     "复盘",
     "编程/操作系统/Windows",
     "编程/操作系统/Linux",
