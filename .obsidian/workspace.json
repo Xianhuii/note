@@ -11,8 +11,13 @@
             "id": "dc008a5f4b979698",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "复盘/读书.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -89,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
+                "file": "复盘/读书.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
+                "file": "复盘/读书.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -129,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
+                "file": "复盘/读书.md"
               }
             }
           },
@@ -152,12 +157,11 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -170,32 +174,38 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e275dab41eb9f4d9",
+  "active": "dc008a5f4b979698",
   "lastOpenFiles": [
+    "复盘/读书.md",
+    "每日学习/2023-09-09.md",
+    "每日学习/面试整理.md",
+    "找工作/自我介绍.md",
+    "找工作/象屿科技.md",
+    "找工作/谈薪.md",
+    "找工作/期望和问题.md",
+    "找工作/面试官最常问的问题.md",
+    "找工作/简先辉_Java工程师.md",
+    "编程/消息队列/使用Redis必须考虑的问题.md",
+    "理财/投资计划.md",
+    "编程/设计模式/策略模式.md",
+    "编程/设计模式/备忘录模式.md",
+    "编程/消息队列/使用消息队列必须考虑的问题.md",
+    "JavaFX/布局控制.md",
+    "Git/凭据助手credential.helper.md",
+    "Java8语言规范研读/17线程和锁/1同步.md",
+    "Java8语言规范研读/17线程和锁/0前言.md",
+    "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
     "编程/Java/1.基础/6.线程/uml/Callable.png",
     "编程/Java/1.基础/6.线程/0、多线程学习路线.md",
     "编程/Java/1.基础/6.线程/5、ThreadLocal基本使用和源码解读.md",
     "软件/Obsidian插件.md",
-    "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
     "编程/前端/JavaScript打包下载最佳实践.md",
     "编程/前端",
     "开发规范/开发注意点.md",
     "编程/Java/3.框架/SpringFramework/Transaction/1、Spring事务的基本使用.md",
     "编程/Java/3.框架/SpringMVC/1、Java Web服务器是怎么处理请求的？.md",
     "编程/Java/3.框架/SpringMVC/CORS/CORS协议规范.md",
-    "编程/Java/3.框架/SpringMVC/CORS/SpringMVC配置CORS（原理篇）.md",
-    "编程/Java/3.框架/SpringMVC/CORS/SpringMVC配置CORS（使用篇）.md",
-    "编程/Java/3.框架/SpringCloud/1、SpringCloudAlibaba项目搭建流程.md",
-    "编程/Java/3.框架/SpringBoot/1、SpringBoot学习路线.md",
-    "编程/Java/3.框架/SpringBoot/2、SpringBoot启动流程.md",
-    "编程/Java/3.框架/SpringFramework/1、Spring IoC学习路线.md",
-    "编程/数据库/MySQL/1、InnoDB存储引擎的B+树索引.md",
-    "JavaFX/布局控制.md",
-    "Git/凭据助手credential.helper.md",
-    "编程/Java/1.基础/README.md",
-    "数据库/MySQL的SQL优化.md",
     "复盘",
-    "编程/Java/2.深入/README.md",
     "编程/操作系统/Windows",
     "编程/操作系统/Linux",
     "编程/操作系统",
@@ -204,11 +214,6 @@
     "编程/Web服务器/Jetty",
     "编程/Web服务器/Nginx",
     "编程/Web服务器/Tomcat",
-    "编程/Java/1.基础/6.线程/6、CompletableFuture.md",
-    "编程/Java/1.基础/6.线程/2、Callable的基本使用和源码解读.md",
-    "每日学习/2023-09-09.md",
-    "每日学习/面试整理.md",
-    "每日学习/2023-09-09.todotxt.md",
     "未命名.canvas",
     "attachments/Pasted image 20230905204616.png",
     "attachments/Pasted image 20230904222704.png",
