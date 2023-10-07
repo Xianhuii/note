@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "经济学/书单.md",
+                "file": "编程/资料.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "经济学/书单.md",
+                "file": "编程/资料.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "经济学/书单.md",
+                "file": "编程/资料.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "经济学/书单.md"
+                "file": "编程/资料.md"
               }
             }
           },
@@ -176,8 +176,9 @@
   },
   "active": "16ecdbc429fb5d71",
   "lastOpenFiles": [
-    "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "经济学/书单.md",
+    "编程/资料.md",
+    "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "经济学",
     "社会学",
     "编程/Java/3.框架/Mybatis/Mybatis.mm",
@@ -206,7 +207,6 @@
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
     "编程/Java/1.基础/6.线程/uml/Callable.png",
     "编程/Java/1.基础/6.线程/0、多线程学习路线.md",
-    "编程/Java/1.基础/6.线程/5、ThreadLocal基本使用和源码解读.md",
     "编程/前端",
     "复盘",
     "编程/操作系统/Windows",
