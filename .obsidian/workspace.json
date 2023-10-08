@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "f39c6196907016ba",
+        "id": "a9c498089a54a03c",
         "type": "tabs",
         "children": [
           {
-            "id": "16ecdbc429fb5d71",
+            "id": "92458b1636182f3a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "编程/Java/Java资料.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -94,7 +89,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "编程/Java/Java资料.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +105,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "编程/Java/Java资料.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,9 +126,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "编程/Java/Java资料.md"
-              }
+              "state": {}
             }
           },
           {
@@ -174,24 +165,23 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e275dab41eb9f4d9",
+  "active": "92458b1636182f3a",
   "lastOpenFiles": [
+    "编程/Java/1.基础/README.md",
+    "编程/Java/1.基础/9.Stream",
+    "编程/Java/Java资料.md",
+    "编程/工具/Git",
+    "编程/工具",
     "编程/Java/4.工具/Maven",
     "编程/编程资料.md",
     "经济学/书单.md",
     "编程/消息队列/理论",
-    "编程/Java/Java资料.md",
     "软件/Resilio",
     "软件/Obsidian",
     "软件/Zotero",
-    "编程/Java/1.基础/README.md",
     "编程/数据库/数据库资料.md",
     "编程/Java/1.基础/8.网络",
     "编程/前端/业务",
-    "编程/前端/Vue",
-    "编程/搜索引擎/ELK",
-    "编程/搜索引擎/Solr",
-    "编程/搜索引擎/Lucene",
     "编程/运维/运维资料.md",
     "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "编程/Java/3.框架/Mybatis/Mybatis操作数据库源码.md",
