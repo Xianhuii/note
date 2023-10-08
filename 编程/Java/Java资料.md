@@ -31,6 +31,7 @@ tags:
 # Shiro
 - [ ] [Apache Shiro | Simple. Java. Security.](https://shiro.apache.org/)
 - [ ] [Apache Shiro Reference Documentation](https://shiro.apache.org/reference.html)
+- [ ] 鉴权：[Java Authentication Guide with Apache Shiro | Apache Shiro](https://shiro.apache.org/java-authentication-guide.html)
 # FreeMarker
 - [ ] [FreeMarker Java Template Engine (apache.org)](https://freemarker.apache.org/)
 # Caffeine
