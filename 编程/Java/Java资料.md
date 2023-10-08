@@ -74,3 +74,7 @@ tags:
 # ZooKeeper
 - [ ] [apache/zookeeper: Apache ZooKeeper (github.com)](https://github.com/apache/zookeeper)
 - [ ] [Apache ZooKeeper](https://zookeeper.apache.org/)
+# Drools
+- [ ] [Drools - Drools - Business Rules Management System (Java™, Open Source)](https://www.drools.org/)
+- [ ] [apache/incubator-kie-drools: Drools is a rule engine, DMN engine and complex event processing (CEP) engine for Java. (github.com)](https://github.com/apache/incubator-kie-drools)
+- [ ] 
