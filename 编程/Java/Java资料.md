@@ -32,7 +32,8 @@ tags:
 - [ ] [Apache Shiro | Simple. Java. Security.](https://shiro.apache.org/)
 - [ ] [Apache Shiro Reference Documentation](https://shiro.apache.org/reference.html)
 - [x] [Introduction to Apache Shiro | Apache Shiro](https://shiro.apache.org/introduction.html)
-- [ ] [Apache Shiro Tutorial | Apache Shiro](https://shiro.apache.org/tutorial.html)
+- [x] [Apache Shiro Tutorial | Apache Shiro](https://shiro.apache.org/tutorial.html)
+- [ ] [Apache Shiro Architecture | Apache Shiro](https://shiro.apache.org/architecture.html)
 - [x] 认证：[Java Authentication Guide with Apache Shiro | Apache Shiro](https://shiro.apache.org/java-authentication-guide.html)
 # FreeMarker
 - [ ] [FreeMarker Java Template Engine (apache.org)](https://freemarker.apache.org/)
