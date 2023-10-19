@@ -29,12 +29,8 @@ tags:
 - [ ] [The MyBatis Blog: Products](https://blog.mybatis.org/p/products.html)
 - [ ] [pagehelper/Mybatis-PageHelper: Mybatis通用分页插件 (github.com)](https://github.com/pagehelper/Mybatis-PageHelper)
 # Shiro
-- [ ] [Apache Shiro | Simple. Java. Security.](https://shiro.apache.org/)
-- [ ] [Apache Shiro Reference Documentation](https://shiro.apache.org/reference.html)
-- [x] [Introduction to Apache Shiro | Apache Shiro](https://shiro.apache.org/introduction.html)
-- [x] [Apache Shiro Tutorial | Apache Shiro](https://shiro.apache.org/tutorial.html)
-- [x] [Apache Shiro Architecture | Apache Shiro](https://shiro.apache.org/architecture.html)
-- [x] 认证：[Java Authentication Guide with Apache Shiro | Apache Shiro](https://shiro.apache.org/java-authentication-guide.html)
+- [x] [Apache Shiro | Simple. Java. Security.](https://shiro.apache.org/)
+- [x] [Apache Shiro Reference Documentation](https://shiro.apache.org/reference.html)
 # FreeMarker
 - [ ] [FreeMarker Java Template Engine (apache.org)](https://freemarker.apache.org/)
 # Caffeine
