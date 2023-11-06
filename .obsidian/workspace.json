@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "编程/Java/Java资料.md",
-                "mode": "preview",
+                "file": "测评/人体工学椅.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "编程/Java/Java资料.md",
+                "file": "测评/人体工学椅.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "编程/Java/Java资料.md",
+                "file": "测评/人体工学椅.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "编程/Java/Java资料.md"
+                "file": "测评/人体工学椅.md"
               }
             }
           },
@@ -176,9 +176,11 @@
   },
   "active": "92458b1636182f3a",
   "lastOpenFiles": [
+    "编程/Java/Java资料.md",
+    "测评/人体工学椅.md",
+    "测评",
     "编程/Java/1.基础/README.md",
     "编程/Java/1.基础/9.Stream",
-    "编程/Java/Java资料.md",
     "编程/工具/Git",
     "编程/工具",
     "编程/Java/4.工具/Maven",
@@ -190,7 +192,6 @@
     "软件/Zotero",
     "编程/数据库/数据库资料.md",
     "编程/Java/1.基础/8.网络",
-    "编程/前端/业务",
     "编程/运维/运维资料.md",
     "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "编程/Java/3.框架/Mybatis/Mybatis操作数据库源码.md",
