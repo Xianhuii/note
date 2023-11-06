@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "测评/人体工学椅.md",
+                "file": "编程/消息队列/消息队列资料.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "测评/人体工学椅.md",
+                "file": "编程/消息队列/消息队列资料.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "测评/人体工学椅.md",
+                "file": "编程/消息队列/消息队列资料.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "测评/人体工学椅.md"
+                "file": "编程/消息队列/消息队列资料.md"
               }
             }
           },
@@ -177,6 +177,8 @@
   "active": "92458b1636182f3a",
   "lastOpenFiles": [
     "编程/Java/Java资料.md",
+    "编程/消息队列/消息队列资料.md",
+    "编程/编程资料.md",
     "测评/人体工学椅.md",
     "测评",
     "编程/Java/1.基础/README.md",
@@ -184,7 +186,6 @@
     "编程/工具/Git",
     "编程/工具",
     "编程/Java/4.工具/Maven",
-    "编程/编程资料.md",
     "经济学/书单.md",
     "编程/消息队列/理论",
     "软件/Resilio",
@@ -211,7 +212,6 @@
     "理财/投资计划.md",
     "编程/理论/设计模式/策略模式.md",
     "编程/理论/设计模式/备忘录模式.md",
-    "编程/消息队列/理论/使用消息队列必须考虑的问题.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
     "编程/Java/1.基础/6.线程/uml/Callable.png",
     "未命名.canvas",
