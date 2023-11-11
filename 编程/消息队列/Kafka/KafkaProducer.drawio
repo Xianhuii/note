@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" modified="2023-11-11T04:17:22.961Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0" etag="-cQVrhs_hkRaARbNy7n2" version="21.7.2" type="device">
+  <diagram name="第 1 页" id="HpaX0P8XmZJ58mbIt6KI">
+    <mxGraphModel dx="2528" dy="914" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ATlzD4DecSIZiHJDfU_H-2" target="ATlzD4DecSIZiHJDfU_H-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-2" value="KafkaProducer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="275" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ATlzD4DecSIZiHJDfU_H-3" target="ATlzD4DecSIZiHJDfU_H-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-3" value="RecordAccumelator" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="402.5" y="280" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ATlzD4DecSIZiHJDfU_H-4" target="ATlzD4DecSIZiHJDfU_H-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-4" value="intercepotrs" style="whiteSpace=wrap;html=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="72.5" y="290" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ATlzD4DecSIZiHJDfU_H-6" target="ATlzD4DecSIZiHJDfU_H-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-6" value="keySerializer &amp;amp; valueSerializer" style="whiteSpace=wrap;html=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="410" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ATlzD4DecSIZiHJDfU_H-8" target="ATlzD4DecSIZiHJDfU_H-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-8" value="partitioner" style="whiteSpace=wrap;html=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="500" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ATlzD4DecSIZiHJDfU_H-10" target="ATlzD4DecSIZiHJDfU_H-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-10" value="topicInfoMap =&amp;gt; TopicInfo" style="whiteSpace=wrap;html=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="500" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ATlzD4DecSIZiHJDfU_H-13" target="ATlzD4DecSIZiHJDfU_H-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-13" value="topicInfo =&amp;gt; batches（Dqueue&amp;lt;ProducerBathc&amp;gt;）" style="whiteSpace=wrap;html=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="307.5" y="410" width="310" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ATlzD4DecSIZiHJDfU_H-16" target="ATlzD4DecSIZiHJDfU_H-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-16" value="Sender&lt;br&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="780" y="290" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ATlzD4DecSIZiHJDfU_H-21" value="client" style="whiteSpace=wrap;html=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="735" y="430" width="120" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
