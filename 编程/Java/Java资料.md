@@ -4,8 +4,8 @@ tags:
 ---
 # Java
 - [ ] [JDK Download](https://www.oracle.com/cn/java/technologies/downloads/)
-- [ ] [Java核心技术·卷 I（原书第11版） (豆瓣) (douban.com)](https://book.douban.com/subject/34898994/)
-- [ ] [Java核心技术·卷 II（原书第11版） (豆瓣) (douban.com)](https://book.douban.com/subject/34935138/)
+- [x] [Java核心技术·卷 I（原书第11版） (豆瓣) (douban.com)](https://book.douban.com/subject/34898994/)
+- [x] [Java核心技术·卷 II（原书第11版） (豆瓣) (douban.com)](https://book.douban.com/subject/34935138/)
 - [ ] [Java SE官方文档](https://docs.oracle.com/en/java/javase/index.html)
 	- [ ] [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html)
 	- [ ] [JAR File Specification](https://docs.oracle.com/en/java/javase/17/docs/specs/jar/jar.html)
@@ -36,9 +36,11 @@ tags:
 # Caffeine
 - [ ] [ben-manes/caffeine: A high performance caching library for Java (github.com)](https://github.com/ben-manes/caffeine)
 - [ ] [Home zh CN · ben-manes/caffeine Wiki (github.com)](https://github.com/ben-manes/caffeine/wiki/Home-zh-CN)
+# Slf4j
+- [x] [SLF4J Manual](https://www.slf4j.org/manual.html)
 # Log4j2
-- [ ] [Log4j – Apache Log4j™ 2](https://logging.apache.org/log4j/2.x/)
-- [ ] [apache/logging-log4j2: Apache Log4j 2 is a versatile, feature-rich, efficient logging API and backend for Java. (github.com)](https://github.com/apache/logging-log4j2)
+- [x] [Log4j – Apache Log4j™ 2](https://logging.apache.org/log4j/2.x/)
+- [x] [apache/logging-log4j2: Apache Log4j 2 is a versatile, feature-rich, efficient logging API and backend for Java. (github.com)](https://github.com/apache/logging-log4j2)
 # Netty
 - [ ] [Netty: Home](https://netty.io/)
 - [ ] [netty/netty: Netty project - an event-driven asynchronous network application framework (github.com)](https://github.com/netty/netty)
@@ -52,7 +54,7 @@ tags:
 - [ ] [alibaba/easyexcel: 快速、简洁、解决大文件内存溢出的java处理Excel工具 (github.com)](https://github.com/alibaba/easyexcel)
 - [ ] [EasyExcel官方文档 - 基于Java的Excel处理工具 | Easy Excel (alibaba.com)](https://easyexcel.opensource.alibaba.com/)
 # Druid
-- [ ] [alibaba/druid (github.com)](https://github.com/alibaba/druid)
+- [x] [alibaba/druid (github.com)](https://github.com/alibaba/druid)
 # ShardingSphere
 - [ ] [Apache ShardingSphere](https://shardingsphere.apache.org/index_zh.html)
 - [ ] [apache/shardingsphere: Distributed SQL transaction & query engine for data sharding, scaling, encryption, and more - on any database. (github.com)](https://github.com/apache/shardingsphere)
