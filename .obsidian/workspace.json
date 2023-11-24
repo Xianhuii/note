@@ -24,12 +24,9 @@
             "id": "be678f84045c6fad",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "编程/Java/Java资料.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "编程/Java/1.基础/6.线程/uml/Runnable.png"
               }
             }
           }
@@ -108,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "编程/Java/Java资料.md",
+                "file": "编程/Java/1.基础/6.线程/uml/Runnable.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "编程/Java/Java资料.md",
+                "file": "编程/Java/1.基础/6.线程/uml/Runnable.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "编程/Java/Java资料.md"
+                "file": "编程/Java/1.基础/6.线程/uml/Runnable.png"
               }
             }
           },
@@ -190,13 +187,15 @@
   },
   "active": "be678f84045c6fad",
   "lastOpenFiles": [
+    "编程/Java/1.基础/6.线程/uml/Callable.png",
+    "编程/Java/1.基础/6.线程/uml/Runnable.png",
+    "编程/Java/1.基础/6.线程/0、多线程学习路线.md",
+    "编程/Java/1.基础/6.线程/1、Thread和Runnable.md",
+    "编程/Java/Java资料.md",
     "编程/消息队列/消息队列资料.md",
     "编程/消息队列/Kafka/0 Kafaka架构.md",
     "编程/消息队列/Kafka/生产者.md",
-    "编程/Java/1.基础/6.线程/0、多线程学习路线.md",
     "编程/Java/1.基础/6.线程/2、Callable的基本使用和源码解读.md",
-    "编程/Java/1.基础/6.线程/1、Thread和Runnable.md",
-    "编程/Java/Java资料.md",
     "编程/编程资料.md",
     "学习时间轴.md",
     "编程/消息队列/Kafka/KafkaProducer.drawio.crswap",
@@ -225,9 +224,7 @@
     "找工作/自我介绍.md",
     "找工作/象屿科技.md",
     "找工作/谈薪.md",
-    "找工作/期望和问题.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
-    "编程/Java/1.基础/6.线程/uml/Callable.png",
     "未命名.canvas",
     "attachments/Pasted image 20230905204616.png",
     "attachments/Pasted image 20230904222704.png",
