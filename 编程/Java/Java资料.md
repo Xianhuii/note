@@ -25,14 +25,14 @@ tags:
 - [ ] [Spring Cloud Data Flow](https://spring.io/projects/spring-cloud-dataflow#learn)
 - [ ] [Spring Security](https://spring.io/projects/spring-security#learn)
 # Mybatis
-- [ ] [mybatis – MyBatis 3 | 简介](https://mybatis.org/mybatis-3/zh/index.html)
-- [ ] [The MyBatis Blog: Products](https://blog.mybatis.org/p/products.html)
-- [ ] [pagehelper/Mybatis-PageHelper: Mybatis通用分页插件 (github.com)](https://github.com/pagehelper/Mybatis-PageHelper)
+- [x] [mybatis – MyBatis 3 | 简介](https://mybatis.org/mybatis-3/zh/index.html)
+- [x] [The MyBatis Blog: Products](https://blog.mybatis.org/p/products.html)
+- [x] [pagehelper/Mybatis-PageHelper: Mybatis通用分页插件 (github.com)](https://github.com/pagehelper/Mybatis-PageHelper)
 # Shiro
 - [x] [Apache Shiro | Simple. Java. Security.](https://shiro.apache.org/)
 - [x] [Apache Shiro Reference Documentation](https://shiro.apache.org/reference.html)
 # FreeMarker
-- [ ] [FreeMarker Java Template Engine (apache.org)](https://freemarker.apache.org/)
+- [x] [FreeMarker Java Template Engine (apache.org)](https://freemarker.apache.org/)
 # Caffeine
 - [ ] [ben-manes/caffeine: A high performance caching library for Java (github.com)](https://github.com/ben-manes/caffeine)
 - [ ] [Home zh CN · ben-manes/caffeine Wiki (github.com)](https://github.com/ben-manes/caffeine/wiki/Home-zh-CN)
@@ -42,8 +42,8 @@ tags:
 - [x] [Log4j – Apache Log4j™ 2](https://logging.apache.org/log4j/2.x/)
 - [x] [apache/logging-log4j2: Apache Log4j 2 is a versatile, feature-rich, efficient logging API and backend for Java. (github.com)](https://github.com/apache/logging-log4j2)
 # Netty
-- [ ] [Netty: Home](https://netty.io/)
-- [ ] [netty/netty: Netty project - an event-driven asynchronous network application framework (github.com)](https://github.com/netty/netty)
+- [x] [Netty: Home](https://netty.io/)
+- [x] [netty/netty: Netty project - an event-driven asynchronous network application framework (github.com)](https://github.com/netty/netty)
 # Dubbo
 - [ ] [Apache Dubbo](https://cn.dubbo.apache.org/zh-cn/)
 - [ ] [apache/dubbo: The java implementation of Apache Dubbo. An RPC and microservice framework. (github.com)](https://github.com/apache/dubbo)
