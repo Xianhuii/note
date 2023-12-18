@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "编程/理论/理论资料.md",
+                "file": "复盘/2023年度目标.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -108,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "编程/理论/理论资料.md",
+                "file": "复盘/2023年度目标.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "编程/理论/理论资料.md",
+                "file": "复盘/2023年度目标.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "编程/理论/理论资料.md"
+                "file": "复盘/2023年度目标.md"
               }
             }
           },
@@ -190,10 +190,17 @@
   },
   "active": "be678f84045c6fad",
   "lastOpenFiles": [
-    "编程/操作系统/操作系统资料.md",
-    "编程/理论/理论资料.md",
-    "编程/Java/Java资料.md",
+    "复盘/副业.md",
+    "复盘/2023年度目标.md",
+    "复盘/读书.md",
     "学习时间轴.md",
+    "未命名",
+    "编程/理论/理论资料.md",
+    "编程/数据库/数据库资料.md",
+    "编程/运维/运维资料.md",
+    "编程/Java/Java资料.md",
+    "编程/编程资料.md",
+    "编程/操作系统/操作系统资料.md",
     "编程/Java/1.基础/6.线程/uml/ScheduledThreadPoolExecutor.png",
     "编程/Java/1.基础/6.线程/uml/DelayedWorkQueue.png",
     "编程/Java/1.基础/6.线程/uml/ScheduledFutureTask.png",
@@ -208,7 +215,6 @@
     "编程/消息队列/Kafka/0 Kafaka架构.md",
     "编程/消息队列/Kafka/生产者.md",
     "编程/Java/1.基础/6.线程/2、Callable的基本使用和源码解读.md",
-    "编程/编程资料.md",
     "编程/消息队列/Kafka/KafkaProducer.drawio.crswap",
     "编程/消息队列/Kafka/KafkaProducer.drawio",
     "编程/消息队列/Kafka/Kafka.xmind",
@@ -221,19 +227,13 @@
     "编程/Java/4.工具/Maven",
     "经济学/书单.md",
     "编程/消息队列/理论",
-    "软件/Resilio",
-    "编程/数据库/数据库资料.md",
-    "编程/运维/运维资料.md",
     "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "编程/Java/3.框架/Mybatis/Mybatis操作数据库源码.md",
     "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
     "编程/Java/3.框架/Mybatis/2.Mybatis添加映射接口和映射文件.md",
-    "复盘/副业.md",
-    "复盘/读书.md",
     "每日学习/2023-09-09.md",
     "每日学习/面试整理.md",
     "找工作/自我介绍.md",
-    "找工作/象屿科技.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
     "未命名.canvas",
     "attachments/Pasted image 20230905204616.png"
