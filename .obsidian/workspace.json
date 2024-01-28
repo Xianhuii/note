@@ -19,19 +19,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "21c46e6f8b9fe48b",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.5.3"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -89,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 539.4999961853027
+    "width": 337.5
   },
   "right": {
     "id": "498b15a5676494df",
@@ -187,15 +176,27 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "21c46e6f8b9fe48b",
+  "active": "e275dab41eb9f4d9",
   "lastOpenFiles": [
-    "编程/消息队列/Kafka/生产者.md",
+    "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/4.TaskExecutor和Schedule：线程执行器和任务调度",
+    "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/3.EventListener：事件机制",
+    "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/2.Cache：缓存注解",
+    "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/1.REST Clients",
+    "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成",
+    "编程/Java/3.框架/SpringFramework/v2.0/2.Web/5.RSocket",
+    "编程/Java/3.框架/SpringFramework/v2.0/2.Web/4.REST Clients",
+    "编程/Java/3.框架/SpringFramework/v2.0/2.Web",
+    "编程/Java/3.框架/SpringFramework/v2.0/3.Reactive Web/2.WebClient",
+    "编程/Java/3.框架/SpringFramework/v2.0/2.Web/2.Spring WebFlux",
+    "编程/Java/3.框架/SpringFramework/v2.0/3.Reactive Web",
+    "编程/Java/3.框架/SpringFramework/v2.0/未命名.md",
+    "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md",
     "复盘/2024年度目标.md",
+    "编程/消息队列/Kafka/生产者.md",
     "复盘/2023年度目标.md",
     "复盘/副业.md",
     "复盘/读书.md",
     "学习时间轴.md",
-    "未命名",
     "编程/理论/理论资料.md",
     "编程/数据库/数据库资料.md",
     "编程/运维/运维资料.md",
@@ -215,24 +216,12 @@
     "编程/消息队列/消息队列资料.md",
     "编程/消息队列/Kafka/0 Kafaka架构.md",
     "编程/Java/1.基础/6.线程/2、Callable的基本使用和源码解读.md",
-    "编程/消息队列/Kafka/KafkaProducer.drawio.crswap",
-    "编程/消息队列/Kafka/KafkaProducer.drawio",
-    "编程/消息队列/Kafka/Kafka.xmind",
     "测评/人体工学椅.md",
-    "测评",
     "编程/Java/1.基础/README.md",
-    "编程/Java/1.基础/9.Stream",
-    "编程/工具/Git",
-    "编程/工具",
-    "编程/Java/4.工具/Maven",
     "经济学/书单.md",
-    "编程/消息队列/理论",
     "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "编程/Java/3.框架/Mybatis/Mybatis操作数据库源码.md",
     "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
-    "编程/Java/3.框架/Mybatis/2.Mybatis添加映射接口和映射文件.md",
-    "每日学习/2023-09-09.md",
-    "每日学习/面试整理.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
     "未命名.canvas",
     "attachments/Pasted image 20230905204616.png"
