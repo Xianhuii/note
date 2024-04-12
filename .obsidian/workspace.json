@@ -19,19 +19,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "d93a4c835fdbd2d8",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.5.12"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -187,7 +176,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "d93a4c835fdbd2d8",
+  "active": "be678f84045c6fad",
   "lastOpenFiles": [
     "复盘/2024.xmind",
     "编程/Java/3.框架/SpringFramework/v2.0/1.核心功能/1.IoC：容器/IoC容器.xmind",
