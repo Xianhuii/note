@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "a9c498089a54a03c",
+        "id": "be660a70e5297281",
         "type": "tabs",
         "children": [
           {
-            "id": "be678f84045c6fad",
+            "id": "13a348edadc6426b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "复盘/2024年度目标.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -34,16 +29,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e275dab41eb9f4d9",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {
-                "sortOrder": "alphabetical"
-              }
-            }
-          },
-          {
             "id": "6a844f621a12d00b",
             "type": "leaf",
             "state": {
@@ -59,26 +44,28 @@
             }
           },
           {
-            "id": "126ab70f4df8a5ae",
-            "type": "leaf",
-            "state": {
-              "type": "starred",
-              "state": {}
-            }
-          },
-          {
             "id": "b1ad38a3aa8f2026",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
               "state": {}
             }
+          },
+          {
+            "id": "e7e8f26b96c5d7ea",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 337.5
+    "width": 317.5
   },
   "right": {
     "id": "498b15a5676494df",
@@ -94,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "复盘/2024年度目标.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "复盘/2024年度目标.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "复盘/2024年度目标.md"
-              }
+              "state": {}
             }
           },
           {
@@ -163,7 +146,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -176,8 +160,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "be678f84045c6fad",
+  "active": "6a844f621a12d00b",
   "lastOpenFiles": [
+    "未命名 4.canvas",
+    "未命名 3.canvas",
+    "未命名 2.canvas",
+    "复盘/2024年度目标.md",
+    "编程/流程图/Untitled Diagram.svg",
+    "未命名 1.canvas",
+    "未命名.canvas",
+    "test.canvas",
+    "编程/流程图",
     "复盘/2024.xmind",
     "编程/Java/3.框架/SpringFramework/v2.0/1.核心功能/1.IoC：容器/IoC容器.xmind",
     "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/4.TaskExecutor和Schedule：线程执行器和任务调度",
@@ -187,11 +180,8 @@
     "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成",
     "编程/Java/3.框架/SpringFramework/v2.0/2.Web/5.RSocket",
     "编程/Java/3.框架/SpringFramework/v2.0/2.Web/4.REST Clients",
-    "编程/Java/3.框架/SpringFramework/v2.0/2.Web",
-    "编程/Java/3.框架/SpringFramework/v2.0/3.Reactive Web/2.WebClient",
     "编程/Java/3.框架/SpringFramework/v2.0/未命名.md",
     "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md",
-    "复盘/2024年度目标.md",
     "编程/消息队列/Kafka/生产者.md",
     "复盘/2023年度目标.md",
     "复盘/副业.md",
@@ -222,8 +212,6 @@
     "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "编程/Java/3.框架/Mybatis/Mybatis操作数据库源码.md",
     "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
-    "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png",
-    "未命名.canvas",
-    "attachments/Pasted image 20230905204616.png"
+    "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
   ]
 }
