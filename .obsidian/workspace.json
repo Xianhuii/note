@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "be660a70e5297281",
+        "id": "4339d29d199ae4d4",
         "type": "tabs",
         "children": [
           {
-            "id": "13a348edadc6426b",
+            "id": "cc660f405e8bbf32",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "复盘/2024年度目标.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -61,7 +66,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -81,6 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "复盘/2024年度目标.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "复盘/2024年度目标.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +126,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "复盘/2024年度目标.md"
+              }
             }
           },
           {
@@ -160,13 +170,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "6a844f621a12d00b",
+  "active": "cc660f405e8bbf32",
   "lastOpenFiles": [
+    "复盘/2023年度目标.md",
+    "复盘/2024年度目标.md",
+    "编程/流程图/未命名.md",
+    "编程/流程图/test.md",
+    "编程/流程图/Untitled Diagram.svg",
+    "未命名",
     "未命名 4.canvas",
     "未命名 3.canvas",
     "未命名 2.canvas",
-    "复盘/2024年度目标.md",
-    "编程/流程图/Untitled Diagram.svg",
     "未命名 1.canvas",
     "未命名.canvas",
     "test.canvas",
@@ -179,11 +193,9 @@
     "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/1.REST Clients",
     "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成",
     "编程/Java/3.框架/SpringFramework/v2.0/2.Web/5.RSocket",
-    "编程/Java/3.框架/SpringFramework/v2.0/2.Web/4.REST Clients",
     "编程/Java/3.框架/SpringFramework/v2.0/未命名.md",
     "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md",
     "编程/消息队列/Kafka/生产者.md",
-    "复盘/2023年度目标.md",
     "复盘/副业.md",
     "复盘/读书.md",
     "学习时间轴.md",
@@ -211,7 +223,6 @@
     "经济学/书单.md",
     "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "编程/Java/3.框架/Mybatis/Mybatis操作数据库源码.md",
-    "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
   ]
 }
