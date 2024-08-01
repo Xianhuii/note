@@ -21,12 +21,12 @@
             }
           },
           {
-            "id": "e68e17508ca53461",
+            "id": "5d2d2c0bd473b0a1",
             "type": "leaf",
             "state": {
               "type": "release-notes",
               "state": {
-                "currentVersion": "1.6.5"
+                "currentVersion": "1.6.7"
               }
             }
           }
@@ -181,7 +181,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e68e17508ca53461",
+  "active": "5d2d2c0bd473b0a1",
   "lastOpenFiles": [
     "学习时间轴.md",
     "复盘/2024年度目标.md",
