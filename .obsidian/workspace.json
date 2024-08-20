@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "找工作/简先辉_Java工程师 2024.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "找工作/简先辉_Java工程师 2024.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "找工作/简先辉_Java工程师 2024.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "复盘/2024年度目标.md"
+                "file": "找工作/简先辉_Java工程师 2024.md"
               }
             }
           },
@@ -172,8 +172,10 @@
   },
   "active": "cc660f405e8bbf32",
   "lastOpenFiles": [
-    "复盘/2023年度目标.md",
+    "找工作/简先辉_Java工程师.md",
+    "找工作/简先辉_Java工程师 2024.md",
     "复盘/2024年度目标.md",
+    "复盘/2023年度目标.md",
     "学习时间轴.md",
     "test.canvas",
     "未命名 3.canvas",
@@ -221,7 +223,6 @@
     "测评/人体工学椅.md",
     "编程/Java/1.基础/README.md",
     "经济学/书单.md",
-    "编程/Java/3.框架/Mybatis/Mybatis插件.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
   ]
 }
