@@ -19,8 +19,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "7976bb375345f10f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "笔记/月嫂.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -87,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "笔记/月嫂.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "笔记/月嫂.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md"
+                "file": "笔记/月嫂.md"
               }
             }
           },
@@ -170,10 +184,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "cc660f405e8bbf32",
+  "active": "7976bb375345f10f",
   "lastOpenFiles": [
-    "找工作/简先辉_Java工程师.md",
     "找工作/简先辉_Java工程师 2024.md",
+    "笔记/月嫂.md",
+    "笔记",
+    "找工作/简先辉_Java工程师.md",
     "复盘/2024年度目标.md",
     "复盘/2023年度目标.md",
     "学习时间轴.md",
@@ -186,7 +202,6 @@
     "编程/流程图/未命名.md",
     "编程/流程图/test.md",
     "编程/流程图/Untitled Diagram.svg",
-    "未命名",
     "编程/流程图",
     "复盘/2024.xmind",
     "编程/Java/3.框架/SpringFramework/v2.0/1.核心功能/1.IoC：容器/IoC容器.xmind",
@@ -222,7 +237,6 @@
     "编程/Java/1.基础/6.线程/2、Callable的基本使用和源码解读.md",
     "测评/人体工学椅.md",
     "编程/Java/1.基础/README.md",
-    "经济学/书单.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
   ]
 }
