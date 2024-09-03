@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "找工作/简先辉_Java工程师.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -26,14 +26,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "笔记/月嫂.md",
+                "file": "找工作/简先辉_Java工程师 2024.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -183,12 +184,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "cc660f405e8bbf32",
+  "active": "7976bb375345f10f",
   "lastOpenFiles": [
-    "笔记/月嫂.md",
-    "找工作/简先辉_Java工程师 2024.md",
-    "笔记",
     "找工作/简先辉_Java工程师.md",
+    "找工作/简先辉_Java工程师 2024.md",
+    "笔记/月嫂.md",
+    "笔记",
     "复盘/2024年度目标.md",
     "复盘/2023年度目标.md",
     "学习时间轴.md",
