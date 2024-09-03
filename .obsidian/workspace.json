@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "找工作/简先辉_Java工程师.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "找工作/简先辉_Java工程师.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "找工作/简先辉_Java工程师.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md"
+                "file": "找工作/简先辉_Java工程师.md"
               }
             }
           },
@@ -186,8 +186,10 @@
   },
   "active": "7976bb375345f10f",
   "lastOpenFiles": [
-    "找工作/简先辉_Java工程师.md",
     "找工作/简先辉_Java工程师 2024.md",
+    "找工作/简先辉_Java工程师_2024.pdf",
+    "找工作/Java程序员简历模板.md",
+    "找工作/简先辉_Java工程师.md",
     "笔记/月嫂.md",
     "笔记",
     "复盘/2024年度目标.md",
@@ -210,7 +212,6 @@
     "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/2.Cache：缓存注解",
     "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/1.REST Clients",
     "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成",
-    "编程/Java/3.框架/SpringFramework/v2.0/2.Web/5.RSocket",
     "编程/Java/3.框架/SpringFramework/v2.0/未命名.md",
     "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md",
     "编程/消息队列/Kafka/生产者.md",
@@ -235,8 +236,6 @@
     "编程/消息队列/消息队列资料.md",
     "编程/消息队列/Kafka/0 Kafaka架构.md",
     "编程/Java/1.基础/6.线程/2、Callable的基本使用和源码解读.md",
-    "测评/人体工学椅.md",
-    "编程/Java/1.基础/README.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
   ]
 }
