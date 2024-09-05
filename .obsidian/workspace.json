@@ -33,7 +33,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -100,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "复盘/2024年度目标.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "复盘/2024年度目标.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md"
+                "file": "复盘/2024年度目标.md"
               }
             }
           },
@@ -183,11 +184,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "cc660f405e8bbf32",
+  "active": "7976bb375345f10f",
   "lastOpenFiles": [
+    "找工作/简先辉_Java工程师 2024.md",
     "复盘/2024年度目标.md",
     "找工作/简先辉_Java工程师.md",
-    "找工作/简先辉_Java工程师 2024.md",
     "编程/思维导图/Dubbo.xmind",
     "编程/思维导图/新建文本文档.txt",
     "编程/思维导图",
