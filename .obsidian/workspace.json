@@ -26,14 +26,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "找工作/期望和问题.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -100,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "找工作/期望和问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md",
+                "file": "找工作/期望和问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024.md"
+                "file": "找工作/期望和问题.md"
               }
             }
           },
@@ -183,7 +184,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "cc660f405e8bbf32",
+  "active": "7976bb375345f10f",
   "lastOpenFiles": [
     "复盘/2024年度目标.md",
     "找工作/简先辉_Java工程师 2024.md",
