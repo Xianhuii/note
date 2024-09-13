@@ -11,12 +11,9 @@
             "id": "cc660f405e8bbf32",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024 1.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "找工作/简先辉_Java工程师_2024.pdf"
               }
             }
           },
@@ -100,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024 1.md",
+                "file": "找工作/简先辉_Java工程师_2024.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024 1.md",
+                "file": "找工作/简先辉_Java工程师_2024.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "找工作/简先辉_Java工程师 2024 1.md"
+                "file": "找工作/简先辉_Java工程师_2024.pdf"
               }
             }
           },
@@ -185,8 +182,8 @@
   },
   "active": "cc660f405e8bbf32",
   "lastOpenFiles": [
-    "找工作/简先辉_Java工程师 2024.md",
     "找工作/简先辉_Java工程师 2024 1.md",
+    "找工作/简先辉_Java工程师 2024.md",
     "复盘/2024年度目标.md",
     "找工作/期望和问题.md",
     "找工作/简先辉_Java工程师.md",
