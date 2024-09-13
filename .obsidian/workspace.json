@@ -11,9 +11,12 @@
             "id": "cc660f405e8bbf32",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "找工作/简先辉_Java工程师_2024.pdf"
+                "file": "找工作/简先辉_Java工程师 2024 1.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           },
@@ -97,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "找工作/简先辉_Java工程师_2024.pdf",
+                "file": "找工作/简先辉_Java工程师 2024 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "找工作/简先辉_Java工程师_2024.pdf",
+                "file": "找工作/简先辉_Java工程师 2024 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "找工作/简先辉_Java工程师_2024.pdf"
+                "file": "找工作/简先辉_Java工程师 2024 1.md"
               }
             }
           },
@@ -180,8 +183,10 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "cc660f405e8bbf32",
+  "active": "e7e8f26b96c5d7ea",
   "lastOpenFiles": [
+    "找工作/简先辉_Java工程师_2024_1.pdf",
+    "找工作/简先辉_Java工程师_2024.pdf",
     "找工作/简先辉_Java工程师 2024 1.md",
     "找工作/简先辉_Java工程师 2024.md",
     "复盘/2024年度目标.md",
@@ -190,7 +195,6 @@
     "编程/思维导图/Dubbo.xmind",
     "编程/思维导图/新建文本文档.txt",
     "编程/思维导图",
-    "找工作/简先辉_Java工程师_2024.pdf",
     "找工作/Java程序员简历模板.md",
     "笔记/月嫂.md",
     "笔记",
@@ -232,7 +236,6 @@
     "编程/Java/1.基础/6.线程/0、多线程学习路线.md",
     "编程/Java/1.基础/6.线程/1、Thread和Runnable.md",
     "编程/消息队列/消息队列资料.md",
-    "编程/消息队列/Kafka/0 Kafaka架构.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
   ]
 }
