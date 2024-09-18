@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "找工作/谈薪.md",
+                "file": "找工作/面试官最常问的问题.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "找工作/谈薪.md",
+                "file": "找工作/面试官最常问的问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "找工作/谈薪.md",
+                "file": "找工作/面试官最常问的问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "找工作/谈薪.md"
+                "file": "找工作/面试官最常问的问题.md"
               }
             }
           },
@@ -186,9 +186,12 @@
   },
   "active": "7976bb375345f10f",
   "lastOpenFiles": [
-    "找工作/象屿科技.md",
-    "找工作/简先辉_Java工程师 2024 1.md",
     "找工作/期望和问题.md",
+    "找工作/自我介绍.md",
+    "找工作/象屿科技.md",
+    "找工作/面试官最常问的问题.md",
+    "找工作/谈薪.md",
+    "找工作/简先辉_Java工程师 2024 1.md",
     "复盘/2024年度目标.md",
     "找工作/简先辉_Java工程师_2024_1.pdf",
     "找工作/简先辉_Java工程师_2024.pdf",
@@ -234,9 +237,6 @@
     "编程/Java/1.基础/6.线程/uml/ThreadPoolExecutor.png",
     "编程/Java/1.基础/6.线程/uml/Runnable.png",
     "编程/Java/1.基础/6.线程/uml/Callable.png",
-    "编程/Java/1.基础/6.线程/0、多线程学习路线.md",
-    "编程/Java/1.基础/6.线程/1、Thread和Runnable.md",
-    "编程/消息队列/消息队列资料.md",
     "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
   ]
 }
