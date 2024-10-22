@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "小说/遇见超能力女孩/故事背景.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "小说/遇见超能力女孩/故事背景.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "小说/遇见超能力女孩/故事背景.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "复盘/2024年度目标.md"
+                "file": "小说/遇见超能力女孩/故事背景.md"
               }
             }
           },
@@ -186,10 +186,13 @@
   },
   "active": "7976bb375345f10f",
   "lastOpenFiles": [
-    "编程/编程资料.md",
     "学习时间轴.md",
-    "找工作/谈薪.md",
+    "小说/遇见超能力女孩/故事背景.md",
+    "小说/遇见超能力女孩",
     "复盘/2024年度目标.md",
+    "小说",
+    "编程/编程资料.md",
+    "找工作/谈薪.md",
     "复盘/2023年度目标.md",
     "找工作/面试官最常问的问题.md",
     "找工作/期望和问题.md",
@@ -217,8 +220,6 @@
     "编程/流程图/Untitled Diagram.svg",
     "编程/流程图",
     "复盘/2024.xmind",
-    "编程/Java/3.框架/SpringFramework/v2.0/1.核心功能/1.IoC：容器/IoC容器.xmind",
-    "编程/Java/3.框架/SpringFramework/v2.0/3.Integration：集成/4.TaskExecutor和Schedule：线程执行器和任务调度",
     "编程/Java/3.框架/SpringFramework/v2.0/未命名.md",
     "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md",
     "编程/消息队列/Kafka/生产者.md",
@@ -228,7 +229,6 @@
     "编程/数据库/数据库资料.md",
     "编程/运维/运维资料.md",
     "编程/Java/Java资料.md",
-    "编程/操作系统/操作系统资料.md",
     "编程/Java/1.基础/6.线程/uml/ScheduledThreadPoolExecutor.png",
     "编程/Java/1.基础/6.线程/uml/DelayedWorkQueue.png",
     "编程/Java/1.基础/6.线程/uml/ScheduledFutureTask.png",
