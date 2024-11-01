@@ -4,22 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "4339d29d199ae4d4",
+        "id": "b209245f1702e685",
         "type": "tabs",
         "children": [
           {
-            "id": "7976bb375345f10f",
+            "id": "3e51197c5df91b7f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "小说/遇见超能力女孩/大纲.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf"
               },
-              "icon": "lucide-file",
-              "title": "大纲"
+              "icon": "lucide-file-text",
+              "title": "OpenRTB-API-Specification-Version-2-5-FINAL"
             }
           }
         ]
@@ -95,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "小说/遇见超能力女孩/大纲.md",
+                "file": "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +102,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "大纲 的反向链接列表"
+              "title": "OpenRTB-API-Specification-Version-2-5-FINAL 的反向链接列表"
             }
           },
           {
@@ -114,12 +111,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "小说/遇见超能力女孩/大纲.md",
+                "file": "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "大纲 的出链列表"
+              "title": "OpenRTB-API-Specification-Version-2-5-FINAL 的出链列表"
             }
           },
           {
@@ -141,10 +138,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "小说/遇见超能力女孩/大纲.md"
+                "file": "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf"
               },
               "icon": "lucide-list",
-              "title": "大纲 的大纲"
+              "title": "OpenRTB-API-Specification-Version-2-5-FINAL 的大纲"
             }
           },
           {
@@ -176,7 +173,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -189,10 +187,24 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "7976bb375345f10f",
+  "active": "3e51197c5df91b7f",
   "lastOpenFiles": [
-    "学习时间轴.md",
+    "程序化广告/推荐系统实践.pdf",
+    "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
+    "程序化广告/2021年中国MarTech市场研究报告.pdf",
+    "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
+    "程序化广告/2 DSP系统架构和功能基础知识.md",
+    "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
+    "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
+    "attachments/Pasted image 20241101095640.png",
+    "attachments/Pasted image 20241101095624.png",
+    "attachments/Pasted image 20241101095535.png",
+    "attachments/Pasted image 20241101095524.png",
+    "attachments/Pasted image 20241101095505.png",
+    "程序化广告/1 程序化广告基础知识.md",
+    "程序化广告",
     "小说/遇见超能力女孩/大纲.md",
+    "学习时间轴.md",
     "小说/遇见超能力女孩",
     "复盘/2024年度目标.md",
     "小说",
@@ -208,12 +220,8 @@
     "找工作/简先辉_Java工程师_2024.pdf",
     "找工作/简先辉_Java工程师 2024.md",
     "找工作/简先辉_Java工程师.md",
-    "编程/思维导图/Dubbo.xmind",
-    "编程/思维导图/新建文本文档.txt",
-    "编程/思维导图",
     "找工作/Java程序员简历模板.md",
     "笔记/月嫂.md",
-    "笔记",
     "test.canvas",
     "未命名 3.canvas",
     "未命名.canvas",
@@ -223,25 +231,15 @@
     "编程/流程图/未命名.md",
     "编程/流程图/test.md",
     "编程/流程图/Untitled Diagram.svg",
-    "编程/流程图",
-    "复盘/2024.xmind",
     "编程/Java/3.框架/SpringFramework/v2.0/未命名.md",
     "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md",
     "编程/消息队列/Kafka/生产者.md",
     "复盘/副业.md",
     "复盘/读书.md",
     "编程/理论/理论资料.md",
-    "编程/数据库/数据库资料.md",
-    "编程/运维/运维资料.md",
-    "编程/Java/Java资料.md",
     "编程/Java/1.基础/6.线程/uml/ScheduledThreadPoolExecutor.png",
     "编程/Java/1.基础/6.线程/uml/DelayedWorkQueue.png",
     "编程/Java/1.基础/6.线程/uml/ScheduledFutureTask.png",
-    "编程/Java/1.基础/6.线程/uml/ThreadLocal.png",
-    "编程/Java/1.基础/6.线程/uml/ScheduledFutureTask2.png",
-    "编程/Java/1.基础/6.线程/uml/ThreadPoolExecutor.png",
-    "编程/Java/1.基础/6.线程/uml/Runnable.png",
-    "编程/Java/1.基础/6.线程/uml/Callable.png",
-    "编程/Java/3.框架/SpringMVC/uml/ServletContextInitializer.png"
+    "编程/Java/1.基础/6.线程/uml/ThreadLocal.png"
   ]
 }
