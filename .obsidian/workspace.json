@@ -11,12 +11,15 @@
             "id": "3e51197c5df91b7f",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf"
+                "file": "程序化广告/1 程序化广告基础知识.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "OpenRTB-API-Specification-Version-2-5-FINAL"
+              "icon": "lucide-file",
+              "title": "1 程序化广告基础知识"
             }
           }
         ]
@@ -92,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
+                "file": "程序化广告/1 程序化广告基础知识.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +105,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "OpenRTB-API-Specification-Version-2-5-FINAL 的反向链接列表"
+              "title": "1 程序化广告基础知识 的反向链接列表"
             }
           },
           {
@@ -111,12 +114,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
+                "file": "程序化广告/1 程序化广告基础知识.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "OpenRTB-API-Specification-Version-2-5-FINAL 的出链列表"
+              "title": "1 程序化广告基础知识 的出链列表"
             }
           },
           {
@@ -138,10 +141,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf"
+                "file": "程序化广告/1 程序化广告基础知识.md"
               },
               "icon": "lucide-list",
-              "title": "OpenRTB-API-Specification-Version-2-5-FINAL 的大纲"
+              "title": "1 程序化广告基础知识 的大纲"
             }
           },
           {
@@ -190,10 +193,10 @@
   "active": "3e51197c5df91b7f",
   "lastOpenFiles": [
     "程序化广告/推荐系统实践.pdf",
+    "程序化广告/2 DSP系统架构和功能基础知识.md",
+    "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
-    "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
-    "程序化广告/2 DSP系统架构和功能基础知识.md",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
     "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
     "attachments/Pasted image 20241101095640.png",
@@ -217,7 +220,6 @@
     "找工作/象屿科技.md",
     "找工作/简先辉_Java工程师 2024 1.md",
     "找工作/简先辉_Java工程师_2024_1.pdf",
-    "找工作/简先辉_Java工程师_2024.pdf",
     "找工作/简先辉_Java工程师 2024.md",
     "找工作/简先辉_Java工程师.md",
     "找工作/Java程序员简历模板.md",
