@@ -4,37 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "4339d29d199ae4d4",
+        "id": "f6ae99b8354b1695",
         "type": "tabs",
         "children": [
           {
-            "id": "cc660f405e8bbf32",
+            "id": "6b53e5064a171b4b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "找工作/简先辉_Java工程师 2024 1.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "7976bb375345f10f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "找工作/谈薪.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -101,7 +82,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "找工作/谈薪.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +98,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "找工作/谈薪.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,9 +119,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "找工作/谈薪.md"
-              }
+              "state": {}
             }
           },
           {
@@ -184,19 +161,19 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "7976bb375345f10f",
+  "active": "6b53e5064a171b4b",
   "lastOpenFiles": [
+    "找工作/简先辉_Java工程师 2024 1.md",
+    "找工作/简先辉_Java工程师 2024.md",
+    "找工作/简先辉_Java工程师_2024_1.pdf",
+    "找工作/谈薪.md",
     "复盘/2024年度目标.md",
     "复盘/2023年度目标.md",
     "找工作/面试官最常问的问题.md",
     "找工作/期望和问题.md",
     "找工作/自我介绍.md",
     "找工作/象屿科技.md",
-    "找工作/谈薪.md",
-    "找工作/简先辉_Java工程师 2024 1.md",
-    "找工作/简先辉_Java工程师_2024_1.pdf",
     "找工作/简先辉_Java工程师_2024.pdf",
-    "找工作/简先辉_Java工程师 2024.md",
     "找工作/简先辉_Java工程师.md",
     "编程/思维导图/Dubbo.xmind",
     "编程/思维导图/新建文本文档.txt",
@@ -228,7 +205,6 @@
     "编程/运维/运维资料.md",
     "编程/Java/Java资料.md",
     "编程/编程资料.md",
-    "编程/操作系统/操作系统资料.md",
     "编程/Java/1.基础/6.线程/uml/ScheduledThreadPoolExecutor.png",
     "编程/Java/1.基础/6.线程/uml/DelayedWorkQueue.png",
     "编程/Java/1.基础/6.线程/uml/ScheduledFutureTask.png",
