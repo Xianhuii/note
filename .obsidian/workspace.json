@@ -4,23 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "4339d29d199ae4d4",
+        "id": "b209245f1702e685",
         "type": "tabs",
         "children": [
           {
-            "id": "7976bb375345f10f",
+            "id": "3e51197c5df91b7f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "复盘/2024年度目标.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+                "file": "程序化广告/程序化广告：个性化精准投放实用手册.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "程序化广告：个性化精准投放实用手册"
+            }
+          },
+          {
+            "id": "e091ea3efdc3e638",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.7.5"
+              },
+              "icon": "lucide-file",
+              "title": "Release Notes 1.7.5"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -45,7 +57,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
             }
           },
           {
@@ -53,7 +67,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
             }
           },
           {
@@ -63,7 +79,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
             }
           }
         ],
@@ -71,7 +89,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 317.5
+    "width": 317.5,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -87,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "程序化广告/1 程序化广告基础知识.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,7 +114,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": false
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "1 程序化广告基础知识 的反向链接列表"
             }
           },
           {
@@ -104,10 +125,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "程序化广告/1 程序化广告基础知识.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "1 程序化广告基础知识 的出链列表"
             }
           },
           {
@@ -118,7 +141,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
             }
           },
           {
@@ -127,8 +152,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "复盘/2024年度目标.md"
-              }
+                "file": "程序化广告/1 程序化广告基础知识.md"
+              },
+              "icon": "lucide-list",
+              "title": "1 程序化广告基础知识 的大纲"
             }
           },
           {
@@ -136,7 +163,9 @@
             "type": "leaf",
             "state": {
               "type": "advanced-tables-toolbar",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "插件不再活动"
             }
           },
           {
@@ -148,7 +177,9 @@
                 "sortOrder": "frequency",
                 "showSearch": false,
                 "searchQuery": ""
-              }
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
             }
           }
         ],
@@ -156,7 +187,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -169,30 +201,29 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "7976bb375345f10f",
+  "active": "e091ea3efdc3e638",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
     "复盘/2024年度目标.md",
-    "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
-    "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
-    "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
-    "程序化广告/推荐系统实践.pdf",
-    "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
-    "程序化广告/2021年中国MarTech市场研究报告.pdf",
-    "程序化广告/2 DSP系统架构和功能基础知识.md",
+    "conflict-files-obsidian-git.md",
+    "编程/编程资料.md",
     "程序化广告/1 程序化广告基础知识.md",
-    "程序化广告",
     "attachments/Pasted image 20241101105903.png",
     "attachments/Pasted image 20241101105850.png",
     "attachments/Pasted image 20241101105841.png",
     "attachments/Pasted image 20241101105831.png",
+    "程序化广告/推荐系统实践.pdf",
+    "程序化广告/2 DSP系统架构和功能基础知识.md",
+    "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
+    "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
+    "程序化广告/2021年中国MarTech市场研究报告.pdf",
+    "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
+    "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
     "attachments/Pasted image 20241101095640.png",
     "attachments/Pasted image 20241101095624.png",
     "attachments/Pasted image 20241101095535.png",
     "attachments/Pasted image 20241101095524.png",
     "attachments/Pasted image 20241101095505.png",
-    "编程/编程资料.md",
-    "开发规范/开发注意点.md",
+    "程序化广告",
     "小说/遇见超能力女孩/大纲.md",
     "学习时间轴.md",
     "小说/遇见超能力女孩",
@@ -222,6 +253,7 @@
     "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md",
     "编程/消息队列/Kafka/生产者.md",
     "复盘/副业.md",
-    "复盘/读书.md"
+    "复盘/读书.md",
+    "编程/理论/理论资料.md"
   ]
 }
