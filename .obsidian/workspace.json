@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "编程/Java/3.框架/Seata/1 AT模式.md",
+                "file": "编程/Java/3.框架/Seata/2 TCC模式.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 AT模式"
+              "title": "2 TCC模式"
             }
           }
         ]
@@ -193,6 +193,7 @@
   "active": "bf3252e56dcd624f",
   "lastOpenFiles": [
     "编程/Java/3.框架/Seata/1 AT模式.md",
+    "编程/Java/3.框架/Seata/2 TCC模式.md",
     "编程/Java/3.框架/Seata",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
     "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
@@ -242,7 +243,6 @@
     "编程/Java/3.框架/SpringFramework/v2.0/未命名.md",
     "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md",
     "编程/消息队列/Kafka/生产者.md",
-    "复盘/副业.md",
-    "复盘/读书.md"
+    "复盘/副业.md"
   ]
 }
