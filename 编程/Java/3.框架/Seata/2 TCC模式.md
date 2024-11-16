@@ -34,4 +34,14 @@ public String doTransactionCommit(){
 - @LocalTCC：表示本地TCC
 - TccActionInterceptorHandler：TCC的aop拦截器
 - ActionInterceptorHandler：执行TCC逻辑的处理器
-- 
+AT 模式基于 **支持本地 ACID 事务** 的 **关系型数据库**：
+- 一阶段 prepare 行为：在本地事务中，一并提交业务数据更新和相应回滚日志记录。
+- 二阶段 commit 行为：马上成功结束，**自动** 异步批量清理回滚日志。
+- 二阶段 rollback 行为：通过回滚日志，**自动** 生成补偿操作，完成数据回滚。
+
+相应的，TCC 模式，不依赖于底层数据资源的事务支持：
+- 一阶段 prepare 行为：调用 **自定义** 的 prepare 逻辑。
+- 二阶段 commit 行为：调用 **自定义** 的 commit 逻辑。
+- 二阶段 rollback 行为：调用 **自定义** 的 rollback 逻辑。
+
+所谓 TCC 模式，是指支持把 **自定义** 的分支事务纳入到全局事务的管理中。
