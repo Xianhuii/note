@@ -18,4 +18,19 @@ public void purchase(String userId, String commodityCode, int count, int money) 
 AT模式由以下部分组成：
 - `@GlobalTransactional`：
 	- AspectTransactionalInterceptor：aop拦截器，对注解标识的方法进行拦截
-	- GlobalTransactionalInterceptorHandler：
+	- GlobalTransactionalInterceptorHandler：代理执行事务逻辑
+- TransactionalTemplate：事务执行逻辑的模板工具
+	1.  获取事务上下文信息TransactionInfo
+	2. 获取当前事务GlobalTransaction
+	3. 处理事务传播机制
+	4. 开始事务，触发TransactionHook
+	5. 执行业务方法：即标注@GlobalTransactional的方法
+	6. 捕获异常，进行回滚，触发TransactionHook
+	7. 正常执行，提交事务，触发TransactionHook
+	8. 释放资源，触发TransactionHook
+- DefaultGlobalTransaction：事务方法的封装，包括begin、commit、rollback等，实际执行交给TransactionManager处理
+- DefaultTransactionManager：将事务方法通过RPC请求发给远程事务管理服务
+- GlobalTransactionRole：当前事务在全局事务中的角色
+	- Launcher：全局事务发起者，即第一个创建事务的线程，发起者在执行begin、commit、rollback等时会请求远程事务协调者
+	- Participant：全局事务参与者，即后续加入事务的线程
+- 
