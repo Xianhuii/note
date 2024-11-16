@@ -29,8 +29,21 @@ AT模式由以下部分组成：
 	7. 正常执行，提交事务，触发TransactionHook
 	8. 释放资源，触发TransactionHook
 - DefaultGlobalTransaction：事务方法的封装，包括begin、commit、rollback等，实际执行交给TransactionManager处理
-- DefaultTransactionManager：将事务方法通过RPC请求发给远程事务管理服务
+- DefaultCoordinator：事务协调器，负责接收通知，然后转发给资源管理器进行处理
+- DefaultTransactionManager：将事务方法通过RPC请求发给远程事务协调器
+- DefaultResourceManager：资源管理器，在收到通知时进行加锁、提交、回滚等
 - GlobalTransactionRole：当前事务在全局事务中的角色
 	- Launcher：全局事务发起者，即第一个创建事务的线程，发起者在执行begin、commit、rollback等时会请求远程事务协调者
 	- Participant：全局事务参与者，即后续加入事务的线程
-- 
+- DataSourceProxy：数据源代理
+- ConnectionProxy：连接代理
+	- commit：
+		1. 获请求资源管理器，获取全局锁
+		2. 插入undo_log日志，提交事务
+		3. 释放资源
+	- rollback
+		- 回滚事务
+		- 通知资源管理器
+		- 释放资源
+- StatementProxy、PreparedStatementProxy：执行语句代理，实际由ExecuteTemplate执行
+- ExecuteTemplate：执行语句的模板方法，根据语句类型不同交给对应Executor实现了执行
