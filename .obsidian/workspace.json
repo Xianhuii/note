@@ -13,26 +13,13 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "程序化广告/计算广告：互联网商业变现的市场与技术.pdf"
+                "file": "程序化广告/程序化广告：个性化精准投放实用手册.pdf"
               },
               "icon": "lucide-file-text",
-              "title": "计算广告：互联网商业变现的市场与技术"
-            }
-          },
-          {
-            "id": "e9e8e23b3ed06868",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.7.6"
-              },
-              "icon": "lucide-file",
-              "title": "Release Notes 1.7.6"
+              "title": "程序化广告：个性化精准投放实用手册"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -200,8 +187,9 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e9e8e23b3ed06868",
+  "active": "3e51197c5df91b7f",
   "lastOpenFiles": [
+    "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
     "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
     "复盘/2024年度目标.md",
@@ -216,7 +204,6 @@
     "程序化广告/2 DSP系统架构和功能基础知识.md",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
-    "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
     "attachments/Pasted image 20241101095640.png",
     "attachments/Pasted image 20241101095624.png",
     "attachments/Pasted image 20241101095535.png",
