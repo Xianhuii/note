@@ -11,18 +11,28 @@
             "id": "bf3252e56dcd624f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "复盘/2024年度目标.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "由浅入深地聊聊广告平台的MKT+API和RTA"
+            }
+          },
+          {
+            "id": "36822d205065a058",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.7.7"
               },
               "icon": "lucide-file",
-              "title": "2024年度目标"
+              "title": "Release Notes 1.7.7"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -190,8 +200,10 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "bf3252e56dcd624f",
+  "active": "36822d205065a058",
   "lastOpenFiles": [
+    "程序化广告/推荐系统实践.pdf",
+    "复盘/2024年度目标.md",
     "编程/Java/3.框架/Seata/1 AT模式.md",
     "编程/Java/3.框架/Seata/4 Seata XA 模式.md",
     "编程/Java/3.框架/Seata/3 Seata Saga 模式.md",
@@ -200,7 +212,6 @@
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
     "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
     "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
-    "复盘/2024年度目标.md",
     "conflict-files-obsidian-git.md",
     "编程/编程资料.md",
     "程序化广告/1 程序化广告基础知识.md",
@@ -208,7 +219,6 @@
     "attachments/Pasted image 20241101105850.png",
     "attachments/Pasted image 20241101105841.png",
     "attachments/Pasted image 20241101105831.png",
-    "程序化广告/推荐系统实践.pdf",
     "程序化广告/2 DSP系统架构和功能基础知识.md",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
@@ -242,7 +252,6 @@
     "编程/流程图/未命名.md",
     "编程/流程图/test.md",
     "编程/流程图/Untitled Diagram.svg",
-    "编程/Java/3.框架/SpringFramework/v2.0/未命名.md",
-    "编程/Java/3.框架/SpringFramework/v1.0/1、Spring IoC学习路线.md"
+    "编程/Java/3.框架/SpringFramework/v2.0/未命名.md"
   ]
 }
