@@ -18,8 +18,21 @@
               "icon": "lucide-file-text",
               "title": "程序化广告：个性化精准投放实用手册"
             }
+          },
+          {
+            "id": "d6b2cb236b4c170c",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.7.5"
+              },
+              "icon": "lucide-file",
+              "title": "Release Notes 1.7.5"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -188,7 +201,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "3e51197c5df91b7f",
+  "active": "d6b2cb236b4c170c",
   "lastOpenFiles": [
     "复盘/2024年度目标.md",
     "conflict-files-obsidian-git.md",
