@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/2024年度目标.md",
+                "file": "业务迭代/人群包大key拆分.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024年度目标"
+              "title": "人群包大key拆分"
             }
           }
         ]
@@ -192,9 +192,11 @@
   },
   "active": "bf3252e56dcd624f",
   "lastOpenFiles": [
+    "复盘/2024年度目标.md",
+    "业务迭代/人群包大key拆分.md",
+    "业务迭代",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
     "程序化广告/推荐系统实践.pdf",
-    "复盘/2024年度目标.md",
     "编程/Java/3.框架/Seata/1 AT模式.md",
     "编程/Java/3.框架/Seata/4 Seata XA 模式.md",
     "编程/Java/3.框架/Seata/3 Seata Saga 模式.md",
@@ -221,7 +223,6 @@
     "小说/遇见超能力女孩/大纲.md",
     "学习时间轴.md",
     "小说/遇见超能力女孩",
-    "小说",
     "找工作/谈薪.md",
     "复盘/2023年度目标.md",
     "找工作/面试官最常问的问题.md",
