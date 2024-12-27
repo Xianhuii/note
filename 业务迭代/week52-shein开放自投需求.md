@@ -4,4 +4,7 @@
 impAct,clickAct,ctrAct,cpmAct,cpcAct,cost,cpaAct,costPerOrderAct
 ```
 3. 指标排序
-   
+   1. Parent-AdGroups（指标排序）
+   2. Sub-AdGroups（指标排序）
+   3. Sub-AdGroups分页
+   4. Campaign分页（指标排序）
