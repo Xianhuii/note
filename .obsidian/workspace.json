@@ -1,0 +1,248 @@
+{
+  "main": {
+    "id": "95794dc179e39d3b",
+    "type": "split",
+    "children": [
+      {
+        "id": "4eeddef789be6091",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ecf76a1e595e8109",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "笔记/购物.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "购物"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fb47c80e67d7159a",
+    "type": "split",
+    "children": [
+      {
+        "id": "b29680737f810504",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6a844f621a12d00b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "b1ad38a3aa8f2026",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          },
+          {
+            "id": "e7e8f26b96c5d7ea",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 229.5
+  },
+  "right": {
+    "id": "498b15a5676494df",
+    "type": "split",
+    "children": [
+      {
+        "id": "82418a79428328b1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f957d9806d29d069",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "程序化广告/1 程序化广告基础知识.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": true,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-coming-in",
+              "title": "1 程序化广告基础知识 的反向链接列表"
+            }
+          },
+          {
+            "id": "77bbe459371dd27b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "程序化广告/1 程序化广告基础知识.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "1 程序化广告基础知识 的出链列表"
+            }
+          },
+          {
+            "id": "0fac4f1ef777533a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "b0a56dff85469e9a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "程序化广告/1 程序化广告基础知识.md"
+              },
+              "icon": "lucide-list",
+              "title": "1 程序化广告基础知识 的大纲"
+            }
+          },
+          {
+            "id": "5964e393d83065f2",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "插件不再活动"
+            }
+          },
+          {
+            "id": "24128225c9de9686",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "canvas:新建白板": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "ecf76a1e595e8109",
+  "lastOpenFiles": [
+    "复盘/2025年度目标.md",
+    "笔记/购物.md",
+    "conflict-files-obsidian-git.md",
+    "业务迭代/人群包大key拆分.md",
+    "业务迭代/week52-shein开放自投需求.md",
+    "业务迭代",
+    "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
+    "找工作/简先辉_Java工程师.md",
+    "编程/Java/3.框架/Seata/4 Seata XA 模式.md",
+    "编程/Java/3.框架/Seata/3 Seata Saga 模式.md",
+    "编程/Java/3.框架/Seata/2 TCC模式.md",
+    "编程/Java/3.框架/Seata/1 AT模式.md",
+    "编程/Java/3.框架/Seata",
+    "复盘/2024年度目标.md",
+    "编程/编程资料.md",
+    "程序化广告/1 程序化广告基础知识.md",
+    "attachments/Pasted image 20241101105903.png",
+    "attachments/Pasted image 20241101105850.png",
+    "attachments/Pasted image 20241101105841.png",
+    "attachments/Pasted image 20241101105831.png",
+    "程序化广告/推荐系统实践.pdf",
+    "程序化广告/2 DSP系统架构和功能基础知识.md",
+    "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
+    "程序化广告/2021年中国MarTech市场研究报告.pdf",
+    "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
+    "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
+    "attachments/Pasted image 20241101095640.png",
+    "attachments/Pasted image 20241101095624.png",
+    "attachments/Pasted image 20241101095535.png",
+    "attachments/Pasted image 20241101095524.png",
+    "attachments/Pasted image 20241101095505.png",
+    "程序化广告",
+    "小说/遇见超能力女孩/大纲.md",
+    "学习时间轴.md",
+    "小说/遇见超能力女孩",
+    "找工作/谈薪.md",
+    "复盘/2023年度目标.md",
+    "找工作/面试官最常问的问题.md",
+    "找工作/期望和问题.md",
+    "找工作/自我介绍.md",
+    "找工作/象屿科技.md",
+    "找工作/简先辉_Java工程师 2024 1.md",
+    "找工作/简先辉_Java工程师 2024.md",
+    "找工作/Java程序员简历模板.md",
+    "笔记/月嫂.md",
+    "test.canvas",
+    "未命名 3.canvas",
+    "未命名.canvas",
+    "未命名 1.canvas",
+    "未命名 2.canvas",
+    "未命名 4.canvas",
+    "编程/流程图/Untitled Diagram.svg"
+  ]
+}
