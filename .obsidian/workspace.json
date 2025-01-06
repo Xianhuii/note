@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务迭代/钛动/3. 月报.md",
+                "file": "业务迭代/钛动/1. 日报.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3. 月报"
+              "title": "1. 日报"
             }
           }
         ]
@@ -192,9 +192,9 @@
   },
   "active": "bf3252e56dcd624f",
   "lastOpenFiles": [
+    "业务迭代/钛动/3. 月报.md",
     "业务迭代/钛动/1. 日报.md",
     "业务迭代/钛动/2. 周报.md",
-    "业务迭代/钛动/3. 月报.md",
     "业务迭代/钛动/4. 季度.md",
     "业务迭代/人群包大key拆分.md",
     "业务迭代/钛动",
