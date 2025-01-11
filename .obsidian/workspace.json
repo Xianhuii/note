@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "e13b10ad762e77d7",
+        "id": "8e08577d6f0e8d3c",
         "type": "tabs",
         "children": [
           {
-            "id": "bf3252e56dcd624f",
+            "id": "4a393007ad5d798e",
             "type": "leaf",
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "Excalidraw/Drawing 2025-01-11 16.48.41.excalidraw.md"
+                "file": "编程/Java/3.框架/Apollo-Java/Apollo-Java在SpringBoot中的启动流程.md"
               },
               "icon": "excalidraw-icon",
-              "title": "Drawing 2025-01-11 16.48.41.excalidraw"
+              "title": "Apollo-Java在SpringBoot中的启动流程"
             }
           }
         ]
@@ -76,7 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 229.5
+    "width": 435.5
   },
   "right": {
     "id": "498b15a5676494df",
@@ -188,11 +188,12 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "bf3252e56dcd624f",
+  "active": "4a393007ad5d798e",
   "lastOpenFiles": [
-    "attachments/UML-ER-library.excalidrawlib",
     "编程/Java/3.框架/Apollo-Java/Apollo-Java在SpringBoot中的启动流程.md",
+    "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
     "Excalidraw/Drawing 2025-01-11 16.48.41.excalidraw.md",
+    "attachments/UML-ER-library.excalidrawlib",
     "Excalidraw",
     "编程/Java/3.框架/Apollo-Java/Untitled Diagram.svg",
     "复盘/2025年度目标.md",
@@ -224,7 +225,6 @@
     "编程/Java/3.框架/Seata/2 TCC模式.md",
     "编程/Java/3.框架/Seata",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
-    "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
     "conflict-files-obsidian-git.md",
     "编程/编程资料.md",
     "程序化广告/1 程序化广告基础知识.md",
