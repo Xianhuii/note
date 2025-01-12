@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "8e08577d6f0e8d3c",
+        "id": "421ef7d87b8a2bbd",
         "type": "tabs",
         "children": [
           {
-            "id": "4a393007ad5d798e",
+            "id": "aacec35d230dad14",
             "type": "leaf",
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "编程/Java/3.框架/Apollo-Java/Apollo-Java在SpringBoot中的启动流程.md"
+                "file": "编程/Java/3.框架/Apollo-Java/配置管理机制.md"
               },
               "icon": "excalidraw-icon",
-              "title": "Apollo-Java在SpringBoot中的启动流程"
+              "title": "配置管理机制"
             }
           }
         ]
@@ -76,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 435.5
+    "width": 435.5,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -188,9 +189,13 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "4a393007ad5d798e",
+  "active": "aacec35d230dad14",
   "lastOpenFiles": [
-    "编程/Java/3.框架/Apollo-Java/Apollo-Java在SpringBoot中的启动流程.md",
+    "attachments/SPI机制 2025-01-12 13.02.14.excalidraw.md",
+    "编程/Java/3.框架/Apollo-Java/SPI机制.md",
+    "编程/Java/3.框架/Apollo-Java/配置管理机制.md",
+    "编程/Java/3.框架/Apollo-Java/在SpringBoot中的启动流程.md",
+    "编程/Java/3.框架/Apollo-Java/Drawing 2025-01-12 12.58.39.excalidraw.md",
     "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
     "Excalidraw/Drawing 2025-01-11 16.48.41.excalidraw.md",
     "attachments/UML-ER-library.excalidrawlib",
@@ -225,14 +230,10 @@
     "编程/Java/3.框架/Seata/2 TCC模式.md",
     "编程/Java/3.框架/Seata",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
-    "conflict-files-obsidian-git.md",
-    "编程/编程资料.md",
-    "程序化广告/1 程序化广告基础知识.md",
     "attachments/Pasted image 20241101105903.png",
     "attachments/Pasted image 20241101105850.png",
     "attachments/Pasted image 20241101105841.png",
     "attachments/Pasted image 20241101105831.png",
-    "程序化广告/2 DSP系统架构和功能基础知识.md",
     "attachments/Pasted image 20241101095640.png",
     "attachments/Pasted image 20241101095624.png",
     "attachments/Pasted image 20241101095535.png",
