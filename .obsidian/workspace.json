@@ -11,15 +11,12 @@
             "id": "aacec35d230dad14",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "复盘/2025年度目标.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md"
               },
-              "icon": "lucide-file",
-              "title": "2025年度目标"
+              "icon": "excalidraw-icon",
+              "title": "The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw"
             }
           }
         ]
@@ -79,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 435.5
+    "width": 435.5,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -193,9 +191,16 @@
   },
   "active": "aacec35d230dad14",
   "lastOpenFiles": [
+    "编程/理论/分布式架构/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems.md",
+    "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
+    "编程/理论/理论资料.md",
+    "编程/理论/分布式架构",
+    "编程/运维/运维资料.md",
+    "编程/编程资料.md",
+    "编程/Java/Java资料.md",
+    "复盘/2025年度目标.md",
     "编程/Java/3.框架/Apollo-Java/配置管理机制.md",
     "编程/Java/3.框架/Apollo-Java/在SpringBoot中的启动流程.md",
-    "复盘/2025年度目标.md",
     "编程/Java/4. 工具",
     "编程/Java/5. 解决方案",
     "attachments/SPI机制 2025-01-12 13.02.14.excalidraw.md",
@@ -223,14 +228,8 @@
     "笔记/购物.md",
     "复盘/2024年度目标.md",
     "复盘/2023年度目标.md",
-    "复盘/读书.md",
-    "复盘/副业.md",
     "业务迭代",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
-    "程序化广告/推荐系统实践.pdf",
-    "编程/Java/3.框架/Seata/1 AT模式.md",
-    "编程/Java/3.框架/Seata/4 Seata XA 模式.md",
-    "编程/Java/3.框架/Seata/3 Seata Saga 模式.md",
     "attachments/Pasted image 20241101105903.png",
     "attachments/Pasted image 20241101105850.png",
     "attachments/Pasted image 20241101105841.png",

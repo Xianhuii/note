@@ -45,24 +45,24 @@ tags:
 - [x] [Netty: Home](https://netty.io/)
 - [x] [netty/netty: Netty project - an event-driven asynchronous network application framework (github.com)](https://github.com/netty/netty)
 # Dubbo
-- [ ] [Apache Dubbo](https://cn.dubbo.apache.org/zh-cn/)
-- [ ] [apache/dubbo: The java implementation of Apache Dubbo. An RPC and microservice framework. (github.com)](https://github.com/apache/dubbo)
+- [x] [Apache Dubbo](https://cn.dubbo.apache.org/zh-cn/)
+- [x] [apache/dubbo: The java implementation of Apache Dubbo. An RPC and microservice framework. (github.com)](https://github.com/apache/dubbo)
 # xxl-job
-- [ ] [xuxueli/xxl-job: A distributed task scheduling framework.（分布式任务调度平台XXL-JOB） (github.com)](https://github.com/xuxueli/xxl-job)
-- [ ] [分布式任务调度平台XXL-JOB (xuxueli.com)](https://www.xuxueli.com/xxl-job/)
+- [x] [xuxueli/xxl-job: A distributed task scheduling framework.（分布式任务调度平台XXL-JOB） (github.com)](https://github.com/xuxueli/xxl-job)
+- [x] [分布式任务调度平台XXL-JOB (xuxueli.com)](https://www.xuxueli.com/xxl-job/)
 # easy-excel
 - [ ] [alibaba/easyexcel: 快速、简洁、解决大文件内存溢出的java处理Excel工具 (github.com)](https://github.com/alibaba/easyexcel)
 - [ ] [EasyExcel官方文档 - 基于Java的Excel处理工具 | Easy Excel (alibaba.com)](https://easyexcel.opensource.alibaba.com/)
 # Druid
 - [x] [alibaba/druid (github.com)](https://github.com/alibaba/druid)
 # ShardingSphere
-- [ ] [Apache ShardingSphere](https://shardingsphere.apache.org/index_zh.html)
-- [ ] [apache/shardingsphere: Distributed SQL transaction & query engine for data sharding, scaling, encryption, and more - on any database. (github.com)](https://github.com/apache/shardingsphere)
-- [ ] [概览 :: ShardingSphere (apache.org)](https://shardingsphere.apache.org/document/current/cn/overview/)
+- [x] [Apache ShardingSphere](https://shardingsphere.apache.org/index_zh.html)
+- [x] [apache/shardingsphere: Distributed SQL transaction & query engine for data sharding, scaling, encryption, and more - on any database. (github.com)](https://github.com/apache/shardingsphere)
+- [x] [概览 :: ShardingSphere (apache.org)](https://shardingsphere.apache.org/document/current/cn/overview/)
 # Seata
-- [ ] [Seata | Seata](https://seata.io/zh-cn/)
-- [ ] [seata/seata: :fire: Seata is an easy-to-use, high-performance, open source distributed transaction solution. (github.com)](https://github.com/seata/seata)
-- [ ] [快速启动 | Seata](https://seata.io/zh-cn/docs/user/quickstart/)
+- [x] [Seata | Seata](https://seata.io/zh-cn/)
+- [x] [seata/seata: :fire: Seata is an easy-to-use, high-performance, open source distributed transaction solution. (github.com)](https://github.com/seata/seata)
+- [x] [快速启动 | Seata](https://seata.io/zh-cn/docs/user/quickstart/)
 # Nacos
 - [ ] [Nacos 快速开始](https://nacos.io/zh-cn/docs/quick-start.html)
 # JavaFX
