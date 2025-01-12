@@ -11,12 +11,15 @@
             "id": "aacec35d230dad14",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "编程/Java/3.框架/Apollo-Java/配置管理机制.md"
+                "file": "复盘/2025年度目标.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "配置管理机制"
+              "icon": "lucide-file",
+              "title": "2025年度目标"
             }
           }
         ]
@@ -76,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 435.5,
-    "collapsed": true
+    "width": 435.5
   },
   "right": {
     "id": "498b15a5676494df",
@@ -189,12 +191,14 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "aacec35d230dad14",
+  "active": "e7e8f26b96c5d7ea",
   "lastOpenFiles": [
+    "编程/Java/4. 工具",
+    "编程/Java/5. 解决方案",
+    "编程/Java/3.框架/Apollo-Java/在SpringBoot中的启动流程.md",
+    "编程/Java/3.框架/Apollo-Java/配置管理机制.md",
     "attachments/SPI机制 2025-01-12 13.02.14.excalidraw.md",
     "编程/Java/3.框架/Apollo-Java/SPI机制.md",
-    "编程/Java/3.框架/Apollo-Java/配置管理机制.md",
-    "编程/Java/3.框架/Apollo-Java/在SpringBoot中的启动流程.md",
     "编程/Java/3.框架/Apollo-Java/Drawing 2025-01-12 12.58.39.excalidraw.md",
     "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
     "Excalidraw/Drawing 2025-01-11 16.48.41.excalidraw.md",
@@ -227,9 +231,7 @@
     "编程/Java/3.框架/Seata/1 AT模式.md",
     "编程/Java/3.框架/Seata/4 Seata XA 模式.md",
     "编程/Java/3.框架/Seata/3 Seata Saga 模式.md",
-    "编程/Java/3.框架/Seata/2 TCC模式.md",
     "编程/Java/3.框架/Seata",
-    "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
     "attachments/Pasted image 20241101105903.png",
     "attachments/Pasted image 20241101105850.png",
     "attachments/Pasted image 20241101105841.png",
