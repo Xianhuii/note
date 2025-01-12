@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 435.5
+    "width": 435.5,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -141,10 +142,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "程序化广告/1 程序化广告基础知识.md"
+                "file": "编程/理论/分布式架构/2. system-design-primer.md"
               },
               "icon": "lucide-list",
-              "title": "1 程序化广告基础知识 的大纲"
+              "title": "2. system-design-primer 的大纲"
             }
           },
           {
@@ -176,8 +177,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -193,9 +193,12 @@
   },
   "active": "17a5a76e703dcdfc",
   "lastOpenFiles": [
+    "attachments/Pasted image 20250112180650.png",
+    "attachments/Pasted image 20250112175911.png",
+    "attachments/Pasted image 20250112174507.png",
+    "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
     "编程/理论/分布式架构/1. The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems.md",
     "编程/理论/分布式架构/2. system-design-primer.md",
-    "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
     "复盘/2025年度目标.md",
     "编程/理论/理论资料.md",
     "编程/理论/分布式架构",
@@ -229,7 +232,6 @@
     "业务迭代/钛动/4. 季度.md",
     "业务迭代/钛动",
     "笔记/购物.md",
-    "复盘/2024年度目标.md",
     "业务迭代",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
     "attachments/Pasted image 20241101105903.png",
@@ -237,8 +239,6 @@
     "attachments/Pasted image 20241101105841.png",
     "attachments/Pasted image 20241101105831.png",
     "attachments/Pasted image 20241101095640.png",
-    "attachments/Pasted image 20241101095624.png",
-    "attachments/Pasted image 20241101095535.png",
     "test.canvas",
     "未命名 3.canvas",
     "未命名.canvas",
