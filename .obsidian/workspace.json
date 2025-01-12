@@ -4,19 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "421ef7d87b8a2bbd",
+        "id": "d06311f0c7fd6871",
         "type": "tabs",
         "children": [
           {
-            "id": "aacec35d230dad14",
+            "id": "17a5a76e703dcdfc",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md"
+                "file": "编程/理论/分布式架构/2. system-design-primer.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw"
+              "icon": "lucide-file",
+              "title": "2. system-design-primer"
             }
           }
         ]
@@ -76,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 435.5,
-    "collapsed": true
+    "width": 435.5
   },
   "right": {
     "id": "498b15a5676494df",
@@ -189,16 +191,17 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "aacec35d230dad14",
+  "active": "17a5a76e703dcdfc",
   "lastOpenFiles": [
-    "编程/理论/分布式架构/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems.md",
+    "编程/理论/分布式架构/1. The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems.md",
+    "编程/理论/分布式架构/2. system-design-primer.md",
     "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
+    "复盘/2025年度目标.md",
     "编程/理论/理论资料.md",
     "编程/理论/分布式架构",
     "编程/运维/运维资料.md",
     "编程/编程资料.md",
     "编程/Java/Java资料.md",
-    "复盘/2025年度目标.md",
     "编程/Java/3.框架/Apollo-Java/配置管理机制.md",
     "编程/Java/3.框架/Apollo-Java/在SpringBoot中的启动流程.md",
     "编程/Java/4. 工具",
@@ -227,7 +230,6 @@
     "业务迭代/钛动",
     "笔记/购物.md",
     "复盘/2024年度目标.md",
-    "复盘/2023年度目标.md",
     "业务迭代",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
     "attachments/Pasted image 20241101105903.png",
