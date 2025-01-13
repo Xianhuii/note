@@ -1,0 +1,153 @@
+{
+  "main": {
+    "id": "95794dc179e39d3b",
+    "type": "split",
+    "children": [
+      {
+        "id": "91593dfbf717b071",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Spring/CORS/CORS协议规范.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fb47c80e67d7159a",
+    "type": "split",
+    "children": [
+      {
+        "id": "b29680737f810504",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e275dab41eb9f4d9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "6a844f621a12d00b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "126ab70f4df8a5ae",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "498b15a5676494df",
+    "type": "split",
+    "children": [
+      {
+        "id": "82418a79428328b1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f957d9806d29d069",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Spring/CORS/CORS协议规范.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "77bbe459371dd27b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Spring/CORS/CORS协议规范.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0fac4f1ef777533a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "b0a56dff85469e9a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Spring/CORS/CORS协议规范.md"
+              }
+            }
+          },
+          {
+            "id": "3e8750962ecac0a2",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "91593dfbf717b071",
+  "lastOpenFiles": [
+    "Spring/CORS/SpringMVC配置CORS（使用篇）.md",
+    "Spring/CORS/SpringMVC配置CORS（原理篇）.md",
+    "Spring/CORS/CORS协议规范.md",
+    "Spring/CORS/SpringWeb对CORS的支持.md",
+    "插件/Obsidian插件.md",
+    "Spring/CORS/CORS基础理论.md",
+    "设计模式/访问者模式.md",
+    "设计模式/模板方法模式.md",
+    "设计模式/策略模式.md",
+    "设计模式/状态模式.md"
+  ]
+}

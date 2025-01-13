@@ -1,0 +1,1 @@
+![[The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw]]
