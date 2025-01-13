@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "编程/理论/分布式架构/2. system-design-primer.md",
+                "file": "业务迭代/钛动/文档/飞书告警消息切换钉钉.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2. system-design-primer"
+              "title": "飞书告警消息切换钉钉"
             }
           }
         ]
@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 435.5,
-    "collapsed": true
+    "width": 326.5
   },
   "right": {
     "id": "498b15a5676494df",
@@ -142,10 +141,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "编程/理论/分布式架构/2. system-design-primer.md"
+                "file": "业务迭代/钛动/文档/飞书告警消息切换钉钉.md"
               },
               "icon": "lucide-list",
-              "title": "2. system-design-primer 的大纲"
+              "title": "飞书告警消息切换钉钉 的大纲"
             }
           },
           {
@@ -154,8 +153,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "lucide-file",
-              "title": "插件不再活动"
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           },
           {
@@ -173,7 +172,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -193,12 +192,12 @@
   },
   "active": "17a5a76e703dcdfc",
   "lastOpenFiles": [
+    "编程/理论/分布式架构/2. system-design-primer.md",
     "attachments/Pasted image 20250112180650.png",
     "attachments/Pasted image 20250112175911.png",
     "attachments/Pasted image 20250112174507.png",
     "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
     "编程/理论/分布式架构/1. The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems.md",
-    "编程/理论/分布式架构/2. system-design-primer.md",
     "复盘/2025年度目标.md",
     "编程/理论/理论资料.md",
     "编程/理论/分布式架构",
@@ -238,7 +237,6 @@
     "attachments/Pasted image 20241101105850.png",
     "attachments/Pasted image 20241101105841.png",
     "attachments/Pasted image 20241101105831.png",
-    "attachments/Pasted image 20241101095640.png",
     "test.canvas",
     "未命名 3.canvas",
     "未命名.canvas",
