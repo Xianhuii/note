@@ -4,22 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4eeddef789be6091",
+        "id": "70d0a66265a6b84e",
         "type": "tabs",
         "children": [
           {
-            "id": "ecf76a1e595e8109",
+            "id": "8f0a7a396d7ed305",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "笔记/购物.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "购物"
+              "title": "新标签页"
             }
           }
         ]
@@ -190,10 +185,10 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "ecf76a1e595e8109",
+  "active": "8f0a7a396d7ed305",
   "lastOpenFiles": [
-    "复盘/2025年度目标.md",
     "笔记/购物.md",
+    "复盘/2025年度目标.md",
     "conflict-files-obsidian-git.md",
     "业务迭代/人群包大key拆分.md",
     "业务迭代/week52-shein开放自投需求.md",
