@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务迭代/钛动/文档/竞价服务拆分出通知服务.md",
+                "file": "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "竞价服务拆分出通知服务"
+              "title": "计算adg的当日消耗状态"
             }
           }
         ]
@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 326.5
+    "width": 326.5,
+    "collapsed": true
   },
   "right": {
     "id": "498b15a5676494df",
@@ -141,10 +142,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "业务迭代/钛动/文档/竞价服务拆分出通知服务.md"
+                "file": "业务迭代/钛动/文档/计算adg的当日消耗状态.md"
               },
               "icon": "lucide-list",
-              "title": "竞价服务拆分出通知服务 的大纲"
+              "title": "计算adg的当日消耗状态 的大纲"
             }
           },
           {
@@ -192,6 +193,8 @@
   },
   "active": "17a5a76e703dcdfc",
   "lastOpenFiles": [
+    "业务迭代/钛动/文档/竞价服务拆分出通知服务.md",
+    "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
     "业务迭代/钛动/文档/飞书告警消息切换钉钉.md",
     "业务迭代/钛动/1. 日报.md",
     "业务迭代/钛动/2. 周报.md",
@@ -222,7 +225,6 @@
     "Excalidraw",
     "编程/Java/3.框架/Apollo-Java/Untitled Diagram.svg",
     "编程/Java/3.框架/Apollo-Java",
-    "业务迭代/钛动/文档/竞价服务拆分出通知服务.md",
     "业务迭代/钛动/文档/Untitled Diagram.svg",
     "attachments/飞书告警消息切换钉钉 2025-01-08 14.28.03.excalidraw.md",
     "attachments/Pasted image 20250107144403.png",
