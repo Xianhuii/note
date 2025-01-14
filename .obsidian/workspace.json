@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务迭代/钛动/2. 周报.md",
+                "file": "业务迭代/钛动/1. 日报.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2. 周报"
+              "title": "1. 日报"
             }
           }
         ]
@@ -141,10 +141,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "业务迭代/钛动/2. 周报.md"
+                "file": "业务迭代/钛动/1. 日报.md"
               },
               "icon": "lucide-list",
-              "title": "2. 周报 的大纲"
+              "title": "1. 日报 的大纲"
             }
           },
           {
@@ -192,6 +192,7 @@
   },
   "active": "17a5a76e703dcdfc",
   "lastOpenFiles": [
+    "业务迭代/钛动/2. 周报.md",
     "业务迭代/钛动/1. 日报.md",
     "attachments/Pasted image 20250113210443.png",
     "attachments/Pasted image 20250113205255.png",
@@ -225,7 +226,6 @@
     "业务迭代/钛动/文档/Untitled Diagram.svg",
     "attachments/飞书告警消息切换钉钉 2025-01-08 14.28.03.excalidraw.md",
     "attachments/Pasted image 20250107144403.png",
-    "业务迭代/钛动/2. 周报.md",
     "业务迭代/钛动/3. 月报.md",
     "业务迭代/钛动/文档",
     "业务迭代/week52-shein开放自投需求.md",
