@@ -190,8 +190,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "b0a56dff85469e9a",
+  "active": "8f0a7a396d7ed305",
   "lastOpenFiles": [
+    "attachments/Pasted image 20250114195818.png",
+    "attachments/Pasted image 20250114195624.png",
+    "attachments/Pasted image 20250114195114.png",
     "conflict-files-obsidian-git.md",
     "编程/理论/分布式架构/2. system-design-primer.md",
     "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
@@ -223,8 +226,6 @@
     "attachments/UML-ER-library.excalidrawlib",
     "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
     "attachments/SPI机制 2025-01-12 13.02.14.excalidraw.md",
-    "attachments/Pasted image 20250112180650.png",
-    "attachments/Pasted image 20250112175911.png",
     "笔记/购物.md",
     "复盘/2025年度目标.md",
     "业务迭代/人群包大key拆分.md",
@@ -234,7 +235,6 @@
     "编程/Java/3.框架/Seata/4 Seata XA 模式.md",
     "编程/Java/3.框架/Seata/3 Seata Saga 模式.md",
     "编程/Java/3.框架/Seata/2 TCC模式.md",
-    "编程/Java/3.框架/Seata/1 AT模式.md",
     "编程/Java/3.框架/Seata",
     "程序化广告/推荐系统实践.pdf",
     "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
