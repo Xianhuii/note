@@ -1,6 +1,6 @@
 
 ```
-create table ad_group_cost
+create table ad_group_cost_info
 (
     id                        int auto_increment comment '主键' primary key,
     group_id                 int                                   not null comment 'adGroup id',
@@ -10,5 +10,5 @@ create table ad_group_cost
     update_time               datetime    default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '更新时间',
 ) comment '广告组当日消耗表' collate = utf8mb4_unicode_ci;
 
-create index idx_ad_group_id on ad_group_cost (group_id);
+create index idx_ad_group_id on ad_group_cost_info (group_id);
 ```
