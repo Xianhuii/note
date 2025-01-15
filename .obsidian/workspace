@@ -23,7 +23,7 @@
             }
           },
           {
-            "id": "bdd0b02df5bd0e44",
+            "id": "99e1419c69ee0035",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -157,10 +157,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "程序化广告/1 程序化广告基础知识.md"
+                "file": "conflict-files-obsidian-git.md"
               },
               "icon": "lucide-list",
-              "title": "1 程序化广告基础知识 的大纲"
+              "title": "conflict-files-obsidian-git 的大纲"
             }
           },
           {
@@ -192,11 +192,11 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
       "canvas:新建白板": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
@@ -206,10 +206,20 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "bdd0b02df5bd0e44",
+  "active": "99e1419c69ee0035",
   "lastOpenFiles": [
     "编程/理论/分布式架构/2. system-design-primer.md",
     "conflict-files-obsidian-git.md",
+    "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
+    "业务迭代/钛动/文档/shein RTA.md",
+    "attachments/Pasted image 20250113213330.png",
+    "attachments/Pasted image 20250113213221.png",
+    "attachments/Pasted image 20250113212937.png",
+    "attachments/Pasted image 20250113212723.png",
+    "attachments/Pasted image 20250113212404.png",
+    "attachments/Pasted image 20250113211706.png",
+    "attachments/Pasted image 20250113210443.png",
+    "attachments/Pasted image 20250113205255.png",
     "编程/理论/分布式架构/1. The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems.md",
     "编程/理论/分布式架构",
     "编程/Java/3.框架/Apollo-Java/配置管理机制.md",
@@ -231,8 +241,6 @@
     "attachments/SPI机制 2025-01-12 13.02.14.excalidraw.md",
     "attachments/Pasted image 20250112180650.png",
     "attachments/Pasted image 20250112175911.png",
-    "attachments/Pasted image 20250112174507.png",
-    "attachments/Pasted image 20250107144403.png",
     "笔记/购物.md",
     "复盘/2025年度目标.md",
     "业务迭代/人群包大key拆分.md",
@@ -244,16 +252,8 @@
     "编程/Java/3.框架/Seata/2 TCC模式.md",
     "编程/Java/3.框架/Seata/1 AT模式.md",
     "编程/Java/3.框架/Seata",
-    "复盘/2024年度目标.md",
-    "编程/编程资料.md",
-    "attachments/Pasted image 20241101105903.png",
-    "attachments/Pasted image 20241101105850.png",
-    "attachments/Pasted image 20241101105841.png",
-    "attachments/Pasted image 20241101105831.png",
     "程序化广告/推荐系统实践.pdf",
     "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
-    "attachments/Pasted image 20241101095640.png",
-    "attachments/Pasted image 20241101095624.png",
     "test.canvas",
     "未命名 3.canvas",
     "未命名.canvas",

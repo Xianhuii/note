@@ -21,8 +21,24 @@
               "icon": "lucide-file",
               "title": "计算adg的当日消耗状态"
             }
+          },
+          {
+            "id": "5ea1c0548ba17a7c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "conflict-files-obsidian-git"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -141,10 +157,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "业务迭代/钛动/文档/计算adg的当日消耗状态.md"
+                "file": "conflict-files-obsidian-git.md"
               },
               "icon": "lucide-list",
-              "title": "计算adg的当日消耗状态 的大纲"
+              "title": "conflict-files-obsidian-git 的大纲"
             }
           },
           {
@@ -190,20 +206,26 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "17a5a76e703dcdfc",
+  "active": "5ea1c0548ba17a7c",
   "lastOpenFiles": [
-    "业务迭代/钛动/文档/shein RTA.md",
     "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
+    "conflict-files-obsidian-git.md",
+    "attachments/Pasted image 20250114204652.png",
+    "attachments/Pasted image 20250114204544.png",
+    "attachments/Pasted image 20250114203743.png",
+    "attachments/Pasted image 20250114203612.png",
+    "attachments/Pasted image 20250114202358.png",
+    "attachments/Pasted image 20250114202119.png",
+    "attachments/Pasted image 20250114202029.png",
+    "attachments/Pasted image 20250114201858.png",
+    "attachments/Pasted image 20250114201129.png",
+    "attachments/Pasted image 20250114200552.png",
+    "业务迭代/钛动/文档/shein RTA.md",
     "业务迭代/钛动/文档/竞价服务拆分出通知服务.md",
     "业务迭代/钛动/文档/飞书告警消息切换钉钉.md",
     "业务迭代/钛动/1. 日报.md",
     "业务迭代/钛动/2. 周报.md",
-    "attachments/Pasted image 20250113210443.png",
-    "attachments/Pasted image 20250113205255.png",
     "编程/理论/分布式架构/2. system-design-primer.md",
-    "attachments/Pasted image 20250112180650.png",
-    "attachments/Pasted image 20250112175911.png",
-    "attachments/Pasted image 20250112174507.png",
     "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
     "编程/理论/分布式架构/1. The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems.md",
     "复盘/2025年度目标.md",
@@ -223,21 +245,15 @@
     "Excalidraw/Drawing 2025-01-11 16.48.41.excalidraw.md",
     "attachments/UML-ER-library.excalidrawlib",
     "Excalidraw",
-    "编程/Java/3.框架/Apollo-Java/Untitled Diagram.svg",
     "编程/Java/3.框架/Apollo-Java",
-    "业务迭代/钛动/文档/Untitled Diagram.svg",
     "attachments/飞书告警消息切换钉钉 2025-01-08 14.28.03.excalidraw.md",
-    "attachments/Pasted image 20250107144403.png",
     "业务迭代/钛动/3. 月报.md",
     "业务迭代/钛动/文档",
     "业务迭代/week52-shein开放自投需求.md",
     "业务迭代/人群包大key拆分.md",
-    "业务迭代/钛动/4. 季度.md",
     "业务迭代/钛动",
     "业务迭代",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
-    "attachments/Pasted image 20241101105903.png",
-    "attachments/Pasted image 20241101105850.png",
     "test.canvas",
     "未命名 3.canvas",
     "未命名.canvas",
