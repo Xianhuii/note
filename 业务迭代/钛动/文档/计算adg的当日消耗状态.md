@@ -1,6 +1,6 @@
 
 ```
-create table ad_group_cost_info  
+create table ad_group_cost_status
 (  
     id                        int auto_increment comment '主键' primary key,  
     group_id                 int                                   not null comment 'adGroup id',  
