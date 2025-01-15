@@ -10,5 +10,5 @@ create table ad_group_cost_info
     update_time               datetime    default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '更新时间'  
 ) comment '广告组当日消耗信息表';  
   
-create index idx_ad_group_id on ad_group_cost_info (group_id);
+create unique index idx_ad_group_id on ad_group_cost_info (group_id);
 ```
