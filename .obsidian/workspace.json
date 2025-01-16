@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
+                "file": "业务迭代/钛动/1. 日报.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "计算adg的当日消耗状态"
+              "title": "1. 日报"
             }
           }
         ]
@@ -141,10 +141,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "业务迭代/钛动/文档/计算adg的当日消耗状态.md"
+                "file": "业务迭代/钛动/1. 日报.md"
               },
               "icon": "lucide-list",
-              "title": "计算adg的当日消耗状态 的大纲"
+              "title": "1. 日报 的大纲"
             }
           },
           {
@@ -192,8 +192,9 @@
   },
   "active": "17a5a76e703dcdfc",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
+    "业务迭代/钛动/文档/shein RTA.md",
     "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
+    "conflict-files-obsidian-git.md",
     "attachments/Pasted image 20250114204652.png",
     "attachments/Pasted image 20250114204544.png",
     "attachments/Pasted image 20250114203743.png",
@@ -204,7 +205,6 @@
     "attachments/Pasted image 20250114201858.png",
     "attachments/Pasted image 20250114201129.png",
     "attachments/Pasted image 20250114200552.png",
-    "业务迭代/钛动/文档/shein RTA.md",
     "业务迭代/钛动/文档/竞价服务拆分出通知服务.md",
     "业务迭代/钛动/文档/飞书告警消息切换钉钉.md",
     "业务迭代/钛动/1. 日报.md",
