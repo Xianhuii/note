@@ -194,6 +194,8 @@
   },
   "active": "17a5a76e703dcdfc",
   "lastOpenFiles": [
+    "attachments/chandra_failure_detectors.png",
+    "attachments/vector_clock.svg.png",
     "attachments/local-clock.png",
     "attachments/global-clock.png",
     "attachments/CAP_choice.png",
@@ -212,8 +214,6 @@
     "attachments/Pasted image 20250114204652.png",
     "attachments/Pasted image 20250114204544.png",
     "attachments/Pasted image 20250114203743.png",
-    "attachments/Pasted image 20250114203612.png",
-    "attachments/Pasted image 20250114202358.png",
     "业务迭代/钛动/文档/竞价服务拆分出通知服务.md",
     "业务迭代/钛动/文档/飞书告警消息切换钉钉.md",
     "业务迭代/钛动/2. 周报.md",
