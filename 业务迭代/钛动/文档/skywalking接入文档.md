@@ -1,3 +1,6 @@
-目标：
-1. 拦截点
-2. 
+步骤：
+1. 创建plugin项目
+2. 配置拦截点
+3. 拦截请求，创建日志
+4. 构建服务时，复制plugin和skywalking-java-agent
+5. 启动服务时，配置agent
