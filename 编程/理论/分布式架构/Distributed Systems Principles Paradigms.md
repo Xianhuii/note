@@ -1,0 +1,1 @@
+![[Distributed Systems Principles Paradigms 2025-02-09 17.27.36.excalidraw]]
