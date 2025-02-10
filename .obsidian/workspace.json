@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "编程/理论/分布式架构/Distributed Systems Principles Paradigms.md",
+                "file": "业务迭代/钛动/1. 日报.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Distributed Systems Principles Paradigms"
+              "title": "1. 日报"
             }
           }
         ]
@@ -194,10 +194,12 @@
   },
   "active": "1472ad2fc4bf9803",
   "lastOpenFiles": [
+    "业务迭代/钛动/2. 周报.md",
+    "业务迭代/钛动/1. 日报.md",
+    "编程/理论/分布式架构/Distributed Systems Principles Paradigms.md",
     "编程/理论/分布式架构/3. Distributed system for fun and profit.md",
     "Excalidraw/Drawing 2025-02-08 14.49.14.excalidraw.md",
     "Excalidraw/Drawing 2025-02-09 17.46.48.excalidraw.md",
-    "编程/理论/分布式架构/Distributed Systems Principles Paradigms.md",
     "Untitled Diagram 1.svg",
     "Untitled Diagram 2.svg",
     "Untitled Diagram.svg",
@@ -217,8 +219,6 @@
     "业务迭代/钛动/文档/shein RTA.md",
     "attachments/skywalking接入文档 2025-01-22 10.05.05.excalidraw.md",
     "业务迭代/钛动/3. 月报.md",
-    "业务迭代/钛动/2. 周报.md",
-    "业务迭代/钛动/1. 日报.md",
     "编程/Java/3.框架/Apollo-Java/在SpringBoot中的启动流程.md",
     "编程/Java/3.框架/Apollo-Java/配置管理机制.md",
     "编程/理论/分布式架构/4. 分布式架构知识体系.md",
