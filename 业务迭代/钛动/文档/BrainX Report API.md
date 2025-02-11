@@ -19,20 +19,83 @@
 
 | 参数名        | 参数位置 | 参数类型   | 是否必填 | 参数描述                                                                                                                                                                                   |
 | ---------- | ---- | ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| token      | 路径参数 | String | 是    | 广告主token                                                                                                                                                                               |
-| dimensions | 路径参数 | String | 否    | 查询维度，多个维度使用英文逗号分隔，默认按照最细维度查询。支持的维度如下：<br>campaign_id: campaign id<br>ad_group_id: ad group id<br>ad_id:  ad id<br>ad_format: ad format<br>ad_size: ad size<br>creative_id: creative id |
-| startDate  | 路径参数 | String | 否    | 查询起始时间，格式：yyyy-MM-dd                                                                                                                                                                   |
-| endDate    | 路径参数 | String | 否    | 查询结束时间，格式：yyyy-MM-dd                                                                                                                                                                   |
+| token      | 路径参数 | string | 是    | 广告主token                                                                                                                                                                               |
+| dimensions | 路径参数 | string | 否    | 查询维度，多个维度使用英文逗号分隔，默认按照最细维度查询。支持的维度如下：<br>campaign_id: campaign id<br>ad_group_id: ad group id<br>ad_id:  ad id<br>ad_format: ad format<br>ad_size: ad size<br>creative_id: creative id |
+| startDate  | 路径参数 | string | 否    | 查询起始时间，格式：yyyy-MM-dd                                                                                                                                                                   |
+| endDate    | 路径参数 | string | 否    | 查询结束时间，格式：yyyy-MM-dd                                                                                                                                                                   |
 
 #### 2.1.3 响应参数
 
-| 参数名      | 参数位置 | 参数类型   | 是否必填 | 参数描述   |
-| -------- | ---- | ------ | ---- | ------ |
-| username | 请求体  | String | 是    | 用户姓名   |
-| email    | 请求体  | String | 是    | 用户邮箱   |
-| phone    | 请求体  | String | 否    | 用户手机号码 |
+| 参数名     | 参数位置 | 参数类型          | 是否必填 | 参数描述    |
+| ------- | ---- | ------------- | ---- | ------- |
+| code    | 请求体  | integer       | 是    | code    |
+| message | 请求体  | string        | 是    | message |
+| data    | 请求体  | array[object] | 否    | 响应数据    |
 
-## 错误码
-- 400: 请求参数错误
-- 401: 未授权的 API 密钥
-- 500: 服务器内部错误
+data参数
+
+| 参数名                   | 参数位置 | 参数类型      | 是否必填 | 参数描述 |
+| ------------------------ | -------- | ------------- | -------- | -------- |
+| campaignId               |          |               |          |          |
+| campaignName             |          |               |          |          |
+| adGroupId                |          |               |          |          |
+| adGroupName              |          |               |          |          |
+| adId                     |          |               |          |          |
+| adName                   |          |               |          |          |
+| adFormat                 |          |               |          |          |
+| adSize                   |          |               |          |          |
+| creativeId               |          |               |          |          |
+| reportDate               |          |               |          |          |
+| imp                      | 请求体   | number        | 是       | code     |
+| click                    | 请求体   | string        | 是       | message  |
+| ctr                      | 请求体   | array[object] | 否       | 响应数据 |
+| cpm                      |          |               |          |          |
+| cpc                      |          |               |          |          |
+| spend                    |          |               |          |          |
+| spendNotRt               |          |               |          |          |
+| purchaseEventACount      |          |               |          |          |
+| purchaseEventBCount      |          |               |          |          |
+| purchaseEventBNotRtCount |          |               |          |          |
+#### 2.1.4 响应示例
+```json
+{
+  "code": 0,
+  "message": "",
+  "data": [
+    {
+      "imp": 0,
+      "clicks": 0,
+      "ctr": 0,
+      "cpm": 0,
+      "cpc": 0,
+      "spend": 0,
+      "spend_not_rt": 0,
+      "purchase_event_a_count": 0,
+      "purchase_event_a_not_rt_count": 0,
+      "campaign_id": 0,
+      "campaign_name": "",
+      "ad_group_id": 0,
+      "ad_group_name": "",
+      "ad_id": 0,
+      "ad_name": "",
+      "ad_format": "",
+      "ad_size": "",
+      "creative_id": 0,
+      "report_date": ""
+    }
+  ]
+}
+```
+#### 2.1.5 错误码说明
+
+| 错误码 | 错误信息                  | 错误描述        |
+| --- | --------------------- | ----------- |
+| 400 | failure               | 请求参数错误      |
+| 401 | un authorized         | 未授权的 API 密钥 |
+| 500 | internal server error | 服务器内部错误     |
+## 三、认证与授权
+
+### 3.1 认证方式
+本系统采用API Key进行身份认证。
+### 3.2 API Key 认证示例
+在请求参数中添加 `token` 字段，值为分配给开发者的 API Key。例如：
