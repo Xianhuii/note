@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务迭代/钛动/文档/冷启动V1设计文档.md",
+                "file": "业务迭代/钛动/文档/Week07需求.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "冷启动V1设计文档"
+              "title": "Week07需求"
             }
           }
         ]
@@ -193,10 +193,11 @@
   },
   "active": "1472ad2fc4bf9803",
   "lastOpenFiles": [
+    "业务迭代/钛动/文档/冷启动V1设计文档.md",
+    "业务迭代/钛动/文档/Week07需求.md",
     "业务迭代/钛动/1. 日报.md",
     "业务迭代/钛动/文档/BrainX Report API文档.md",
     "业务迭代/钛动/文档/DSP日志与监控技术选型文档.md",
-    "业务迭代/钛动/文档/冷启动V1设计文档.md",
     "业务迭代/钛动/2. 周报.md",
     "编程/理论/分布式架构/Distributed Systems Principles Paradigms.md",
     "编程/理论/分布式架构/3. Distributed system for fun and profit.md",
@@ -229,7 +230,6 @@
     "attachments/system-of-2 1.png",
     "attachments/google-transact09.png",
     "attachments/replication-async.png",
-    "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
     "编程/理论/分布式架构",
     "编程/Java/4. 工具",
     "编程/Java/5. 解决方案",
