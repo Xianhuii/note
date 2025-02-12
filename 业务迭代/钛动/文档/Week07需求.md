@@ -14,5 +14,8 @@
 3. 新增main ad
 涉及改动接口：
 - com.tecdo.adm.delivery.controller.AdGroupController#saveParent
+- com.tecdo.adm.delivery.controller.AdGroupController#updateListInfo
+	- name
+	- status
 - com.tecdo.adm.delivery.controller.AdGroupController#updateParent
 - com.tecdo.adm.delivery.controller.AdController#saveAdBatch
