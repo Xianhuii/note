@@ -12,6 +12,7 @@
 	8. 投放时段
 	9. 出价
 3. 新增main ad
+
 涉及改动接口：
 - com.tecdo.adm.delivery.controller.AdGroupController#saveParent
 - com.tecdo.adm.delivery.controller.AdGroupController#updateListInfo
@@ -27,7 +28,7 @@
 - com.tecdo.adm.delivery.controller.AdGroupController#updateParent
 - com.tecdo.adm.delivery.controller.AdController#saveAdBatch
 
-# 告警模板
+ 告警模板
 编辑：
 ```
 **广告主编辑提醒**
@@ -44,3 +45,8 @@
 Adgroup id：12345
 Adgroup name：XXXXX
 ```
+
+流程：
+1. 收集改动信息
+2. 处理告警内容
+3. 发送告警
