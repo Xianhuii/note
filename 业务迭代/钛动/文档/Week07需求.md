@@ -17,5 +17,30 @@
 - com.tecdo.adm.delivery.controller.AdGroupController#updateListInfo
 	- name
 	- status
+- com.tecdo.adm.delivery.controller.AdGroupController#updateBatch
+	- status
+	- dailyBudget
+	- optPrice
+	- bidStrategy
+- com.tecdo.adm.delivery.controller.AdGroupController#hourUpdateBatch
+	- 投放时段
 - com.tecdo.adm.delivery.controller.AdGroupController#updateParent
 - com.tecdo.adm.delivery.controller.AdController#saveAdBatch
+
+# 告警模板
+编辑：
+```
+**广告主编辑提醒**
+操作时间：2025-02-12 15:02:00(UTC+8)
+改动项：
+- Adgroup name：12345 -> 67890
+- country：IDN\THA-> VNM\SGP
+```
+新建：
+```
+**广告主创建提醒**
+创建时间：2025-02-12 15:02:00(UTC+8)
+创建项：
+Adgroup id：12345
+Adgroup name：XXXXX
+```
