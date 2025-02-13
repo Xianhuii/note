@@ -50,3 +50,7 @@ Adgroup name：XXXXX
 1. 收集改动信息
 2. 处理告警内容
 3. 发送告警
+
+webhook：
+- 飞书【测试】：https://open.feishu.cn/open-apis/bot/v2/hook/7633d841-0f5e-4acc-8cab-87c22e70de1b
+- 钉钉【测试】：
