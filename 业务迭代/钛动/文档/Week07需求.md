@@ -59,3 +59,8 @@ webhook：
 # 对外开放接口
 nginx路由配置：
 - /adm/adv：转发到后端
+```
+location /adm/adv/ {
+	proxy_pass http://brainx-adm:8080/adm/adv/;
+}
+```
