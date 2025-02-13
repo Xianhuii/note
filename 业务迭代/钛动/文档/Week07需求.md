@@ -54,3 +54,5 @@ Adgroup name：XXXXX
 webhook：
 - 飞书【测试】：https://open.feishu.cn/open-apis/bot/v2/hook/7633d841-0f5e-4acc-8cab-87c22e70de1b
 - 钉钉【测试】：
+	- secret：SEC01f7e18ba19a3a2a5d31fe6a9c825956966ca5a8be98c6815e4f69886ed3ddad
+	- url：https://oapi.dingtalk.com/robot/send?access_token=14a9896c2ff1afde473835a26ad76554a954ad486a176e255d6cad72a5f53f6a
