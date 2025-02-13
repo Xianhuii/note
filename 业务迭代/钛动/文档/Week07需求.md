@@ -56,3 +56,6 @@ webhook：
 - 钉钉【测试】：
 	- secret：SEC01f7e18ba19a3a2a5d31fe6a9c825956966ca5a8be98c6815e4f69886ed3ddad
 	- url：https://oapi.dingtalk.com/robot/send?access_token=14a9896c2ff1afde473835a26ad76554a954ad486a176e255d6cad72a5f53f6a
+# 对外开放接口
+nginx路由配置：
+- /adm/adv：转发到后端
