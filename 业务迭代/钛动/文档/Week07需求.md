@@ -1,4 +1,4 @@
-# 【shein】主adg、主ad更改监控
+# 【shein】主adg、主ad更改监控（feature/adv_modify_alarm）
 需求：
 1. 新增main adg
 2. 改动main adg
