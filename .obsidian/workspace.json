@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务迭代/钛动/文档/Week07需求.md",
+                "file": "业务迭代/钛动/1. 日报.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Week07需求"
+              "title": "1. 日报"
             }
           }
         ]
@@ -193,8 +193,8 @@
   },
   "active": "1472ad2fc4bf9803",
   "lastOpenFiles": [
-    "业务迭代/钛动/1. 日报.md",
     "业务迭代/钛动/文档/Week07需求.md",
+    "业务迭代/钛动/1. 日报.md",
     "业务迭代/钛动/文档/冷启动V1设计文档.md",
     "业务迭代/钛动/文档/BrainX Report API文档.md",
     "业务迭代/钛动/文档/DSP日志与监控技术选型文档.md",
