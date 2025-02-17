@@ -66,3 +66,5 @@ location /adm/adv/ {
 }
 ```
 token配置：字典adv_foreign_token
+
+# 冷启池（feature/cold-start-v1-pool）
