@@ -1,0 +1,1 @@
+otpauth://totp/GitHub:Xianhuii?secret=RTJJ4PZZI3VOGO44&issuer=GitHub
