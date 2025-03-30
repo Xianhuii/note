@@ -11,13 +11,49 @@
             "id": "03459bf1074a2cfc",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "复盘/2025年度目标.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "2025年度目标"
+            }
+          },
+          {
+            "id": "61be398b8ea76b8a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "复盘/2025年度目标.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2025年度目标"
+            }
+          },
+          {
+            "id": "6c06e57259e5aac4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "复盘/2025年度目标.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2025年度目标"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -185,54 +221,54 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "03459bf1074a2cfc",
+  "active": "6c06e57259e5aac4",
   "lastOpenFiles": [
-    "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
     "conflict-files-obsidian-git.md",
-    "attachments/Pasted image 20250114204652.png",
-    "attachments/Pasted image 20250114204544.png",
-    "attachments/Pasted image 20250114203743.png",
-    "attachments/Pasted image 20250114203612.png",
-    "attachments/Pasted image 20250114202358.png",
-    "attachments/Pasted image 20250114202119.png",
-    "attachments/Pasted image 20250114202029.png",
-    "attachments/Pasted image 20250114201858.png",
-    "attachments/Pasted image 20250114201129.png",
-    "attachments/Pasted image 20250114200552.png",
+    "复盘/2025年度目标.md",
+    "编程/理论/分布式架构/Distributed Systems Principles Paradigms.md",
+    "编程/理论/分布式架构/3. Distributed system for fun and profit.md",
+    "未命名.md",
+    "备忘录/GitHub授权.md",
+    "备忘录/github-recovery-codes.md",
+    "备忘录",
+    "业务迭代/钛动/转正.md",
+    "业务迭代/钛动/新人训《钛动基本法》实践作业-简先辉.md",
+    "业务迭代/钛动/文档/通知服务拆分方案.md",
+    "业务迭代/钛动/文档/冷启动V1设计文档.md",
+    "业务迭代/钛动/文档/冷启动V1上线.md",
+    "业务迭代/钛动/文档/【shein】广告主投放端改为东八区，广告主预算也改为东八区.md",
+    "业务迭代/钛动/文档/skywalking接入文档.md",
+    "业务迭代/钛动/文档/Week07需求.md",
+    "业务迭代/钛动/文档/Week07上线.md",
+    "业务迭代/钛动/文档/DSP日志与监控技术选型文档.md",
+    "业务迭代/钛动/文档/BrainX Report API文档.md",
+    "attachments/vector_clock.svg.png",
+    "attachments/system-of-3.png",
+    "attachments/system-of-2.png",
+    "attachments/system-of-2 1.png",
+    "attachments/skywalking接入文档 2025-01-22 10.05.05.excalidraw.md",
+    "attachments/replication-sync.png",
+    "attachments/replication-both.png",
+    "attachments/replication-async.png",
+    "attachments/pbs.png",
+    "attachments/part-repl.png",
+    "attachments/pac-dsp.conf",
+    "attachments/local-clock.png",
+    "attachments/Distributed Systems Principles Paradigms 2025-02-09 17.27.36.excalidraw.md",
+    "Excalidraw/Drawing 2025-02-08 14.49.14.excalidraw.md",
+    "Excalidraw",
+    "业务迭代/钛动/文档/计算adg的当日消耗状态.md",
     "业务迭代/钛动/文档/shein RTA.md",
     "业务迭代/钛动/文档/竞价服务拆分出通知服务.md",
     "业务迭代/钛动/文档/飞书告警消息切换钉钉.md",
     "业务迭代/钛动/1. 日报.md",
-    "业务迭代/钛动/2. 周报.md",
-    "编程/理论/分布式架构/2. system-design-primer.md",
-    "attachments/The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems 2025-01-12 15.09.04.excalidraw.md",
-    "编程/理论/分布式架构/1. The Architecture of Open Source Applications (Volume 2) Scalable Web Architecture and Distributed Systems.md",
-    "复盘/2025年度目标.md",
-    "编程/理论/理论资料.md",
     "编程/理论/分布式架构",
-    "编程/运维/运维资料.md",
-    "编程/编程资料.md",
-    "编程/Java/Java资料.md",
-    "编程/Java/3.框架/Apollo-Java/配置管理机制.md",
-    "编程/Java/3.框架/Apollo-Java/在SpringBoot中的启动流程.md",
     "编程/Java/4. 工具",
     "编程/Java/5. 解决方案",
-    "attachments/SPI机制 2025-01-12 13.02.14.excalidraw.md",
-    "编程/Java/3.框架/Apollo-Java/SPI机制.md",
-    "编程/Java/3.框架/Apollo-Java/Drawing 2025-01-12 12.58.39.excalidraw.md",
-    "编程/Java/3.框架/Mybatis/1.Mybatis基本使用.md",
-    "Excalidraw/Drawing 2025-01-11 16.48.41.excalidraw.md",
     "attachments/UML-ER-library.excalidrawlib",
-    "Excalidraw",
     "编程/Java/3.框架/Apollo-Java",
-    "attachments/飞书告警消息切换钉钉 2025-01-08 14.28.03.excalidraw.md",
-    "业务迭代/钛动/3. 月报.md",
     "业务迭代/钛动/文档",
-    "业务迭代/week52-shein开放自投需求.md",
-    "业务迭代/人群包大key拆分.md",
     "业务迭代/钛动",
-    "业务迭代",
-    "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
     "test.canvas",
     "未命名 3.canvas",
     "未命名.canvas",
