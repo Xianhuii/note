@@ -21,24 +21,8 @@
               "icon": "lucide-file",
               "title": "2025年度目标"
             }
-          },
-          {
-            "id": "621644d45bf2723b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "业务迭代/钛动/文档/DSP日志与监控技术选型文档.md",
-                "mode": "preview",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "DSP日志与监控技术选型文档"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -208,13 +192,18 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "621644d45bf2723b",
+  "active": "e7e8f26b96c5d7ea",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
+    "未命名.canvas",
+    "业务迭代/钛动/2. 周报.md",
+    "业务迭代/钛动/3. 月报.md",
+    "业务迭代/钛动/1. 日报.md",
+    "业务迭代/钛动/4. 季度.md",
+    "业务迭代/钛动/转正.md",
     "业务迭代/钛动/文档/DSP日志与监控技术选型文档.md",
+    "conflict-files-obsidian-git.md",
     "复盘/2025年度目标.md",
     "笔记/新生儿疫苗.md",
-    "业务迭代/钛动/转正.md",
     "业务迭代/钛动/新人训《钛动基本法》实践作业-简先辉.md",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
@@ -233,20 +222,15 @@
     "编程/编程资料.md",
     "备忘录/authenticator.txt",
     "备忘录",
-    "业务迭代/钛动/1. 日报.md",
     "业务迭代/钛动/文档/Week07上线.md",
     "业务迭代/钛动/文档/Week07需求.md",
     "业务迭代/钛动/文档/BrainX Report API文档.md",
-    "业务迭代/钛动/2. 周报.md",
     "编程/理论/分布式架构/Distributed Systems Principles Paradigms.md",
     "编程/理论/分布式架构/3. Distributed system for fun and profit.md",
     "Excalidraw/Drawing 2025-02-08 14.49.14.excalidraw.md",
-    "Excalidraw/Drawing 2025-02-09 17.46.48.excalidraw.md",
     "Untitled Diagram 1.svg",
     "Untitled Diagram 2.svg",
     "Untitled Diagram.svg",
-    "attachments/Distributed Systems Principles Paradigms 2025-02-09 17.27.36.excalidraw.md",
-    "复盘/2023年度目标.md",
     "attachments/pac-dsp.conf",
     "attachments/Pasted image 20250119155018.png",
     "attachments/pbs.png",
@@ -258,7 +242,6 @@
     "编程/理论/分布式架构",
     "test.canvas",
     "未命名 3.canvas",
-    "未命名.canvas",
     "未命名 1.canvas",
     "未命名 2.canvas",
     "未命名 4.canvas"
