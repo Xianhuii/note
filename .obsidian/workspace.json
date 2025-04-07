@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/2025年度目标.md",
+                "file": "业务迭代/钛动/周报/Week 15.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "2025年度目标"
+              "title": "Week 15"
             }
           }
         ]
@@ -192,17 +192,19 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "e7e8f26b96c5d7ea",
+  "active": "5a1ca344acbf7ca4",
   "lastOpenFiles": [
-    "未命名.canvas",
-    "业务迭代/钛动/2. 周报.md",
-    "业务迭代/钛动/3. 月报.md",
     "业务迭代/钛动/1. 日报.md",
+    "业务迭代/钛动/周报/Week 15.md",
+    "业务迭代/钛动/2. 周报.md",
+    "业务迭代/钛动/周报",
+    "复盘/2025年度目标.md",
+    "未命名.canvas",
+    "业务迭代/钛动/3. 月报.md",
     "业务迭代/钛动/4. 季度.md",
     "业务迭代/钛动/转正.md",
     "业务迭代/钛动/文档/DSP日志与监控技术选型文档.md",
     "conflict-files-obsidian-git.md",
-    "复盘/2025年度目标.md",
     "笔记/新生儿疫苗.md",
     "业务迭代/钛动/新人训《钛动基本法》实践作业-简先辉.md",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
@@ -239,7 +241,6 @@
     "attachments/system-of-2 1.png",
     "attachments/google-transact09.png",
     "attachments/replication-async.png",
-    "编程/理论/分布式架构",
     "test.canvas",
     "未命名 3.canvas",
     "未命名 1.canvas",
