@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/2025年度目标.md",
+                "file": "业务迭代/钛动/文档/postback业务梳理.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "2025年度目标"
+              "title": "postback业务梳理"
             }
           }
         ]
@@ -194,12 +194,14 @@
   },
   "active": "af80088339465d52",
   "lastOpenFiles": [
+    "业务迭代/钛动/文档/postback&计费系统设计.md",
+    "业务迭代/钛动/文档/postback业务梳理.md",
+    "复盘/2025年度目标.md",
     "业务迭代/钛动/新人训《钛动基本法》实践作业-简先辉.md",
     "业务迭代/钛动/周报/Week 15.md",
     "业务迭代/钛动/1. 日报.md",
     "业务迭代/钛动/2. 周报.md",
     "业务迭代/钛动/周报",
-    "复盘/2025年度目标.md",
     "未命名.canvas",
     "业务迭代/钛动/3. 月报.md",
     "业务迭代/钛动/4. 季度.md",
@@ -228,8 +230,6 @@
     "业务迭代/钛动/文档/Week07需求.md",
     "业务迭代/钛动/文档/BrainX Report API文档.md",
     "编程/理论/分布式架构/Distributed Systems Principles Paradigms.md",
-    "编程/理论/分布式架构/3. Distributed system for fun and profit.md",
-    "Excalidraw/Drawing 2025-02-08 14.49.14.excalidraw.md",
     "Untitled Diagram 1.svg",
     "Untitled Diagram 2.svg",
     "Untitled Diagram.svg",
