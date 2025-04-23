@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/日报/2025-04-22.md",
+                "file": "复盘/日报/2025-04-23.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "2025-04-22"
+              "title": "2025-04-23"
             }
           }
         ]
@@ -194,8 +194,9 @@
   },
   "active": "af80088339465d52",
   "lastOpenFiles": [
-    "复盘/日报/日报模板.md",
     "复盘/日报/2025-04-22.md",
+    "复盘/日报/2025-04-23.md",
+    "复盘/日报/日报模板.md",
     "复盘/迭代记录/W17.md",
     "复盘/迭代记录",
     "业务迭代/钛动/文档/postback业务梳理.md",
@@ -230,7 +231,6 @@
     "未命名.md",
     "编程/编程资料.md",
     "备忘录/authenticator.txt",
-    "业务迭代/钛动/文档/Week07上线.md",
     "Untitled Diagram 1.svg",
     "Untitled Diagram 2.svg",
     "Untitled Diagram.svg",
