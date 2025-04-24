@@ -13,16 +13,29 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "复盘/日报/2025-04-23.md",
+                "file": "复盘/日报/2025-04-22.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "2025-04-23"
+              "title": "2025-04-22"
+            }
+          },
+          {
+            "id": "13aab402672cda0b",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.8.10"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.8.10"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -192,10 +205,10 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "af80088339465d52",
+  "active": "13aab402672cda0b",
   "lastOpenFiles": [
-    "复盘/日报/2025-04-22.md",
     "复盘/日报/2025-04-23.md",
+    "复盘/日报/2025-04-22.md",
     "复盘/日报/日报模板.md",
     "复盘/迭代记录/W17.md",
     "复盘/迭代记录",
