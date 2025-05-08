@@ -1,4 +1,5 @@
 {
-  "folder": "复盘/日报",
-  "template": "复盘/日报/日报模板"
+  "folder": "复盘/周报",
+  "template": "复盘/周报/周报模板",
+  "format": "YYYY-MM-WW周"
 }
