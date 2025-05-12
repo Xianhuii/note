@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "9353653eaef69f9b",
+        "id": "a9c7bde4917910b0",
         "type": "tabs",
         "children": [
           {
-            "id": "af80088339465d52",
+            "id": "bb18bcfb9bebb6fc",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -192,11 +192,16 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "af80088339465d52",
+  "active": "bb18bcfb9bebb6fc",
   "lastOpenFiles": [
+    "attachments/第三方登录方案设计 2025-05-09 15.37.26.excalidraw.md",
+    "业务/第三方登录方案设计.md",
+    "业务/Untitled Diagram.svg",
+    "未命名.canvas",
+    "未命名.md",
+    "未命名 1.canvas",
     "attachments/Pasted image 20250509151933.png",
     "复盘/周报/2025-05-19周.md",
-    "业务/第三方登录方案设计.md",
     "复盘/周报/周报模板.md",
     "复盘/周报/2025-05-19.md",
     "复盘/日报/日报模板.md",
@@ -219,12 +224,10 @@
     "业务/钛动/1. 日报.md",
     "业务/钛动/2. 周报.md",
     "业务/钛动/周报",
-    "未命名.canvas",
     "业务/钛动/3. 月报.md",
     "业务/钛动/4. 季度.md",
     "业务/钛动/转正.md",
     "业务/钛动/文档/DSP日志与监控技术选型文档.md",
-    "conflict-files-obsidian-git.md",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
     "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
@@ -239,11 +242,8 @@
     "attachments/epoch.png",
     "attachments/system-of-3.png",
     "attachments/system-of-2 1.png",
-    "attachments/google-transact09.png",
-    "attachments/replication-async.png",
     "test.canvas",
     "未命名 3.canvas",
-    "未命名 1.canvas",
     "未命名 2.canvas",
     "未命名 4.canvas"
   ]
