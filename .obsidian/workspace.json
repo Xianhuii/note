@@ -21,21 +21,6 @@
               "icon": "lucide-file",
               "title": "2025-05-20周"
             }
-          },
-          {
-            "id": "8ccfd46c69f96337",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "复盘/周报/2025-05-19周.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "2025-05-19周"
-            }
           }
         ]
       }
