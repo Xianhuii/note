@@ -37,8 +37,7 @@
               "title": "分页查询listVO优化"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -208,10 +207,10 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "61e177c0dcf8d47f",
+  "active": "a93c8d5d08a4f7e1",
   "lastOpenFiles": [
-    "复盘/周报/2025-05-20周.md",
     "业务/钛动/文档/分页查询listVO优化.md",
+    "复盘/周报/2025-05-20周.md",
     "业务/钛动/文档/素材中心-video用缩略图，点开再加载视频.md",
     "业务/钛动/文档/权限控制管理.md",
     "复盘/周报/2025-05-19周.md",
