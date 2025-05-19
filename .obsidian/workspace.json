@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务/通用解决方案/4. RBAC.md",
+                "file": "业务/通用解决方案/验证码.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "4. RBAC"
+              "title": "验证码"
             }
           }
         ],
@@ -210,10 +210,12 @@
   },
   "active": "c61685cf61e57b66",
   "lastOpenFiles": [
-    "业务/通用解决方案/3. OAuth2服务.md",
-    "业务/通用解决方案/4. RBAC.md",
-    "业务/通用解决方案/2. 第三方登录方案设计.md",
-    "业务/通用解决方案/1. 用户体系.md",
+    "业务/通用解决方案/用户体系/4. RBAC.md",
+    "业务/通用解决方案/验证码.md",
+    "业务/通用解决方案/用户体系",
+    "业务/通用解决方案/用户体系/3. OAuth2服务.md",
+    "业务/通用解决方案/用户体系/2. 第三方登录方案设计.md",
+    "业务/通用解决方案/用户体系/1. 用户体系.md",
     "业务/通用解决方案",
     "复盘/周报/2025-05-21周.md",
     "复盘/周报/2025-05-20周.md",
@@ -243,13 +245,11 @@
     "复盘/迭代记录/W17.md",
     "复盘/迭代记录",
     "复盘/日报",
-    "业务/钛动/文档/postback&计费系统设计.md",
     "业务/钛动/周报",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
     "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
-    "程序化广告/推荐系统实践.pdf",
     "Untitled Diagram 1.svg",
     "Untitled Diagram 2.svg",
     "Untitled Diagram.svg",
