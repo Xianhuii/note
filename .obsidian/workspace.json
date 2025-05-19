@@ -8,21 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a93c8d5d08a4f7e1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "复盘/周报/2025-05-20周.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "2025-05-20周"
-            }
-          },
-          {
             "id": "61e177c0dcf8d47f",
             "type": "leaf",
             "state": {
@@ -35,6 +20,21 @@
               },
               "icon": "lucide-file",
               "title": "2025-05-21周"
+            }
+          },
+          {
+            "id": "c61685cf61e57b66",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "业务/通用解决方案/1. 用户.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "1. 用户"
             }
           }
         ],
@@ -96,8 +96,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 326.5,
-    "collapsed": true
+    "width": 326.5
   },
   "right": {
     "id": "498b15a5676494df",
@@ -209,17 +208,19 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "61e177c0dcf8d47f",
+  "active": "c61685cf61e57b66",
   "lastOpenFiles": [
-    "复盘/周报/2025-05-20周.md",
+    "业务/通用解决方案/第三方登录方案设计.md",
+    "业务/通用解决方案/1. 用户.md",
+    "业务/通用解决方案",
     "复盘/周报/2025-05-21周.md",
+    "复盘/周报/2025-05-20周.md",
     "业务/钛动/文档/分页查询listVO优化.md",
     "复盘/周报/周报模板.md",
     "业务/钛动/文档/素材中心-video用缩略图，点开再加载视频.md",
     "业务/钛动/文档/权限控制管理.md",
     "复盘/周报/2025-05-19周.md",
     "业务/钛动/文档/接入飞书登录.md",
-    "业务/第三方登录方案设计.md",
     "attachments/第三方登录方案设计 2025-05-09 15.37.26.excalidraw.md",
     "业务/Untitled Diagram.svg",
     "未命名.canvas",
@@ -242,15 +243,12 @@
     "复盘/日报",
     "业务/钛动/文档/postback&计费系统设计.md",
     "复盘/2025年度目标.md",
-    "业务/钛动/新人训《钛动基本法》实践作业-简先辉.md",
-    "业务/钛动/周报/Week 15.md",
     "业务/钛动/周报",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
     "程序化广告/OpenRTB-API-Specification-Version-2-5-FINAL.pdf",
     "程序化广告/由浅入深地聊聊广告平台的MKT+API和RTA.pdf",
     "程序化广告/推荐系统实践.pdf",
-    "程序化广告/计算广告：互联网商业变现的市场与技术.pdf",
     "Untitled Diagram 1.svg",
     "Untitled Diagram 2.svg",
     "Untitled Diagram.svg",
