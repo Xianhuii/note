@@ -28,16 +28,17 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务/钛动/文档/分页查询listVO优化.md",
+                "file": "复盘/周报/2025-05-21周.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "分页查询listVO优化"
+              "title": "2025-05-21周"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -208,10 +209,11 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "a93c8d5d08a4f7e1",
+  "active": "61e177c0dcf8d47f",
   "lastOpenFiles": [
-    "业务/钛动/文档/分页查询listVO优化.md",
     "复盘/周报/2025-05-20周.md",
+    "复盘/周报/2025-05-21周.md",
+    "业务/钛动/文档/分页查询listVO优化.md",
     "复盘/周报/周报模板.md",
     "业务/钛动/文档/素材中心-video用缩略图，点开再加载视频.md",
     "业务/钛动/文档/权限控制管理.md",
@@ -242,7 +244,6 @@
     "复盘/2025年度目标.md",
     "业务/钛动/新人训《钛动基本法》实践作业-简先辉.md",
     "业务/钛动/周报/Week 15.md",
-    "业务/钛动/1. 日报.md",
     "业务/钛动/周报",
     "程序化广告/2021年中国MarTech市场研究报告.pdf",
     "程序化广告/程序化广告：个性化精准投放实用手册.pdf",
