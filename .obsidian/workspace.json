@@ -28,16 +28,17 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务/通用解决方案/用户体系/5. 数据权限.md",
+                "file": "编程/Java/3.框架/SpringBoot/5、SpringBoot注册Servlet、Filter和Listener的方式和原理.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "5. 数据权限"
+              "title": "5、SpringBoot注册Servlet、Filter和Listener的方式和原理"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -207,20 +208,21 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "61e177c0dcf8d47f",
+  "active": "c61685cf61e57b66",
   "lastOpenFiles": [
-    "业务/钛动/文档/素材中心-video用缩略图，点开再加载视频.md",
-    "复盘/周报/2025-05-20周.md",
-    "复盘/周报/2025-05-19周.md",
-    "复盘/周报/2025-05-21周.md",
+    "编程/Java/3.框架/SpringBoot/4、SpringBoot内置Web服务器自动配置原理.md",
     "业务/通用解决方案/用户体系/5. 数据权限.md",
-    "业务/钛动/文档/分页查询listVO优化.md",
-    "业务/通用解决方案/验证码.md",
     "业务/通用解决方案/用户体系/4. RBAC.md",
-    "业务/通用解决方案/用户体系",
     "业务/通用解决方案/用户体系/3. OAuth2服务.md",
     "业务/通用解决方案/用户体系/2. 第三方登录方案设计.md",
     "业务/通用解决方案/用户体系/1. 用户体系.md",
+    "复盘/周报/2025-05-21周.md",
+    "业务/钛动/文档/素材中心-video用缩略图，点开再加载视频.md",
+    "复盘/周报/2025-05-20周.md",
+    "复盘/周报/2025-05-19周.md",
+    "业务/钛动/文档/分页查询listVO优化.md",
+    "业务/通用解决方案/验证码.md",
+    "业务/通用解决方案/用户体系",
     "业务/通用解决方案",
     "复盘/周报/周报模板.md",
     "业务/钛动/文档/权限控制管理.md",
@@ -241,7 +243,6 @@
     "业务/钛动/数据库查询脚本.md",
     "复盘/日报/2025-04-23.md",
     "业务/钛动/文档/postback业务梳理.md",
-    "复盘/日报/2025-04-22.md",
     "复盘/迭代记录",
     "复盘/日报",
     "业务/钛动/周报",
