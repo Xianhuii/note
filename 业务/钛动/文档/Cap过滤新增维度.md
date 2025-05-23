@@ -4,8 +4,8 @@
 
 # 2 表结构及ER图
 target_condition新增定向条件：
-- attribute：
-  
+- attribute：dim_imp_cap_day
+- operation：lt
 
 # 3 流程图
 
