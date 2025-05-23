@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "业务/钛动/文档/流量自动拉黑详细设计文档.md",
+                "file": "业务/钛动/文档/Cap过滤新增维度.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "流量自动拉黑详细设计文档"
+              "title": "Cap过滤新增维度"
             }
           }
         ],
@@ -210,9 +210,10 @@
   },
   "active": "00334f6a9b878249",
   "lastOpenFiles": [
-    "编程/数据库/Redis/使用Redis必须考虑的问题.md",
+    "业务/钛动/文档/流量自动拉黑.md",
     "复盘/周报/2025-05-21周.md",
-    "业务/钛动/文档/流量自动拉黑详细设计文档.md",
+    "业务/钛动/文档/Cap过滤新增维度.md",
+    "编程/数据库/Redis/使用Redis必须考虑的问题.md",
     "编程/消息队列/理论/使用消息队列必须考虑的问题.md",
     "编程/消息队列/消息队列资料.md",
     "编程/消息队列/Kafka/生产者.md",
@@ -236,7 +237,6 @@
     "编程/Java/3.框架/SpringMVC/1、Java Web服务器是怎么处理请求的？.md",
     "编程/Java/3.框架/SpringCloud/5、SpringCloudGateway服务路由.md",
     "编程/Java/3.框架/SpringCloud/2、Nacos服务注册与发现.md",
-    "编程/Java/3.框架/SpringCloud/1、SpringCloudAlibaba项目搭建流程.md",
     "编程/Java/5. 解决方案/用户管理",
     "业务/通用解决方案",
     "业务/Untitled Diagram.svg",
